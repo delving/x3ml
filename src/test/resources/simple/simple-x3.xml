@@ -1,0 +1,25 @@
+<mappings version="0.1">
+    <mapping>
+        <domain>
+            <source>movie</source>
+            <entity tag="E19_Physical_Object">
+                <uri_function name="PhysicalObject">
+                    <arg name="nameOfMuseum">/movie/museum/text()</arg>
+                    <arg name="entry">/movie/identifier/text()</arg>
+                </uri_function>
+            </entity>
+        </domain>
+        <link>
+            <path>
+                <source>movie/type</source>
+                <property tag="P2_has_type"/>
+            </path>
+            <range>
+                <source>movie/type</source>
+                <entity tag="E55_Type">
+                    <uri_function name="Type"/>
+                </entity>
+            </range>
+        </link>
+    </mapping>
+</mappings>

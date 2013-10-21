@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movie>
+    <museum>CGI Museum</museum>
+    <identifier>SHRK-1</identifier>
+    <title>Shrek</title>
+    <type>Computer Animation</type>
+    <reference id="Ref1" type="character">
+        <name>Shrek</name>
+        <uri>http://www.imdb.com/title/tt0126029/</uri>
+        <features>
+            <color>Green</color>
+            <size>Large</size>
+        </features>
+    </reference>
+    <reference id="Pla1" type="location">
+        <name>Swamp Lake</name>
+        <uri>http://www.geonames.org/maps/google_52.852_-100.579.html</uri>
+    </reference>
+</movie>

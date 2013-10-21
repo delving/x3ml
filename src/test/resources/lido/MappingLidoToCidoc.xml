@@ -1,0 +1,2508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This document defines a mapping from LIDO v0.7 to CIDOC-CRM v5.0.1. Based on Mapping Language defined in "Mapping Language for Information Integration" Technical Report 385, ICS-FORTH, December 2006-->
+<!--Institute of Computer Science, FORTH-ICS, Heraklio, Crete, Greece: Maria Koutraki(kutraki@ics.forth.gr) , Martin Doerr(martin@ics.forth.gr)-->
+<!-- <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons Licence" 
+     style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />
+	 <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">"Mapping Lido To Cidoc"</span> 
+	 is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+	 Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+ -->
+<mapping xsi:noNamespaceSchemaLocation="MappingLidoToCidoc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map>
+		<!-- RecID -->
+		<domain_map>
+			<src_domain>lido</src_domain>
+			<target_domain>E19_Physical_Object</target_domain>
+			<uri_rules> 
+				<uri_function>
+					<name>uriForPhysicalObjects</name>
+					<arguments>//lido:lido/lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue/text()</arguments>
+					<arguments>//lido:lido/lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:workID/text()</arguments>
+				</uri_function>
+			</uri_rules>
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:lidoRecID</src_range>
+				<target_range>E31_Document</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriPhysThing</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>lidoRecID</src_path>
+				<target_path>
+					<int_link>P70_is_documented_in</int_link>
+				</target_path>
+			</path_map> 
+		</link_map>
+		<link_map>	<!-- Category -->
+			<range_map>
+				<src_range>lido:category</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				
+			</range_map>
+			<path_map>
+				<src_path>category</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Object Work Type/term -->
+			<range_map>
+				<src_range>lido:objectWorkType/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				
+			</range_map>
+			<path_map>
+				<src_path>objectWorkType/term</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Object Work Type/conceptID -->
+ 			<range_map>
+				<src_range>lido:objectWorkType/lido:conceptID</src_range>
+				<target_range>E42_Identifier</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>objectWorkType/conceptID</src_path>
+				<target_path>
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Classification/term -->
+			<range_map>
+				<src_range>lido:classification/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>classification/term</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Classification/conceptID -->
+			<range_map>
+				<src_range>lido:classification/lido:conceptID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>classification/conceptID</src_path>
+				<target_path>
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- TitleSet/AppellationValue -->
+			<range_map>
+				<src_range>lido:titleSet/lido:appellationValue</src_range>
+				<target_range>E41_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>titleSet/appellationValue</src_path>
+				<target_path>
+					<int_link>P1_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- TitleSet/sourceAppellation -->
+			<range_map>
+				<src_range>lido:titleSet/lido:sourceAppellation</src_range>
+				<target_range>E41_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>titleSet/sourceAppellation</src_path>
+				<target_path>
+					<int_link>P1_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Inscriptions -->
+			<range_map>
+				<src_range>lido:inscriptions</src_range>
+				<target_range>E36_Visual_Item</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>inscriptions</src_path>
+				<target_path>
+					<int_link>P65_shows_visual_item</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 		<!-- Repository Name/ Legal Body ID -->
+			<range_map>
+				<src_range>lido:repositoryName/lido:legalBodyID</src_range>
+				<target_range>E42_Identifier</target_range>
+				<uri_rules>
+				<uri_function>
+					<name>appellationURI</name>
+					<arguments>text()</arguments>
+				</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>repositoryName/legalBodyID</src_path>
+				<target_path>
+					<int_link>P50_has_current_keeper</int_link>
+					<int_entity>E39_Actor</int_entity>
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>@lido:source</arguments>
+							<arguments>text()</arguments>
+							<arguments>../lido:legalBodyName/lido:appellationValue/text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+						</uri_function>
+					</uri_rules>
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Repository Name/ Legal Body Name -->
+			<range_map>
+				<src_range>lido:repositoryName/lido:legalBodyName/lido:appellationValue</src_range>
+				<target_range>E82_Actor_Appellation</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>repositoryName/legalBodyName/appellationValue</src_path>
+				<target_path>
+					<int_link>P50_has_current_keeper</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../lido:legalBodyID/text()</arguments>
+							<arguments>text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+						</uri_function>
+					</uri_rules>	
+					<int_link>P131_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Repository Location/ placeID -->
+			<range_map>
+				<src_range>lido:repositoryLocation/lido:placeID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>repositoryLocation/placeID</src_path>
+				<target_path>
+					<int_link>P55_has_current_location</int_link>
+					<int_entity>E53_Place</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForPlaces</name>
+							<arguments>../lido:namePlaceSet/lido:appellationValue/text()</arguments>
+							<arguments>@lido:source</arguments>
+							<arguments>text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../lido:partOfPlace</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Repository Location/ namePlaceSet /Appellation Value -->
+			<range_map>
+				<src_range>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</src_range>
+				<target_range>E44_Place_Appellation</target_range>
+					<uri_rules>
+						<uri_function>
+							<name>appellationURI</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>repositoryLocation/namePlaceSet/appellationValue</src_path>
+				<target_path>
+					<int_link>P55_has_current_location</int_link>
+					<int_entity>E53_Place</int_entity>
+						<uri_rules>
+						<uri_function>
+							<name>uriForPlaces</name>
+							<arguments>text()</arguments>
+							<arguments>../../lido:placeID/@lido:source</arguments>
+							<arguments>../../lido:placeID/text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../../lido:partOfPlace</arguments>
+						</uri_function>
+					</uri_rules>
+					<int_link>P87_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Repository Location/ namePlaceSet / source Appellation -->
+			<range_map>
+				<src_range>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</src_range>
+				<target_range>E62_String</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>repositoryLocation/namePlaceSet/sourceAppellation</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display State -->
+			<range_map>
+				<src_range>lido:displayState</src_range>
+				<target_range>E62_String</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>displayState</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Edition -->
+			<range_map>
+				<src_range>lido:displayEdition</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			
+			</range_map>
+			<path_map>
+				<src_path>displayEdition</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Source Display State/Edition -->
+			<range_map>
+				<src_range>lido:sourceStateEdition</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			
+			</range_map>
+			<path_map>
+				<src_path>sourceStateEdition</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Descriptive Note Value -->
+			<range_map>
+				<src_range>lido:objectDescriptionSet/lido:descriptiveNoteValue</src_range>
+				<target_range>E62_String</target_range>
+					<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>objectDescriptionSet/descriptiveNoteValue</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>	<!-- Source Descriptive Note -->
+			<range_map>
+				<src_range>lido:objectDescriptionSet/lido:sourceDescriptiveNote</src_range>
+				<target_range>E62_String</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>objectDescriptionSet/sourceDescriptiveNote</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Object Measurements -->
+			<range_map>
+				<src_range>lido:displayObjectMeasurements</src_range>
+				<target_range>E62_String</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>displayObjectMeasurements</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- measurementsSet -->
+			<range_map>
+				<src_range>lido:measurementsSet</src_range>
+				<target_range>E54_Dimension</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>dimensionURI</name>
+						<arguments>@lido:value</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>measurementsSet</src_path>
+				<target_path>
+					<int_link>P43_has_dimension</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- extentMeasurements -->
+			<range_map>
+				<src_range>lido:extentMeasurements</src_range>
+				<target_range>E62_String</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>extentMeasurements</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- qualifierMeasurements -->
+			<range_map>
+				<src_range>lido:qualifierMeasurements</src_range>
+				<target_range>E62_String</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>qualifierMeasurements</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Event -->
+			<range_map>
+				<src_range>lido:displayEvent</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>displayEvent</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- EventID -->
+			<range_map>
+				<src_range>lido:eventID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventID</src_path>
+				<target_path>
+					<int_link>P12B_was_present_at</int_link>
+					<int_entity>E5_Event</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>@lido:source</arguments>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Event Type / term -->
+			<range_map>
+				<src_range>lido:eventType/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>eventType/term</src_path>
+				<target_path>
+					<int_link>P12B_was_present_at</int_link>
+					<int_entity>E5_Event</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../../lido:eventID/@lido:source</arguments>
+							<arguments>../../lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Event Type condition roleInEvent="produced by" -->
+			<range_map>
+				<src_range>lido:eventType/lido:term</src_range>
+				<target_range>E12_Production</target_range>
+				
+				<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../../lido:eventID/@lido:source</arguments>
+							<arguments>../../lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventType/term</src_path>
+				<target_path>
+					<target_path_condition>
+						<if>
+							<path>../../lido:roleInEvent/lido:term/text()</path>
+							<has_value>produced_by</has_value>
+						</if>
+					</target_path_condition>
+					<int_link>P108_was_produced_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Event Type condition roleInEvent="created by" -->
+			<range_map>
+				<src_range>lido:eventType/lido:term</src_range>
+				<target_range>E65_Creation</target_range>
+				
+				<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../../lido:eventID/@lido:source</arguments>
+							<arguments>../../lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+				
+				
+			</range_map>
+			<path_map>
+				<src_path>eventType/term</src_path>
+				<target_path>
+					<target_path_condition>
+						<if>
+							<path>../../lido:roleInEvent/lido:term/text()</path>
+							<has_value>created_by</has_value>
+						</if>
+					</target_path_condition>
+					<int_link>P94_was_created_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Event Type condition roleInEvent="used for" -->
+			<range_map>
+				<src_range>lido:eventType/lido:term</src_range>
+				<target_range>E7_Activity</target_range>
+				<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../../lido:eventID/@lido:source</arguments>
+							<arguments>../../lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventType/term</src_path>
+				<target_path>
+					<target_path_condition>
+						<if>
+							<path>../../lido:roleInEvent/lido:term/text()</path>
+							<has_value>used_for</has_value>
+						</if>
+					</target_path_condition>
+					<int_link>P16_was_used_for</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map><!-- Event Type condition = Herstellung (Production) -->
+			<range_map>
+				<src_range_condition>
+					<if>
+						<path>text()</path>
+						<has_value>Herstellung</has_value>
+					</if>
+				</src_range_condition>
+				<src_range>lido:eventType/lido:term</src_range>
+				<target_range>E12_Production</target_range>
+				<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../../lido:eventID/@lido:source</arguments>
+							<arguments>../../lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>eventType/term</src_path>
+				<target_path>
+					<int_link>P12B_was_present_at</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Subject -->
+			<range_map>
+				<src_range>lido:displaySubject</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>displaySubject</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>		<!-- Extent Subject -->
+			<range_map>
+				<src_range>lido:extentSubject</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>extentSubject</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Subject Concept /conceptID -->
+			<range_map>
+				<src_range>lido:subjectConcept/lido:conceptID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectConcept/conceptID</src_path>
+				<target_path>
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Subject Concept/Term -->
+			<range_map>
+				<src_range>lido:subjectConcept/lido:term</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectConcept/term</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>	<!-- Subject Actor / Display Actor -->
+			<range_map>
+				<src_range>lido:subjectActor/lido:displayActor</src_range>
+				<target_range>E39_Actor</target_range>	
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriForActors</name>
+						<arguments>../lido:actor/lido:actorID/@lido:source</arguments>
+						<arguments>../lido:actor/lido:actorID/text()</arguments>
+						<arguments>../lido:actor/lido:nameActorSet/lido:appellationValue/text()</arguments>
+						<arguments>../lido:actor/lido:vitalDatesActor/@lido:birthDate</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectActor/displayActor</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E73_Information_Object</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriConceptual</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P129_is_about</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Subject Date / Display Date -->
+			<range_map>
+				<src_range>lido:subjectDate/lido:displayDate</src_range>
+				<target_range>E50_Date</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectDate/displayDate</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E73_Information_Object</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriConceptual</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P129_is_about</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Subject Event / Display Event -->
+			<range_map>
+				<src_range>lido:subjectEvent/lido:displayEvent</src_range>
+				<target_range>E5_Event</target_range>
+				
+				<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../lido:event/lido:eventID/@lido:source</arguments>
+							<arguments>../lido:event/lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+			</range_map>
+			<path_map>
+				<src_path>subjectEvent/displayEvent</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E73_Information_Object</int_entity>
+					
+						
+					<uri_rules>
+						<uri_function>
+							<name>uriConceptual</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P129_is_about</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Subject Place / Display Place -->
+			<range_map>
+				<src_range>lido:subjectPlace/lido:displayPlace</src_range>
+				<target_range>E53_Place</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriForPlaces</name>
+						<arguments>text()</arguments>
+						<arguments>..//lido:placeID/@lido:source</arguments>
+						<arguments>..//lido:placeID/text()</arguments>
+						<arguments>//lido:lido/nothing</arguments>
+						<arguments>../lido:place/lido:partOfPlace</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>subjectPlace/displayPlace</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E73_Information_Object</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriConceptual</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P129_is_about</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Object -->
+			<range_map>
+				<src_range>lido:subjectObject/lido:displayObject</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectObject/displayObject</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Object Web Resource -->
+			<range_map>
+				<src_range>lido:subjectObject/lido:object/lido:objectWebResource</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectObject/object/objectWebResource</src_path>
+				<target_path>
+					<int_link>P67_is_referred_to_by</int_link>
+					<int_entity>E73_Information_Object</int_entity>
+					
+						<uri_rules>
+						<uri_function>
+							<name>uriConceptual</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- ObjectID -->
+			<range_map>
+				<src_range>lido:subjectObject/lido:object/lido:objectID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectObject/object/objectID</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E18_Physical_Thing</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriPhysThing</name>
+							<arguments>/text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Related WorkRel Type -->
+			<range_map>
+				<src_range>lido:relatedWorkRelType</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>relatedWorkRelType</src_path>
+				<target_path>
+					<int_link>P46_forms_part_of</int_link>
+					<int_entity>E18_Physical_Thing</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriPhysThing</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Rights Type -->
+			<range_map>
+				<src_range>lido:rightsType</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>rightsType</src_path>
+				<target_path>
+					<int_link>P104_is_subject_to</int_link>
+					<int_entity>E30_Right</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriConceptual</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Record ID -->
+			<range_map>
+				<src_range>lido:recordID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>recordID</src_path>
+				<target_path>
+					<int_link>P70B_is_documented_in</int_link>
+					<int_entity>E31_Document</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriPhysThing</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Repository Name/ Legal Body weblink -->
+		<domain_map>
+			<src_domain>lido/repositoryName/legalBodyName</src_domain>
+			<target_domain>E39_Actor</target_domain>
+			
+				<uri_rules>
+					<uri_function>
+						<name>uriForActors</name>
+						<arguments>../lido:legalBodyID/@lido:source</arguments>
+						<arguments>../lido:legalBodyID/text()</arguments>
+						<arguments>lido:appellationValue/text()</arguments>
+						<arguments>//lido:lido/nothing</arguments>
+					</uri_function>
+				</uri_rules>
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:repositoryName/lido:legalBodyWeblink</src_range>
+				<target_range>E73_Information_Object</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriConceptual</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				<add_link>P2_has_type</add_link>
+				<add_entity>
+					<value value_binding="web resource">E55_Type</value>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+			<path_map>
+				<src_path>repositoryName/legalBodyWeblink</src_path>
+				<target_path>
+					<int_link>P129_is_subject_of</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Repository Location/ Part of Place -->
+		<domain_map>
+			<src_domain>lido:repositoryLocation</src_domain>
+			<target_domain>E53_Place</target_domain>
+			<uri_rules>
+				<uri_function>
+					<name>uriForPlaces</name>
+					<arguments>lido:place/lido:namePlaceSet/lido:appellationValue/text()</arguments>
+					<arguments>lido:place/lido:placeID/@lido:source</arguments>
+					<arguments>lido:place/lido:placeID/text()</arguments>
+					<arguments>//lido:lido/nothing</arguments>
+					<arguments>lido:place/lido:partOfPlace</arguments>
+				</uri_function>
+			</uri_rules>
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:repositoryLocation/lido:partOfPlace/lido:placeID</src_range>
+				<target_range>E42_Identifier</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>repositoryLocation/partOfPlace/placeID</src_path>
+				<target_path>
+					<int_link>P88_consists_of</int_link>
+					<int_entity>E53_Place</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForPlaces</name>
+							<arguments>../../lido:namePlaceSet/lido:appellationValue/text()</arguments>
+							<arguments>../../lido:placeID/@lido:source</arguments>
+							<arguments>../../lido:placeID/text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../lido:partOfPlace</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Repository Location/ Place Classification/ term-->
+			<range_map>
+				<src_range>lido:repositoryLocation/lido:placeClassification/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				
+			</range_map>
+			<path_map>
+				<src_path>repositoryLocation/placeClassification/term</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- formatMeasurements -->
+		<domain_map>
+			<src_domain>lido/measurementsSet</src_domain>
+			<target_domain>E54_Dimension</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>dimensionURI</name>
+					<arguments>@lido:value</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:formatMeasurements</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				<add_link>P2_has_type</add_link>
+				<add_entity>
+					<value value_binding="Format">E55_Type</value>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>@lido:type</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+			<path_map>
+				<src_path>formatMeasurements</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- shapeMeasurements -->
+			<range_map>
+				<src_range>lido:shapeMeasurements</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				<add_link>P2_has_type</add_link>
+				<add_entity>
+					<value value_binding="Shape">E55_Type</value>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+			<path_map>
+				<src_path>shapeMeasurements</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- scaleMeasurements -->
+			<range_map>
+				<src_range>lido:scaleMeasurements</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				<add_link>P2_has_type</add_link>
+				<add_entity>
+					<value value_binding="Scale">E55_Type</value>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+			<path_map>
+				<src_path>scaleMeasurements</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Role In Event / term -->
+		<domain_map>
+			<src_domain>lido/event</src_domain>
+			<target_domain>*</target_domain>
+			<uri_rules>
+				<uri_function>
+					<name></name>
+					<arguments></arguments>
+				</uri_function>
+			</uri_rules>
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:roleInEvent/lido:term</src_range>
+				<target_range>E62_String</target_range>
+				
+			<uri_rules>
+				<uri_function>
+					<name>createLiteral</name>
+					<arguments>text()</arguments>
+				</uri_function>
+			</uri_rules>
+			
+			</range_map>
+			<path_map>
+				<src_path>roleInEvent/term</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Role In Event /conceptID -->
+			<range_map>
+				<src_range>lido:roleInEvent/lido:term</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>roleInEvent/term</src_path>
+				<target_path>
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Event Name/Appellation Value-->
+			<range_map>
+				<src_range>lido:eventName/lido:appellationValue</src_range>
+				<target_range>E41_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventName/appellationValue</src_path>
+				<target_path>
+					<int_link>P1_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Event Name/sourceAppellation -->
+ 			<range_map>
+				<src_range>lido:eventName/lido:sourceAppellation</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventName/sourceAppellation</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>	<!-- Display Actor In Role -->
+			<range_map>
+				<src_range>lido:displayActorInRole</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>displayActorInRole</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>	<!-- ActorID -->
+			<range_map>
+				<src_range>lido:actorID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>actorID</src_path>
+				<target_path>
+					<int_link>P11_had_participant</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>@lido:source</arguments>
+							<arguments>text()</arguments>
+							<arguments>../lido:nameActorSet/lido:appellationValue[@lido:pref = "preferred"]/text()</arguments>
+							<arguments>../lido:vitalDatesActor/text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>	<!-- name Actor Set/Appellation Value -->
+			<range_map>
+				<src_range>lido:nameActorSet/lido:appellationValue</src_range>
+				<target_range>E82_Actor_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>../lido:appellationValue[@lido:pref = "preferred"]/text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>nameActorSet/appellationValue</src_path>
+				<target_path>
+					<int_link>P11_had_participant</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>../../lido:actorID/@lido:source</arguments>
+							<arguments>../../lido:actorID/text()</arguments>
+							<arguments>../lido:appellationValue[@lido:pref = "preferred"]/text()</arguments>
+							<arguments>../../lido:vitalDatesActor/text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P131_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map>	<!-- name Actor Set/sourceAppellation -->
+			<range_map>
+				<src_range>lido:nameActorSet/lido:sourceAppellation</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>nameActorSet/sourceAppellation</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Role Actor / term-->
+			<range_map>
+				<src_range>lido:roleActor/lido:term</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>roleActor/term</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Attribution Qualifier Actor -->
+			<range_map>
+				<src_range>lido:attributionQualifierActor</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>attributionQualifierActor</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Extent Actor -->
+			<range_map>
+				<src_range>lido:extentActor</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>extentActor</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Culture / term -->
+			<range_map>
+				<src_range>lido:culture/lido:term</src_range>
+				<target_range>E4_Period</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>culture/term</src_path>
+				<target_path>
+					<int_link>P10_falls_within</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Display Date -->
+			<range_map>
+				<src_range>lido:displayDate</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>displayDate</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Earliest Date -->
+			<range_map>
+				<src_range>lido:eventDate/lido:date/lido:earliestDate</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventDate/date/earliestDate</src_path>
+				<target_path>
+					<int_link>P4_has_time_span</int_link>
+					<int_entity>E52_Time_Span</int_entity>
+					
+				    <uri_rules>
+						<uri_function>
+							<name>uriTimeSpan</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P79_beginning_is_qualified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Latest Date -->
+			<range_map>
+				<src_range>lido:eventDate/lido:date/lido:latestDate</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventDate/date/latestDate</src_path>
+				<target_path>
+					<int_link>P4_has_time_span</int_link>
+					<int_entity>E52_Time_Span</int_entity>
+					
+					   <uri_rules>
+						<uri_function>
+							<name>uriTimeSpan</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P80_end_is_qualified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Place -->
+			<range_map>
+				<src_range>lido:eventPlace/lido:displayPlace</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventPlace/displayPlace</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Place ID -->
+			<range_map>
+				<src_range>lido:eventPlace/lido:place/lido:placeID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventPlace/place/placeID</src_path>
+				<target_path>
+					<int_link>P7_took_place_at</int_link>
+					<int_entity>E53_Place</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForPlaces</name>
+							<arguments>../lido:namePlaceSet/lido:appellationValue/text()</arguments>
+							<arguments>@lido:source</arguments>
+							<arguments>text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../lido:partOfPlace</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Name Place Set / Appellation Value-->
+			<range_map>
+				<src_range>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</src_range>
+				<target_range>E44_Place_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventPlace/place/namePlaceSet/appellationValue</src_path>
+				<target_path>
+					<int_link>P7_took_place_at</int_link>
+					<int_entity>E53_Place</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForPlaces</name>
+							<arguments>text()</arguments>
+							<arguments>../../lido:placeID/@lido:source</arguments>
+							<arguments>../../lido:placeID/text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../../lido:partOfPlace</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P87_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Event Method / term -->
+			<range_map>
+				<src_range>lido:eventMethod/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventMethod/term</src_path>
+				<target_path>
+					<int_link>P32_used_general_technique</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Display Materials Tech -->
+			<range_map>
+				<src_range>lido:displayMaterialsTech</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>displayMaterialsTech</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Term Materials Tech -->
+			<range_map>
+				<src_range>lido:termMaterialsTech/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>termMaterialsTech/term</src_path>
+				<target_path>
+					<int_link>P32_used_general_technique</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Extent Materials Tech -->
+			<range_map>
+				<src_range>lido:extentMaterialsTech</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>extentMaterialsTech</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Description/Descriptive Note -->
+			<range_map>
+				<src_range>lido:eventDescriptionSet/lido:descriptiveNoteValue</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventDescriptionSet/descriptiveNoteValue</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Source Descriptive Note -->
+			<range_map>
+				<src_range>lido:eventDescriptionSet/lido:sourceDescriptiveNote</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventDescriptionSet/sourceDescriptiveNote</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Nationality Actor/term-->
+		<domain_map>
+			<src_domain>lido/eventActor</src_domain>
+			<target_domain>E39_Actor</target_domain>
+			<uri_rules>
+				<uri_function>
+					<name>uriForActors</name>
+					<arguments>lido:actorInRole/lido:actor/lido:actorID/@lido:source</arguments>
+					<arguments>lido:actorInRole/lido:actor/lido:actorID/text()</arguments>
+					<arguments>lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue[@lido:pref = "preferred"]/text()</arguments>
+					<arguments>lido:actorInRole/lido:actor/lido:vitalDatesActor/text()</arguments>
+				</uri_function>
+			</uri_rules>
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:nationalityActor/lido:term</src_range>
+				<target_range>E74_Group</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriForActors</name>
+						<arguments>../lido:nationalityActor/lido:concept/lido:conceptID/@lido:source</arguments>
+						<arguments>../lido:nationalityActor/lido:concept/lido:conceptID/text()</arguments>
+						<arguments>../lido:nationalityActor/lido:concept/lido:term/text()</arguments>
+						<arguments>//lido:lido/nothing</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>nationalityActor/term</src_path>
+				<target_path>
+					<int_link>P107_is_current_or_former_member_of</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map><!-- Nationality Actor/conceptID -->
+			<range_map>
+				<src_range>lido:nationalityActor/lido:conceptID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>nationalityActor/conceptID</src_path>
+				<target_path>
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- vitalDatesActor -->
+			<range_map>
+				<src_range>lido:vitalDatesActor</src_range>
+				<target_range>E52_Time_Span</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriTimeSpan</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+			</range_map>
+			<path_map>
+				<src_path>vitalDatesActor</src_path>
+				<target_path>
+					<int_link>P11_participated_in</int_link>
+					<int_entity>E5_Event</int_entity>
+<!-- ????????????????????? see it again  ????  -->
+					<uri_rules>
+						<uri_function>
+							<name>uriEvents</name>
+							<arguments>../../../../lido:eventID/@lido:source</arguments>
+							<arguments>../../../../lido:eventID/text()</arguments>
+						</uri_function>
+					</uri_rules>
+					<!--<add_link>P2_has_type</add_link>
+					<add_entity value_binding="existance">E55_Type</add_entity>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments></arguments>
+						</uri_function>
+					</uri_rules>-->
+					<int_link>P4_has_time_span</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Gender Actor -->
+			<range_map>
+				<src_range>lido:genderActor</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>genderActor</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Period Name/term -->
+		<domain_map>
+			<src_domain>lido/periodName</src_domain>
+			<target_domain>E52_Time_Span</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriTimeSpan</name>
+					<arguments>lido:concept/lido:term/text()</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:eventDate/lido:date/lido:periodName/lido:term</src_range>
+				<target_range>E4_Period</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventDate/date/periodName/term</src_path>
+				<target_path>
+					<int_link>P4_has_time_span</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Part Of Place -->
+		<domain_map>
+			<src_domain>lido/eventPlace</src_domain>
+			<target_domain>E53_Place</target_domain>
+			
+			<uri_rules>
+				<uri_function><!--Here.... -->
+					<name>uriForPlaces</name>
+					<arguments>lido:place/lido:namePlaceSet/lido:appellationValue/text()</arguments>
+					<arguments>lido:place/lido:placeID/@lido:source</arguments>
+					<arguments>lido:place/lido:placeID/text()</arguments>
+					<arguments>//lido:lido/nothing</arguments>
+					<arguments>lido:place/lido:partOfPlace</arguments>					
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventPlace/place/partOfPlace/placeID</src_path>
+				<target_path>
+					<int_link>P88_consists_of</int_link>
+					<int_entity>E53_Place</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForPlaces</name>
+							<arguments>../lido:namePlaceSet/lido:appellationValue/text()</arguments>
+							<arguments>../lido:placeID/@lido:source</arguments>
+							<arguments>../lido:placeID/text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+							<arguments>../lido:partOfPlace</arguments>				
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Place Classification / term -->
+			<range_map>
+				<src_range>lido:eventPlace/lido:place/lido:placeClassification/lido:term</src_range>
+				<target_range>E55_Type</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriType</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>eventPlace/place/placeClassification/term</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Source Materials Tech -->
+		<domain_map>
+			<src_domain>lido/termMaterialsTech</src_domain>
+			<target_domain>E55_Type</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriType</name>
+					<arguments>text()</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:sourceMaterialsTech</src_range>
+				<target_range>E32_Authority_Document</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriPhysThing</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>sourceMaterialsTech</src_path>
+				<target_path>
+					<int_link>P71_is_listed_in</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Object Note -->
+		<domain_map>
+			<src_domain>lido/object</src_domain>
+			<target_domain>E18_Physical_Thing</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriPhysThing</name>
+					<arguments>text()</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:subjectObject/lido:object/lido:objectNote</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>subjectObject/object/objectNote</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Rights Date/earliest date -->
+		<domain_map>
+			<src_domain>lido/rights</src_domain>
+			<target_domain>E30_Right</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriConceptual</name>
+					<arguments>lido:rightsType/text()</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:rightsDate/lido:earliestDate</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>rightsDate/earliestDate</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Rights Date/latest date -->
+			<range_map>
+				<src_range>lido:rightsDate/lido:latestDate</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>rightsDate/latestDate</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Rights Date/Period Name/term -->
+			<range_map>
+				<src_range>lido:rightsDate/lido:periodName/lido:term</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>rightsDate/periodName/term</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Rights Holder/Legal Body ID -->
+			<range_map>
+				<src_range>lido:rightsHolder/lido:legalBodyID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>rightsHolder/legalBodyID</src_path>
+				<target_path>
+					<int_link>P75B_is_possessed_by</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>@lido:source</arguments>
+							<arguments>text()</arguments>
+							<arguments>../lido:legalBodyName/lido:appellationValue/text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Rights Holder/Legal Body Name/ Appellation Value -->
+			<range_map>
+				<src_range>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</src_range>
+				<target_range>E82_Actor_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>rightsHolder/legalBodyName/appellationValue</src_path>
+				<target_path>
+					<int_link>P75B_is_possessed_by</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>../../lido:legalBodyID/@lido:source</arguments>
+							<arguments>../../lido:legalBodyID/text()</arguments>
+							<arguments>text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P131_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> 	<!-- Credit Line -->
+			<range_map>
+				<src_range>lido:creditLine</src_range>
+				<target_range>E62_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>creditLine</src_path>
+				<target_path>
+					<int_link>P3_has_note</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Rights Holder/Lagal Body Web link -->
+		<domain_map>
+			<src_domain>lido/rightsHolder</src_domain>
+			<target_domain>39_Actor</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriForActors</name>
+					<arguments>lido:legalBodyID/@lido:source</arguments>
+					<arguments>lido:legalBodyID/text()</arguments>
+					<arguments>lido:legalBodyName/lido:appellationValue/text()</arguments>
+					<arguments>//lido:lido/nothing</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:rightsHolder/lido:legalBodyWeblink</src_range>
+				<target_range>E73_Information_Object</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriConceptual</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+				<add_link>P2_has_type</add_link>
+				
+				<add_entity>
+					<value value_binding="Web_resource">E55_Type</value>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>@lido:formatResource</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+			<path_map>
+				<src_path>rightsHolder/legalBodyWeblink</src_path>
+				<target_path>
+					<int_link>P129B_is_subject_of</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+	<map>
+		<!-- Record Type -->
+		<domain_map>
+			<src_domain>lido/recordWrap</src_domain>
+			<target_domain>E31_Document</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriPhysThing</name>
+					<arguments>lido:recordID/text()</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:recordType</src_range>
+				<target_range>E55_String</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>createLiteral</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>recordType</src_path>
+				<target_path>
+					<int_link>P2_has_type</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!-- Record Source/Legal Body ID -->
+			<range_map>
+				<src_range>lido:recordSource/lido:legalBodyID</src_range>
+				<target_range>E42_Identifier</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>recordSource/legalBodyID</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+				<uri_function>
+					<name>uriForActors</name>
+					<arguments>@lido:source</arguments>
+					<arguments>text()</arguments>
+					<arguments>../lido:legalBodyName/lido:appellationValue/text()</arguments>
+					<arguments>//lido:lido/nothing</arguments>
+				</uri_function>
+			</uri_rules>
+					
+					<int_link>P48_has_preferred_identifier</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+		<link_map> <!--  Record Source/Legal Body Name/ Appellation Value -->
+			<range_map>
+				<src_range>lido:recordSource/lido:legalBodyName/lido:appellationValue</src_range>
+				<target_range>E82_Actor_Appellation</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>appellationURI</name>
+						<arguments>text()</arguments>
+					</uri_function>	
+				</uri_rules>
+				
+			</range_map>
+			<path_map>
+				<src_path>recordSource/legalBodyName/appellationValue</src_path>
+				<target_path>
+					<int_link>P67_refers_to</int_link>
+					<int_entity>E39_Actor</int_entity>
+					
+					<uri_rules>
+						<uri_function>
+							<name>uriForActors</name>
+							<arguments>../../lido:legalBodyID/@lido:source</arguments>
+							<arguments>../../lido:legalBodyID/text()</arguments>
+							<arguments>text()</arguments>
+							<arguments>//lido:lido/nothing</arguments>
+						</uri_function>
+					</uri_rules>
+					
+					<int_link>P131_is_identified_by</int_link>
+				</target_path>
+			</path_map>
+		</link_map>	
+	</map>
+	<map>
+		<!-- Record Source/Legal Body Web link -->
+		<domain_map>
+			<src_domain>lido/recordSource</src_domain>
+			<target_domain>39_Actor</target_domain>
+			
+			<uri_rules>
+				<uri_function>
+					<name>uriForActors</name>
+					<arguments>lido:legalBodyID/@lido:source</arguments>
+					<arguments>lido:legalBodyID/text()</arguments>
+					<arguments>lido:legalBodyName/lido:appellationValue/text()</arguments>
+					<arguments>//lido:lido/nothing</arguments>
+				</uri_function>
+			</uri_rules>
+			
+		</domain_map>
+		<link_map>
+			<range_map>
+				<src_range>lido:recordSource/lido:legalBodyWeblink</src_range>
+				<target_range>E73_Information_Object</target_range>
+				
+				<uri_rules>
+					<uri_function>
+						<name>uriConceptual</name>
+						<arguments>text()</arguments>
+					</uri_function>	
+				</uri_rules>
+				
+				<add_link>P2_has_type</add_link>
+				<add_entity>
+					<value value_binding="Web_resource">E55_Type</value>
+				
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>@lido:formatResource</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+			<path_map>
+				<src_path>recordSource/legalBodyWeblink</src_path>
+				<target_path>
+					<int_link>P129B_is_subject_of</int_link>
+				</target_path>
+			</path_map>
+		</link_map>
+	</map>
+</mapping>

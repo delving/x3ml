@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xml:lang="en" 
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/">
+<crm:E22_Man-Made_Object xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"  rdf:about="http://www.oeaw.ac.at/numismatik/21234" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
+	<crm:P2F.has_type> 		<!-- COIN.DENOMINATION -->
+		<crm:E55.Type rdf:about="http://www.oeaw.ac.at/numismatik/Type/Denomination/21">
+			<crm:P3_has_note>AE</crm:P3_has_note>
+		</crm:E55.Type>
+	</crm:P2F.has_type>
+	<crm:P108i_was_produced_by> <!-- COIN.COUNTRY_ID -->
+		<crm:E12_Production rdf:about="21234_Production_Event">
+			<crm:P7_took_place_at>
+				<crm:E53_Place rdf:about="http://www.oeaw.ac.at/numismatik/Country/1">
+					<crm:P3_has_note>Osterreich</crm:P3_has_note>
+				</crm:E53_Place>
+			</crm:P7_took_place_at>
+		</crm:E12_Production>
+	</crm:P108i_was_produced_by>
+	<crm:P30i_custody_transferred_through> <!-- COIN.FIND_SPOT_ID -->
+		<crm:E10_Transfer_of_Custody rdf:about="21234_Transfer_of_Custody">
+			<crm:P7_took_place_at>
+				<crm:E53_Place rdf:about="http://www.oeaw.ac.at/numismatik/Find_Spot/5">
+					<crm:P3_has_note>Arnfels (9a/1)</crm:P3_has_note>
+				</crm:E53_Place>
+			</crm:P7_took_place_at>
+		</crm:E10_Transfer_of_Custody>
+	</crm:P30i_custody_transferred_through>	 
+	<crm:P30i_custody_transferred_through> <!-- COIN.COIN.FIND_MANNER_ID -->
+		<crm:E10_Transfer_of_Custody rdf:about="21234_Transfer_of_Custody">
+			<crm:P2_has_type>
+				<crm:E55_Type rdf:about="http://www.oeaw.ac.at/numismatik/Type/Find_Manner/3">
+					<crm:P3_has_note>unbekannt</crm:P3_has_note>
+				</crm:E55_Type>
+			</crm:P2_has_type>
+		</crm:E10_Transfer_of_Custody>
+	</crm:P30i_custody_transferred_through>	
+	<crm:P30i_custody_transferred_through> <!-- COIN.COIN.FIND_DATE -->
+		<crm:E10_Transfer_of_Custody rdf:about="21234_Transfer_of_Custody">
+			<crm:P4_has_time-span>
+				<crm:E52_Time-Span rdf:about="http://www.oeaw.ac.at/numismatik/Date/2002">
+					<crm:P3_has_note>2002</crm:P3_has_note>
+				</crm:E52_Time-Span>
+			</crm:P4_has_time-span>
+		</crm:E10_Transfer_of_Custody>
+	</crm:P30i_custody_transferred_through>
+	<crm:P108i_was_produced_by> <!-- COIN.AUTHORITY_ID -->
+		<crm:E12_Production rdf:about="21234_Production_Event">
+			<crm:P9i_forms_part_of>
+				<crm:E2_Temporal_Entity rdf:about="http://www.oeaw.ac.at/numismatik/Authority/7">
+					<crm:P3_has_note>AUTHORITY_NAME</crm:P3_has_note>
+				</crm:E2_Temporal_Entity>
+			</crm:P9i_forms_part_of>
+		</crm:E12_Production>
+	</crm:P108i_was_produced_by>
+	<crm:P108i_was_produced_by> <!-- COIN.ISSUER_ID -->
+		<crm:E12_Production rdf:about="21234_Production_Event">
+			<crm:P17_was_motivated_by>
+				<crm:E7_Activity rdf:about="21234_Motivation_Event">
+					<crm:P14i_was_carried_out_by>
+						<crm:E39_Actor rdf:about="http://www.oeaw.ac.at/numismatik/Actor/56">
+								<crm:P3_has_note>Hadrianus</crm:P3_has_note>
+						</crm:E39_Actor>
+					</crm:P14i_was_carried_out_by>
+				</crm:E7_Activity>
+			</crm:P17_was_motivated_by>
+		</crm:E12_Production>
+	</crm:P108i_was_produced_by>
+	<crm:P65_shows_visual_item> <!-- COIN.MINT_ID -->
+		<crm:E36_Visual_Item rdf:about="34_Visual_Item">
+			<crm:P138_represents>
+				<crm:E40_Legal_Body rdf:about="http://www.oeaw.ac.at/numismatik/Actor/34">
+					<crm:P3_has_note>Syrakus</crm:P3_has_note>
+				</crm:E40_Legal_Body>
+			</crm:P138_represents>
+		</crm:E36_Visual_Item>
+	</crm:P65_shows_visual_item>
+	<crm:P65_shows_visual_item> <!-- COIN.MINT_MARK -->
+		<crm:E36_Visual_Item rdf:about="34_Visual_Item">
+			<crm:P2_has_type>
+				<crm:E55_Type rdf:about="http://www.oeaw.ac.at/numismatik/Type/Syrakus:_römische_Herrschaft">
+					<crm:P3_has_note>Syrakus: römische Herrschaft</crm:P3_has_note>
+				</crm:E55_Type>
+			</crm:P2_has_type>
+		</crm:E36_Visual_Item>
+	</crm:P65_shows_visual_item>	
+</crm:E22_Man-Made_Object>			
+</rdf:RDF>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	  
+	  
+<E19_Physical_Object rdf:about="http://turistipercaso.it/Galleria_degli_Uffizi_—_Pinacoteca_(Florence)/8360_(Inv. 1890)">
+	<crm:P70i_is_documented_in>
+		<crm:E31_Document rdf:about="uri:DE-Mb112/lido-obj00154983"/>
+	</crm:P70i_is_documented_in>
+	
+<!-- <lido:objectClassificationWrap> -->	
+	<crm:P2F.has_type> 		
+		<crm:E55.Type rdf:about="http://www.cidoc-crm.org/crm-concepts/E22_Man-Made_Object"/>
+	</crm:P2F.has_type>
+	
+         
+</E19_Physical_Object>  
+         
+</rdf:RDF>

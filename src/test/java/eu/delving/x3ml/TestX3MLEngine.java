@@ -35,12 +35,12 @@ public class TestX3MLEngine {
     }
 
     @Test
-    public void testSimpleCase() throws IOException, X3MLException, ParserConfigurationException, SAXException {
-        URL mappingFile = getClass().getResource("/simple/simple-x3.xml");
+    public void testRDB() throws IOException, X3MLException, ParserConfigurationException, SAXException {
+        URL mappingFile = getClass().getResource("/rdb/Mapping_dFMROE2CIDOC.xml");
         X3MLEngine engine = X3MLEngine.create(mappingFile.openStream());
-        URL inputFile = getClass().getResource("/simple/simple-input.xml");
+        URL inputFile = getClass().getResource("/rdb/Coin21234in.xml");
         Document inputDocument = XmlSerializer.documentBuilderFactory().newDocumentBuilder().parse(inputFile.openStream());
-        String inputXml = new XmlSerializer().toXml(inputDocument.getDocumentElement(), false);
+        String inputXml = new XmlSerializer().toXml(inputDocument.getDocumentElement());
         System.out.println(inputXml);
         String graph = engine.extractTriples(inputDocument.getDocumentElement());
         System.out.println(graph);

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./crm_mapping-v2.0.xsl"?>
+
+<mappings version="0.9" xsi:noNamespaceSchemaLocation="MappingLanguage-v2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<title>LIDO to CIDOC</title>
+	<general_description>The mapping was implemented within the ATHENA project (www.athenaeurope.org). The ATHENA project is bringing 
+	together relevant stakeholders and content owners from museums and other cultural institutions all over Europe, evaluating and integrating specific tools, 
+	based on a common agreed set of standards and guidelines to create harmonised access to their content.</general_description>
+	<source_info>
+		<source_schema version="0.7" schema_file="lido-v0.7.xsd" type="ER">LIDO</source_schema>	
+		<source_collection>Deutsches Dokumentationszentrum für Kunstgeschichte - Bildarchiv Foto Marburg (http://www.fotomarburg.de/)</source_collection>
+	</source_info>
+	<target_info>
+		<target_schema version="5.0.1" schema_file="cidoc_crm_v5.0.1_english_label.rdfs" type="rdfs">CIDOC-CRM</target_schema>	
+		<target_collection></target_collection>
+	</target_info>
+	<mapping_info>
+		<mapping_created_by_org>FORTH-ICS (www.ics.forth.gr)</mapping_created_by_org>
+		<mapping_created_by_person>Kutraki Mary (kutraki@ics.forth.gr), Martin Doerr (martin@ics.forth.gr) </mapping_created_by_person>
+		<in_collaboration_with>Regine Stein, stein@zib.de</in_collaboration_with>
+	</mapping_info>
+	<example_data_info>
+		<example_data_from>Deutsches Dokumentationszentrum für Kunstgeschichte - Bildarchiv Foto Marburg  (http://www.fotomarburg.de/)</example_data_from>
+		<example_data_contact_person>Regine Stein, stein@zib.de</example_data_contact_person>
+		<example_data_source_record xml_link="LIDOtoCIDOC-example/example-lido-v0.7.xml"  html_link="LIDOtoCIDOC-example/example-lido-v0.7.html">example-lido-v0.7.xml</example_data_source_record>
+		<example_data_target_record></example_data_target_record>		
+	</example_data_info>
+
+    <mapping>
+        <domain>
+            <source>lido</source>
+            <entity tag="E19_Physical_Object">
+                <uri_function name="PhysicalObject">
+                    <arg name="nameOfMuseum">//lido:lido/lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue/text()</arg>
+                    <arg name="entry">//lido:lido/lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:workID/text()</arg>
+                </uri_function>
+            </entity>
+			<comments>
+				<rationale>The collection we refer here contains only material mobile objects and does not describe immaterial objects independently from their carrier.</rationale>
+				<alternatives> We assume that this collection may contain natural objects. If this does not hold, we should use *E22_Man-Made_Object*</alternatives>
+				<typical_mistakes></typical_mistakes>
+				<local_habits></local_habits>
+				<link_to_cook_book>Material and Immaterial objects in Collections</link_to_cook_book>
+				<example>
+					<example_source><![CDATA[ <lido:lidoRecID lido:type="local">BFM-00120252</lido:lidoRecID> ]]></example_source>  
+					<example_target><![CDATA[ <rdfs:Class rdf:about="E19.Physical_Object"/> ]]></example_target>
+				</example>
+				<comments_last_update  date="2012-10-28" person="Dimitris Agelakis, agelakis@ics.forth.gr"></comments_last_update>
+			</comments>
+        </domain>
+        <link>
+            <path>
+                <source>lidoRecID</source>
+                <property tag="P70_is_documented_in"/>
+				<comments>
+					<rationale>test range</rationale>
+					<alternatives></alternatives>
+					<typical_mistakes></typical_mistakes>
+					<local_habits></local_habits>
+					<link_to_cook_book></link_to_cook_book>
+					<example></example>
+					<comments_last_update  date="" person=""></comments_last_update>
+				</comments>				
+            </path>
+            <range>
+                <source>lido:lidoRecID</source>
+                <entity tag="E31_Document">
+                    <uri_function name="PhysicalThing">
+                        <arg name="value">text()</arg>
+					</uri_function>
+                </entity>
+				<comments>
+					<rationale>test range</rationale>
+					<alternatives></alternatives>
+					<typical_mistakes></typical_mistakes>
+					<local_habits></local_habits>
+					<link_to_cook_book></link_to_cook_book>
+					<example></example>
+					<comments_last_update  date="" person=""></comments_last_update>
+				</comments>				
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>category</source>
+                <property tag="P2_has_type"/>
+            </path>
+            <range>
+                <source>/lido:lido/lido:category/</source>
+                <entity tag="E55_Type">
+                    <uri_function name="Type">
+                            <arg name="conceptID">//lido:conceptID/text()</arg>
+                            <arg name="term">//lido:term/text()</arg>
+                    </uri_function>
+                </entity>
+            </range>
+        </link>
+        
+    </mapping>
+</mappings>

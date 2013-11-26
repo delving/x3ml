@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<mysqldump>
+  <database name="coins">
+    <table_structure name="COIN">
+      <field Field="ID"/>
+      <field Field="COUNTRY_ID"/>
+      <field Field="FIND_SPOT_ID"/>
+      <field Field="FIND_MANNER_ID"/>
+	  <field Field="FIND_DATE"/>
+	  <field Field="AUTHORITY_ID"/>
+	  <field Field="ISSUER_ID"/>
+	  <field Field="DENOMINATION"/>
+	  <field Field="MINT_ID"/>
+	  <field Field="MINT_MARK"/>
+    </table_structure>
+	<table_structure name="FIND_SPOT">
+      <field Field="FS_ID"/>
+      <field Field="FS_NAME"/>
+    </table_structure>
+	<table_structure name="FIND_MANNER">
+      <field Field="FM_ID"/>
+      <field Field="FM_NAME"/>
+    </table_structure>
+	<table_structure name="AUTHORITY">
+      <field Field="AUTH_ID"/>
+      <field Field="AUTH_NAME"/>
+    </table_structure>
+	<table_structure name="ISSUER">
+      <field Field="PR_ID"/>
+      <field Field="PR_NAME"/>
+    </table_structure>
+	<table_structure name="DENOMINATION">
+      <field Field="DEN_ID"/>
+      <field Field="DEN_NAME"/>
+    </table_structure>
+	<table_structure name="MINT">
+      <field Field="MINT_ID"/>
+      <field Field="MINT_NAME"/>
+    </table_structure>
+
+    <table_data name="COIN">
+      <row>
+        <field name="ID">21234</field>
+        <field name="COUNTRY_ID">1</field>
+        <field name="FIND_SPOT_ID">5</field>
+        <field name="FIND_MANNER_ID">3</field>
+		<field name="FIND_DATE">2002</field>
+		<field name="AUTHORITY_ID">7</field>
+		<field name="ISSUER_ID">56</field>
+		<field name="DENOMINATION">21</field>
+		<field name="MINT_ID">34</field>
+		<field name="MINT_MARK">Syrakus: romische Herrschaft</field>
+      </row>
+    </table_data>
+
+	<table_data name="COUNTRY">
+      <row>
+        <field name="COUNTRY_ID">1</field>
+        <field name="COUNTRY_NAME">Osterreich</field>
+      </row>
+    </table_data>
+	<table_data name="FIND_SPOT">
+      <row>
+        <field name="FS_ID">5</field>
+        <field name="FS_NAME">Arnfels (9a/1)</field>
+      </row>
+    </table_data>
+	<table_data name="FIND_MANNER">
+      <row>
+        <field name="FM_ID">3</field>
+        <field name="FM_NAME">Streufund</field>
+      </row>
+    </table_data>
+	<table_data name="AUTHORITY">
+      <row>
+        <field name="AUTH_ID">7</field>
+        <field name="AUTH_NAME">XXXXX</field>
+      </row>
+    </table_data>
+	<table_data name="ISSUER">
+      <row>
+        <field name="PR_ID">56</field>
+        <field name="PR_NAME">Hadrianus</field>
+      </row>
+    </table_data>
+	<table_data name="DENOMINATION">
+      <row>
+        <field name="DEN_ID">21</field>
+        <field name="DEN_NAME">AE</field>
+      </row>
+    </table_data>
+	<table_data name="MINT">
+      <row>
+        <field name="MINT_ID">34</field>
+        <field name="MINT_NAME">Syrakus</field>
+      </row>
+    </table_data>
+  </database>
+</mysqldump>

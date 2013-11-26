@@ -15,6 +15,8 @@ public class Mappings {
     @XStreamAsAttribute
     public String version;
 
+    public Metadata metadata;
+
     @XStreamImplicit
     public List<Mapping> mappings;
 

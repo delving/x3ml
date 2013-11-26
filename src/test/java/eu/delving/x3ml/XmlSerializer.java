@@ -32,7 +32,7 @@ public class XmlSerializer {
     private XMLEventFactory eventFactory = XMLEventFactory.newInstance();
     private List<String> indentStrings = new ArrayList<String>();
 
-    public String toXml(Node node, boolean fromMapping) {
+    public String toXml(Node node) {
         if (node.getNodeType() != Node.ELEMENT_NODE)
             throw new IllegalArgumentException("toXml should only be called on an element");
         try {
@@ -57,46 +57,42 @@ public class XmlSerializer {
                 localName = node.getNodeName();
             }
             out.add(eventFactory.createStartElement(prefix, uri, localName, attributes.iterator(), nslist.iterator()));
-            if (fromMapping) out.add(eventFactory.createCharacters("\n"));
+            out.add(eventFactory.createCharacters("\n"));
             NodeList kids = node.getChildNodes();
-            if (fromMapping) {
-                for (int walk = 0; walk < kids.getLength(); walk++) {
-                    Node kid = kids.item(walk);
-                    switch (kid.getNodeType()) {
-                        case Node.TEXT_NODE:
-                        case Node.CDATA_SECTION_NODE:
-                        case Node.COMMENT_NODE:
-                            break;
-                        case Node.ELEMENT_NODE:
-                            nodeToXml(out, kid, 1);
-                            break;
-                        default:
-                            throw new RuntimeException("Node type not implemented: " + kid.getNodeType());
-                    }
+            for (int walk = 0; walk < kids.getLength(); walk++) {
+                Node kid = kids.item(walk);
+                switch (kid.getNodeType()) {
+                    case Node.TEXT_NODE:
+                    case Node.CDATA_SECTION_NODE:
+                    case Node.COMMENT_NODE:
+                        break;
+                    case Node.ELEMENT_NODE:
+                        nodeToXml(out, kid, 1);
+                        break;
+                    default:
+                        throw new RuntimeException("Node type not implemented: " + kid.getNodeType());
                 }
             }
-            else {
-                for (int walk = 0; walk < kids.getLength(); walk++) {
-                    Node kid = kids.item(walk);
-                    switch (kid.getNodeType()) {
-                        case Node.TEXT_NODE:
-                            out.add(eventFactory.createCharacters(kid.getTextContent()));
-                            break;
-                        case Node.CDATA_SECTION_NODE:
-                            out.add(eventFactory.createCData(kid.getTextContent()));
-                            break;
-                        case Node.ATTRIBUTE_NODE:
-                            break;
-                        case Node.ELEMENT_NODE:
-                            nodeToXml(out, kid, 0);
-                            break;
-                        default:
-                            throw new RuntimeException("Node type not implemented: " + kid.getNodeType());
-                    }
-                }
-            }
+//                for (int walk = 0; walk < kids.getLength(); walk++) {
+//                    Node kid = kids.item(walk);
+//                    switch (kid.getNodeType()) {
+//                        case Node.TEXT_NODE:
+//                            out.add(eventFactory.createCharacters(kid.getTextContent()));
+//                            break;
+//                        case Node.CDATA_SECTION_NODE:
+//                            out.add(eventFactory.createCData(kid.getTextContent()));
+//                            break;
+//                        case Node.ATTRIBUTE_NODE:
+//                            break;
+//                        case Node.ELEMENT_NODE:
+//                            nodeToXml(out, kid, 0);
+//                            break;
+//                        default:
+//                            throw new RuntimeException("Node type not implemented: " + kid.getNodeType());
+//                    }
+//                }
+            out.add(eventFactory.createCharacters("\n"));
             out.add(eventFactory.createEndElement(prefix, uri, localName));
-            if (fromMapping) out.add(eventFactory.createCharacters("\n"));
             out.add(eventFactory.createEndDocument());
             out.flush();
             return new String(outputStream.toByteArray(), "UTF-8");
@@ -110,16 +106,15 @@ public class XmlSerializer {
     }
 
     private void nodeToXml(XMLEventWriter out, Node node, int level) throws XMLStreamException {
-        boolean fromMapping = level > 0;
         if (node.getLocalName() == null) return;
         List<Attribute> attributes = getAttributes(node);
-        String indentString = fromMapping ? indentString(level) : null;
+        String indentString = level > 0 ? indentString(level) : null;
         if (indentString != null) out.add(eventFactory.createCharacters(indentString));
         out.add(eventFactory.createStartElement(
                 node.getPrefix() == null ? "" : node.getPrefix(),
                 node.getNamespaceURI() == null ? "" : node.getNamespaceURI(),
                 node.getLocalName(),
-                fromMapping ? attributes.iterator() : null,
+                level > 0 ? attributes.iterator() : null,
                 null
         ));
         NodeList kids = node.getChildNodes();
@@ -130,7 +125,7 @@ public class XmlSerializer {
                 break;
             }
         }
-        if (nodeHasSubelement && fromMapping) out.add(eventFactory.createCharacters("\n"));
+//        if (nodeHasSubelement) out.add(eventFactory.createCharacters("\n"));
         for (int walk = 0; walk < kids.getLength(); walk++) {
             Node kid = kids.item(walk);
             switch (kid.getNodeType()) {
@@ -143,13 +138,12 @@ public class XmlSerializer {
                 case Node.ATTRIBUTE_NODE:
                     break;
                 case Node.ELEMENT_NODE:
-                    nodeToXml(out, kid, fromMapping ? level + 1 : 0);
+                    nodeToXml(out, kid, level + 1);
                     break;
             }
         }
         if (nodeHasSubelement && indentString != null) out.add(eventFactory.createCharacters(indentString));
         out.add(eventFactory.createEndElement(node.getPrefix(), node.getNamespaceURI(), node.getLocalName()));
-        if (fromMapping) out.add(eventFactory.createCharacters("\n"));
     }
 
     private List<Attribute> getAttributes(Node node) {

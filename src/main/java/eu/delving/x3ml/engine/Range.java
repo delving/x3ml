@@ -15,6 +15,8 @@ public class Range {
     @XStreamAlias("additional_node")
     public AdditionalNode additionalNode;
 
+    public Comments comments;
+
     public void apply(Context context, Domain domain, Path path) {
         entity.apply(context, domain, path);
         if (additionalNode != null) {

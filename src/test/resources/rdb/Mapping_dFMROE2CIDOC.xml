@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./crm_mapping-v2.0.xsl"?>
+<!--This document defines a mapping from OEAW Coins DB to CIDOC-CRM v5.0.1. 
+based on the Mapping Language defined in "Mapping Language for Information Integration" Technical Report 385, ICS-FORTH, December 2006
+and the suggested changes by Gerald de Jong -->
+<!--Institute of Computer Science, FORTH-ICS, Heraklio, Crete, Greece: Maria Theodoridou(maria@ics.forth.gr) , Martin Doerr(martin@ics.forth.gr)-->
+<mappings version="1.0" xsi:noNamespaceSchemaLocation="MappingLanguage-v2.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <metadata>
+        <title>OEAW Coins DB to CIDOC</title>
+        <description>
+            This is a mapping from dFMRÖ (digitale FundMünzen der Römischen Zeit in Österreich), a database of ancient coin finds in Austria.
+            The mapping was implemented within the ARIADNE project (http://www.ariadne-infrastructure.eu/)
+        </description>
+        <!--<data>-->
+            <!---->
+        <!--</data>-->
+        <!--<source_info>-->
+            <!--<name>dFMRÖ (digitale FundMünzen der Römischen Zeit in Österreich) (http://www.oeaw.ac.at/numismatik/projekte/dfmroe/dfmroe.html)</name>-->
+            <!--<type>ER</type>-->
+            <!--<schema>Coin21234in.xml</schema>-->
+        <!--</source_info>-->
+        <!--<target_info>-->
+            <!--<name>CIDOC-CRM</name>-->
+            <!--<type>RDFS</type>-->
+            <!--<schema>cidoc_crm_v5.0.1_english_label.rdfs</schema>-->
+            <!--<version>5.0.1</version>-->
+        <!--</target_info>-->
+        <!--<mapping_info>-->
+            <!--<organization>OEAW (www.oeaw.ac.at)and FORTH-ICS (www.ics.forth.gr)</organization>-->
+            <!--<creators>-->
+                <!--<creator>Elisabeth Pichler (Elisabeth.Pichler@oeaw.ac.at)</creator>-->
+                <!--<creator>Martin Doerr (martin@ics.forth.gr)</creator>-->
+                <!--<creator>Maria Theodoridou (maria@ics.forth.gr)</creator>-->
+            <!--</creators>-->
+        <!--</mapping_info>-->
+        <!--<example_data_info>-->
+            <!--<example_data_from>fake data</example_data_from>-->
+            <!--<example_data_contact_person>Maria Theodoridou (maria@ics.forth.gr)</example_data_contact_person>-->
+            <!--<example_data_source_record xml_link="Coin21234in.xml">Coin21234in.xml</example_data_source_record>-->
+            <!--<example_data_target_record rdf_link="Coin21234out.rdf">Coin21234out.rdf</example_data_target_record>-->
+        <!--</example_data_info>-->
+    </metadata>
+
+	<mapping>
+		<domain>
+			<source>COIN</source>
+			<entity tag="E22_Man_Made_Object">
+				<uri_function name="uriForPhysicalObjects">
+                    <arg name="identifier">COIN.ID</arg>
+				</uri_function>
+			</entity>
+		</domain>
+		
+		<link> <!-- COIN.DENOMINATION -->
+			<path>
+				<source>COIN.DENOMINATION</source>
+				<property tag="P2_has_type"/>
+				<comments>
+					<rationale>test range</rationale>
+					<alternatives></alternatives>
+					<typical_mistakes></typical_mistakes>
+					<local_habits></local_habits>
+					<link_to_cook_book></link_to_cook_book>
+					<example></example>
+					<comments_last_update  date="" person=""></comments_last_update>
+				</comments>	
+			</path>
+			<range>
+				<source>DENOMINATION</source>
+				<entity tag="E55_Type">
+					<uri_function name="uriFromID"> <!-- a function that will create a URI given a db XXX.XXX_ID, with label db XXX.XXX_NAME -->
+						<arg name="identifier">DENOMINATION.DEN_ID</arg>
+						<arg name="name">DENOMINATION.DEN_NAME</arg>
+					</uri_function>
+				</entity>
+				<comments>
+					<rationale>test range</rationale>
+					<alternatives></alternatives>
+					<typical_mistakes></typical_mistakes>
+					<local_habits></local_habits>
+					<link_to_cook_book></link_to_cook_book>
+					<example></example>
+					<comments_last_update  date="" person=""></comments_last_update>
+				</comments>
+			</range> 
+		</link>
+
+		<link> <!-- COIN.COUNTRY_ID -->
+			<path>
+				<source>COIN.COUNTRY_ID</source>
+				<property tag="P108i_was_produced_by"/>
+				<internal_node>
+					<entity tag="E12_Production">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="label">"Production_Event"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P7_took_place_at"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>COUNTRY</source>
+				<entity tag="E53_Place">
+					<uri_function name="uriFromID"> <!-- a function that will create a URI given a db XXX.XXX_ID, with label db XXX.XXX_NAME -->
+						<arg name="identifier">COUNTRY.COUNTRY_ID</arg>
+						<arg name="name">COUNTRY.COUNTRY_NAME</arg>
+					</uri_function>
+				
+				</entity>
+			</range>	 
+		</link>
+		
+		<link> <!-- COIN.FIND_SPOT_ID -->
+			<path>
+				<source>COIN.FIND_SPOT_ID</source>
+				<property tag="P30i_custody_transferred_through"/>
+				<internal_node>
+					<entity tag="E10_Transfer_of_Custody">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="label">"Transfer_of_Custody"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P7_took_place_at"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>FIND_SPOT</source>
+				<entity tag="E53_Place">
+					<uri_function name="uriFromID"> <!-- a function that will create a URI given a db XXX.XXX_ID, with label db XXX.XXX_NAME -->
+						<arg name="identifier">FIND_SPOT.FIND_SPOT_ID</arg>
+						<arg name="name">FIND_SPOT.FIND_SPOT_NAME</arg>
+					</uri_function>
+				</entity>
+			</range> 
+		</link>
+		
+		<link> <!-- COIN.COIN.FIND_MANNER_ID -->
+			<path>
+				<source>COIN.FIND_MANNER_ID</source>
+				<property tag="P30i_custody_transferred_through"/>
+				<internal_node>
+					<entity tag="E10_Transfer_of_Custody">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="label">"Transfer_of_Custody"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P2_has_type"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>FIND_MANNER</source>
+				<entity tag="E55_Type">
+					<uri_function name="uriFromID"> <!-- a function that will create a URI given a db XXX.XXX_ID, with label db XXX.XXX_NAME -->
+						<arg name="identifier">FM.FIND_MANNER_ID</arg>
+						<arg name="name">FM.FIND_MANNER_NAME</arg>
+					</uri_function>
+				</entity>
+			</range> 
+		</link>
+		
+		<link> <!-- COIN.COIN.FIND_DATE -->
+			<path>
+				<source>COIN.FIND_DATE</source>
+				<property tag="P30i_custody_transferred_through"/>
+				<internal_node>
+					<entity tag="E10_Transfer_of_Custody">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="label">"Transfer_of_Custody"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P4_has_time_span"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>COIN.FIND_DATE</source>
+				<entity tag="E52_Time_Span">
+						<uri_function name="uriTimeSpan">
+							<arg name="identifier">COIN.FIND_DATE</arg>
+						</uri_function>
+				</entity>
+			</range> 
+		</link>
+		
+		<link> <!-- COIN.AUTHORITY_ID -->
+			<path>
+				<source>COIN.AUTHORITY_ID</source>
+				<property tag="P108i_was_produced_by"/>
+				<internal_node>
+					<entity tag="E12_Production">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="label">"Production_Event"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P9i_forms_part_of"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>AUTHORITY</source>
+				<entity tag="E2_Temporal_Entity">
+					<uri_function name="uriFromID"> <!-- a function that will create a URI given a db XXX.XXX_ID, with label db XXX.XXX_NAME -->
+						<arg name="identifier">AUTHORITY.AUTHORITY_ID</arg>
+						<arg name="name">AUTHORITY.AUTHORITY_NAME</arg>
+					</uri_function>
+				</entity>
+			</range>	 
+		</link>
+		
+		<link> <!-- COIN.ISSUER_ID -->
+			<path>
+				<source>COIN.ISSUER_ID</source>
+				<property tag="P108i_was_produced_by"/>
+				<internal_node>
+					<entity tag="E12_Production">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="label">"Production_Event"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P17_was_motivated_by"/>
+				</internal_node>
+				<internal_node>
+					<entity tag="E7_Activity">
+						<uri_function name="uriEvents">
+							<arg name="identifier">COIN.ID</arg>
+							<arg name="identifier">"Motivation_Event"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P14i_performed"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>ISSUER</source>
+				<entity tag="E39_Actor">
+				<uri_function name="uriForActors">
+					<arg name="identifier">ISSUER.PR_ID</arg>
+					<arg name="name">ISSUER.PR_NAME</arg>
+				</uri_function>
+				</entity>
+			</range>	 
+		</link>
+		
+		<link> <!-- COIN.MINT_ID -->
+			<path>
+				<source>COIN.MINT_ID</source>
+				<property tag="P65_shows_visual_item"/>
+				<internal_node>
+					<entity tag="E36_Visual_Item">
+						<uri_function name="uriConceptual">
+							<arg name="identifier">COIN.MINT_ID</arg>
+							<arg name="label">"Visual_Item"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P138_represents"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>MINT</source>
+				<entity tag="E40_Legal_Body">
+					<uri_function name="uriForActors">
+						<arg name="identifier">MINT.MINT_ID</arg>
+						<arg name="name">MINT.MINT_NAME</arg>
+					</uri_function>
+				</entity>
+			</range>	 
+		</link>
+		
+		<link> <!-- COIN.MINT_MARK -->
+			<path>
+				<source>COIN.MINT_MARK</source>
+				<property tag="P65_shows_visual_item"/>
+				<internal_node>
+					<entity tag="E36_Visual_Item">
+						<uri_function name="uriConceptual">
+							<arg name="identifier">COIN.MINT_ID</arg>
+							<arg name="label">"Visual_Item"</arg>
+						</uri_function>
+					</entity>
+					<property tag="P2_has_type"/>
+				</internal_node>
+			</path>
+			<range>
+				<source>COIN.MINT_MARK</source>
+				<entity tag="E55_Type">
+					<uri_function name="uriType">
+						<arg name="identifier">COIN.MINT_MARK</arg>
+					</uri_function>
+				</entity>
+			</range>	 
+		</link>	
+	</mapping>
+</mappings>

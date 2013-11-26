@@ -2,7 +2,7 @@
 <rdf:RDF xml:lang="en" 
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/">
-<crm:E22_Man-Made_Object xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"  rdf:about="http://www.oeaw.ac.at/numismatik/21234" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
+<crm:E22_Man-Made_Object rdf:about="http://www.oeaw.ac.at/numismatik/21234" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
 	<crm:P2F.has_type> 		<!-- COIN.DENOMINATION -->
 		<crm:E55.Type rdf:about="http://www.oeaw.ac.at/numismatik/Type/Denomination/21">
 			<crm:P3_has_note>AE</crm:P3_has_note>

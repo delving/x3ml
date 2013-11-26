@@ -17,6 +17,7 @@ public class Mapping {
     public List<Link> links;
 
     public void apply(Context context) {
+        domain.apply(context);
         for (Link link: links) {
             link.apply(context, domain);
         }

@@ -11,4 +11,11 @@ public class Domain {
     public String source;
 
     public Entity entity;
+
+    public Comments comments;
+
+    public void apply(Context context) {
+        entity.apply(context, this, null);
+        // todo: implement
+    }
 }

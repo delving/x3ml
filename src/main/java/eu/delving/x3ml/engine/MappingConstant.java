@@ -9,9 +9,9 @@ import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-@XStreamAlias("arg")
+@XStreamAlias("constant")
 @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"content"})
-public class URIFunctionArg {
+public class MappingConstant {
     @XStreamAsAttribute
     public String name;
 
@@ -19,10 +19,5 @@ public class URIFunctionArg {
 
     public String toString() {
         return content;
-    }
-
-    public String evaluate(Context context, Domain domain, Path path) {
-
-        return "arg";
     }
 }

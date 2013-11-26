@@ -4,7 +4,11 @@ import org.w3c.dom.Node;
 
 public interface Context {
 
-    String valueAt(Node node, String expression);
+    void setNode(Node node);
+
+    String getConstant(String name);
+
+    String valueAt(String expression);
 
     GraphEntity entity(String entityClass, String path, String generatedUri);
 

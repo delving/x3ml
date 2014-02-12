@@ -10,17 +10,11 @@ public interface Context {
 
     String valueAt(String expression);
 
-    GraphEntity entity(String entityClass, String path, String generatedUri);
+    boolean setDomain(Domain domain);
 
-    GraphTriple triple(GraphEntity subject, String predicate, GraphEntity object);
+    boolean setProperty(String propertyURI);
 
-    boolean setDomainURI(String uri);
+    boolean setRange(Entity entity, Path path);
 
-    String getDomainURI();
-
-    public interface GraphEntity {
-    }
-
-    public interface GraphTriple {
-    }
+    boolean createTriple();
 }

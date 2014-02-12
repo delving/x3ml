@@ -21,7 +21,7 @@ public class URIFunctionArg {
         return content;
     }
 
-    public String evaluate(Context context, Domain domain, Path path) {
+    public String evaluate(Context context, Entity domainEntity, Path path) {
 
         return "arg";
     }

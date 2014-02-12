@@ -2,6 +2,9 @@ package eu.delving.x3ml;
 
 import com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl;
 import eu.delving.x3ml.engine.Context;
+import eu.delving.x3ml.engine.Domain;
+import eu.delving.x3ml.engine.Entity;
+import eu.delving.x3ml.engine.Path;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -9,7 +12,6 @@ import org.w3c.dom.NodeList;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +26,7 @@ public class X3MLJob {
     private NamespaceContext namespaceContext;
     private Map<String, String> constants;
     private XPathFactory pathFactory = new XPathFactoryImpl();
-    private Map<String, String> pathUri = new HashMap<String, String>();
-    private List<Context.GraphTriple> triples = new ArrayList<Context.GraphTriple>();
+    private List<GraphTriple> triples = new ArrayList<GraphTriple>();
     private MappingContext context;
     private boolean finished = false;
 
@@ -77,7 +78,7 @@ public class X3MLJob {
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("graph:\n");
-        for (Context.GraphTriple triple : triples) {
+        for (GraphTriple triple : triples) {
             out.append(triple).append("\n");
         }
         return out.toString();
@@ -91,7 +92,9 @@ public class X3MLJob {
 
     private class MappingContext implements Context {
         private Node currentNode;
-        private String domainUri;
+        private GraphEntity domainEntity;
+        private String propertyURI;
+        private GraphEntity rangeEntity;
 
         private MappingContext(Node currentNode) {
             this.currentNode = currentNode;
@@ -117,63 +120,70 @@ public class X3MLJob {
         }
 
         @Override
-        public GraphEntity entity(String entityClass, String path, String generatedUri) {
-            String uri = pathUri.get(path);
-            if (uri == null) {
-                pathUri.put(path, uri = generatedUri);
+        public boolean createTriple() {
+            if (domainEntity == null || propertyURI == null || rangeEntity == null) return false;
+            triples.add(new GraphTriple(domainEntity, propertyURI, rangeEntity));
+            return true;
+        }
+
+        @Override
+        public boolean setDomain(Domain domain) {
+            String uri = domain.entity.generateDomainURI(this, domain);
+            if (uri != null) {
+                this.domainEntity = new GraphEntity(domain.entity, uri);
+                // todo: drop a breadcrumb in the DOM to mark the spot
+                return true;
             }
-            return new GraphEntityImpl(entityClass, uri);
+            else {
+                return false;
+            }
         }
 
         @Override
-        public GraphTriple triple(GraphEntity subject, String predicate, GraphEntity object) {
-            GraphTripleImpl triple = new GraphTripleImpl(subject, predicate, object);
-            triples.add(triple);
-            return triple;
+        public boolean setProperty(String propertyURI) {
+            return (this.propertyURI = propertyURI) != null;
         }
 
         @Override
-        public boolean setDomainURI(String uri) {
-            return (this.domainUri = uri) != null;
+        public boolean setRange(Entity entity, Path path) {
+            String rangeURI = entity.generateRangeUri(this, domainEntity.entity, path);
+            if (rangeURI != null) {
+                this.rangeEntity = new GraphEntity(entity, rangeURI);
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-
-        @Override
-        public String getDomainURI() {
-            return this.domainUri;
-        }
-
-
     }
 
-    private static class GraphTripleImpl implements Context.GraphTriple {
-        public final GraphEntityImpl subject;
-        public final String predicate;
-        public final GraphEntityImpl object;
+    private class GraphEntity {
+        public final Entity entity;
+        public final String uri;
 
-        public GraphTripleImpl(Context.GraphEntity subject, String predicate, Context.GraphEntity object) {
-            this.subject = (GraphEntityImpl) subject;
+        public GraphEntity(Entity entity, String uri) {
+            this.entity = entity;
+            this.uri = uri;
+        }
+
+        public String toString() {
+            return String.format("Entity(%s,%s)", entity.tag, uri);
+        }
+    }
+
+    private static class GraphTriple {
+        public final GraphEntity subject;
+        public final String predicate;
+        public final GraphEntity object;
+
+        public GraphTriple(GraphEntity subject, String predicate, GraphEntity object) {
+            this.subject = subject;
             this.predicate = predicate;
-            this.object = (GraphEntityImpl) object;
+            this.object = object;
         }
 
         public String toString() {
             return String.format("%s - %s - %s", subject, predicate, object);
         }
     }
-
-    private class GraphEntityImpl implements Context.GraphEntity {
-        public final String entityClass;
-        public final String uri;
-
-        public GraphEntityImpl(String entityClass, String uri) {
-            this.entityClass = entityClass;
-            this.uri = uri;
-        }
-
-        public String toString() {
-            return String.format("Entity(%s,%s)", entityClass, uri);
-        }
-    }
-
-
 }

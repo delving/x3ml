@@ -22,10 +22,10 @@ public class URIFunction {
     public List<URIFunctionArg> args;
 
     public String generateURI(final Context context, Domain domain) {
-        return generateURI(context, domain, null);
+        return generateURI(context, domain.entity, null);
     }
 
-    public String generateURI(final Context context, Domain domain, Path path) {
+    public String generateURI(final Context context, Entity domainEntity, Path path) {
         URIGenerator generator = generators.get(name);
         if (generator == null) {
             throw new RuntimeException("No generator found for: " + name);
@@ -33,10 +33,10 @@ public class URIFunction {
         final Map<String, String> argMap = new TreeMap<String, String>();
         if (args != null) {
             for (URIFunctionArg functionArg : args) {
-                argMap.put(functionArg.name, functionArg.evaluate(context, domain, path));
+                argMap.put(functionArg.name, functionArg.evaluate(context, domainEntity, path));
             }
         }
-        String result = generator.invoke(context, domain, path, new Args() {
+        String result = generator.invoke(context, domainEntity, path, new Args() {
             @Override
             public String get(String name) {
                 String value = argMap.get(name);
@@ -93,8 +93,8 @@ public class URIFunction {
             this.methods.put(order, method);
         }
 
-        public String invoke(Context context, Domain domain, Path path, Args args) {
-            GeneratorFunction generatorFunction = new GeneratorFunction(context, domain, path, args);
+        public String invoke(Context context, Entity domainEntity, Path path, Args args) {
+            GeneratorFunction generatorFunction = new GeneratorFunction(context, domainEntity, path, args);
             for (Map.Entry<String, Method> entry : methods.entrySet()) {
                 try {
                     return (String) entry.getValue().invoke(generatorFunction);

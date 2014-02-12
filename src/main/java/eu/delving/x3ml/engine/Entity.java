@@ -26,8 +26,8 @@ public class Entity {
         return uriFunction.generateURI(context, domain);
     }
 
-    public String generateRangeUri(Context context, Domain domain, Path path) {
+    public String generateRangeUri(Context context, Entity domainEntity, Path path) {
         if (exists != null && !exists.evaluate(context)) return null;
-        return uriFunction.generateURI(context, domain, path);
+        return uriFunction.generateURI(context, domainEntity, path);
     }
 }

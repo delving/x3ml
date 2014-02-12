@@ -8,13 +8,13 @@ package eu.delving.x3ml.engine;
 
 public class GeneratorFunction {
     private final Context context;
-    private final Domain domain;
     private final Path path;
     private final URIFunction.Args args;
+    private final Entity domainEntity;
 
-    public GeneratorFunction(Context context, Domain domain, Path path, URIFunction.Args args) {
+    public GeneratorFunction(Context context, Entity domainEntity, Path path, URIFunction.Args args) {
         this.context = context;
-        this.domain = domain;
+        this.domainEntity = domainEntity;
         this.path = path;
         this.args = args;
     }

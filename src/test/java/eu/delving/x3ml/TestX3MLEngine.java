@@ -2,14 +2,11 @@ package eu.delving.x3ml;
 
 import junit.framework.Assert;
 import org.apache.commons.io.IOUtils;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+import org.w3c.dom.Element;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -19,14 +16,10 @@ import java.util.List;
 public class TestX3MLEngine {
 
     @Test
-    @Ignore
     public void testReadWrite() throws IOException, X3MLException {
-        URL mappingFile = getClass().getResource("/lido/lido-to-crm.xml");
-        X3MLEngine engine = X3MLEngine.create(mappingFile.openStream());
-        engine.addNamespace("lido", "http://www.lido-schema.org");
-        String xml = engine.toString();
+        String xml = engine("/simple/simple-x3ml.xml").toString();
         String[] fresh = xml.split("\n");
-        List<String> original = IOUtils.readLines(mappingFile.openStream());
+        List<String> original = IOUtils.readLines(resource("/simple/simple-x3ml.xml"));
         int index = 0;
         for (String originalLine : original) {
             originalLine = originalLine.trim();
@@ -37,28 +30,32 @@ public class TestX3MLEngine {
     }
 
     @Test
-    @Ignore
-    public void testRDB() throws IOException, X3MLException, ParserConfigurationException, SAXException {
-        URL mappingFile = getClass().getResource("/rdb/Mapping_dFMROE2CIDOC.xml");
-        X3MLEngine engine = X3MLEngine.create(mappingFile.openStream());
-        URL inputFile = getClass().getResource("/rdb/Coin21234in.xml");
-        Document inputDocument = XmlSerializer.documentBuilderFactory().newDocumentBuilder().parse(inputFile.openStream());
-//        String inputXml = new XmlSerializer().toXml(inputDocument.getDocumentElement());
-//        System.out.println(inputXml);
-        String graph = engine.extractTriples(inputDocument.getDocumentElement());
-        System.out.println(graph);
+    public void testSimple() throws X3MLException {
+        X3MLJob job = job("/simple/simple-input.xml");
+        engine("/simple/simple-x3ml.xml").execute(job);
+        System.out.println(job);
     }
 
-    @Test
-    public void testXML() throws IOException, X3MLException, ParserConfigurationException, SAXException {
-        URL mappingFile = getClass().getResource("/xml/LIDO2CRM-Mapping-ex1.xml");
-        X3MLEngine engine = X3MLEngine.create(mappingFile.openStream());
-        URL inputFile = getClass().getResource("/xml/LIDO-Example_FMobj00154983-LaPrimavera.xml");
-        Document inputDocument = XmlSerializer.documentBuilderFactory().newDocumentBuilder().parse(inputFile.openStream());
-//        String inputXml = new XmlSerializer().toXml(inputDocument.getDocumentElement());
-//        System.out.println(inputXml);
-        String graph = engine.extractTriples(inputDocument.getDocumentElement());
-        System.out.println(graph);
+    // ==== helpers ====
+
+    private static X3MLEngine engine(String path) throws X3MLException {
+        return X3MLEngine.load(resource(path));
     }
 
+    private static X3MLJob job(String path) throws X3MLException {
+        return X3MLJob.create(document(path));
+    }
+
+    private static Element document(String path) throws X3MLException {
+        try {
+            return XmlSerializer.documentBuilderFactory().newDocumentBuilder().parse(resource(path)).getDocumentElement();
+        }
+        catch (Exception e) {
+            throw new X3MLException("Unable to parse "+path);
+        }
+    }
+
+    private static InputStream resource(String path) {
+        return TestX3MLEngine.class.getResourceAsStream(path);
+    }
 }

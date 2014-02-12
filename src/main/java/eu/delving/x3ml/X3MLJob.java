@@ -19,54 +19,46 @@ import java.util.Map;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class MappingContext implements Context {
-    private final NamespaceContext namespaceContext;
-    private final Map<String, String> constants;
+public class X3MLJob {
     private final Element documentRoot;
-    private Node node;
+    private NamespaceContext namespaceContext;
+    private Map<String, String> constants;
     private XPathFactory pathFactory = new XPathFactoryImpl();
     private Map<String, String> pathUri = new HashMap<String, String>();
-    private List<GraphTriple> triples = new ArrayList<GraphTriple>();
+    private List<Context.GraphTriple> triples = new ArrayList<Context.GraphTriple>();
+    private MappingContext context;
+    private boolean finished = false;
 
-    public MappingContext(NamespaceContext namespaceContext, Element documentRoot, Map<String,String> constants) {
+    public static X3MLJob create(Element documentRoot) {
+        return new X3MLJob(documentRoot);
+    }
+
+    private X3MLJob(Element documentRoot) {
+        this.context = new MappingContext(this.documentRoot = documentRoot);
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public Element getDocumentRoot() {
+        return documentRoot;
+    }
+
+    public void setNamespaceContext(NamespaceContext namespaceContext) {
         this.namespaceContext = namespaceContext;
-        this.node = this.documentRoot = documentRoot;
+    }
+
+    public void setConstants(Map<String, String> constants) {
         this.constants = constants;
     }
 
-    @Override
-    public void setNode(Node node) {
-        this.node = (node == null) ? documentRoot : node;
+    public void finished() {
+        this.finished = true;
     }
 
-    @Override
-    public String getConstant(String name) {
-        return constants.get(name);
-    }
-
-    @Override
-    public String valueAt(String expression) {
-        List<Node> nodes = nodeList(node, expression);
-        if (nodes.isEmpty()) return "";
-        String value = nodes.get(0).getNodeValue();
-        if (value == null) return "";
-        return value.trim();
-    }
-
-    @Override
-    public GraphEntity entity(String entityClass, String path, String generatedUri) {
-        String uri = pathUri.get(path);
-        if (uri == null) {
-            pathUri.put(path, uri = generatedUri);
-        }
-        return new GraphEntityImpl(entityClass, uri);
-    }
-
-    @Override
-    public GraphTriple triple(GraphEntity subject, String predicate, GraphEntity object) {
-        GraphTripleImpl triple = new GraphTripleImpl(subject, predicate, object);
-        triples.add(triple);
-        return triple;
+    public void checkNotFinished() throws X3MLException {
+        if (finished) throw new X3MLException("Job was already finished");
     }
 
     private List<Node> nodeList(Node context, String expressionString) {
@@ -85,7 +77,7 @@ public class MappingContext implements Context {
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("graph:\n");
-        for (GraphTriple triple : triples) {
+        for (Context.GraphTriple triple : triples) {
             out.append(triple).append("\n");
         }
         return out.toString();
@@ -95,6 +87,51 @@ public class MappingContext implements Context {
         XPath path = pathFactory.newXPath();
         path.setNamespaceContext(namespaceContext);
         return path;
+    }
+
+    private class MappingContext implements Context {
+        private Node currentNode;
+
+        private MappingContext(Node currentNode) {
+            this.currentNode = currentNode;
+        }
+
+        @Override
+        public void setCurrentNode(Node currentNode) {
+            this.currentNode = currentNode;
+        }
+
+        @Override
+        public String getConstant(String name) {
+            return constants.get(name);
+        }
+
+        @Override
+        public String valueAt(String expression) {
+            List<Node> nodes = nodeList(currentNode, expression);
+            if (nodes.isEmpty()) return "";
+            String value = nodes.get(0).getNodeValue();
+            if (value == null) return "";
+            return value.trim();
+        }
+
+        @Override
+        public GraphEntity entity(String entityClass, String path, String generatedUri) {
+            String uri = pathUri.get(path);
+            if (uri == null) {
+                pathUri.put(path, uri = generatedUri);
+            }
+            return new GraphEntityImpl(entityClass, uri);
+        }
+
+        @Override
+        public GraphTriple triple(GraphEntity subject, String predicate, GraphEntity object) {
+            GraphTripleImpl triple = new GraphTripleImpl(subject, predicate, object);
+            triples.add(triple);
+            return triple;
+        }
+
+
     }
 
     private static class GraphTripleImpl implements Context.GraphTriple {

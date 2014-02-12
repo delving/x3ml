@@ -20,12 +20,13 @@ public class Mappings {
 
     public List<MappingConstant> mappingConstants;
 
+    public List<MappingNamespace> mappingNamespaces;
+
     @XStreamImplicit
     public List<Mapping> mappings;
 
     public void apply(Context context) {
         for (Mapping mapping : mappings) {
-            context.setNode(null);
             mapping.apply(context);
         }
     }

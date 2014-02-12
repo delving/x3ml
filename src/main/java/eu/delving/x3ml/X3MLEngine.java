@@ -5,11 +5,12 @@ import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 import eu.delving.x3ml.engine.MappingConstant;
+import eu.delving.x3ml.engine.MappingNamespace;
 import eu.delving.x3ml.engine.Mappings;
-import org.w3c.dom.Element;
 
 import javax.xml.namespace.NamespaceContext;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 /**
@@ -22,8 +23,12 @@ public class X3MLEngine {
     private NamespaceContext namespaceContext = new XPathContext();
     private Map<String,String> constants = new TreeMap<String, String>();
 
-    public static X3MLEngine create(InputStream inputStream) throws X3MLException {
+    public static X3MLEngine load(InputStream inputStream) throws X3MLException {
         return new X3MLEngine((Mappings) stream().fromXML(inputStream));
+    }
+
+    public static void save(X3MLEngine engine, OutputStream outputStream) throws X3MLException {
+        stream().toXML(engine.mappings, outputStream);
     }
 
     private X3MLEngine(Mappings mappings) {
@@ -33,16 +38,19 @@ public class X3MLEngine {
                 constants.put(constant.name, constant.content);
             }
         }
+        if (this.mappings.mappingNamespaces != null) {
+            for (MappingNamespace namespace : this.mappings.mappingNamespaces) {
+                ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
+            }
+        }
     }
 
-    public void addNamespace(String prefix, String uri) {
-        ((XPathContext) namespaceContext).addNamespace(prefix, uri);
-    }
-
-    public String extractTriples(Element documentRoot) {
-        MappingContext context = new MappingContext(namespaceContext, documentRoot, constants);
-        mappings.apply(context);
-        return context.toString();
+    public void execute(X3MLJob job) throws X3MLException {
+        job.checkNotFinished();
+        job.setNamespaceContext(namespaceContext);
+        job.setConstants(constants);
+        mappings.apply(job.getContext());
+        job.finished();
     }
 
     public String toString() {

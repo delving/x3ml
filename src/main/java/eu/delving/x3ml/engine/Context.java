@@ -4,7 +4,7 @@ import org.w3c.dom.Node;
 
 public interface Context {
 
-    void setNode(Node node);
+    void setCurrentNode(Node node);
 
     String getConstant(String name);
 

@@ -15,7 +15,8 @@ public class Property {
     @XStreamAlias("exists")
     public Exists exists;
 
-    public void apply(Context context, Domain domain) {
-        // todo: implement
+    public String getPropertyURI(Context context, Domain domain) {
+        if (exists != null && !exists.evaluate(context)) return null;
+        return tag.toString(); // todo: should be a CRM URI i suppose
     }
 }

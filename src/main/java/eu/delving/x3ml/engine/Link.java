@@ -12,8 +12,8 @@ public class Link {
 
     public Range range;
 
-    public void apply(Context context, Domain domain) {
-        path.apply(context, domain);
-        range.apply(context, domain, path);
+    public void applyLink(Context context, Domain domain) {
+        path.applyPath(context, domain);
+        range.applyRange(context, domain, path);
     }
 }

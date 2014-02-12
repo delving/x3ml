@@ -14,7 +14,13 @@ public class AdditionalNode {
     public Entity entity;
 
     public void apply(Context context, Domain domain, Path path, Entity contextEntity) {
-        property.apply(context, domain);
-        entity.apply(context, domain, path);
+        String propertyUri = property.getPropertyURI(context, domain);
+        String rangeUri = entity.generateRangeUri(context, domain, path);
+        if (propertyUri != null && rangeUri != null) {
+            // todo: this could be prettier
+            Context.GraphEntity domainEntity = context.entity(domain.entity.tag.toString(), domain.source, context.getDomainURI());
+            Context.GraphEntity rangeEntity = context.entity(entity.tag.toString(), "?", rangeUri);
+            Context.GraphTriple triple = context.triple(domainEntity, propertyUri, rangeEntity);
+        }
     }
 }

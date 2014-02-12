@@ -27,7 +27,7 @@ public class Mappings {
 
     public void apply(Context context) {
         for (Mapping mapping : mappings) {
-            mapping.apply(context);
+            mapping.applyMapping(context);
         }
     }
 }

@@ -16,10 +16,11 @@ public class Mapping {
     @XStreamImplicit
     public List<Link> links;
 
-    public void apply(Context context) {
-        domain.apply(context);
-        for (Link link: links) {
-            link.apply(context, domain);
+    public void applyMapping(Context context) {
+        if (domain.applyDomain(context)) {
+            for (Link link: links) {
+                link.applyLink(context, domain);
+            }
         }
     }
 }

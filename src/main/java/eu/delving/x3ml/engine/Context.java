@@ -14,6 +14,10 @@ public interface Context {
 
     GraphTriple triple(GraphEntity subject, String predicate, GraphEntity object);
 
+    boolean setDomainURI(String uri);
+
+    String getDomainURI();
+
     public interface GraphEntity {
     }
 

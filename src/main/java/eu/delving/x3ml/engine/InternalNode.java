@@ -11,7 +11,7 @@ public class InternalNode {
     public Entity entity;
     public Property property;
 
-    public void apply(Context context, Domain domain, Property contextProperty) {
+    public void applyInternalNode(Context context, Domain domain, Property contextProperty) {
         // todo: implement
     }
 }

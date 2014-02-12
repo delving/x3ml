@@ -21,11 +21,11 @@ public class Path {
 
     public Comments comments;
 
-    public void apply(Context context, Domain domain) {
-        property.apply(context, domain);
+    public void applyPath(Context context, Domain domain) {
+        String propertyUri = property.getPropertyURI(context, domain);
         if (internalNode != null) {
             for (InternalNode node : internalNode) {
-                node.apply(context, domain, property);
+                node.applyInternalNode(context, domain, property);
             }
         }
     }

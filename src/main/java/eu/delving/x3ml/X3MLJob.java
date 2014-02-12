@@ -91,6 +91,7 @@ public class X3MLJob {
 
     private class MappingContext implements Context {
         private Node currentNode;
+        private String domainUri;
 
         private MappingContext(Node currentNode) {
             this.currentNode = currentNode;
@@ -129,6 +130,16 @@ public class X3MLJob {
             GraphTripleImpl triple = new GraphTripleImpl(subject, predicate, object);
             triples.add(triple);
             return triple;
+        }
+
+        @Override
+        public boolean setDomainURI(String uri) {
+            return (this.domainUri = uri) != null;
+        }
+
+        @Override
+        public String getDomainURI() {
+            return this.domainUri;
         }
 
 

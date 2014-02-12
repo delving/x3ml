@@ -14,8 +14,7 @@ public class Domain {
 
     public Comments comments;
 
-    public void apply(Context context) {
-        entity.apply(context, this, null);
-        // todo: implement
+    public boolean applyDomain(Context context) {
+        return context.setDomainURI(entity.generateDomainURI(context, this));
     }
 }

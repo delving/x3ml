@@ -21,10 +21,13 @@ public class Entity {
     @XStreamAlias("uri_function")
     public URIFunction uriFunction;
 
-    public void apply(Context context, Domain domain, Path path) {
-        if (exists == null || exists.evaluate(context)) {
-            String uri = uriFunction.generateURI(context, domain, path);
-//            context.triple()
-        }
+    public String generateDomainURI(Context context, Domain domain) {
+        if (exists != null && !exists.evaluate(context)) return null;
+        return uriFunction.generateURI(context, domain);
+    }
+
+    public String generateRangeUri(Context context, Domain domain, Path path) {
+        if (exists != null && !exists.evaluate(context)) return null;
+        return uriFunction.generateURI(context, domain, path);
     }
 }

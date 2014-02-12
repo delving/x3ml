@@ -17,8 +17,8 @@ public class Range {
 
     public Comments comments;
 
-    public void apply(Context context, Domain domain, Path path) {
-        entity.apply(context, domain, path);
+    public void applyRange(Context context, Domain domain, Path path) {
+        String uri = entity.generateRangeUri(context, domain, path);
         if (additionalNode != null) {
             additionalNode.apply(context, domain, path, entity);
         }

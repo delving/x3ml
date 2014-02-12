@@ -21,6 +21,10 @@ public class URIFunction {
     @XStreamImplicit
     public List<URIFunctionArg> args;
 
+    public String generateURI(final Context context, Domain domain) {
+        return generateURI(context, domain, null);
+    }
+
     public String generateURI(final Context context, Domain domain, Path path) {
         URIGenerator generator = generators.get(name);
         if (generator == null) {
@@ -113,7 +117,7 @@ public class URIFunction {
 
     // =======================================================================
 // Legacy work-around efforts to study:
-//    public String apply(Node node, String className) {
+//    public String sapply(Node node, String className) {
 //        try {
 //            if ("Appellation".equals(name)) {
 //                // appellationURI(String className, String subjUri, String appellation)

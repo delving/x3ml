@@ -5,7 +5,6 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
-import org.w3c.dom.Node;
 
 import java.util.List;
 
@@ -14,27 +13,6 @@ import java.util.List;
  */
 
 public interface X3ML {
-
-    public interface Context {
-
-        void setCurrentNode(Node node);
-
-        String getConstant(String name);
-
-        String valueAt(String expression);
-
-        String generateURI(URIFunction function, Domain domain);
-
-        String generateURI(URIFunction function, Entity domainEntity, Path path);
-
-        boolean setDomain(Domain domain);
-
-        boolean setProperty(String propertyURI);
-
-        boolean setRange(Entity entity, Path path);
-
-        boolean createTriple();
-    }
 
     @XStreamAlias("mappings")
     public static class Mappings {
@@ -51,7 +29,7 @@ public interface X3ML {
         @XStreamImplicit
         public List<Mapping> mappings;
 
-        public void apply(Context context) {
+        public void apply(X3MLContext context) {
             for (Mapping mapping : mappings) {
                 mapping.applyMapping(context);
             }
@@ -101,10 +79,10 @@ public interface X3ML {
         @XStreamImplicit
         public List<Link> links;
 
-        public void applyMapping(Context context) {
-            if (domain.applyDomain(context)) {
+        public void applyMapping(X3MLContext context) {
+            for (X3MLContext.DomainContext domainContext : context.createDomainContexts(domain)) {
                 for (Link link : links) {
-                    link.applyLink(context, domain);
+                    link.applyLink(domainContext);
                 }
             }
         }
@@ -112,15 +90,12 @@ public interface X3ML {
 
     @XStreamAlias("domain")
     public static class Domain {
+
         public String source;
 
         public Entity entity;
 
         public Comments comments;
-
-        public boolean applyDomain(Context context) {
-            return context.setDomain(this);
-        }
     }
 
     @XStreamAlias("link")
@@ -129,9 +104,12 @@ public interface X3ML {
 
         public Range range;
 
-        public void applyLink(Context context, Domain domain) {
-            path.applyPath(context, domain);
-            range.applyRange(context, domain, path);
+        public void applyLink(X3MLContext.DomainContext context) {
+            for (X3MLContext.PathContext pathContext : context.createPathContexts(path)) {
+                for (X3MLContext.RangeContext rangeContext : pathContext.createRangeContexts(range)) {
+                    rangeContext.generateTriple();
+                }
+            }
         }
     }
 
@@ -146,15 +124,6 @@ public interface X3ML {
         public List<InternalNode> internalNode;
 
         public Comments comments;
-
-        public void applyPath(Context context, Domain domain) {
-            String propertyUri = property.getPropertyURI(context, domain);
-            if (internalNode != null) {
-                for (InternalNode node : internalNode) {
-                    node.applyInternalNode(context, domain, property);
-                }
-            }
-        }
     }
 
     @XStreamAlias("range")
@@ -167,12 +136,6 @@ public interface X3ML {
         public AdditionalNode additionalNode;
 
         public Comments comments;
-
-        public void applyRange(Context context, Domain domain, Path path) {
-            if (additionalNode != null) {
-                additionalNode.apply(context, domain, path, entity);
-            }
-        }
     }
 
     @XStreamAlias("additional_node")
@@ -181,17 +144,6 @@ public interface X3ML {
         public Property property;
 
         public Entity entity;
-
-        public boolean apply(Context context, Domain domain, Path path, Entity contextEntity) {
-            String propertyURI = property.getPropertyURI(context, domain);
-            if (context.setProperty(propertyURI)) {
-                if (context.setRange(entity, path)) {
-                    context.createTriple();
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"xpath"})
@@ -202,7 +154,15 @@ public interface X3ML {
 
         public String xpath;
 
-        public boolean evaluate(Context context) {
+        public boolean evaluate(X3MLContext.DomainContext context) {
+            return true; // todo
+        }
+
+        public boolean evaluate(X3MLContext.PathContext context) {
+            return true; // todo
+        }
+
+        public boolean evaluate(X3MLContext.RangeContext context) {
             return true; // todo
         }
     }
@@ -215,7 +175,7 @@ public interface X3ML {
         @XStreamAlias("exists")
         public Exists exists;
 
-        public String getPropertyURI(Context context, Domain domain) {
+        public String getPropertyURI(X3MLContext.PathContext context) {
             if (exists != null && !exists.evaluate(context)) return null;
             return tag; // todo: should be a CRM URI i suppose
         }
@@ -235,14 +195,14 @@ public interface X3ML {
         @XStreamAlias("uri_function")
         public URIFunction uriFunction;
 
-        public String generateDomainURI(Context context, Domain domain) {
+        public String generateDomainURI(X3MLContext.DomainContext context) {
             if (exists != null && !exists.evaluate(context)) return null;
-            return context.generateURI(uriFunction, domain);
+            return context.generateUri(uriFunction);
         }
 
-        public String generateRangeUri(Context context, Entity domainEntity, Path path) {
+        public String generateRangeUri(X3MLContext.RangeContext context) {
             if (exists != null && !exists.evaluate(context)) return null;
-            return context.generateURI(uriFunction, domainEntity, path);
+            return context.generateUri(uriFunction);
         }
     }
 
@@ -251,7 +211,7 @@ public interface X3ML {
         public Entity entity;
         public Property property;
 
-        public void applyInternalNode(Context context, Domain domain, Property contextProperty) {
+        public void applyInternalNode(X3MLContext context, Domain domain, Property contextProperty) {
             // todo: implement
         }
     }
@@ -283,21 +243,23 @@ public interface X3ML {
     }
 
     @XStreamAlias("arg")
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"content"})
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     public static class URIFunctionArg {
         @XStreamAsAttribute
         public String name;
 
-        public String content;
+        public String expression;
 
         public String toString() {
-            return content;
-        }
-
-        public String evaluate(Context context, Entity domainEntity, Path path) {
-
-            return "arg";
+            return name + ":=" + expression;
         }
     }
 
+    public interface URIArguments {
+        String getArgument(String name);
+    }
+
+    public interface URIPolicy {
+        String generateUri(String name, URIArguments arguments);
+    }
 }

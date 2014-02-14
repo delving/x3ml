@@ -42,12 +42,12 @@ public class X3MLEngine {
         }
     }
 
-    public void execute(X3MLJob job) throws X3MLException {
-        job.checkNotFinished();
-        job.setNamespaceContext(namespaceContext);
-        job.setConstants(constants);
-        mappings.apply(job.getContext());
-        job.finished();
+    public void execute(X3MLContext context) throws X3MLException {
+        context.checkNotFinished();
+        context.setNamespaceContext(namespaceContext);
+        context.setConstants(constants);
+        mappings.apply(context);
+        context.finished();
     }
 
     public String toString() {

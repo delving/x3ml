@@ -11,11 +11,10 @@
         </domain>
         <link>
             <path>
-                <source>/type</source>
+                <source>type</source>
                 <property tag="P2_has_type"/>
             </path>
             <range>
-                <source>/type</source>
                 <entity tag="E55_Type">
                     <uri_function name="Type"/>
                 </entity>

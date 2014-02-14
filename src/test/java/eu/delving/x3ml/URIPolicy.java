@@ -1,145 +1,62 @@
 package eu.delving.x3ml;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * The place where URIs are generated
- *
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class X3MLGenerateURI implements X3ML {
-    private final String name;
-    private final Context context;
-    private final Path path;
-    private final Args args;
-    private final Entity domainEntity;
+public class URIPolicy implements X3ML.URIPolicy {
 
-    public X3MLGenerateURI(String name, Context context, Entity domainEntity, Path path, Args args) {
-        this.name = name;
-        this.context = context;
-        this.domainEntity = domainEntity;
-        this.path = path;
-        this.args = args;
+    private Map<String, Generator> generatorMap = new TreeMap<String, Generator>();
+
+    public URIPolicy() {
+        addGenerator(new PhysicalObject());
+        addGenerator(new PhysicalThing());
+        addGenerator(new Type());
     }
 
-    // Physical Object
-    // uriForPhysicalObjects(String className, String nameOfMuseum, String entry)
-    // <E19_Physical_Object rdf:about="http://turistipercaso.it/Galleria_degli_Uffizi_—_Pinacoteca_(Florence)/8360_(Inv. 1890)">
-
-    public String uriForPhysicalObject() {
-        return args.get("museumName") + ":" + args.get("entry");
+    private void addGenerator(Generator generator) {
+        String qualifiedName = generator.getClass().getName();
+        String name = qualifiedName.substring(qualifiedName.lastIndexOf('$') + 1);
+        generatorMap.put(name, generator);
     }
 
-    // uriPhysThing(String className, String thing)
-
-    public String uriForPhysicalThing() {
-        return "uri";
+    @Override
+    public String generateUri(String name, X3ML.URIArguments arguments) {
+        Generator generator = generatorMap.get(name);
+        if (generator == null) throw new X3MLException("No generator found for " + name);
+        return generator.generateUri(arguments);
     }
 
-    // uriType(String className, String type)
-
-    public String uriForType() {
-        return "uri";
+    private interface Generator {
+        String generateUri(X3ML.URIArguments arguments);
     }
 
-    public String generateURI(URIFunction function, Domain domain) {
-        return generateURI(function, domain.entity, null);
-    }
-
-    public String generateURI(URIFunction function, Entity domainEntity, Path path) {
-        URIGenerator generator = generators.get(name);
-        if (generator == null) {
-            throw new RuntimeException("No generator found for: " + name);
-        }
-        final Map<String, String> argMap = new TreeMap<String, String>();
-        if (args != null) {
-            for (URIFunctionArg functionArg : function.args) {
-                argMap.put(functionArg.name, functionArg.evaluate(context, domainEntity, path));
-            }
-        }
-        String result = generator.invoke(context, domainEntity, path, new Args() {
-            @Override
-            public String get(String name) {
-                String value = argMap.get(name);
-                if (value != null) return value;
-                value = context.getConstant(name);
-                if (value != null) return value;
-                throw new ArgException(name);
-            }
-        });
-        System.out.println(name + " := " + result);
-        return result;
-    }
-
-    private static final String URI_FOR = "uriFor";
-    private static Map<String, URIGenerator> generators = new TreeMap<String, URIGenerator>();
-
-    static {
-        for (Method method : X3MLGenerateURI.class.getDeclaredMethods()) {
-            if (method.getName().startsWith(URI_FOR)) {
-                String functionName = method.getName().substring(URI_FOR.length());
-                String functionOrder = "0";
-                String[] nameParts = functionName.split("_");
-                if (nameParts.length > 2) throw new RuntimeException("Bad method name: " + functionName);
-                if (nameParts.length == 2) {
-                    functionName = nameParts[0];
-                    functionOrder = nameParts[1];
-                }
-                URIGenerator generator = generators.get(functionName);
-                if (generator == null) generators.put(functionName, generator = new URIGenerator(functionName));
-                generator.setMethod(functionOrder, method);
-            }
+    private class PhysicalObject implements Generator {
+        @Override
+        public String generateUri(X3ML.URIArguments arguments) {
+            return "phys-obj";
         }
     }
 
-    public static class ArgException extends RuntimeException {
-        public ArgException(String name) {
-            super(name);
+    private class PhysicalThing implements Generator {
+        @Override
+        public String generateUri(X3ML.URIArguments arguments) {
+            return "phys-thing";
         }
     }
 
-    public interface Args {
-        String get(String name);
-    }
-
-    private static class URIGenerator {
-        private String name;
-        private Map<String, Method> methods = new TreeMap<String, Method>();
-
-        private URIGenerator(String name) {
-            this.name = name;
-        }
-
-        private void setMethod(String order, Method method) {
-            this.methods.put(order, method);
-        }
-
-        public String invoke(Context context, Entity domainEntity, Path path, Args args) {
-            X3MLGenerateURI generatorFunction = new X3MLGenerateURI("name", context, domainEntity, path, args);
-            for (Map.Entry<String, Method> entry : methods.entrySet()) {
-                try {
-                    return (String) entry.getValue().invoke(generatorFunction);
-                }
-                catch (Exception e) {
-                    if (e instanceof ArgException) {
-                        // eat it, we like the taste exceptions because they tell us to try the next one in order
-                        ArgException ae = (ArgException) e;
-                        System.out.println("missing arg: " + ae.getMessage());
-                    }
-                    else {
-                        throw new RuntimeException("Problem invoking: " + name, e);
-                    }
-                }
-            }
-            throw new RuntimeException("I guess we need a UUID");
+    private class Type implements Generator {
+        @Override
+        public String generateUri(X3ML.URIArguments arguments) {
+            return "type";
         }
     }
+}
 
-
-    // =======================================================================
+// =======================================================================
 // Legacy work-around efforts to study:
 //    public String sapply(Node node, String className) {
 //        try {
@@ -252,5 +169,3 @@ public class X3MLGenerateURI implements X3ML {
 //        }
 //    }
 //
-//
-}

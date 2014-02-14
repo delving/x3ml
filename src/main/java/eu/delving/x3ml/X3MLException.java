@@ -4,7 +4,7 @@ package eu.delving.x3ml;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class X3MLException extends Exception {
+public class X3MLException extends RuntimeException {
 
     public X3MLException(String s) {
         super(s);

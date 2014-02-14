@@ -31,9 +31,8 @@ public class TestX3MLEngine {
 
     @Test
     public void testSimple() throws X3MLException {
-        X3MLJob job = job("/simple/simple-input.xml");
+        X3MLContext job = job("/simple/simple-input.xml");
         engine("/simple/simple-x3ml.xml").execute(job);
-        System.out.println(job);
     }
 
     // ==== helpers ====
@@ -42,8 +41,8 @@ public class TestX3MLEngine {
         return X3MLEngine.load(resource(path));
     }
 
-    private static X3MLJob job(String path) throws X3MLException {
-        return X3MLJob.create(document(path));
+    private static X3MLContext job(String path) throws X3MLException {
+        return X3MLContext.create(document(path), new URIPolicy());
     }
 
     private static Element document(String path) throws X3MLException {

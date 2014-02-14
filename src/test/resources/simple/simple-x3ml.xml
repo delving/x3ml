@@ -4,8 +4,8 @@
             <source>//movie</source>
             <entity tag="E19_Physical_Object">
                 <uri_function name="PhysicalObject">
-                    <arg name="nameOfMuseum">/museum/text()</arg>
-                    <arg name="entry">/identifier/text()</arg>
+                    <arg name="nameOfMuseum">museum/text()</arg>
+                    <arg name="entry">identifier/text()</arg>
                 </uri_function>
             </entity>
         </domain>

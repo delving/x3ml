@@ -37,7 +37,7 @@ public class URIPolicy implements X3ML.URIPolicy {
     private class PhysicalObject implements Generator {
         @Override
         public String generateUri(X3ML.URIArguments arguments) {
-            return "phys-obj";
+            return "phys-obj[" + arguments.getArgument("nameOfMuseum") + ", " + arguments.getArgument("entry") + "]";
         }
     }
 
@@ -51,7 +51,7 @@ public class URIPolicy implements X3ML.URIPolicy {
     private class Type implements Generator {
         @Override
         public String generateUri(X3ML.URIArguments arguments) {
-            return "type";
+            return "type[" + arguments.getClassName() + ":" + arguments.getArgument("nameOfMuseum") + "]";
         }
     }
 }

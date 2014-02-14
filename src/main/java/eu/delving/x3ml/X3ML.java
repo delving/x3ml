@@ -256,6 +256,7 @@ public interface X3ML {
     }
 
     public interface URIArguments {
+        String getClassName();
         String getArgument(String name);
     }
 

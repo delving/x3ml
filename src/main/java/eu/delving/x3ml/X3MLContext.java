@@ -90,6 +90,11 @@ public class X3MLContext implements X3ML {
         public String generateUri(final URIFunction uriFunction) {
             return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
                 @Override
+                public String getClassName() {
+                    return domain.entity.tag;
+                }
+
+                @Override
                 public String getArgument(String name) {
                     if (uriFunction.args != null) {
                         for (URIFunctionArg arg : uriFunction.args) {
@@ -163,6 +168,11 @@ public class X3MLContext implements X3ML {
 
         public String generateUri(final URIFunction uriFunction) {
             return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
+                @Override
+                public String getClassName() {
+                    return range.entity.tag;
+                }
+
                 @Override
                 public String getArgument(String name) {
                     if (uriFunction.args != null) {

@@ -4,9 +4,6 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
-import eu.delving.x3ml.engine.MappingConstant;
-import eu.delving.x3ml.engine.MappingNamespace;
-import eu.delving.x3ml.engine.Mappings;
 
 import javax.xml.namespace.NamespaceContext;
 import java.io.InputStream;
@@ -19,27 +16,27 @@ import java.util.*;
 
 public class X3MLEngine {
 
-    private Mappings mappings;
+    private X3ML.Mappings mappings;
     private NamespaceContext namespaceContext = new XPathContext();
     private Map<String,String> constants = new TreeMap<String, String>();
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
-        return new X3MLEngine((Mappings) stream().fromXML(inputStream));
+        return new X3MLEngine((X3ML.Mappings) stream().fromXML(inputStream));
     }
 
     public static void save(X3MLEngine engine, OutputStream outputStream) throws X3MLException {
         stream().toXML(engine.mappings, outputStream);
     }
 
-    private X3MLEngine(Mappings mappings) {
+    private X3MLEngine(X3ML.Mappings mappings) {
         this.mappings = mappings;
         if (this.mappings.mappingConstants != null) {
-            for (MappingConstant constant : this.mappings.mappingConstants) {
+            for (X3ML.MappingConstant constant : this.mappings.mappingConstants) {
                 constants.put(constant.name, constant.content);
             }
         }
         if (this.mappings.mappingNamespaces != null) {
-            for (MappingNamespace namespace : this.mappings.mappingNamespaces) {
+            for (X3ML.MappingNamespace namespace : this.mappings.mappingNamespaces) {
                 ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
             }
         }
@@ -62,7 +59,7 @@ public class X3MLEngine {
     private static XStream stream() {
         XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
         xstream.setMode(XStream.NO_REFERENCES);
-        xstream.processAnnotations(Mappings.class);
+        xstream.processAnnotations(X3ML.Mappings.class);
         return xstream;
     }
 

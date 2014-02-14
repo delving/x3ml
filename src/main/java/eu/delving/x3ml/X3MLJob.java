@@ -1,10 +1,6 @@
 package eu.delving.x3ml;
 
 import com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl;
-import eu.delving.x3ml.engine.Context;
-import eu.delving.x3ml.engine.Domain;
-import eu.delving.x3ml.engine.Entity;
-import eu.delving.x3ml.engine.Path;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,7 +17,7 @@ import java.util.Map;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class X3MLJob {
+public class X3MLJob implements X3ML {
     private final Element documentRoot;
     private NamespaceContext namespaceContext;
     private Map<String, String> constants;
@@ -117,6 +113,16 @@ public class X3MLJob {
             String value = nodes.get(0).getNodeValue();
             if (value == null) return "";
             return value.trim();
+        }
+
+        @Override
+        public String generateURI(URIFunction function, Domain domain) {
+            return null;
+        }
+
+        @Override
+        public String generateURI(URIFunction function, Entity domainEntity, Path path) {
+            return null;
         }
 
         @Override

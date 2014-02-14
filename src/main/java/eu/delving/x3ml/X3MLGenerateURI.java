@@ -1,38 +1,62 @@
-package eu.delving.x3ml.engine;
-
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
+package eu.delving.x3ml;
 
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * The place where URIs are generated
+ *
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-@XStreamAlias("uri_function")
-public class URIFunction {
-    @XStreamAsAttribute
-    public String name;
+public class X3MLGenerateURI implements X3ML {
+    private final String name;
+    private final Context context;
+    private final Path path;
+    private final Args args;
+    private final Entity domainEntity;
 
-    @XStreamImplicit
-    public List<URIFunctionArg> args;
-
-    public String generateURI(final Context context, Domain domain) {
-        return generateURI(context, domain.entity, null);
+    public X3MLGenerateURI(String name, Context context, Entity domainEntity, Path path, Args args) {
+        this.name = name;
+        this.context = context;
+        this.domainEntity = domainEntity;
+        this.path = path;
+        this.args = args;
     }
 
-    public String generateURI(final Context context, Entity domainEntity, Path path) {
+    // Physical Object
+    // uriForPhysicalObjects(String className, String nameOfMuseum, String entry)
+    // <E19_Physical_Object rdf:about="http://turistipercaso.it/Galleria_degli_Uffizi_—_Pinacoteca_(Florence)/8360_(Inv. 1890)">
+
+    public String uriForPhysicalObject() {
+        return args.get("museumName") + ":" + args.get("entry");
+    }
+
+    // uriPhysThing(String className, String thing)
+
+    public String uriForPhysicalThing() {
+        return "uri";
+    }
+
+    // uriType(String className, String type)
+
+    public String uriForType() {
+        return "uri";
+    }
+
+    public String generateURI(URIFunction function, Domain domain) {
+        return generateURI(function, domain.entity, null);
+    }
+
+    public String generateURI(URIFunction function, Entity domainEntity, Path path) {
         URIGenerator generator = generators.get(name);
         if (generator == null) {
             throw new RuntimeException("No generator found for: " + name);
         }
         final Map<String, String> argMap = new TreeMap<String, String>();
         if (args != null) {
-            for (URIFunctionArg functionArg : args) {
+            for (URIFunctionArg functionArg : function.args) {
                 argMap.put(functionArg.name, functionArg.evaluate(context, domainEntity, path));
             }
         }
@@ -54,7 +78,7 @@ public class URIFunction {
     private static Map<String, URIGenerator> generators = new TreeMap<String, URIGenerator>();
 
     static {
-        for (Method method : GeneratorFunction.class.getDeclaredMethods()) {
+        for (Method method : X3MLGenerateURI.class.getDeclaredMethods()) {
             if (method.getName().startsWith(URI_FOR)) {
                 String functionName = method.getName().substring(URI_FOR.length());
                 String functionOrder = "0";
@@ -94,7 +118,7 @@ public class URIFunction {
         }
 
         public String invoke(Context context, Entity domainEntity, Path path, Args args) {
-            GeneratorFunction generatorFunction = new GeneratorFunction(context, domainEntity, path, args);
+            X3MLGenerateURI generatorFunction = new X3MLGenerateURI("name", context, domainEntity, path, args);
             for (Map.Entry<String, Method> entry : methods.entrySet()) {
                 try {
                     return (String) entry.getValue().invoke(generatorFunction);

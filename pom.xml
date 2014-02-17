@@ -95,7 +95,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.jena</groupId>
-            <artifactId>jena</artifactId>
+            <artifactId>jena-core</artifactId>
             <version>2.11.1</version>
         </dependency>
     </dependencies>

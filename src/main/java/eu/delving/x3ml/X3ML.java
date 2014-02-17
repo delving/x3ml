@@ -22,9 +22,9 @@ public interface X3ML {
 
         public Metadata metadata;
 
-        public List<MappingConstant> mappingConstants;
+        public List<MappingConstant> constants;
 
-        public List<MappingNamespace> mappingNamespaces;
+        public List<MappingNamespace> namespaces;
 
         @XStreamImplicit
         public List<Mapping> mappings;
@@ -67,6 +67,9 @@ public interface X3ML {
         @XStreamAsAttribute
         public String uri;
 
+        @XStreamAsAttribute
+        public boolean useForTags;
+
         public String toString() {
             return prefix + ":" + uri;
         }
@@ -93,7 +96,8 @@ public interface X3ML {
 
         public String source;
 
-        public Entity entity;
+        @XStreamAlias("entity")
+        public EntityElement entityElement;
 
         public Comments comments;
     }
@@ -117,7 +121,8 @@ public interface X3ML {
     public static class Path {
         public String source;
 
-        public Property property;
+        @XStreamAlias("property")
+        public PropertyElement propertyElement;
 
         @XStreamAlias("internal_node")
         @XStreamImplicit
@@ -130,7 +135,8 @@ public interface X3ML {
     public static class Range {
         public String source;
 
-        public Entity entity;
+        @XStreamAlias("entity")
+        public EntityElement entityElement;
 
         @XStreamAlias("additional_node")
         public AdditionalNode additionalNode;
@@ -141,9 +147,9 @@ public interface X3ML {
     @XStreamAlias("additional_node")
     public static class AdditionalNode {
 
-        public Property property;
+        public PropertyElement propertyElement;
 
-        public Entity entity;
+        public EntityElement entityElement;
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"xpath"})
@@ -168,7 +174,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("property")
-    public static class Property {
+    public static class PropertyElement {
         @XStreamAsAttribute
         public String tag;
 
@@ -177,12 +183,12 @@ public interface X3ML {
 
         public String getPropertyURI(X3MLContext.PathContext context) {
             if (exists != null && !exists.evaluate(context)) return null;
-            return tag; // todo: should be a CRM URI i suppose
+            return tag;
         }
     }
 
     @XStreamAlias("entity")
-    public static class Entity {
+    public static class EntityElement {
         @XStreamAsAttribute
         public String tag;
 
@@ -208,10 +214,10 @@ public interface X3ML {
 
     @XStreamAlias("internal_node")
     public static class InternalNode {
-        public Entity entity;
-        public Property property;
+        public EntityElement entityElement;
+        public PropertyElement propertyElement;
 
-        public void applyInternalNode(X3MLContext context, Domain domain, Property contextProperty) {
+        public void applyInternalNode(X3MLContext context, Domain domain, PropertyElement contextPropertyElement) {
             // todo: implement
         }
     }
@@ -257,6 +263,7 @@ public interface X3ML {
 
     public interface URIArguments {
         String getClassName();
+
         String getArgument(String name);
     }
 

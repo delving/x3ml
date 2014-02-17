@@ -1,5 +1,7 @@
 package eu.delving.x3ml;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,7 +15,6 @@ public class URIPolicy implements X3ML.URIPolicy {
 
     public URIPolicy() {
         addGenerator(new PhysicalObject());
-        addGenerator(new PhysicalThing());
         addGenerator(new Type());
     }
 
@@ -37,21 +38,23 @@ public class URIPolicy implements X3ML.URIPolicy {
     private class PhysicalObject implements Generator {
         @Override
         public String generateUri(X3ML.URIArguments arguments) {
-            return "phys-obj[" + arguments.getArgument("nameOfMuseum") + ", " + arguments.getArgument("entry") + "]";
-        }
-    }
-
-    private class PhysicalThing implements Generator {
-        @Override
-        public String generateUri(X3ML.URIArguments arguments) {
-            return "phys-thing";
+            return arguments.getClassName() + ":" + encode(arguments.getArgument("nameOfMuseum") + ", " + arguments.getArgument("entry"));
         }
     }
 
     private class Type implements Generator {
         @Override
         public String generateUri(X3ML.URIArguments arguments) {
-            return "type[" + arguments.getClassName() + ":" + arguments.getArgument("nameOfMuseum") + "]";
+            return arguments.getClassName() + ":" + encode(arguments.getArgument("nameOfMuseum"));
+        }
+    }
+
+    private static String encode(String unencoded) {
+        try {
+            return URLEncoder.encode(unencoded, "utf-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            throw new X3MLException("Unable to encode: "+unencoded);
         }
     }
 }

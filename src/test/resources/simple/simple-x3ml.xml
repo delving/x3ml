@@ -1,4 +1,7 @@
 <mappings version="0.1">
+    <namespaces>
+        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#" useForTags="true"/>
+    </namespaces>
     <mapping>
         <domain>
             <source>//movie</source>

@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -31,8 +32,9 @@ public class TestX3MLEngine {
 
     @Test
     public void testSimple() throws X3MLException {
-        X3MLContext job = job("/simple/simple-input.xml");
-        engine("/simple/simple-x3ml.xml").execute(job);
+        X3MLContext context = context("/simple/simple-input.xml");
+        engine("/simple/simple-x3ml.xml").execute(context);
+        context.write(System.out);
     }
 
     // ==== helpers ====
@@ -41,7 +43,7 @@ public class TestX3MLEngine {
         return X3MLEngine.load(resource(path));
     }
 
-    private static X3MLContext job(String path) throws X3MLException {
+    private static X3MLContext context(String path) throws X3MLException {
         return X3MLContext.create(document(path), new URIPolicy());
     }
 

@@ -19,6 +19,8 @@ public class X3MLEngine {
     private X3ML.Mappings mappings;
     private NamespaceContext namespaceContext = new XPathContext();
     private Map<String,String> constants = new TreeMap<String, String>();
+    private List<String> prefixes = new ArrayList<String>();
+    private String tagPrefix;
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
         return new X3MLEngine((X3ML.Mappings) stream().fromXML(inputStream));
@@ -30,21 +32,23 @@ public class X3MLEngine {
 
     private X3MLEngine(X3ML.Mappings mappings) {
         this.mappings = mappings;
-        if (this.mappings.mappingConstants != null) {
-            for (X3ML.MappingConstant constant : this.mappings.mappingConstants) {
+        if (this.mappings.constants != null) {
+            for (X3ML.MappingConstant constant : this.mappings.constants) {
                 constants.put(constant.name, constant.content);
             }
         }
-        if (this.mappings.mappingNamespaces != null) {
-            for (X3ML.MappingNamespace namespace : this.mappings.mappingNamespaces) {
+        if (this.mappings.namespaces != null) {
+            for (X3ML.MappingNamespace namespace : this.mappings.namespaces) {
                 ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
+                prefixes.add(namespace.prefix);
+                if (namespace.useForTags) tagPrefix = namespace.prefix;
             }
         }
     }
 
     public void execute(X3MLContext context) throws X3MLException {
         context.checkNotFinished();
-        context.setNamespaceContext(namespaceContext);
+        context.setNamespaceContext(namespaceContext, prefixes, tagPrefix);
         context.setConstants(constants);
         mappings.apply(context);
         context.finished();

@@ -1,16 +1,21 @@
 package eu.delving.x3ml;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.*;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * The context in which the engine acts
@@ -21,9 +26,12 @@ import java.util.TreeMap;
 public class X3MLContext implements X3ML {
     private final Element documentRoot;
     private final URIPolicy uriPolicy;
+    private final Logger log = Logger.getLogger(getClass());
     private NamespaceContext namespaceContext;
+    private String tagPrefix;
     private Map<String, String> constants;
     private XPathFactory pathFactory = new XPathFactoryImpl();
+    private Model model = ModelFactory.createDefaultModel();
     private boolean finished = false;
 
     public static X3MLContext create(Element documentRoot, URIPolicy uriPolicy) {
@@ -35,8 +43,12 @@ public class X3MLContext implements X3ML {
         this.uriPolicy = uriPolicy;
     }
 
-    public void setNamespaceContext(NamespaceContext namespaceContext) {
+    public void setNamespaceContext(NamespaceContext namespaceContext, List<String> prefixes, String tagPrefix) {
         this.namespaceContext = namespaceContext;
+        for (String prefix : prefixes) {
+            this.model.setNsPrefix(prefix, namespaceContext.getNamespaceURI(prefix));
+        }
+        this.tagPrefix = tagPrefix;
     }
 
     public void setConstants(Map<String, String> constants) {
@@ -49,6 +61,10 @@ public class X3MLContext implements X3ML {
 
     public void checkNotFinished() throws X3MLException {
         if (finished) throw new X3MLException("Job was already finished");
+    }
+
+    public void write(PrintStream out) {
+        model.write(out, "TURTLE");
     }
 
     public String toString() {
@@ -77,6 +93,7 @@ public class X3MLContext implements X3ML {
         public final Domain domain;
         public final Node node;
         public String uri;
+        public Resource resource;
 
         public DomainContext(Domain domain, Node node) {
             this.domain = domain;
@@ -84,14 +101,18 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean generateUri() {
-            return (this.uri = domain.entity.generateDomainURI(this)) != null;
+            this.uri = domain.entityElement.generateDomainURI(this);
+            if (this.uri == null) return false;
+            log.info("Domain.createResource: [" + this.uri + "]");
+            resource = model.createResource(tagPrefix + ":" + this.uri);
+            return true;
         }
 
         public String generateUri(final URIFunction uriFunction) {
             return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
                 @Override
                 public String getClassName() {
-                    return domain.entity.tag;
+                    return domain.entityElement.tag;
                 }
 
                 @Override
@@ -126,6 +147,7 @@ public class X3MLContext implements X3ML {
         public final Node node;
         public final Path path;
         public String uri;
+        public Property property;
 
         public PathContext(DomainContext domainContext, Node node, Path path) {
             this.domainContext = domainContext;
@@ -134,7 +156,11 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean generateUri() {
-            return (this.uri = path.property.getPropertyURI(this)) != null;
+            this.uri = path.propertyElement.getPropertyURI(this);
+            if (this.uri == null) return false;
+            log.info("Path.createProperty: [" + this.uri + "]");
+            this.property = model.createProperty(namespaceContext.getNamespaceURI(tagPrefix), this.uri);
+            return true;
         }
 
         public List<RangeContext> createRangeContexts(Range range) {
@@ -155,6 +181,7 @@ public class X3MLContext implements X3ML {
         public final Node node;
         public final Range range;
         public String uri;
+        public Resource resource;
 
         public RangeContext(PathContext pathContext, Node node, Range range) {
             this.pathContext = pathContext;
@@ -163,14 +190,18 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean generateUri() {
-            return (this.uri = range.entity.generateRangeUri(this)) != null;
+            this.uri = range.entityElement.generateRangeUri(this);
+            if (this.uri == null) return false;
+            log.info("Range.createResource: [" + this.uri + "]");
+            resource = model.createResource(tagPrefix + ":" + this.uri);
+            return true;
         }
 
         public String generateUri(final URIFunction uriFunction) {
             return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
                 @Override
                 public String getClassName() {
-                    return range.entity.tag;
+                    return range.entityElement.tag;
                 }
 
                 @Override
@@ -188,7 +219,7 @@ public class X3MLContext implements X3ML {
         }
 
         public void generateTriple() {
-            System.out.println(pathContext.domainContext.uri + " :: " + pathContext.uri + " :: " + uri);
+            pathContext.domainContext.resource.addProperty(pathContext.property, resource);
         }
     }
 

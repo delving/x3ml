@@ -45,7 +45,7 @@ public class URIPolicy implements X3ML.URIPolicy {
     private class Type implements Generator {
         @Override
         public String generateUri(X3ML.URIArguments arguments) {
-            return arguments.getClassName() + ":" + encode(arguments.getArgument("nameOfMuseum"));
+            return arguments.getClassName() + ":" + encode(arguments.getArgument("entry"));
         }
     }
 

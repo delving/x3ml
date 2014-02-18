@@ -117,6 +117,7 @@ public class X3MLContext implements X3ML {
 
                 @Override
                 public String getArgument(String name) {
+                    // todo: constants?
                     if (uriFunction.args != null) {
                         for (URIFunctionArg arg : uriFunction.args) {
                             if (arg.name.equals(name)) {
@@ -206,6 +207,7 @@ public class X3MLContext implements X3ML {
 
                 @Override
                 public String getArgument(String name) {
+                    // todo: constants?
                     if (uriFunction.args != null) {
                         for (URIFunctionArg arg : uriFunction.args) {
                             if (arg.name.equals(name)) {

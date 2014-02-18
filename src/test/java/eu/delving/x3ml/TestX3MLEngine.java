@@ -44,7 +44,11 @@ public class TestX3MLEngine {
     }
 
     private static X3MLContext context(String path) throws X3MLException {
-        return X3MLContext.create(document(path), new URIPolicy());
+        return X3MLContext.create(document(path), policy());
+    }
+
+    private static X3ML.URIPolicy policy() {
+        return new TemplateURIPolicy(resource("/uri-policy.xml"));
     }
 
     private static Element document(String path) throws X3MLException {

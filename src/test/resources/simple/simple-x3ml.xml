@@ -6,7 +6,7 @@
         <domain>
             <source>//movie</source>
             <entity tag="E19_Physical_Object">
-                <uri_function name="PhysicalObject">
+                <uri_function>
                     <arg name="nameOfMuseum">museum/text()</arg>
                     <arg name="entry">identifier/text()</arg>
                 </uri_function>
@@ -19,7 +19,7 @@
             </path>
             <range>
                 <entity tag="E55_Type">
-                    <uri_function name="Type"/>
+                    <uri_function/>
                 </entity>
             </range>
         </link>

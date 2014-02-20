@@ -12,18 +12,19 @@ import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class TemplateURIPolicy implements X3ML.URIPolicy {
+public class X3MLURIPolicy implements X3ML.URIPolicy {
+    private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, Template> templateMap = new TreeMap<String, Template>();
 
-    public TemplateURIPolicy(InputStream inputStream) {
+    public X3MLURIPolicy(InputStream inputStream) {
         Policy policy = (Policy) stream().fromXML(inputStream);
         for (Template template: policy.templates) {
             templateMap.put(template.name, template);
@@ -38,7 +39,7 @@ public class TemplateURIPolicy implements X3ML.URIPolicy {
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(template.pattern);
             uriTemplate.set("className", arguments.getClassName());
-            for (String variable : variables(template.variables)) {
+            for (String variable : variablesFromPattern(template.pattern)) {
                 uriTemplate.set(variable, arguments.getArgument(variable));
             }
             return uriTemplate.expand();
@@ -53,8 +54,13 @@ public class TemplateURIPolicy implements X3ML.URIPolicy {
 
     // == the rest is for the XML form
 
-    private static String [] variables(String commaDelimited) {
-        return commaDelimited.split(", *");
+    private static List<String> variablesFromPattern(String pattern) {
+        Matcher braces = BRACES.matcher(pattern);
+        List<String> variables = new ArrayList<String>();
+        while (braces.find()) {
+            Collections.addAll(variables, braces.group(1).split(","));
+        }
+        return variables;
     }
 
     private static XStream stream() {

@@ -1,10 +1,8 @@
 <uri-policy>
     <template name="E19_Physical_Object">
         <pattern>http://purl.org/NET/cidoc-crm/core#{className}/{nameOfMuseum,entry}</pattern>
-        <variables>nameOfMuseum,entry</variables>
     </template>
     <template name="E55_Type">
         <pattern>http://purl.org/NET/cidoc-cr/core#{className}/{entry}</pattern>
-        <variables>entry</variables>
     </template>
 </uri-policy>

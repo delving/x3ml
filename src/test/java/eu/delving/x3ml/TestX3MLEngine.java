@@ -7,7 +7,6 @@ import org.w3c.dom.Element;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -48,7 +47,7 @@ public class TestX3MLEngine {
     }
 
     private static X3ML.URIPolicy policy() {
-        return new TemplateURIPolicy(resource("/uri-policy.xml"));
+        return new X3MLURIPolicy(resource("/simple/uri-policy.xml"));
     }
 
     private static Element document(String path) throws X3MLException {

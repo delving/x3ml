@@ -1,0 +1,31 @@
+<mappings version="0.1">
+    <constants>
+        <constant name="nameOfMuseum">British Museum</constant>
+    </constants>
+    <namespaces>
+        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#" useForTags="true"/>
+    </namespaces>
+    <mapping>
+        <domain>
+            <source>//input</source>
+            <entity tag="E19_Physical_Object">
+                <uri_function>
+                    <arg name="entry">bm_object_id/text()</arg>
+                </uri_function>
+            </entity>
+        </domain>
+        <link>
+            <path>
+                <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
+                <property tag="P54_has_current_permanent_location"/>
+            </path>
+            <range>
+                <entity tag="E48_Place_Name">
+                    <uri_function>
+                        <arg name="entry">bm_loc/text()</arg>
+                    </uri_function>
+                </entity>
+            </range>
+        </link>
+    </mapping>
+</mappings>

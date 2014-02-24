@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 public interface X3ML {
+    String CLASS_NAME = "className";
 
     @XStreamAlias("mappings")
     public static class Mappings {
@@ -262,8 +263,6 @@ public interface X3ML {
     }
 
     public interface URIArguments {
-        String getClassName();
-
         String getArgument(String name);
     }
 

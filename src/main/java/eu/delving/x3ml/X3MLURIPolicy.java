@@ -33,12 +33,11 @@ public class X3MLURIPolicy implements X3ML.URIPolicy {
 
     @Override
     public String generateUri(String name, X3ML.URIArguments arguments) {
-        if (name == null) name = arguments.getClassName();
+        if (name == null) name = arguments.getArgument(X3ML.CLASS_NAME);
         Template template = templateMap.get(name);
         if (template == null) throw new X3MLException("No template for "+name);
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(template.pattern);
-            uriTemplate.set("className", arguments.getClassName());
             for (String variable : variablesFromPattern(template.pattern)) {
                 uriTemplate.set(variable, arguments.getArgument(variable));
             }

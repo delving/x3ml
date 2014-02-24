@@ -13,6 +13,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.Namespace;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -21,18 +22,40 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Here we handle turning a DOM node into an XML Document
- *
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class XmlSerializer {
+public class TestHelper {
+    private static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
+    private static XMLEventFactory eventFactory = XMLEventFactory.newInstance();
+    private static List<String> indentStrings = new ArrayList<String>();
 
-    private XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-    private XMLEventFactory eventFactory = XMLEventFactory.newInstance();
-    private List<String> indentStrings = new ArrayList<String>();
+    public static X3MLEngine engine(String path) throws X3MLException {
+        return X3MLEngine.load(resource(path));
+    }
 
-    public String toXml(Node node) {
+    public static X3MLContext context(String contextPath, String policyPath) throws X3MLException {
+        return X3MLContext.create(document(contextPath), policy(policyPath));
+    }
+
+    public static X3ML.URIPolicy policy(String path) {
+        return new X3MLURIPolicy(resource(path));
+    }
+
+    public static Element document(String path) throws X3MLException {
+        try {
+            return documentBuilderFactory().newDocumentBuilder().parse(resource(path)).getDocumentElement();
+        }
+        catch (Exception e) {
+            throw new X3MLException("Unable to parse "+path);
+        }
+    }
+
+    public static InputStream resource(String path) {
+        return TestHelper.class.getResourceAsStream(path);
+    }
+
+    public static String toXml(Node node) {
         if (node.getNodeType() != Node.ELEMENT_NODE)
             throw new IllegalArgumentException("toXml should only be called on an element");
         try {
@@ -73,24 +96,6 @@ public class XmlSerializer {
                         throw new RuntimeException("Node type not implemented: " + kid.getNodeType());
                 }
             }
-//                for (int walk = 0; walk < kids.getLength(); walk++) {
-//                    Node kid = kids.item(walk);
-//                    switch (kid.getNodeType()) {
-//                        case Node.TEXT_NODE:
-//                            out.add(eventFactory.createCharacters(kid.getTextContent()));
-//                            break;
-//                        case Node.CDATA_SECTION_NODE:
-//                            out.add(eventFactory.createCData(kid.getTextContent()));
-//                            break;
-//                        case Node.ATTRIBUTE_NODE:
-//                            break;
-//                        case Node.ELEMENT_NODE:
-//                            nodeToXml(out, kid, 0);
-//                            break;
-//                        default:
-//                            throw new RuntimeException("Node type not implemented: " + kid.getNodeType());
-//                    }
-//                }
             out.add(eventFactory.createCharacters("\n"));
             out.add(eventFactory.createEndElement(prefix, uri, localName));
             out.add(eventFactory.createEndDocument());
@@ -105,7 +110,9 @@ public class XmlSerializer {
         }
     }
 
-    private void nodeToXml(XMLEventWriter out, Node node, int level) throws XMLStreamException {
+    // === private stuff
+
+    private static void nodeToXml(XMLEventWriter out, Node node, int level) throws XMLStreamException {
         if (node.getLocalName() == null) return;
         List<Attribute> attributes = getAttributes(node);
         String indentString = level > 0 ? indentString(level) : null;
@@ -146,7 +153,7 @@ public class XmlSerializer {
         out.add(eventFactory.createEndElement(node.getPrefix(), node.getNamespaceURI(), node.getLocalName()));
     }
 
-    private List<Attribute> getAttributes(Node node) {
+    private static List<Attribute> getAttributes(Node node) {
         NamedNodeMap nodeAttributes = node.getAttributes();
         List<Attribute> attributes = new ArrayList<Attribute>();
         for (int walk = 0; walk < nodeAttributes.getLength(); walk++) {
@@ -164,7 +171,7 @@ public class XmlSerializer {
         return attributes;
     }
 
-    private String indentString(int level) {
+    private static String indentString(int level) {
         if (level >= indentStrings.size()) {
             StringBuilder indentBuilder = new StringBuilder(level * 4);
             for (int walk = 0; walk < level + 1; walk++) {
@@ -175,7 +182,7 @@ public class XmlSerializer {
         return indentStrings.get(level);
     }
 
-    private void gatherNamespaces(Node node, Map<String, String> namespaces) {
+    private static void gatherNamespaces(Node node, Map<String, String> namespaces) {
         if (node.getPrefix() != null && node.getNamespaceURI() != null) {
             namespaces.put(node.getPrefix(), node.getNamespaceURI());
         }
@@ -199,6 +206,4 @@ public class XmlSerializer {
         factory.setNamespaceAware(true);
         return factory;
     }
-
-
 }

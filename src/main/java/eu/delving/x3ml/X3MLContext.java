@@ -111,20 +111,19 @@ public class X3MLContext implements X3ML {
         public String generateUri(final URIFunction uriFunction) {
             return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
                 @Override
-                public String getClassName() {
-                    return domain.entityElement.tag;
-                }
-
-                @Override
                 public String getArgument(String name) {
-                    // todo: constants?
+                    if (CLASS_NAME.equals(name)) {
+                        return domain.entityElement.tag;
+                    }
                     if (uriFunction.args != null) {
                         for (URIFunctionArg arg : uriFunction.args) {
                             if (arg.name.equals(name)) {
-                                return valueAt(node, arg.expression);
+                                return valueAt(node, arg);
                             }
                         }
                     }
+                    String constantValue = constants.get(name);
+                    if (constantValue != null) return constantValue;
                     return valueAt(node, "text()");
                 }
             });
@@ -201,20 +200,19 @@ public class X3MLContext implements X3ML {
         public String generateUri(final URIFunction uriFunction) {
             return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
                 @Override
-                public String getClassName() {
-                    return range.entityElement.tag;
-                }
-
-                @Override
                 public String getArgument(String name) {
-                    // todo: constants?
+                    if (CLASS_NAME.equals(name)) {
+                        return range.entityElement.tag;
+                    }
                     if (uriFunction.args != null) {
                         for (URIFunctionArg arg : uriFunction.args) {
                             if (arg.name.equals(name)) {
-                                return valueAt(node, arg.expression);
+                                return valueAt(node, arg);
                             }
                         }
                     }
+                    String constantValue = constants.get(name);
+                    if (constantValue != null) return constantValue;
                     return valueAt(node, "text()");
                 }
             });
@@ -226,6 +224,15 @@ public class X3MLContext implements X3ML {
     }
 
     // =============================================
+
+    private String valueAt(Node node, URIFunctionArg arg) {
+        if (arg.expression == null || arg.expression.isEmpty()) {
+            return constants.get(arg.name);
+        }
+        else {
+            return valueAt(node, arg.expression);
+        }
+    }
 
     private String valueAt(Node node, String expression) {
         List<Node> nodes = nodeList(node, expression);

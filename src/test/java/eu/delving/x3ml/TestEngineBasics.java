@@ -36,3 +36,24 @@ public class TestEngineBasics {
         context.write(System.out);
     }
 }
+
+// to ignore stuff:
+//XStream xStream = new XStream() {
+//    @Override
+//    protected MapperWrapper wrapMapper(MapperWrapper next) {
+//        return new MapperWrapper(next) {
+//            @Override
+//            public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+//                if (definedIn == Object.class) {
+//                    try {
+//                        return this.realClass(fieldName) != null;
+//                    } catch(Exception e) {
+//                        return false;
+//                    }
+//                } else {
+//                    return super.shouldSerializeMember(definedIn, fieldName);
+//                }
+//            }
+//        };
+//    }
+//};

@@ -22,7 +22,6 @@ At first glance, the global structure of X3ML is quite easy to understand.  It c
 	            <entity/>
 	        </domain>
 	        <link>
-	            <condition/>
 	            <path>
 		            <notes/>
 	                <source/>

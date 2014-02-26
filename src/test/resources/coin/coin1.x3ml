@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings version="1.0">
+    <namespaces>
+        <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+        <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    </namespaces>
+    <mapping>
+        <domain>
+            <source>
+                <xpath>//COIN</xpath>
+            </source>
+            <entity>
+                <class>crm:E22_Man-Made_Object</class>
+                <uri_function name="UUID"/>
+            </entity>
+        </domain>
+        <link>
+            <path>
+                <source>
+                    <xpath>ID</xpath>
+                </source>
+                <property>
+                    <class>crm:P1_is_identified_by</class>
+                </property>
+            </path>
+            <range>
+                <entity>
+                    <class>crm:E41_Appellation</class>
+                    <uri_function name="UUID"/>
+                </entity>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>
+                    <xpath>ID</xpath>
+                </source>
+                <property>
+                    <class>crm:P1_is_identified_by</class>
+                </property>
+            </path>
+            <range>
+                <entity>
+                    <class>rdf:label</class>
+                    <xpath>text()</xpath>
+                </entity>
+            </range>
+        </link>
+    </mapping>
+</mappings>

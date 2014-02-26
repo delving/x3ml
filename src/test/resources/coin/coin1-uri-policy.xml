@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uri-policy>
+    <template name="UUID">
+        <uuid/>
+    </template>
+</uri-policy>

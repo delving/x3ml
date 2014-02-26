@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This is an example X3ML mapping (not maintained with the others) to illustrate how notes are to be encapsulated        -->
+<mappings version="1.0">
+    <notes>
+        <note type="FORTH-Header">
+            <title>OEAW Coins DB (partial)</title>
+            <general_description>
+                Partial mapping of dFMRÖ (digitale FundMünzen der Römischen Zeit in Österreich), a database of
+                ancient coin finds in Austria, to CIDOC-CRM.
+                The mapping was implemented within the ARIADNE project (http://www.ariadne-infrastructure.eu/)
+            </general_description>
+            <source_info>
+                <source_schema type="ER" version="">Relational DB - access</source_schema>
+                <source_collection>dFMRÖ (digitale FundMünzen der Römischen Zeit in Österreich)
+                    (http://www.oeaw.ac.at/numismatik/projekte/dfmroe/dfmroe.html)
+                </source_collection>
+            </source_info>
+            <target_info>
+                <target_schema schema_file="../cidoc_crm_v5.1-draft-2013May.rdfs" type="rdfs" version="5.1">CIDOC-CRM
+                </target_schema>
+                <target_collection/>
+            </target_info>
+            <target_info>
+                <target_schema schema_file="CRMtime_spans_v1.0___13-02-2014155935___11301.rdfs" type="rdfs" version="v1.0">
+                    CRMtime_spans
+                </target_schema>
+                <target_collection/>
+            </target_info>
+            <mapping_info>
+                <mapping_created_by_org>OEAW (www.oeaw.ac.at/) and FORTH-ICS (www.ics.forth.gr)</mapping_created_by_org>
+                <mapping_created_by_person>Elisabeth Pichler (Elisabeth.Pichler@oeaw.ac.at), Anja Masur (Anja.Masur@oeaw.ac.at),
+                    Martin Doerr (martin@ics.forth.gr), Maria Theodoridou (maria@ics.forth.gr)
+                </mapping_created_by_person>
+                <in_collaboration_with/>
+            </mapping_info>
+            <example_data_info>
+                <example_data_from>record for coin 627</example_data_from>
+                <example_data_contact_person>Maria Theodoridou (maria@ics.forth.gr)</example_data_contact_person>
+                <example_data_source_record xml_link="Coin627in___13-02-2014154621___4036.xml">Coin627in.xml
+                </example_data_source_record>
+                <example_data_target_record rdf_link="Coin627out___24-02-2014170424___8439.rdf">Coin627out.rdf
+                </example_data_target_record>
+            </example_data_info>
+        </note>
+    </notes>
+    <mapping>
+        <domain>
+            <notes>
+                <note type="FORTH-Comment">
+                    <comments>
+                        <rationale>
+                            if a class "Exx Coin" is created as subclass of E22 Man-Made Object then we would map COIN to
+                            Exx Coin
+                        </rationale>
+                        <alternatives/>
+                        <typical_mistakes/>
+                        <local_habits/>
+                        <link_to_cook_book/>
+                        <example>
+                            <example_source/>
+                            <example_target/>
+                        </example>
+                        <comments_last_update date="" person=""/>
+                    </comments>
+                </note>
+            </notes>
+            <source>
+                <xpath>COIN</xpath>
+            </source>
+            <entity>
+                <uri_function name="UUID">
+                    <arg name="className"><literal>E22_Man-Made_Object</literal></arg>
+                </uri_function>
+            </entity>
+        </domain>
+        <link>
+            <path>
+                <notes>
+                    <note type="FORTH-Comment">
+                        <comments>
+                            <rationale>
+                                We map local identifiers in relational database tables explicitly only if these
+                                identifiers are visible in the user interface and used in other documents as well.
+                                Alternatively, we use the local database identifiers only for generating URIs for the record
+                                instance, here the coin instance, and do NOT map the COIN.ID at all.
+                            </rationale>
+                            <alternatives/>
+                            <typical_mistakes/>
+                            <local_habits/>
+                            <link_to_cook_book/>
+                            <example>
+                                <example_source/>
+                                <example_target/>
+                            </example>
+                            <comments_last_update date="" person=""/>
+                        </comments>
+                    </note>
+                </notes>
+                <source><xpath>COIN/ID</xpath></source>
+                <property><literal>P1_is_identified_by</literal></property>
+            </path>
+            <range>
+                <source>COIN/ID</source>
+                <entity>
+                    <uri_function name="UUID">
+                        <arg name="className"><literal>E41_Appellation</literal></arg>
+                    </uri_function>
+                </entity>
+            </range>
+        </link>
+        <link>
+            <path>
+                <notes>
+                    <note type="FORTH-Comment">
+                        <comments>
+                            <rationale>We map local identifiers in relational database tables explicitly only if these identifiers are visible in the user interface and used in other documents as well. Alternatively, we use the local database identifiers only for generating URIs for the record instance, here the coin instance, and do NOT map the COIN.ID at all.</rationale>
+                            <alternatives/>
+                            <typical_mistakes/>
+                            <local_habits/>
+                            <link_to_cook_book/>
+                            <example>
+                                <example_source/>
+                                <example_target/>
+                            </example>
+                            <comments_last_update date="" person=""/>
+                        </comments>
+                    </note>
+                </notes>
+                <source>ID</source>
+                <property><literal>P1_is_identified_by</literal></property>
+            </path>
+            <range>
+                <entity>
+                    <uri_function name="LabelUUID">
+                        <arg name="className"><literal>E41_Appellation</literal></arg>
+                        <arg name="label"><xpath>text()</xpath></arg>
+                    </uri_function>
+                </entity>
+            </range>
+        </link>
+    </mapping>
+</mappings>

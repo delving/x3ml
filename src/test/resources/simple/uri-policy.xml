@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <uri-policy>
     <template name="E19_Physical_Object">
         <pattern>http://purl.org/NET/cidoc-crm/core#{className}/{nameOfMuseum,entry}</pattern>

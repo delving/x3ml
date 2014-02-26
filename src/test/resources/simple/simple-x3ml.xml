@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <mappings version="0.1">
     <namespaces>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#" useForTags="true"/>

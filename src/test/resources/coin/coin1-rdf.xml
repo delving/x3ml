@@ -2,12 +2,13 @@
 <rdf:RDF xml:lang="en"
          xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xml:base="http://www.cidoc-crm.org/cidoc-crm/">
 
     <crm:E22_Man-Made_Object rdf:about="uuid:2c070d40-9de8-11e3-a5e2-0800200c9a66">
         <crm:P1_is_identified_by>
             <crm:E41_Appellation rdf:about="uuid:822db060-9de9-11e3-a5e2-0800200c9a66"/>
-            <rdf:label>627</rdf:label>
+            <rdfs:label>627</rdfs:label>
         </crm:P1_is_identified_by>
     </crm:E22_Man-Made_Object>
 </rdf:RDF>

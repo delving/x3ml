@@ -38,6 +38,10 @@ public class TestHelper {
         return X3MLContext.create(document(contextPath), policy(policyPath));
     }
 
+    public static X3MLContext context(String contextPath, X3ML.URIPolicy policy) throws X3MLException {
+        return X3MLContext.create(document(contextPath), policy);
+    }
+
     public static X3ML.URIPolicy policy(String path) {
         return new X3MLURIPolicy(resource(path));
     }

@@ -55,7 +55,7 @@ public class X3MLContext implements X3ML {
     }
 
     public void write(PrintStream out) {
-        model.write(out, "RDF/XML");
+        model.write(out, "RDF/XML-ABBREV");
     }
 
     public String toString() {
@@ -76,22 +76,33 @@ public class X3MLContext implements X3ML {
         return domainContexts;
     }
 
+    private Resource createTypedResource(String uriString, ClassElement classElement) {
+        if (classElement == null) throw new X3MLException("no class element");
+        String typeUri = namespaceContext.getNamespaceURI(classElement.getPrefix());
+        return model.createResource(uriString, model.createResource(typeUri+classElement.getLocalName()));
+    }
+
+    private Property createLiteralProperty(ClassElement classElement) {
+        String propertyNamespace = namespaceContext.getNamespaceURI(classElement.getPrefix());
+        return model.createProperty(propertyNamespace, classElement.getLocalName());
+    }
+
     public class EntityResolution {
         public ClassElement classElement;
         public String literalString;
         public String resourceString;
         public Resource resource;
-        public Property property;
+        public Property literalProperty;
         public Literal literal;
 
         public boolean resolve() {
             if (literalString != null) {
-                property = model.createProperty(namespaceContext.getNamespaceURI(classElement.getPrefix()), classElement.getLocalName());
+                literalProperty = createLiteralProperty(classElement);
                 literal = model.createLiteral(literalString);
                 return true;
             }
             else if (resourceString != null) {
-                resource = model.createResource(resourceString);
+                resource = createTypedResource(resourceString, classElement);
                 return true;
             }
             else {
@@ -239,12 +250,13 @@ public class X3MLContext implements X3ML {
         }
 
         public void generateTriple() {
+            Resource domainResource = pathContext.domainContext.resolution.resource;
             if (resolution.literal != null) {
                 // todo: make use of resolution.property
-                pathContext.domainContext.resolution.resource.addProperty(pathContext.property, resolution.literal);
+                domainResource.addProperty(resolution.literalProperty, resolution.literal);
             }
             else if (resolution.resource != null) {
-                pathContext.domainContext.resolution.resource.addProperty(pathContext.property, resolution.resource);
+                domainResource.addProperty(pathContext.property, resolution.resource);
             }
             else {
                 throw new X3MLException("Unable to generate triple");

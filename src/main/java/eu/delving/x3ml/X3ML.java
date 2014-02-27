@@ -190,6 +190,7 @@ public interface X3ML {
 
         public X3MLContext.EntityResolution getResolution(X3MLContext.DomainContext context) {
             X3MLContext.EntityResolution resolution = context.createResolution();
+            resolution.classElement = classElement;
             if (xpath != null) {
                 throw new X3MLException("No xpath allowed in domain");
             }
@@ -201,8 +202,8 @@ public interface X3ML {
 
         public X3MLContext.EntityResolution getResolution(X3MLContext.RangeContext context) {
             X3MLContext.EntityResolution resolution = context.createResolution();
+            resolution.classElement = classElement;
             if (xpath != null && classElement != null) {
-                resolution.classElement = classElement;
                 resolution.literalString = context.dereference(xpath);
             }
             else if (uriFunction != null) {

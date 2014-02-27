@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<uri-policy>
-    <template name="UUID">
-        <pattern>http://purl.org/NET/cidoc-crm/core#{className}/{UUID}</pattern>
-    </template>
-</uri-policy>

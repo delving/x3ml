@@ -14,16 +14,13 @@ import java.util.List;
 
 public interface X3ML {
     String CLASS_NAME = "className";
+    String UUID_NAME = "UUID";
 
     @XStreamAlias("mappings")
     public static class Mappings {
 
         @XStreamAsAttribute
         public String version;
-
-        public Metadata metadata;
-
-        public List<MappingConstant> constants;
 
         public List<MappingNamespace> namespaces;
 
@@ -37,29 +34,6 @@ public interface X3ML {
         }
     }
 
-    @XStreamAlias("metadata")
-    public static class Metadata {
-        @XStreamAsAttribute
-        public String version;
-
-        public String title;
-
-        public String description;
-    }
-
-    @XStreamAlias("constant")
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"content"})
-    public static class MappingConstant {
-        @XStreamAsAttribute
-        public String name;
-
-        public String content;
-
-        public String toString() {
-            return content;
-        }
-    }
-
     @XStreamAlias("namespace")
     public static class MappingNamespace {
         @XStreamAsAttribute
@@ -67,9 +41,6 @@ public interface X3ML {
 
         @XStreamAsAttribute
         public String uri;
-
-        @XStreamAsAttribute
-        public boolean useForTags;
 
         public String toString() {
             return prefix + ":" + uri;
@@ -95,12 +66,27 @@ public interface X3ML {
     @XStreamAlias("domain")
     public static class Domain {
 
-        public String source;
+        public Source source;
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
 
         public Comments comments;
+
+        public String toString() {
+            return "Domain(" + source + ", " + entityElement + ")";
+        }
+    }
+
+    @XStreamAlias("source")
+    public static class Source {
+
+        @XStreamAlias("xpath")
+        public XPathElement xpath;
+
+        public String toString() {
+            return "Source(" + xpath + ")";
+        }
     }
 
     @XStreamAlias("link")
@@ -120,7 +106,8 @@ public interface X3ML {
 
     @XStreamAlias("path")
     public static class Path {
-        public String source;
+
+        public Source source;
 
         @XStreamAlias("property")
         public PropertyElement propertyElement;
@@ -134,7 +121,8 @@ public interface X3ML {
 
     @XStreamAlias("range")
     public static class Range {
-        public String source;
+
+        public Source source;
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
@@ -176,40 +164,80 @@ public interface X3ML {
 
     @XStreamAlias("property")
     public static class PropertyElement {
-        @XStreamAsAttribute
-        public String tag;
+        @XStreamAlias("class")
+        public ClassElement classElement;
 
         @XStreamAlias("exists")
         public Exists exists;
 
-        public String getPropertyURI(X3MLContext.PathContext context) {
+        public ClassElement getPropertyClass(X3MLContext.PathContext context) {
             if (exists != null && !exists.evaluate(context)) return null;
-            return tag;
+            if (classElement == null) throw new X3MLException("Missing class element");
+            return classElement;
         }
     }
 
     @XStreamAlias("entity")
     public static class EntityElement {
-        @XStreamAsAttribute
-        public String tag;
+        @XStreamAlias("class")
+        public ClassElement classElement;
 
-        @XStreamAsAttribute
-        public String binding;
-
-        @XStreamAlias("exists")
-        public Exists exists;
+        @XStreamAlias("xpath")
+        public XPathElement xpath;
 
         @XStreamAlias("uri_function")
         public URIFunction uriFunction;
 
-        public String generateDomainURI(X3MLContext.DomainContext context) {
-            if (exists != null && !exists.evaluate(context)) return null;
-            return context.generateUri(uriFunction);
+        public X3MLContext.EntityResolution getResolution(X3MLContext.DomainContext context) {
+            X3MLContext.EntityResolution resolution = context.createResolution();
+            if (xpath != null) {
+                throw new X3MLException("No xpath allowed in domain");
+            }
+            if (uriFunction != null) {
+                resolution.resourceString = context.generateUri(uriFunction);
+            }
+            return resolution;
         }
 
-        public String generateRangeUri(X3MLContext.RangeContext context) {
-            if (exists != null && !exists.evaluate(context)) return null;
-            return context.generateUri(uriFunction);
+        public X3MLContext.EntityResolution getResolution(X3MLContext.RangeContext context) {
+            X3MLContext.EntityResolution resolution = context.createResolution();
+            if (xpath != null && classElement != null) {
+                resolution.classElement = classElement;
+                resolution.literalString = context.dereference(xpath);
+            }
+            else if (uriFunction != null) {
+                resolution.resourceString = context.generateUri(uriFunction);
+            }
+            else {
+                throw new X3MLException("Entity must have class/literal or uri_function");
+            }
+            return resolution;
+        }
+
+        public String toString() {
+            return "Entity(" + classElement + ", " + xpath + ", " + uriFunction + ")";
+        }
+    }
+
+    @XStreamAlias("class")
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
+    public static class ClassElement {
+        public String tag;
+
+        public String getPrefix() {
+            int colon = tag.indexOf(':');
+            if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
+            return tag.substring(0, colon);
+        }
+
+        public String getLocalName() {
+            int colon = tag.indexOf(':');
+            if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
+            return tag.substring(colon+1);
+        }
+
+        public String toString() {
+            return "Class(" + tag + ")";
         }
     }
 
@@ -247,18 +275,39 @@ public interface X3ML {
 
         @XStreamImplicit
         public List<URIFunctionArg> args;
+
+        public String toString() {
+            return "URIFunction(" + name + ")";
+        }
     }
 
     @XStreamAlias("arg")
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     public static class URIFunctionArg {
         @XStreamAsAttribute
         public String name;
 
-        public String expression;
+        @XStreamAlias("xpath")
+        public XPathElement xpath;
 
         public String toString() {
-            return name + ":=" + expression;
+            return name + ":=" + xpath;
+        }
+    }
+
+    @XStreamAlias("xpath")
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
+    public static class XPathElement {
+        public String expression;
+
+        public XPathElement() {
+        }
+
+        public XPathElement(String expression) {
+            this.expression = expression;
+        }
+
+        public String toString() {
+            return expression;
         }
     }
 

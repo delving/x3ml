@@ -18,7 +18,6 @@ public class X3MLEngine {
 
     private X3ML.Mappings mappings;
     private NamespaceContext namespaceContext = new XPathContext();
-    private Map<String,String> constants = new TreeMap<String, String>();
     private List<String> prefixes = new ArrayList<String>();
     private String tagPrefix;
 
@@ -32,24 +31,17 @@ public class X3MLEngine {
 
     private X3MLEngine(X3ML.Mappings mappings) {
         this.mappings = mappings;
-        if (this.mappings.constants != null) {
-            for (X3ML.MappingConstant constant : this.mappings.constants) {
-                constants.put(constant.name, constant.content);
-            }
-        }
         if (this.mappings.namespaces != null) {
             for (X3ML.MappingNamespace namespace : this.mappings.namespaces) {
                 ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
                 prefixes.add(namespace.prefix);
-                if (namespace.useForTags) tagPrefix = namespace.prefix;
             }
         }
     }
 
     public void execute(X3MLContext context) throws X3MLException {
         context.checkNotFinished();
-        context.setNamespaceContext(namespaceContext, prefixes, tagPrefix);
-        context.setConstants(constants);
+        context.setNamespaceContext(namespaceContext, prefixes);
         mappings.apply(context);
         context.finished();
     }
@@ -78,6 +70,9 @@ public class X3MLEngine {
 
         @Override
         public String getNamespaceURI(String prefix) {
+            if (prefix == null) {
+                throw new X3MLException("Null prefix!");
+            }
             if (prefixUri.size() == 1) {
                 return prefixUri.values().iterator().next();
             }

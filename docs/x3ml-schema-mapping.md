@@ -148,61 +148,100 @@ The *source* element is also present in path and range, and these sources are ev
 The domain and range contain *target* blocks, which can either contain/generate URIs or represent literals:
 
 	<target>
-		<uri>...</uri>
+	    <property>
+			<class>...</class>
+		</property>
 	</target>
 
 	<target>
-		<uri_function name="...">
-		    <arg name="...">
-		    	<xpath>...</xpath>
-		   	</arg>
-		    <arg name="...">
-		    	<literal>...</literal>
-		    </arg>
-		    <arg/>
-		    ...
-		</uri_function>
+	    <property>
+			<uri>...</uri>
+		</property>
 	</target>
 
 	<target>
-		<class>...</class>
-		<literal>...</literal>
+		<entity>
+			<class>...</class>
+			<uri_function name="...">
+			    <arg name="...">
+			    	<xpath>...</xpath>
+			   	</arg>
+			    <arg name="...">
+			    	<literal>...</literal>
+			    </arg>
+			    <arg/>
+			    ...
+			</uri_function>
+		</entity>
+	</target>
+
+	<target>
+		<entity>
+			<class>...</class>
+			<literal>...</literal>
+		</entity>
 	</target>
 
 The arguments of the URI functions are named and optional, since there is logic within the URI Generation to anticipate omissions.  The type of argument is determined by the element encapsulating the actual value.  Initially the two options of either *literal* values or *xpath* expressions which will be evaluated in the current context (see Source below) in order to fetch information from the source record.
 
-## Path and Range Extensions
+## Intermediate Entity
 
-	Note: This section is still formulated in terms of entity and property, which needs changing.  Currently reviewing documentation to find out how to do this.
+Sometimes a path in the source schema needs to become more than just a path in the output.  Instead, an intermediate entity must be introduced.
 
-The basic *path* block contains *source* and *property*, but it can also have *internal_node* instances.  Similarly, the *range* block contains *source* and *entity*, but it can also have *additional_node* instances.
+	source:
+	record => has_descriptor => term
+	
+	target:
+	man-made-object => was_produced_by => PRODUCTION => used_general_technique => type
 
-	<path>
-		<source/>
-		<target/>
-		<internal_node>
-			<entity/>
-			<property/>
-		</internal_node>
-		...
-	</path>
-	<range>
-		<source/>
-		<target/>
-		<additional_node>
-			<property/>
-			<entity/>
-		</additional_node>
-		...
-	</range>
+This is formulated using the *intermediate* element:
 
-The internal node allows a *path* to result in a chain, rather than only a property:
+	<target>
+	    <property/>
+	    <intermediate>
+	    	<entity/>
+	    	<property/>
+	    </intermediate>
+	</target>
 
-	property => property-entity-property
+## Additional Entities
 
-The additional node allows the *range* to result in a chain rather than only an entity:
+**Note: this one is incomplete**
 
-	entity => entity-property-entity
+(Original form, for reference):
+
+			<range_map>
+				<src_range>lido:repositoryName/lido:legalBodyWeblink</src_range>
+				<target_range>E73_Information_Object</target_range>
+				<uri_rules>
+					<uri_function>
+						<name>uriConceptual</name>
+						<arguments>text()</arguments>
+					</uri_function>
+				</uri_rules>
+				<add_link>P2_has_type</add_link>
+				<add_entity>
+					<value value_binding="web resource">E55_Type</value>
+					<uri_rules>
+						<uri_function>
+							<name>uriType</name>
+							<arguments>text()</arguments>
+						</uri_function>
+					</uri_rules>
+				</add_entity>
+			</range_map>
+
+(Proposed form):
+
+	<target>
+	    <entity/>
+	    <additional>
+	    	<property/>
+	    	<entity/>
+	    </additional>
+	</target>
+
+Question:  does the additional property and entity connect to the entity here in the target?
 
 ## Notes
 

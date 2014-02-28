@@ -141,7 +141,7 @@ The source element provides the engine with the information needed to navigate t
 
 The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.
 
-	Note: Considering the range/source to be an extension of the path/source appears to be mistaken, but it is not yet clear how the two are to be used.  If they are independent and the range/source value gives a separate collection of nodes from the path/source, then how to have them result in triples domain-path-range is not clear.
+* Note: Considering the range/source to be an extension of the path/source appears to be mistaken, but it is not yet clear how the two are to be used.  If they are independent and the range/source value gives a separate collection of nodes from the path/source, then how to have them result in triples domain-path-range is not clear.
 
 ## Target
 
@@ -206,7 +206,7 @@ This is formulated using the *intermediate* element:
 
 ## Additional Entities
 
-**Note: this one is incomplete**
+* Note: this one is incomplete
 
 (Original form, for reference):
 

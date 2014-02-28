@@ -122,7 +122,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            this.resolution = domain.entityElement.getResolution(this);
+            this.resolution = domain.target.entityElement.getResolution(this);
             return this.resolution.resolve();
         }
 
@@ -135,10 +135,10 @@ public class X3MLContext implements X3ML {
                 @Override
                 public String getArgument(String name) {
                     if (CLASS_NAME.equals(name)) {
-                        if (domain.entityElement == null || domain.entityElement.qualifiedName == null) {
+                        if (domain.target.entityElement == null || domain.target.entityElement.qualifiedName == null) {
                             throw new X3MLException("No class element: " + domain);
                         }
-                        return domain.entityElement.qualifiedName.getLocalName();
+                        return domain.target.entityElement.qualifiedName.getLocalName();
                     }
                     if (UUID_NAME.equals(name)) {
                         return UUID.randomUUID().toString();
@@ -186,7 +186,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean generateProperty() {
-            qualifiedName = path.propertyElement.getPropertyClass(this);
+            qualifiedName = path.target.propertyElement.getPropertyClass(this);
             if (qualifiedName == null) return false;
             this.property = model.createProperty(namespaceContext.getNamespaceURI(qualifiedName.getPrefix()), qualifiedName.getLocalName());
             return true;
@@ -218,7 +218,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            this.resolution = range.entityElement.getResolution(this);
+            this.resolution = range.target.entityElement.getResolution(this);
             // todo: what about range.additionalNode?
             return this.resolution.resolve();
         }
@@ -232,10 +232,10 @@ public class X3MLContext implements X3ML {
                 @Override
                 public String getArgument(String name) {
                     if (CLASS_NAME.equals(name)) {
-                        if (range.entityElement == null || range.entityElement.qualifiedName == null) {
+                        if (range.target.entityElement == null || range.target.entityElement.qualifiedName == null) {
                             throw new X3MLException("No class element: " + range);
                         }
-                        return range.entityElement.qualifiedName.getLocalName();
+                        return range.target.entityElement.qualifiedName.getLocalName();
                     }
                     if (uriFunction.args != null) {
                         for (URIFunctionArg arg : uriFunction.args) {

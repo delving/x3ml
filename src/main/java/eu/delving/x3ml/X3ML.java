@@ -68,13 +68,12 @@ public interface X3ML {
 
         public Source source;
 
-        @XStreamAlias("entity")
-        public EntityElement entityElement;
+        public Target target;
 
         public Comments comments;
 
         public String toString() {
-            return "Domain(" + source + ", " + entityElement + ")";
+            return "Domain(" + source + ", " + target + ")";
         }
     }
 
@@ -105,6 +104,7 @@ public interface X3ML {
 
     @XStreamAlias("link")
     public static class Link {
+
         public Path path;
 
         public Range range;
@@ -123,8 +123,7 @@ public interface X3ML {
 
         public Source source;
 
-        @XStreamAlias("property")
-        public PropertyElement propertyElement;
+        public Target target;
 
 //        @XStreamAlias("internal_node")
 //        @XStreamImplicit
@@ -138,11 +137,10 @@ public interface X3ML {
 
         public Source source;
 
-        @XStreamAlias("entity")
-        public EntityElement entityElement;
+        public Target target;
 
-        @XStreamAlias("additional_node")
-        public AdditionalNode additionalNode;
+//        @XStreamAlias("additional_node")
+//        public AdditionalNode additionalNode;
 
         public Comments comments;
     }

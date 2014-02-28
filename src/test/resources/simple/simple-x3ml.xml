@@ -8,32 +8,39 @@
             <source>
                 <xpath>//movie</xpath>
             </source>
-            <entity>
-                <qname>crm:E19_Physical_Object</qname>
-                <uri_function name="PhysicalObject">
-                    <arg name="nameOfMuseum">
-                        <xpath>museum/text()</xpath>
-                    </arg>
-                    <arg name="entry">
-                        <xpath>identifier/text()</xpath>
-                    </arg>
-                </uri_function>
-            </entity>
+            <target>
+                <entity>
+                    <qname>crm:E19_Physical_Object</qname>
+                    <uri_function name="PhysicalObject">
+                        <arg name="nameOfMuseum">
+                            <xpath>museum/text()</xpath>
+                        </arg>
+                        <arg name="entry">
+                            <xpath>identifier/text()</xpath>
+                        </arg>
+                    </uri_function>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
                 <source>
                     <xpath>type</xpath>
                 </source>
-                <property>
-                    <qname>crm:P2_has_type</qname>
-                </property>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <entity>
-                    <qname>crm:E55_Type</qname>
-                    <uri_function name="Type"/>
-                </entity>
+                <source/>
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <uri_function name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>

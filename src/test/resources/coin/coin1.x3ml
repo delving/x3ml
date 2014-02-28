@@ -9,37 +9,43 @@
             <source>
                 <xpath>//COIN</xpath>
             </source>
-            <entity>
-                <qname>crm:E22_Man-Made_Object</qname>
-                <uri_function name="UUID"/>
-            </entity>
+            <target>
+                <entity>
+                    <qname>crm:E22_Man-Made_Object</qname>
+                    <uri_function name="UUID"/>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
                 <source>
                     <xpath>ID</xpath>
                 </source>
-                <property>
-                    <qname>crm:P1_is_identified_by</qname>
-                </property>
+                <target>
+                    <property>
+                        <qname>crm:P1_is_identified_by</qname>
+                    </property>
+                </target>
             </path>
             <range>
                 <!--<source>-->
                     <!--<xpath>ID</xpath>-->
                 <!--</source>-->
-                <entity>
-                    <qname>crm:E41_Appellation</qname>
-                    <uri_function name="UUID"/>
-                </entity>
-                <additional_node>
-                    <property>
-                        <qname>crm:P1_is_identified_by</qname>
-                    </property>
+                <target>
                     <entity>
-                        <qname>rdf:label</qname>
-                        <xpath>text()</xpath>
+                        <qname>crm:E41_Appellation</qname>
+                        <uri_function name="UUID"/>
                     </entity>
-                </additional_node>
+                    <!--<additional_node>-->
+                        <!--<property>-->
+                            <!--<qname>crm:P1_is_identified_by</qname>-->
+                        <!--</property>-->
+                        <!--<entity>-->
+                            <!--<qname>rdf:label</qname>-->
+                            <!--<xpath>text()</xpath>-->
+                        <!--</entity>-->
+                    <!--</additional_node>-->
+                </target>
             </range>
         </link>
     </mapping>

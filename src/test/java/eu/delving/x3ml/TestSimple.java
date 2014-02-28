@@ -7,13 +7,13 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static eu.delving.x3ml.TestHelper.*;
+import static eu.delving.x3ml.AllTests.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class TestEngineBasics {
+public class TestSimple {
 
     @Test
     public void testReadWrite() throws IOException, X3MLException {
@@ -31,7 +31,7 @@ public class TestEngineBasics {
 
     @Test
     public void testSimple() throws X3MLException {
-        X3MLContext context = context("/simple/simple-input.xml", "/simple/uri-policy.xml");
+        X3MLContext context = context("/simple/simple-input.xml", "/simple/simple-uri-policy.xml");
         engine("/simple/simple-x3ml.xml").execute(context);
         context.write(System.out);
     }

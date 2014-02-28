@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.util.UUID;
 
-import static eu.delving.x3ml.TestHelper.context;
-import static eu.delving.x3ml.TestHelper.engine;
+import static eu.delving.x3ml.AllTests.context;
+import static eu.delving.x3ml.AllTests.engine;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>

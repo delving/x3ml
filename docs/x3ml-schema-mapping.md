@@ -149,7 +149,7 @@ The domain and range contain *target* blocks, which can either contain/generate 
 
 	<target>
 	    <property>
-			<class>...</class>
+			<qname>...</qname>
 		</property>
 	</target>
 
@@ -161,7 +161,7 @@ The domain and range contain *target* blocks, which can either contain/generate 
 
 	<target>
 		<entity>
-			<class>...</class>
+			<qname>...</qname>
 			<uri_function name="...">
 			    <arg name="...">
 			    	<xpath>...</xpath>
@@ -177,7 +177,7 @@ The domain and range contain *target* blocks, which can either contain/generate 
 
 	<target>
 		<entity>
-			<class>...</class>
+			<qname>...</qname>
 			<literal>...</literal>
 		</entity>
 	</target>
@@ -243,21 +243,21 @@ This is formulated using the *intermediate* element:
 
 Question:  does the additional property and entity connect to the entity here in the target?
 
-## Notes
+## Comments
 
 Tools for managing X3ML will make use of these note elements to record all information arising from the mapping building process which may be useful people accessing the *Mapping Memory* in the future.  
 
-A simple open-ended structure where each *note* has a **type** and content allows for different tools to easily define their own note structures.  We could maintain a definition of what the different known **type** values are, and this could be easily expanded without changing the schema.
+A simple open-ended structure where each *comment* has a **type** and content allows for different tools to easily define their own note structures.  We could maintain a definition of what the different known **type** values are, and this could be easily expanded without changing the schema.
 
-	<notes>
-		<note type="...">
+	<comments>
+		<comment type="...">
 			....
-		</note>
-		<note/>
+		</comment>
+		<comment/>
 		...
-	</notes>
+	</comments>
 
-There are *notes* elements defined at the top level where all mappings are bound together, as well as in each *domain* and each *path* and *range*.
+There are *comments* elements defined at the top level where all mappings are bound together, as well as in each *domain* and each *path* and *range*.
 
 The content of a note can be any arbitrary XML, and the X3ML Engine will ignore these blocks, since they are for human consumption.
 

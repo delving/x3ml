@@ -1,5 +1,7 @@
 package eu.delving.x3ml;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -25,7 +27,13 @@ import java.util.TreeMap;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class TestHelper {
+@RunWith(Suite.class)
+@org.junit.runners.Suite.SuiteClasses({
+        TestSimple.class,
+        TestCoin.class,
+        TestBM.class
+})
+public class AllTests {
     private static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
     private static XMLEventFactory eventFactory = XMLEventFactory.newInstance();
     private static List<String> indentStrings = new ArrayList<String>();
@@ -51,12 +59,12 @@ public class TestHelper {
             return documentBuilderFactory().newDocumentBuilder().parse(resource(path)).getDocumentElement();
         }
         catch (Exception e) {
-            throw new X3MLException("Unable to parse "+path);
+            throw new X3MLException("Unable to parse " + path);
         }
     }
 
     public static InputStream resource(String path) {
-        return TestHelper.class.getResourceAsStream(path);
+        return AllTests.class.getResourceAsStream(path);
     }
 
     public static String toXml(Node node) {

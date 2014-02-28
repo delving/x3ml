@@ -89,6 +89,20 @@ public interface X3ML {
         }
     }
 
+    @XStreamAlias("target")
+    public static class Target {
+
+        @XStreamAlias("entity")
+        public EntityElement entityElement;
+
+        @XStreamAlias("property")
+        public PropertyElement propertyElement;
+
+        public String toString() {
+            return "Target(" + entityElement + ", " + propertyElement + ")";
+        }
+    }
+
     @XStreamAlias("link")
     public static class Link {
         public Path path;
@@ -112,10 +126,10 @@ public interface X3ML {
         @XStreamAlias("property")
         public PropertyElement propertyElement;
 
-        @XStreamAlias("internal_node")
-        @XStreamImplicit
-        public List<InternalNode> internalNode;
-
+//        @XStreamAlias("internal_node")
+//        @XStreamImplicit
+//        public List<InternalNode> internalNode;
+//
         public Comments comments;
     }
 
@@ -136,8 +150,10 @@ public interface X3ML {
     @XStreamAlias("additional_node")
     public static class AdditionalNode {
 
+        @XStreamAlias("property")
         public PropertyElement propertyElement;
 
+        @XStreamAlias("entity")
         public EntityElement entityElement;
     }
 
@@ -164,23 +180,25 @@ public interface X3ML {
 
     @XStreamAlias("property")
     public static class PropertyElement {
-        @XStreamAlias("class")
-        public ClassElement classElement;
+
+        @XStreamAlias("qname")
+        public QualifiedName qualifiedName;
 
         @XStreamAlias("exists")
         public Exists exists;
 
-        public ClassElement getPropertyClass(X3MLContext.PathContext context) {
+        public QualifiedName getPropertyClass(X3MLContext.PathContext context) {
             if (exists != null && !exists.evaluate(context)) return null;
-            if (classElement == null) throw new X3MLException("Missing class element");
-            return classElement;
+            if (qualifiedName == null) throw new X3MLException("Missing class element");
+            return qualifiedName;
         }
     }
 
     @XStreamAlias("entity")
     public static class EntityElement {
-        @XStreamAlias("class")
-        public ClassElement classElement;
+
+        @XStreamAlias("qname")
+        public QualifiedName qualifiedName;
 
         @XStreamAlias("xpath")
         public XPathElement xpath;
@@ -190,7 +208,7 @@ public interface X3ML {
 
         public X3MLContext.EntityResolution getResolution(X3MLContext.DomainContext context) {
             X3MLContext.EntityResolution resolution = context.createResolution();
-            resolution.classElement = classElement;
+            resolution.qualifiedName = qualifiedName;
             if (xpath != null) {
                 throw new X3MLException("No xpath allowed in domain");
             }
@@ -202,8 +220,8 @@ public interface X3ML {
 
         public X3MLContext.EntityResolution getResolution(X3MLContext.RangeContext context) {
             X3MLContext.EntityResolution resolution = context.createResolution();
-            resolution.classElement = classElement;
-            if (xpath != null && classElement != null) {
+            resolution.qualifiedName = qualifiedName;
+            if (xpath != null && qualifiedName != null) {
                 resolution.literalString = context.dereference(xpath);
             }
             else if (uriFunction != null) {
@@ -216,13 +234,13 @@ public interface X3ML {
         }
 
         public String toString() {
-            return "Entity(" + classElement + ", " + xpath + ", " + uriFunction + ")";
+            return "Entity(" + qualifiedName + ", " + xpath + ", " + uriFunction + ")";
         }
     }
 
-    @XStreamAlias("class")
+    @XStreamAlias("qname")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
-    public static class ClassElement {
+    public static class QualifiedName {
         public String tag;
 
         public String getPrefix() {
@@ -234,7 +252,7 @@ public interface X3ML {
         public String getLocalName() {
             int colon = tag.indexOf(':');
             if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
-            return tag.substring(colon+1);
+            return tag.substring(colon + 1);
         }
 
         public String toString() {
@@ -244,7 +262,11 @@ public interface X3ML {
 
     @XStreamAlias("internal_node")
     public static class InternalNode {
+
+        @XStreamAlias("entity")
         public EntityElement entityElement;
+
+        @XStreamAlias("property")
         public PropertyElement propertyElement;
 
         public void applyInternalNode(X3MLContext context, Domain domain, PropertyElement contextPropertyElement) {

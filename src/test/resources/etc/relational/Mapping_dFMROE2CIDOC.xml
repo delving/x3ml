@@ -37,7 +37,7 @@ and the suggested changes by Gerald de Jong -->
         <!--<example_data_info>-->
             <!--<example_data_from>fake data</example_data_from>-->
             <!--<example_data_contact_person>Maria Theodoridou (maria@ics.forth.gr)</example_data_contact_person>-->
-            <!--<example_data_source_record xml_link="Coin21234in.xml">Coin21234in.xml</example_data_source_record>-->
+            <!--<example_data_source_record xml_link="Coin21234in.xml">Coin21234in.xnk</example_data_source_record>-->
             <!--<example_data_target_record rdf_link="Coin21234out.rdf">Coin21234out.rdf</example_data_target_record>-->
         <!--</example_data_info>-->
     </metadata>

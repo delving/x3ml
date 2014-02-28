@@ -47,7 +47,7 @@ public class X3MLEngine {
     }
 
     public String toString() {
-        return stream().toXML(mappings);
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + stream().toXML(mappings);
     }
 
     // ====================

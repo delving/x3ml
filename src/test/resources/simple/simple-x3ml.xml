@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mappings version="0.1">
     <namespaces>
-        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#" useForTags="true"/>
+        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
     </namespaces>
     <mapping>
         <domain>
-            <source>//movie</source>
-            <entity tag="E19_Physical_Object">
-                <uri_function>
-                    <arg name="nameOfMuseum">museum/text()</arg>
-                    <arg name="entry">identifier/text()</arg>
+            <source>
+                <xpath>//movie</xpath>
+            </source>
+            <entity>
+                <qname>crm:E19_Physical_Object</qname>
+                <uri_function name="PhysicalObject">
+                    <arg name="nameOfMuseum">
+                        <xpath>museum/text()</xpath>
+                    </arg>
+                    <arg name="entry">
+                        <xpath>identifier/text()</xpath>
+                    </arg>
                 </uri_function>
             </entity>
         </domain>
         <link>
             <path>
-                <source>type</source>
-                <property tag="P2_has_type"/>
+                <source>
+                    <xpath>type</xpath>
+                </source>
+                <property>
+                    <qname>crm:P2_has_type</qname>
+                </property>
             </path>
             <range>
-                <entity tag="E55_Type">
-                    <uri_function/>
+                <entity>
+                    <qname>crm:E55_Type</qname>
+                    <uri_function name="Type"/>
                 </entity>
             </range>
         </link>

@@ -10,7 +10,7 @@
                 <xpath>//COIN</xpath>
             </source>
             <entity>
-                <class>crm:E22_Man-Made_Object</class>
+                <qname>crm:E22_Man-Made_Object</qname>
                 <uri_function name="UUID"/>
             </entity>
         </domain>
@@ -20,30 +20,26 @@
                     <xpath>ID</xpath>
                 </source>
                 <property>
-                    <class>crm:P1_is_identified_by</class>
+                    <qname>crm:P1_is_identified_by</qname>
                 </property>
             </path>
             <range>
+                <!--<source>-->
+                    <!--<xpath>ID</xpath>-->
+                <!--</source>-->
                 <entity>
-                    <class>crm:E41_Appellation</class>
+                    <qname>crm:E41_Appellation</qname>
                     <uri_function name="UUID"/>
                 </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>
-                    <xpath>ID</xpath>
-                </source>
-                <property>
-                    <class>crm:P1_is_identified_by</class>
-                </property>
-            </path>
-            <range>
-                <entity>
-                    <class>rdf:label</class>
-                    <xpath>text()</xpath>
-                </entity>
+                <additional_node>
+                    <property>
+                        <qname>crm:P1_is_identified_by</qname>
+                    </property>
+                    <entity>
+                        <qname>rdf:label</qname>
+                        <xpath>text()</xpath>
+                    </entity>
+                </additional_node>
             </range>
         </link>
     </mapping>

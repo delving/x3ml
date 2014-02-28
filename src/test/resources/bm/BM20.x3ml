@@ -1,28 +1,37 @@
 <mappings version="0.1">
-    <constants>
-        <constant name="nameOfMuseum">British Museum</constant>
-    </constants>
     <namespaces>
-        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#" useForTags="true"/>
+        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
     </namespaces>
     <mapping>
         <domain>
-            <source>//input</source>
-            <entity tag="E19_Physical_Object">
-                <uri_function>
-                    <arg name="entry">bm_object_id/text()</arg>
+            <source>
+                <xpath>//input</xpath>
+            </source>
+            <entity>
+                <qname>crm:E19_Physical_Object</qname>
+                <uri_function name="PhysicalObject">
+                    <arg name="entry">
+                        <xpath>bm_object_id/text()</xpath>
+                    </arg>
                 </uri_function>
             </entity>
         </domain>
         <link>
             <path>
-                <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
-                <property tag="P54_has_current_permanent_location"/>
+                <source>
+                    <xpath>bm_object_part/underscore/bm_alias_loc/underscore</xpath>
+                </source>
+                <property>
+                    <qname>crm:P54_has_current_permanent_location</qname>
+                </property>
             </path>
             <range>
-                <entity tag="E48_Place_Name">
-                    <uri_function>
-                        <arg name="entry">bm_loc/text()</arg>
+                <entity>
+                    <qname>crm:E48_Place_Name</qname>
+                    <uri_function name="PlaceName">
+                        <arg name="entry">
+                            <xpath>bm_loc/text()</xpath>
+                        </arg>
                     </uri_function>
                 </entity>
             </range>

@@ -38,14 +38,14 @@ When URIs are to be generated on the basis of source record content, it is wise 
 
 For template-based URI generation there is [RFC 6570](http://tools.ietf.org/html/rfc6570) and we have an implementation and have experimented with setting up a URI function on the basis of a configuration file like this:
 
-	<uri-policy>
-	    <template name="PhysicalObject">
+	<value-policy>
+	    <generator name="PhysicalObject">
 	        <pattern>http://purl.org/NET/cidoc-crm/core#{className}/{nameOfMuseum,entry}</pattern>
-	    </template>
-	    <template name="Type">
+	    </generator>
+	    <generator name="Type">
 	        <pattern>http://purl.org/NET/cidoc-cr/core#{className}/{entry}</pattern>
-	    </template>
-	</uri-policy>
+	    </generator>
+	</value-policy>
 	
 * **NOTE: this xml definition will probably be generalized for value generators**
 

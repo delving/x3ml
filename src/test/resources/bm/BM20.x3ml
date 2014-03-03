@@ -1,28 +1,23 @@
-<mappings version="0.1">
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings version="0.1" sourceType="XPATH">
     <namespaces>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
     </namespaces>
     <mapping>
         <domain>
-            <source>
-                <xpath>//input</xpath>
-            </source>
+            <source>//input</source>
             <target>
                 <entity>
                     <qname>crm:E19_Physical_Object</qname>
-                    <uri_function name="PhysicalObject">
-                        <arg name="entry">
-                            <xpath>bm_object_id/text()</xpath>
-                        </arg>
-                    </uri_function>
+                    <value_function name="PhysicalObject">
+                        <arg name="entry">bm_object_id/text()</arg>
+                    </value_function>
                 </entity>
             </target>
         </domain>
         <link>
             <path>
-                <source>
-                    <xpath>bm_object_part/underscore/bm_alias_loc/underscore</xpath>
-                </source>
+                <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
                 <target>
                     <property>
                         <qname>crm:P54_has_current_permanent_location</qname>
@@ -30,15 +25,12 @@
                 </target>
             </path>
             <range>
-                <source/>
                 <target>
                     <entity>
                         <qname>crm:E48_Place_Name</qname>
-                        <uri_function name="PlaceName">
-                            <arg name="entry">
-                                <xpath>bm_loc/text()</xpath>
-                            </arg>
-                        </uri_function>
+                        <value_function name="PlaceName">
+                            <arg name="entry">bm_loc/text()</arg>
+                        </value_function>
                     </entity>
                 </target>
             </range>

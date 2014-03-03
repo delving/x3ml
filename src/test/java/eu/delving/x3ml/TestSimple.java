@@ -17,9 +17,9 @@ public class TestSimple {
 
     @Test
     public void testReadWrite() throws IOException, X3MLException {
-        String xml = engine("/simple/simple-x3ml.xml").toString();
+        String xml = engine("/simple/simple.x3ml").toString();
         String[] fresh = xml.split("\n");
-        List<String> original = IOUtils.readLines(resource("/simple/simple-x3ml.xml"));
+        List<String> original = IOUtils.readLines(resource("/simple/simple.x3ml"));
         int index = 0;
         for (String originalLine : original) {
             originalLine = originalLine.trim();
@@ -31,8 +31,8 @@ public class TestSimple {
 
     @Test
     public void testSimple() throws X3MLException {
-        X3MLEngine engine = engine("/simple/simple-x3ml.xml");
-        X3MLContext context = engine.execute(document("/simple/simple-input.xml"), policy("/simple/simple-uri-policy.xml"));
+        X3MLEngine engine = engine("/simple/simple.x3ml");
+        X3MLContext context = engine.execute(document("/simple/simple.xml"), policy("/simple/simple-value-policy.xml"));
         context.write(System.out);
     }
 }

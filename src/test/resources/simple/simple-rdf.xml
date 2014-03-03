@@ -10,5 +10,12 @@
                 </crm:P0_has_deity>
             </crm:E55_Type>
         </crm:P2_has_type>
+        <crm:P666_has_nemesis>
+            <crm:E666_Devil rdf:about="http://purl.org/NET/cidoc-crm/core#E666_Devil/Pokey">
+                <crm:P2_has_type>
+                    <crm:E55_Type rdf:about="http://purl.org/NET/cidoc-crm/core#E55_Type/Computer%20Animation"/>
+                </crm:P2_has_type>
+            </crm:E666_Devil>
+        </crm:P666_has_nemesis>
     </crm:E19_Physical_Object>
 </rdf:RDF>

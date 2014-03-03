@@ -10,4 +10,8 @@
         <pattern>{localName}/{label}</pattern>
         <literals>label</literals>
     </generator>
+    <generator name="Devil">
+        <pattern>{localName}/{label}</pattern>
+        <literals>label</literals>
+    </generator>
 </value-policy>

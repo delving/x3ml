@@ -20,8 +20,9 @@ public class TestSimple {
 
     private void log(String title, String[] list) {
         log.info(title);
+        int count = 0;
         for (String line : list) {
-            log.info(line);
+            log.info((count++) + " ) " + line);
         }
     }
 
@@ -43,8 +44,8 @@ public class TestSimple {
     public void testSimple() throws X3MLException {
         X3MLEngine engine = engine("/simple/simple.x3ml");
         X3MLContext context = engine.execute(document("/simple/simple.xml"), policy("/simple/simple-value-policy.xml"));
-        String [] mappingResult = context.toStringArray();
-        String [] expectedResult = AllTests.xmlToNTriples("/simple/simple-rdf.xml");
+        String[] mappingResult = context.toStringArray();
+        String[] expectedResult = AllTests.xmlToNTriples("/simple/simple-rdf.xml");
         log("result", mappingResult);
         log("expected", expectedResult);
         assertArrayEquals("Does not match expected", expectedResult, mappingResult);

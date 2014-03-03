@@ -45,5 +45,34 @@
                 </target>
             </range>
         </link>
+        <link>
+            <path>
+                <source>type</source>
+                <target>
+                    <property>
+                        <qname>crm:P666_has_nemesis</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E666_Devil</qname>
+                            <value_generator name="Devil">
+                                <arg name="label">Pokey</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
     </mapping>
 </mappings>

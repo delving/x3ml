@@ -216,19 +216,35 @@ public class X3MLContext implements X3ML {
                     value.uri,
                     range.target.entityElement.qualifiedName
             );
-            domainResource.addProperty(property, rangeResource);
+            if (pathContext.path.target.intermediate != null) {
+                Intermediate intermediate = pathContext.path.target.intermediate;
+                Value intermediateValue = intermediate.entityElement.getValue(this);
+                Resource intermediateResource = createTypedResource(
+                        intermediateValue.uri,
+                        intermediate.entityElement.qualifiedName
+                );
+                Property intermediateProperty = createProperty(
+                        intermediate.propertyElement.qualifiedName
+                );
+                domainResource.addProperty(property, intermediateResource);
+                intermediateResource.addProperty(intermediateProperty, rangeResource);
+            }
+            else {
+                domainResource.addProperty(property, rangeResource);
+            }
             if (value.labelQName != null && value.labelValue != null) {
                 Property labelProperty = createProperty(value.labelQName);
                 rangeResource.addProperty(labelProperty, value.labelValue);
             }
             if (range.target.additional != null) {
+                Additional additional = range.target.additional;
                 Property additionalProperty = createProperty(
-                        range.target.additional.propertyElement.qualifiedName
+                        additional.propertyElement.qualifiedName
                 );
-                Value additionalValue = range.target.additional.entityElement.getValue(this);
+                Value additionalValue = additional.entityElement.getValue(this);
                 Resource additionalResource = createTypedResource(
                         additionalValue.uri,
-                        range.target.additional.entityElement.qualifiedName
+                        additional.entityElement.qualifiedName
                 );
                 rangeResource.addProperty(additionalProperty, additionalResource);
             }

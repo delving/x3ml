@@ -102,9 +102,9 @@ public interface X3ML {
         @XStreamAlias("property")
         public PropertyElement propertyElement;
 
-
-        @XStreamAlias("additional")
         public Additional additional;
+
+        public Intermediate intermediate;
 
         public String toString() {
             return "Target(" + entityElement + ", " + propertyElement + ")";
@@ -134,10 +134,6 @@ public interface X3ML {
 
         public Target target;
 
-        //        @XStreamAlias("internal_node")
-//        @XStreamImplicit
-//        public List<InternalNode> internalNode;
-//
         public Comments comments;
     }
 
@@ -151,7 +147,7 @@ public interface X3ML {
         public Comments comments;
     }
 
-    @XStreamAlias("additional_node")
+    @XStreamAlias("additional")
     public static class Additional {
 
         @XStreamAlias("property")
@@ -159,6 +155,16 @@ public interface X3ML {
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
+    }
+
+    @XStreamAlias("intermediate")
+    public static class Intermediate {
+
+        @XStreamAlias("entity")
+        public EntityElement entityElement;
+
+        @XStreamAlias("property")
+        public PropertyElement propertyElement;
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"xpath"})
@@ -245,20 +251,6 @@ public interface X3ML {
 
         public String toString() {
             return "Class(" + tag + ")";
-        }
-    }
-
-    @XStreamAlias("internal_node")
-    public static class InternalNode {
-
-        @XStreamAlias("entity")
-        public EntityElement entityElement;
-
-        @XStreamAlias("property")
-        public PropertyElement propertyElement;
-
-        public void applyInternalNode(X3MLContext context, Domain domain, PropertyElement contextPropertyElement) {
-            // todo: implement
         }
     }
 

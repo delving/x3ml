@@ -31,8 +31,8 @@ public class TestSimple {
 
     @Test
     public void testSimple() throws X3MLException {
-        X3MLContext context = context("/simple/simple-input.xml", "/simple/simple-uri-policy.xml");
-        engine("/simple/simple-x3ml.xml").execute(context);
+        X3MLEngine engine = engine("/simple/simple-x3ml.xml");
+        X3MLContext context = engine.execute(document("/simple/simple-input.xml"), policy("/simple/simple-uri-policy.xml"));
         context.write(System.out);
     }
 }

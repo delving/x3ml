@@ -23,19 +23,15 @@ import java.util.List;
 
 public class X3MLContext implements X3ML {
     private final Element documentRoot;
+    private final SourceType sourceType;
     private final ValuePolicy valuePolicy;
-    private final Logger log = Logger.getLogger(getClass());
     private NamespaceContext namespaceContext;
     private XPathFactory pathFactory = new XPathFactoryImpl();
     private Model model = ModelFactory.createDefaultModel();
-    private boolean finished = false;
 
-    public static X3MLContext create(Element documentRoot, ValuePolicy valuePolicy) {
-        return new X3MLContext(documentRoot, valuePolicy);
-    }
-
-    private X3MLContext(Element documentRoot, ValuePolicy valuePolicy) {
+    X3MLContext(Element documentRoot, SourceType sourceType, ValuePolicy valuePolicy) {
         this.documentRoot = documentRoot;
+        this.sourceType = sourceType;
         this.valuePolicy = valuePolicy;
     }
 
@@ -44,14 +40,6 @@ public class X3MLContext implements X3ML {
         for (String prefix : prefixes) {
             this.model.setNsPrefix(prefix, namespaceContext.getNamespaceURI(prefix));
         }
-    }
-
-    public void finished() {
-        this.finished = true;
-    }
-
-    public void checkNotFinished() throws X3MLException {
-        if (finished) throw new X3MLException("Job was already finished");
     }
 
     public void write(PrintStream out) {
@@ -71,7 +59,7 @@ public class X3MLContext implements X3ML {
     // ===== calls made from within X3ML.* classes ====
 
     public List<DomainContext> createDomainContexts(Domain domain) {
-        List<Node> domainNodes = nodeList(documentRoot, domain.source.expression);
+        List<Node> domainNodes = nodeList(documentRoot, domain.source);
         List<DomainContext> domainContexts = new ArrayList<DomainContext>();
         for (Node domainNode : domainNodes) {
             DomainContext domainContext = new DomainContext(domain, domainNode);
@@ -290,6 +278,7 @@ public class X3MLContext implements X3ML {
     }
 
     private XPath path() {
+        if (sourceType != SourceType.XPATH) throw new X3MLException("Only sourceType=\"XPATH\" is implemented");
         XPath path = pathFactory.newXPath();
         path.setNamespaceContext(namespaceContext);
         return path;

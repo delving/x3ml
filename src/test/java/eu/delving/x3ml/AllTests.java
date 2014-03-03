@@ -42,14 +42,14 @@ public class AllTests {
         return X3MLEngine.load(resource(path));
     }
 
-    public static X3MLContext context(String contextPath, String policyPath) throws X3MLException {
-        return X3MLContext.create(document(contextPath), policy(policyPath));
-    }
-
-    public static X3MLContext context(String contextPath, X3ML.ValuePolicy policy) throws X3MLException {
-        return X3MLContext.create(document(contextPath), policy);
-    }
-
+//    public static X3MLContext context(String contextPath, String policyPath) throws X3MLException {
+//        return X3MLContext.create(document(contextPath), policy(policyPath));
+//    }
+//
+//    public static X3MLContext context(String contextPath, X3ML.ValuePolicy policy) throws X3MLException {
+//        return X3MLContext.create(document(contextPath), policy);
+//    }
+//
     public static X3ML.ValuePolicy policy(String path) {
         return new X3MLValuePolicy(resource(path));
     }

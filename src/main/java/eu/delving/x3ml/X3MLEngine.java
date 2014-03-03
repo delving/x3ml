@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
+import org.w3c.dom.Element;
 
 import javax.xml.namespace.NamespaceContext;
 import java.io.InputStream;
@@ -39,11 +40,11 @@ public class X3MLEngine {
         }
     }
 
-    public void execute(X3MLContext context) throws X3MLException {
-        context.checkNotFinished();
+    public X3MLContext execute(Element sourceRoot, X3ML.ValuePolicy valuePolicy) throws X3MLException {
+        X3MLContext context = new X3MLContext(sourceRoot, this.mappings.sourceType, valuePolicy);
         context.setNamespaceContext(namespaceContext, prefixes);
         mappings.apply(context);
-        context.finished();
+        return context;
     }
 
     public String toString() {

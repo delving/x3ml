@@ -4,12 +4,10 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Queue;
-import java.util.UUID;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static eu.delving.x3ml.AllTests.context;
+import static eu.delving.x3ml.AllTests.document;
 import static eu.delving.x3ml.AllTests.engine;
 
 /**
@@ -31,7 +29,8 @@ public class TestCoin {
     public void testSimpleCoinExample() throws X3MLException {
         uuidQueue.add("uuid:A");
         uuidQueue.add("uuid:B");
-        X3MLContext context = context("/coin/coin-input.xml", new X3ML.ValuePolicy() {
+        X3MLEngine engine = engine("/coin/coin1.x3ml");
+        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new X3ML.ValuePolicy() {
             @Override
             public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs arguments) {
                 X3ML.Value value = new X3ML.Value();
@@ -54,7 +53,6 @@ public class TestCoin {
                 return value;
             }
         });
-        engine("/coin/coin1.x3ml").execute(context);
         String [] mappingResult = context.toStringArray();
         String [] expectedResult = AllTests.xmlToNTriples("/coin/coin1-rdf.xml");
         log("result", mappingResult);

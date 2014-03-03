@@ -102,6 +102,10 @@ public interface X3ML {
         @XStreamAlias("property")
         public PropertyElement propertyElement;
 
+
+        @XStreamAlias("additional")
+        public Additional additional;
+
         public String toString() {
             return "Target(" + entityElement + ", " + propertyElement + ")";
         }
@@ -144,14 +148,11 @@ public interface X3ML {
 
         public Target target;
 
-//        @XStreamAlias("additional_node")
-//        public AdditionalNode additionalNode;
-
         public Comments comments;
     }
 
     @XStreamAlias("additional_node")
-    public static class AdditionalNode {
+    public static class Additional {
 
         @XStreamAlias("property")
         public PropertyElement propertyElement;
@@ -203,6 +204,9 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
+//        @XStreamAlias("literal")
+//        public String literal;
+
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;
 
@@ -211,7 +215,7 @@ public interface X3ML {
         }
 
         public Value getValue(X3MLContext.RangeContext context) {
-            return context.generateValue(valueGenerator);
+            return context.generateValue(valueGenerator, this);
         }
 
         public String toString() {

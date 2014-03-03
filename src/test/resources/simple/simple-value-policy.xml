@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uri-policy>
-    <template name="PhysicalObject">
+<value-policy>
+    <generator name="PhysicalObject">
         <pattern>{localName}/{nameOfMuseum,entry}</pattern>
-    </template>
-    <template name="Type">
+    </generator>
+    <generator name="Type">
         <pattern>{localName}/{entry}</pattern>
-    </template>
-</uri-policy>
+    </generator>
+    <generator name="God">
+        <pattern>{localName}/{label}</pattern>
+        <literals>label</literals>
+    </generator>
+</value-policy>

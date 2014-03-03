@@ -16,8 +16,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static eu.delving.x3ml.X3ML.SourceType.QNAME;
-import static eu.delving.x3ml.X3ML.SourceType.XPATH;
+import static eu.delving.x3ml.X3ML.SourceType.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -25,12 +24,12 @@ import static eu.delving.x3ml.X3ML.SourceType.XPATH;
 
 public class X3MLValuePolicy implements X3ML.ValuePolicy {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
-    private Map<String, Template> templateMap = new TreeMap<String, Template>();
+    private Map<String, Generator> templateMap = new TreeMap<String, Generator>();
 
     public X3MLValuePolicy(InputStream inputStream) {
-        Policy policy = (Policy) stream().fromXML(inputStream);
-        for (Template template : policy.templates) {
-            templateMap.put(template.name, template);
+        ValuePolicy policy = (ValuePolicy) stream().fromXML(inputStream);
+        for (Generator generator : policy.generators) {
+            templateMap.put(generator.name, generator);
         }
     }
 
@@ -38,22 +37,24 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
     public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs args) {
         if (name == null) throw new X3MLException("URI function name missing");
         X3ML.Value value = new X3ML.Value();
-        Template template = templateMap.get(name);
-        if (template == null) throw new X3MLException("No template for " + name);
+        Generator generator = templateMap.get(name);
+        if (generator == null) throw new X3MLException("No template for " + name);
         X3ML.ArgValue qname = args.getArgValue("qname", QNAME);
         String localName = qname.qualifiedName.getLocalName();
         String namespaceUri = qname.qualifiedName.namespaceUri;
         try {
-            UriTemplate uriTemplate = UriTemplate.fromTemplate(template.pattern);
+            UriTemplate uriTemplate = UriTemplate.fromTemplate(generator.pattern);
             uriTemplate.set("localName", localName);
-            for (String variableName : variablesFromPattern(template.pattern)) {
-                if (!"localName".equals(variableName)) {
-                    X3ML.ArgValue argValue = args.getArgValue(variableName, XPATH);
-                    if (argValue == null || argValue.string == null) {
-                        throw new X3MLException("Argument failure " + variableName);
-                    }
-                    uriTemplate.set(variableName, argValue.string);
+            Set<String> literals = new TreeSet<String>();
+            if (generator.literals != null) literals.addAll(Arrays.asList(generator.literals.split(",")));
+            for (String variableName : variablesFromPattern(generator.pattern)) {
+                if ("localName".equals(variableName)) continue;
+                boolean isLiteral = literals.contains(variableName);
+                X3ML.ArgValue argValue = args.getArgValue(variableName, isLiteral ? LITERAL :XPATH);
+                if (argValue == null || argValue.string == null) {
+                    throw new X3MLException("Argument failure " + variableName);
                 }
+                uriTemplate.set(variableName, argValue.string);
             }
             value.uri = namespaceUri + uriTemplate.expand();
             return value;
@@ -80,22 +81,24 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
     private static XStream stream() {
         XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
         xstream.setMode(XStream.NO_REFERENCES);
-        xstream.processAnnotations(Policy.class);
+        xstream.processAnnotations(ValuePolicy.class);
         return xstream;
     }
 
-    @XStreamAlias("uri-policy") // todo: change this
-    public static class Policy {
+    @XStreamAlias("value-policy")
+    public static class ValuePolicy {
         @XStreamImplicit
-        List<Template> templates;
+        List<Generator> generators;
     }
 
-    @XStreamAlias("template")
-    public static class Template {
+    @XStreamAlias("generator")
+    public static class Generator {
         @XStreamAsAttribute
         public String name;
 
         public String pattern;
+
+        public String literals;
 
         public String toString() {
             return pattern;

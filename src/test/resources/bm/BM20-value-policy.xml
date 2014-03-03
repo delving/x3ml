@@ -1,8 +1,9 @@
-<uri-policy>
-    <template name="PhysicalObject">
+<?xml version="1.0" encoding="UTF-8"?>
+<value-policy>
+    <generator name="PhysicalObject">
         <pattern>{localName}/{nameOfMuseum,entry}</pattern>
-    </template>
-    <template name="PlaceName">
+    </generator>
+    <generator name="PlaceName">
         <pattern>{localName}/{entry}</pattern>
-    </template>
-</uri-policy>
+    </generator>
+</value-policy>

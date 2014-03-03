@@ -31,6 +31,17 @@
                         <qname>crm:E55_Type</qname>
                         <value_generator name="Type"/>
                     </entity>
+                    <additional>
+                        <property>
+                            <qname>crm:P0_has_deity</qname>
+                        </property>
+                        <entity>
+                            <qname>crm:E0_God</qname>
+                            <value_generator name="God">
+                                <arg name="label">Gumby</arg>
+                            </value_generator>
+                        </entity>
+                    </additional>
                 </target>
             </range>
         </link>

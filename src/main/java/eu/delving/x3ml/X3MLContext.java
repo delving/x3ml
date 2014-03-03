@@ -197,12 +197,11 @@ public class X3MLContext implements X3ML {
             return this.value != null;
         }
 
-        public Value generateValue(final ValueGenerator valueGenerator) {
+        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
             return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
-                    QualifiedName qualifiedName = range.target.entityElement.qualifiedName;
-                    return evaluate(node, qualifiedName, valueGenerator, name, type);
+                    return evaluate(node, entityElement.qualifiedName, valueGenerator, name, type);
                 }
             });
         }
@@ -212,15 +211,26 @@ public class X3MLContext implements X3ML {
                     pathContext.domainContext.value.uri,
                     pathContext.domainContext.domain.target.entityElement.qualifiedName
             );
-            Property property = createLiteralProperty(pathContext.qualifiedName);
+            Property property = createProperty(pathContext.qualifiedName);
             Resource rangeResource = createTypedResource(
                     value.uri,
                     range.target.entityElement.qualifiedName
             );
             domainResource.addProperty(property, rangeResource);
             if (value.labelQName != null && value.labelValue != null) {
-                Property labelProperty = createLiteralProperty(value.labelQName);
+                Property labelProperty = createProperty(value.labelQName);
                 rangeResource.addProperty(labelProperty, value.labelValue);
+            }
+            if (range.target.additional != null) {
+                Property additionalProperty = createProperty(
+                        range.target.additional.propertyElement.qualifiedName
+                );
+                Value additionalValue = range.target.additional.entityElement.getValue(this);
+                Resource additionalResource = createTypedResource(
+                        additionalValue.uri,
+                        range.target.additional.entityElement.qualifiedName
+                );
+                rangeResource.addProperty(additionalProperty, additionalResource);
             }
         }
     }
@@ -231,7 +241,7 @@ public class X3MLContext implements X3ML {
         return model.createResource(uriString, model.createResource(typeUri + qualifiedName.getLocalName()));
     }
 
-    private Property createLiteralProperty(QualifiedName qualifiedName) {
+    private Property createProperty(QualifiedName qualifiedName) {
         String propertyNamespace = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
         return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
     }

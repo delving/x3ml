@@ -4,7 +4,11 @@
         xmlns:crm="http://purl.org/NET/cidoc-crm/core#">
     <crm:E19_Physical_Object rdf:about="http://purl.org/NET/cidoc-crm/core#E19_Physical_Object/CGI%20Museum,SHRK-1">
         <crm:P2_has_type>
-            <crm:E55_Type rdf:about="http://purl.org/NET/cidoc-crm/core#E55_Type/Computer%20Animation"/>
+            <crm:E55_Type rdf:about="http://purl.org/NET/cidoc-crm/core#E55_Type/Computer%20Animation">
+                <crm:P0_has_deity>
+                    <crm:E0_God rdf:about="http://purl.org/NET/cidoc-crm/core#E0_God/Gumby"/>
+                </crm:P0_has_deity>
+            </crm:E55_Type>
         </crm:P2_has_type>
     </crm:E19_Physical_Object>
 </rdf:RDF>

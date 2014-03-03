@@ -16,15 +16,17 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static eu.delving.x3ml.X3ML.SourceType.XPATH;
+
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class X3MLURIPolicy implements X3ML.URIPolicy {
+public class X3MLValuePolicy implements X3ML.ValuePolicy {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, Template> templateMap = new TreeMap<String, Template>();
 
-    public X3MLURIPolicy(InputStream inputStream) {
+    public X3MLValuePolicy(InputStream inputStream) {
         Policy policy = (Policy) stream().fromXML(inputStream);
         for (Template template: policy.templates) {
             templateMap.put(template.name, template);
@@ -32,16 +34,22 @@ public class X3MLURIPolicy implements X3ML.URIPolicy {
     }
 
     @Override
-    public String generateUri(String name, X3ML.URIArguments arguments) {
+    public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs args) {
         if (name == null) throw new X3MLException("URI function name missing");
+        X3ML.Value value = new X3ML.Value();
         Template template = templateMap.get(name);
         if (template == null) throw new X3MLException("No template for "+name);
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(template.pattern);
             for (String variable : variablesFromPattern(template.pattern)) {
-                uriTemplate.set(variable, arguments.getArgument(variable));
+                X3ML.ArgValue argValue = args.getArgValue(variable, XPATH);
+                if (argValue == null || argValue.string == null) {
+                    throw new X3MLException("Argument failure "+variable);
+                }
+                uriTemplate.set(variable, argValue.string);
             }
-            return uriTemplate.expand();
+            value.uri = uriTemplate.expand();
+            return value;
         }
         catch (MalformedUriTemplateException e) {
             throw new X3MLException("Malformed", e);
@@ -69,7 +77,7 @@ public class X3MLURIPolicy implements X3ML.URIPolicy {
         return xstream;
     }
 
-    @XStreamAlias("uri-policy")
+    @XStreamAlias("uri-policy") // todo: change this
     public static class Policy {
         @XStreamImplicit
         List<Template> templates;

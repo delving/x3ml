@@ -9,10 +9,11 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.*;
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The context in which the engine acts
@@ -21,22 +22,21 @@ import java.util.UUID;
  */
 
 public class X3MLContext implements X3ML {
-    public static final XPathElement TEXT_XPATH = new XPathElement("text()");
     private final Element documentRoot;
-    private final URIPolicy uriPolicy;
+    private final ValuePolicy valuePolicy;
     private final Logger log = Logger.getLogger(getClass());
     private NamespaceContext namespaceContext;
     private XPathFactory pathFactory = new XPathFactoryImpl();
     private Model model = ModelFactory.createDefaultModel();
     private boolean finished = false;
 
-    public static X3MLContext create(Element documentRoot, URIPolicy uriPolicy) {
-        return new X3MLContext(documentRoot, uriPolicy);
+    public static X3MLContext create(Element documentRoot, ValuePolicy valuePolicy) {
+        return new X3MLContext(documentRoot, valuePolicy);
     }
 
-    private X3MLContext(Element documentRoot, URIPolicy uriPolicy) {
+    private X3MLContext(Element documentRoot, ValuePolicy valuePolicy) {
         this.documentRoot = documentRoot;
-        this.uriPolicy = uriPolicy;
+        this.valuePolicy = valuePolicy;
     }
 
     public void setNamespaceContext(NamespaceContext namespaceContext, List<String> prefixes) {
@@ -58,14 +58,20 @@ public class X3MLContext implements X3ML {
         model.write(out, "RDF/XML-ABBREV");
     }
 
+    public String[] toStringArray() {
+        return toString().split("\n");
+    }
+
     public String toString() {
-        return "X3MLContext";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        model.write(baos, "N-TRIPLE");
+        return new String(baos.toByteArray());
     }
 
     // ===== calls made from within X3ML.* classes ====
 
     public List<DomainContext> createDomainContexts(Domain domain) {
-        List<Node> domainNodes = nodeList(documentRoot, domain.source.xpath);
+        List<Node> domainNodes = nodeList(documentRoot, domain.source.expression);
         List<DomainContext> domainContexts = new ArrayList<DomainContext>();
         for (Node domainNode : domainNodes) {
             DomainContext domainContext = new DomainContext(domain, domainNode);
@@ -76,45 +82,51 @@ public class X3MLContext implements X3ML {
         return domainContexts;
     }
 
-    private Resource createTypedResource(String uriString, QualifiedName qualifiedName) {
-        if (qualifiedName == null) throw new X3MLException("no class element");
-        String typeUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-        return model.createResource(uriString, model.createResource(typeUri+ qualifiedName.getLocalName()));
-    }
-
-    private Property createLiteralProperty(QualifiedName qualifiedName) {
-        String propertyNamespace = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-        return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
-    }
-
-    public class EntityResolution {
-        public QualifiedName qualifiedName;
-        public String literalString;
-        public String resourceString;
-        public Resource resource;
-        public Property literalProperty;
-        public Literal literal;
-
-        public boolean resolve() {
-            if (literalString != null) {
-                literalProperty = createLiteralProperty(qualifiedName);
-                literal = model.createLiteral(literalString);
-                return true;
-            }
-            else if (resourceString != null) {
-                resource = createTypedResource(resourceString, qualifiedName);
-                return true;
-            }
-            else {
-                return false;
+    private ArgValue evaluate(Node contextNode, QualifiedName qualifiedName, ValueFunction function, String argName, SourceType type) {
+        ValueFunctionArg foundArg = null;
+        if (function.args != null) {
+            for (ValueFunctionArg arg : function.args) {
+                if (arg.name.equals(argName)) foundArg = arg;
             }
         }
+        if (foundArg == null) {
+            switch (type) {
+                case XPATH:
+                    foundArg = new ValueFunctionArg();
+                    foundArg.name = argName;
+                    foundArg.value = "text()";
+                    break;
+                case QNAME:
+                    if (qualifiedName == null) {
+                        throw new X3MLException("Qualified name expected");
+                    }
+                    foundArg = new ValueFunctionArg();
+                    foundArg.name = argName;
+                    foundArg.value = qualifiedName.tag;
+                    break;
+                default:
+                    throw new X3MLException("Not implemented");
+            }
+        }
+        ArgValue value = new ArgValue();
+        switch (type) {
+            case XPATH:
+                value.string = valueAt(contextNode, foundArg.value);
+                break;
+            case QNAME:
+                value.setQName(foundArg.value);
+                break;
+            case LITERAL:
+                value.string = foundArg.value;
+                break;
+        }
+        return value;
     }
 
     public class DomainContext {
         public final Domain domain;
         public final Node node;
-        public EntityResolution resolution;
+        public Value value;
 
         public DomainContext(Domain domain, Node node) {
             this.domain = domain;
@@ -122,35 +134,16 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            this.resolution = domain.target.entityElement.getResolution(this);
-            return this.resolution.resolve();
+            this.value = domain.target.entityElement.getValue(this);
+            return this.value != null;
         }
 
-        public String dereference(XPathElement xpath) {
-            return valueAt(node, xpath);
-        }
-
-        public String generateUri(final URIFunction uriFunction) {
-            return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
+        public Value generateValue(final ValueFunction valueFunction) {
+            return valuePolicy.generateValue(valueFunction.name, new ValueFunctionArgs() {
                 @Override
-                public String getArgument(String name) {
-                    if (CLASS_NAME.equals(name)) {
-                        if (domain.target.entityElement == null || domain.target.entityElement.qualifiedName == null) {
-                            throw new X3MLException("No class element: " + domain);
-                        }
-                        return domain.target.entityElement.qualifiedName.getLocalName();
-                    }
-                    if (UUID_NAME.equals(name)) {
-                        return UUID.randomUUID().toString();
-                    }
-                    if (uriFunction.args != null) {
-                        for (URIFunctionArg arg : uriFunction.args) {
-                            if (arg.name.equals(name)) {
-                                return valueAt(node, arg);
-                            }
-                        }
-                    }
-                    return valueAt(node);
+                public ArgValue getArgValue(String name, SourceType type) {
+                    QualifiedName qualifiedName = domain.target.entityElement.qualifiedName;
+                    return evaluate(node, qualifiedName, valueFunction, name, type);
                 }
             });
         }
@@ -165,10 +158,6 @@ public class X3MLContext implements X3ML {
                 }
             }
             return pathContexts;
-        }
-
-        public EntityResolution createResolution() {
-            return new EntityResolution();
         }
     }
 
@@ -209,7 +198,7 @@ public class X3MLContext implements X3ML {
         public final PathContext pathContext;
         public final Node node;
         public final Range range;
-        public EntityResolution resolution;
+        public Value value;
 
         public RangeContext(PathContext pathContext, Node node, Range range) {
             this.pathContext = pathContext;
@@ -218,68 +207,53 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            this.resolution = range.target.entityElement.getResolution(this);
-            // todo: what about range.additionalNode?
-            return this.resolution.resolve();
+            this.value = range.target.entityElement.getValue(this);
+            return this.value != null;
         }
 
-        public String dereference(XPathElement xpath) {
-            return valueAt(node, xpath);
-        }
-
-        public String generateUri(final URIFunction uriFunction) {
-            return uriPolicy.generateUri(uriFunction.name, new URIArguments() {
+        public Value generateValue(final ValueFunction valueFunction) {
+            return valuePolicy.generateValue(valueFunction.name, new ValueFunctionArgs() {
                 @Override
-                public String getArgument(String name) {
-                    if (CLASS_NAME.equals(name)) {
-                        if (range.target.entityElement == null || range.target.entityElement.qualifiedName == null) {
-                            throw new X3MLException("No class element: " + range);
-                        }
-                        return range.target.entityElement.qualifiedName.getLocalName();
-                    }
-                    if (uriFunction.args != null) {
-                        for (URIFunctionArg arg : uriFunction.args) {
-                            if (arg.name.equals(name)) {
-                                return valueAt(node, arg);
-                            }
-                        }
-                    }
-                    return valueAt(node);
+                public ArgValue getArgValue(String name, SourceType type) {
+                    QualifiedName qualifiedName = range.target.entityElement.qualifiedName;
+                    return evaluate(node, qualifiedName, valueFunction, name, type);
                 }
             });
         }
 
-        public void generateTriple() {
-            Resource domainResource = pathContext.domainContext.resolution.resource;
-            if (resolution.literal != null) {
-                // todo: make use of resolution.property
-                domainResource.addProperty(resolution.literalProperty, resolution.literal);
-            }
-            else if (resolution.resource != null) {
-                domainResource.addProperty(pathContext.property, resolution.resource);
-            }
-            else {
-                throw new X3MLException("Unable to generate triple");
+        public void generate() {
+            Resource domainResource = createTypedResource(
+                    pathContext.domainContext.value.uri,
+                    pathContext.domainContext.domain.target.entityElement.qualifiedName
+            );
+            Property property = createLiteralProperty(pathContext.qualifiedName);
+            Resource rangeResource = createTypedResource(
+                    value.uri,
+                    range.target.entityElement.qualifiedName
+            );
+            domainResource.addProperty(property, rangeResource);
+            if (value.labelQName != null && value.labelValue != null) {
+                Property labelProperty = createLiteralProperty(value.labelQName);
+                rangeResource.addProperty(labelProperty, value.labelValue);
             }
         }
-
-        public EntityResolution createResolution() {
-            return new EntityResolution();
-        }
     }
 
-    // =============================================
-
-    private String valueAt(Node node) {
-        return valueAt(node, TEXT_XPATH);
+    private Resource createTypedResource(String uriString, QualifiedName qualifiedName) {
+        if (qualifiedName == null) throw new X3MLException("no class element");
+        String typeUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
+        return model.createResource(uriString, model.createResource(typeUri + qualifiedName.getLocalName()));
     }
 
-    private String valueAt(Node node, URIFunctionArg arg) {
-        return valueAt(node, arg.xpath);
+    private Property createLiteralProperty(QualifiedName qualifiedName) {
+        String propertyNamespace = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
+        return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
     }
 
-    private String valueAt(Node node, XPathElement xpath) {
-        List<Node> nodes = nodeList(node, xpath);
+// =============================================
+
+    private String valueAt(Node node, String expression) {
+        List<Node> nodes = nodeList(node, expression);
         if (nodes.isEmpty()) return "";
         String value = nodes.get(0).getNodeValue();
         if (value == null) return "";
@@ -288,7 +262,7 @@ public class X3MLContext implements X3ML {
 
     private List<Node> nodeList(Node node, Source source) {
         if (source != null) {
-            return nodeList(node, source.xpath);
+            return nodeList(node, source.expression);
         }
         else {
             List<Node> list = new ArrayList<Node>(1);
@@ -297,15 +271,15 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private List<Node> nodeList(Node context, XPathElement xpath) {
-        if (xpath == null || xpath.expression == null) {
+    private List<Node> nodeList(Node context, String expression) {
+        if (expression == null) {
             List<Node> list = new ArrayList<Node>(1);
             list.add(context);
             return list;
         }
         try {
-            XPathExpression expression = path().compile(xpath.expression);
-            NodeList nodeList = (NodeList) expression.evaluate(context, XPathConstants.NODESET);
+            XPathExpression xe = path().compile(expression);
+            NodeList nodeList = (NodeList) xe.evaluate(context, XPathConstants.NODESET);
             List<Node> list = new ArrayList<Node>(nodeList.getLength());
             for (int index = 0; index < nodeList.getLength(); index++) list.add(nodeList.item(index));
             return list;

@@ -16,11 +16,20 @@ public interface X3ML {
     String CLASS_NAME = "className";
     String UUID_NAME = "UUID";
 
+    public enum SourceType {
+        XPATH,
+        QNAME,
+        LITERAL
+    }
+
     @XStreamAlias("mappings")
     public static class Mappings {
 
         @XStreamAsAttribute
         public String version;
+
+        @XStreamAsAttribute
+        public SourceType sourceType;
 
         public List<MappingNamespace> namespaces;
 
@@ -78,13 +87,13 @@ public interface X3ML {
     }
 
     @XStreamAlias("source")
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     public static class Source {
 
-        @XStreamAlias("xpath")
-        public XPathElement xpath;
+        public String expression;
 
         public String toString() {
-            return "Source(" + xpath + ")";
+            return "Source(" + expression + ")";
         }
     }
 
@@ -112,7 +121,7 @@ public interface X3ML {
         public void applyLink(X3MLContext.DomainContext context) {
             for (X3MLContext.PathContext pathContext : context.createPathContexts(path)) {
                 for (X3MLContext.RangeContext rangeContext : pathContext.createRangeContexts(range)) {
-                    rangeContext.generateTriple();
+                    rangeContext.generate();
                 }
             }
         }
@@ -125,7 +134,7 @@ public interface X3ML {
 
         public Target target;
 
-//        @XStreamAlias("internal_node")
+        //        @XStreamAlias("internal_node")
 //        @XStreamImplicit
 //        public List<InternalNode> internalNode;
 //
@@ -198,41 +207,19 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        @XStreamAlias("xpath")
-        public XPathElement xpath;
+        @XStreamAlias("value_function")
+        public ValueFunction valueFunction;
 
-        @XStreamAlias("uri_function")
-        public URIFunction uriFunction;
-
-        public X3MLContext.EntityResolution getResolution(X3MLContext.DomainContext context) {
-            X3MLContext.EntityResolution resolution = context.createResolution();
-            resolution.qualifiedName = qualifiedName;
-            if (xpath != null) {
-                throw new X3MLException("No xpath allowed in domain");
-            }
-            if (uriFunction != null) {
-                resolution.resourceString = context.generateUri(uriFunction);
-            }
-            return resolution;
+        public Value getValue(X3MLContext.DomainContext context) {
+            return context.generateValue(valueFunction);
         }
 
-        public X3MLContext.EntityResolution getResolution(X3MLContext.RangeContext context) {
-            X3MLContext.EntityResolution resolution = context.createResolution();
-            resolution.qualifiedName = qualifiedName;
-            if (xpath != null && qualifiedName != null) {
-                resolution.literalString = context.dereference(xpath);
-            }
-            else if (uriFunction != null) {
-                resolution.resourceString = context.generateUri(uriFunction);
-            }
-            else {
-                throw new X3MLException("Entity must have class/literal or uri_function");
-            }
-            return resolution;
+        public Value getValue(X3MLContext.RangeContext context) {
+            return context.generateValue(valueFunction);
         }
 
         public String toString() {
-            return "Entity(" + qualifiedName + ", " + xpath + ", " + uriFunction + ")";
+            return "Entity(" + valueFunction + ")";
         }
     }
 
@@ -289,13 +276,13 @@ public interface X3ML {
         public String content;
     }
 
-    @XStreamAlias("uri_function")
-    public static class URIFunction {
+    @XStreamAlias("value_function")
+    public static class ValueFunction {
         @XStreamAsAttribute
         public String name;
 
         @XStreamImplicit
-        public List<URIFunctionArg> args;
+        public List<ValueFunctionArg> args;
 
         public String toString() {
             return "URIFunction(" + name + ")";
@@ -303,40 +290,66 @@ public interface X3ML {
     }
 
     @XStreamAlias("arg")
-    public static class URIFunctionArg {
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"value"})
+    public static class ValueFunctionArg {
         @XStreamAsAttribute
         public String name;
 
-        @XStreamAlias("xpath")
-        public XPathElement xpath;
+        public String value;
 
         public String toString() {
-            return name + ":=" + xpath;
+            return name + ":=" + value;
         }
     }
 
-    @XStreamAlias("xpath")
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
-    public static class XPathElement {
-        public String expression;
+    public static class ArgValue {
+        public String string;
+        public QualifiedName qualifiedName;
 
-        public XPathElement() {
-        }
-
-        public XPathElement(String expression) {
-            this.expression = expression;
+        public void setQName(String qname) {
+            qualifiedName = new QualifiedName();
+            qualifiedName.tag = qname;
         }
 
         public String toString() {
-            return expression;
+            if (string != null) {
+                return "ArgValue(" + string + ")";
+            }
+            else if (qualifiedName != null) {
+                return "ArgValue(" + qualifiedName + ")";
+            }
+            else {
+                return "ArgValue?";
+            }
         }
     }
 
-    public interface URIArguments {
-        String getArgument(String name);
+    public interface ValueFunctionArgs {
+        ArgValue getArgValue(String name, SourceType sourceType);
     }
 
-    public interface URIPolicy {
-        String generateUri(String name, URIArguments arguments);
+    public static class Value {
+        public String uri;
+        public QualifiedName labelQName;
+        public String labelValue;
+
+        public String toString() {
+            if (uri != null && labelQName != null) {
+                return "Value(" + uri + ", " + labelQName + " := " + labelValue + ")";
+            }
+            else if (uri != null) {
+                return "Value(" + uri + ")";
+            }
+            else if (labelQName != null) {
+                return "Value(" + labelQName + " := " + labelValue + ")";
+            }
+            else {
+                return "Value?";
+            }
+        }
+    }
+
+    public interface ValuePolicy {
+        Value generateValue(String name, ValueFunctionArgs arguments);
     }
 }

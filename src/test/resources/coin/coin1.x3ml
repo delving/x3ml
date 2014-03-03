@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mappings version="1.0">
+<mappings version="1.0" sourceType="XPATH">
     <namespaces>
         <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
         <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
     </namespaces>
     <mapping>
         <domain>
-            <source>
-                <xpath>//COIN</xpath>
-            </source>
+            <source>//COIN</source>
             <target>
                 <entity>
                     <qname>crm:E22_Man-Made_Object</qname>
-                    <uri_function name="UUID"/>
+                    <value_function name="UUID"/>
                 </entity>
             </target>
         </domain>
         <link>
             <path>
-                <source>
-                    <xpath>ID</xpath>
-                </source>
+                <source>ID</source>
                 <target>
                     <property>
                         <qname>crm:P1_is_identified_by</qname>
@@ -34,17 +31,11 @@
                 <target>
                     <entity>
                         <qname>crm:E41_Appellation</qname>
-                        <uri_function name="UUID"/>
+                        <value_function name="UUID_Label">
+                            <arg name="labelQName">rdfs:label</arg>
+                            <arg name="labelXPath">text()</arg>
+                        </value_function>
                     </entity>
-                    <!--<additional_node>-->
-                        <!--<property>-->
-                            <!--<qname>crm:P1_is_identified_by</qname>-->
-                        <!--</property>-->
-                        <!--<entity>-->
-                            <!--<qname>rdf:label</qname>-->
-                            <!--<xpath>text()</xpath>-->
-                        <!--</entity>-->
-                    <!--</additional_node>-->
                 </target>
             </range>
         </link>

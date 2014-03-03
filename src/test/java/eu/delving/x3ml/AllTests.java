@@ -1,5 +1,8 @@
 package eu.delving.x3ml;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import org.apache.xml.resolver.apps.xread;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.w3c.dom.Element;
@@ -18,10 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -46,12 +46,12 @@ public class AllTests {
         return X3MLContext.create(document(contextPath), policy(policyPath));
     }
 
-    public static X3MLContext context(String contextPath, X3ML.URIPolicy policy) throws X3MLException {
+    public static X3MLContext context(String contextPath, X3ML.ValuePolicy policy) throws X3MLException {
         return X3MLContext.create(document(contextPath), policy);
     }
 
-    public static X3ML.URIPolicy policy(String path) {
-        return new X3MLURIPolicy(resource(path));
+    public static X3ML.ValuePolicy policy(String path) {
+        return new X3MLValuePolicy(resource(path));
     }
 
     public static Element document(String path) throws X3MLException {
@@ -120,6 +120,14 @@ public class AllTests {
         catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String[] xmlToNTriples(String xmlResource) {
+        Model model = ModelFactory.createDefaultModel();
+        model.read(resource(xmlResource), null);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        model.write(baos, "N-TRIPLE");
+        return new String(baos.toByteArray()).split("\n");
     }
 
     // === private stuff

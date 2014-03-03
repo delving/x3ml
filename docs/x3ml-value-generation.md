@@ -40,10 +40,10 @@ For template-based URI generation there is [RFC 6570](http://tools.ietf.org/html
 
 	<value-policy>
 	    <generator name="PhysicalObject">
-	        <pattern>http://purl.org/NET/cidoc-crm/core#{className}/{nameOfMuseum,entry}</pattern>
+	        <pattern>{localName}/{nameOfMuseum,entry}</pattern>
 	    </generator>
 	    <generator name="Type">
-	        <pattern>http://purl.org/NET/cidoc-cr/core#{className}/{entry}</pattern>
+	        <pattern>{localName}/{entry}</pattern>
 	    </generator>
 	</value-policy>
 	

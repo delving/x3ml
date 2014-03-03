@@ -12,7 +12,7 @@ For the time being, X3ML will be restricted to consuming XML records and produci
 
 At first glance, the global structure of X3ML is quite easy to understand.  It consists of some prerequisite information, and then a series of mappings.
 
-	<mappings version="0.1">
+	<mappings version="0.1" sourceType="XPATH">
 	    <namespaces/>
 	    <mapping>
 	        <domain>
@@ -44,32 +44,26 @@ Whether or not the engine will continue to pursue the evaluation of a particular
 
 The elements used will be *exists*, *equals*, *narrower_than*, *and*, *or*, and *not*, at the top level enclosed in a **&lt;condition>&lt;/condition>** element.
 
-Conditions can be situated in six different places within the mapping definition.
+Conditions can be situated in three different places within the mapping definition.
 
-	<mappings version="0.1">
+	<mappings version="0.1" sourceType="XPATH">
 	    <namespaces/>
 	    <mapping>
 	        <domain>
-	            <source>
-	            	<condition/>
-	            </source>
+	            <source/>
 	            <target>
 	            	<condition/>
 	            </target>
 	        </domain>
 	        <link>
 	            <path>
-	                <source>
-						<condition/>
-	                </source>
+	                <source/>
 	                <target>
 						<condition/>
 	                </target>
 	            </path>
 	            <range>
-	                <source>
-						<condition/>
-	                </source>
+	                <source/>
 	                <target>
 						<condition/>
 	                </target>
@@ -85,27 +79,19 @@ Conditions can be situated in six different places within the mapping definition
 Existence can be checked with a condition containing xpath:
 
     <condition>
-		<exists>
-			<xpath>...</xpath>
-		</exists>
+		<exists>...</exists>
 	</condition>
 
 Equality is checked with both an xpath to be evaluated and a literal for comparison:
 
     <condition>
-		<equals>
-			<xpath>...</xpath>
-			<literal>...</literal>
-		</equals>
+		<equals value="...">...</equals>
     </condition>
 
 An option that will be implemented later when there is a SKOS vocabulary available for querying:
 
     <condition>
-		<narrower_than>
-			<xpath>...</xpath>
-			<literal>...</literal>
-		</narrower_than>
+		<narrower_than value="...">...</narrower_than>
     <condition>
 
 Conditions can also be combined into boolean expressions (here **ANY** is to mean any of the six conditional elements):
@@ -133,15 +119,15 @@ Conditions can also be combined into boolean expressions (here **ANY** is to mea
 
 ## Source
 
-The source element provides the engine with the information needed to navigate the source record.  First, the source of the *domain* is used as a kind of "anchor" and then the *links* are traversed such that their rules determine what RDF statements can be made about the source.
+The source element provides the engine with the information needed to navigate the source record. The expected content depends on the top-level attribute *source_type*, which will only allow "XPATH" for the time being.
 
-	<source>
-		<xpath>...</xpath>
-	</source>
+First, the source of the *domain* is used as a kind of "anchor" and then the *links* are traversed such that their rules determine what RDF statements can be made about the source.
+
+	<source>...</source>
 
 The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.
 
-* Note: Considering the range/source to be an extension of the path/source appears to be mistaken, but it is not yet clear how the two are to be used.  If they are independent and the range/source value gives a separate collection of nodes from the path/source, then how to have them result in triples domain-path-range is not clear.
+* **Note: Considering the range/source to be an extension of the path/source appears to be mistaken, but it is not yet clear how the two are to be used.  If they are independent and the range/source value gives a separate collection of nodes from the path/source, then how to have them result in triples domain-path-range is not clear.**
 
 ## Target
 
@@ -154,15 +140,9 @@ The domain and range contain *target* blocks, which can either contain/generate 
 	</target>
 
 	<target>
-	    <property>
-			<uri>...</uri>
-		</property>
-	</target>
-
-	<target>
 		<entity>
 			<qname>...</qname>
-			<uri_function name="...">
+			<value_function name="...">
 			    <arg name="...">
 			    	<xpath>...</xpath>
 			   	</arg>
@@ -171,7 +151,7 @@ The domain and range contain *target* blocks, which can either contain/generate 
 			    </arg>
 			    <arg/>
 			    ...
-			</uri_function>
+			</value_function>
 		</entity>
 	</target>
 
@@ -206,32 +186,7 @@ This is formulated using the *intermediate* element:
 
 ## Additional Entities
 
-* Note: this one is incomplete
-
-(Original form, for reference):
-
-			<range_map>
-				<src_range>lido:repositoryName/lido:legalBodyWeblink</src_range>
-				<target_range>E73_Information_Object</target_range>
-				<uri_rules>
-					<uri_function>
-						<name>uriConceptual</name>
-						<arguments>text()</arguments>
-					</uri_function>
-				</uri_rules>
-				<add_link>P2_has_type</add_link>
-				<add_entity>
-					<value value_binding="web resource">E55_Type</value>
-					<uri_rules>
-						<uri_function>
-							<name>uriType</name>
-							<arguments>text()</arguments>
-						</uri_function>
-					</uri_rules>
-				</add_entity>
-			</range_map>
-
-(Proposed form):
+When additional properties and entities need to be added to the target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the property which will describe the link.
 
 	<target>
 	    <entity/>
@@ -240,8 +195,6 @@ This is formulated using the *intermediate* element:
 	    	<entity/>
 	    </additional>
 	</target>
-
-Question:  does the additional property and entity connect to the entity here in the target?
 
 ## Comments
 

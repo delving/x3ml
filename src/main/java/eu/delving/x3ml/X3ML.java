@@ -207,19 +207,19 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        @XStreamAlias("value_function")
-        public ValueFunction valueFunction;
+        @XStreamAlias("value_generator")
+        public ValueGenerator valueGenerator;
 
         public Value getValue(X3MLContext.DomainContext context) {
-            return context.generateValue(valueFunction);
+            return context.generateValue(valueGenerator);
         }
 
         public Value getValue(X3MLContext.RangeContext context) {
-            return context.generateValue(valueFunction);
+            return context.generateValue(valueGenerator);
         }
 
         public String toString() {
-            return "Entity(" + valueFunction + ")";
+            return "Entity(" + valueGenerator + ")";
         }
     }
 
@@ -276,8 +276,8 @@ public interface X3ML {
         public String content;
     }
 
-    @XStreamAlias("value_function")
-    public static class ValueFunction {
+    @XStreamAlias("value_generator")
+    public static class ValueGenerator {
         @XStreamAsAttribute
         public String name;
 

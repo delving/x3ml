@@ -11,7 +11,7 @@
             <target>
                 <entity>
                     <qname>crm:E22_Man-Made_Object</qname>
-                    <value_function name="UUID"/>
+                    <value_generator name="UUID"/>
                 </entity>
             </target>
         </domain>
@@ -31,10 +31,10 @@
                 <target>
                     <entity>
                         <qname>crm:E41_Appellation</qname>
-                        <value_function name="UUID_Label">
+                        <value_generator name="UUID_Label">
                             <arg name="labelQName">rdfs:label</arg>
                             <arg name="labelXPath">text()</arg>
-                        </value_function>
+                        </value_generator>
                     </entity>
                 </target>
             </range>

@@ -16,7 +16,7 @@ The most important aspects of this engine is its two main functions, and the car
 
 * **[Schema Mapping](https://github.com/delving/x3ml/blob/master/docs/x3ml-schema-mapping.md)** - the mapping language XML format
 
-* **[URI Generation](https://github.com/delving/x3ml/blob/master/docs/x3ml-uri-generation.md)** - the mechanism of generating URIs
+* **[Value Generation](https://github.com/delving/x3ml/blob/master/docs/x3ml-value-generation.md)** - the mechanism of generating URIs and labels.
 
 ## Development
 

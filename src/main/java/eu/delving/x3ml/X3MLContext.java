@@ -2,7 +2,6 @@ package eu.delving.x3ml;
 
 import com.hp.hpl.jena.rdf.model.*;
 import com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl;
-import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -12,7 +11,6 @@ import javax.xml.xpath.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -70,7 +68,7 @@ public class X3MLContext implements X3ML {
         return domainContexts;
     }
 
-    private ArgValue evaluate(Node contextNode, QualifiedName qualifiedName, ValueFunction function, String argName, SourceType type) {
+    private ArgValue evaluate(Node contextNode, QualifiedName qualifiedName, ValueGenerator function, String argName, SourceType type) {
         ValueFunctionArg foundArg = null;
         if (function.args != null) {
             for (ValueFunctionArg arg : function.args) {
@@ -126,12 +124,12 @@ public class X3MLContext implements X3ML {
             return this.value != null;
         }
 
-        public Value generateValue(final ValueFunction valueFunction) {
-            return valuePolicy.generateValue(valueFunction.name, new ValueFunctionArgs() {
+        public Value generateValue(final ValueGenerator valueGenerator) {
+            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
                     QualifiedName qualifiedName = domain.target.entityElement.qualifiedName;
-                    return evaluate(node, qualifiedName, valueFunction, name, type);
+                    return evaluate(node, qualifiedName, valueGenerator, name, type);
                 }
             });
         }
@@ -199,12 +197,12 @@ public class X3MLContext implements X3ML {
             return this.value != null;
         }
 
-        public Value generateValue(final ValueFunction valueFunction) {
-            return valuePolicy.generateValue(valueFunction.name, new ValueFunctionArgs() {
+        public Value generateValue(final ValueGenerator valueGenerator) {
+            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
                     QualifiedName qualifiedName = range.target.entityElement.qualifiedName;
-                    return evaluate(node, qualifiedName, valueFunction, name, type);
+                    return evaluate(node, qualifiedName, valueGenerator, name, type);
                 }
             });
         }

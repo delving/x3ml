@@ -9,10 +9,10 @@
             <target>
                 <entity>
                     <qname>crm:E19_Physical_Object</qname>
-                    <value_function name="PhysicalObject">
+                    <value_generator name="PhysicalObject">
                         <arg name="nameOfMuseum">museum/text()</arg>
                         <arg name="entry">identifier/text()</arg>
-                    </value_function>
+                    </value_generator>
                 </entity>
             </target>
         </domain>
@@ -29,7 +29,7 @@
                 <target>
                     <entity>
                         <qname>crm:E55_Type</qname>
-                        <value_function name="Type"/>
+                        <value_generator name="Type"/>
                     </entity>
                 </target>
             </range>

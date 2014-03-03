@@ -142,16 +142,11 @@ The domain and range contain *target* blocks, which can either contain/generate 
 	<target>
 		<entity>
 			<qname>...</qname>
-			<value_function name="...">
-			    <arg name="...">
-			    	<xpath>...</xpath>
-			   	</arg>
-			    <arg name="...">
-			    	<literal>...</literal>
-			    </arg>
+			<value_generator name="...">
+			    <arg name="...">...</arg>
 			    <arg/>
 			    ...
-			</value_function>
+			</value_generator>
 		</entity>
 	</target>
 
@@ -162,7 +157,7 @@ The domain and range contain *target* blocks, which can either contain/generate 
 		</entity>
 	</target>
 
-The arguments of the URI functions are named and optional, since there is logic within the URI Generation to anticipate omissions.  The type of argument is determined by the element encapsulating the actual value.  Initially the two options of either *literal* values or *xpath* expressions which will be evaluated in the current context (see Source below) in order to fetch information from the source record.
+The arguments of the **[Value Generator](x3ml-value-generation.md)** are named and optional, since there is logic within the URI Generation to anticipate omissions.  The type of argument is determined by the value function, since the argument values are requested according to type.  The *xpath* expressions which will be evaluated in the current context (see Source below) in order to fetch information from the source record.
 
 ## Intermediate Entity
 

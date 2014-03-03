@@ -9,9 +9,9 @@
             <target>
                 <entity>
                     <qname>crm:E19_Physical_Object</qname>
-                    <value_function name="PhysicalObject">
+                    <value_generator name="PhysicalObject">
                         <arg name="entry">bm_object_id/text()</arg>
-                    </value_function>
+                    </value_generator>
                 </entity>
             </target>
         </domain>
@@ -28,9 +28,9 @@
                 <target>
                     <entity>
                         <qname>crm:E48_Place_Name</qname>
-                        <value_function name="PlaceName">
+                        <value_generator name="PlaceName">
                             <arg name="entry">bm_loc/text()</arg>
-                        </value_function>
+                        </value_generator>
                     </entity>
                 </target>
             </range>

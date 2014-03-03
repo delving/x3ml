@@ -9,6 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static eu.delving.x3ml.AllTests.document;
 import static eu.delving.x3ml.AllTests.engine;
+import static org.junit.Assert.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -57,7 +58,7 @@ public class TestCoin {
         String [] expectedResult = AllTests.xmlToNTriples("/coin/coin1-rdf.xml");
         log("result", mappingResult);
         log("expected", expectedResult);
-        Assert.assertArrayEquals("Does not match expected", expectedResult, mappingResult);
+        assertArrayEquals("Does not match expected", expectedResult, mappingResult);
     }
 
 

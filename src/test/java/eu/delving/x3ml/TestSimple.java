@@ -2,18 +2,28 @@ package eu.delving.x3ml;
 
 import junit.framework.Assert;
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
 
 import static eu.delving.x3ml.AllTests.*;
+import static org.junit.Assert.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
 public class TestSimple {
+    private final Logger log = Logger.getLogger(getClass());
+
+    private void log(String title, String[] list) {
+        log.info(title);
+        for (String line : list) {
+            log.info(line);
+        }
+    }
 
     @Test
     public void testReadWrite() throws IOException, X3MLException {
@@ -33,7 +43,11 @@ public class TestSimple {
     public void testSimple() throws X3MLException {
         X3MLEngine engine = engine("/simple/simple.x3ml");
         X3MLContext context = engine.execute(document("/simple/simple.xml"), policy("/simple/simple-value-policy.xml"));
-        context.write(System.out);
+        String [] mappingResult = context.toStringArray();
+        String [] expectedResult = AllTests.xmlToNTriples("/simple/simple-rdf.xml");
+        log("result", mappingResult);
+        log("expected", expectedResult);
+        assertArrayEquals("Does not match expected", expectedResult, mappingResult);
     }
 }
 

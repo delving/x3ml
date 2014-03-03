@@ -16,7 +16,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static eu.delving.x3ml.X3ML.SourceType.LITERAL;
 import static eu.delving.x3ml.X3ML.SourceType.QNAME;
 import static eu.delving.x3ml.X3ML.SourceType.XPATH;
 
@@ -41,17 +40,14 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
         X3ML.Value value = new X3ML.Value();
         Template template = templateMap.get(name);
         if (template == null) throw new X3MLException("No template for " + name);
+        X3ML.ArgValue qname = args.getArgValue("qname", QNAME);
+        String localName = qname.qualifiedName.getLocalName();
+        String namespaceUri = qname.qualifiedName.namespaceUri;
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(template.pattern);
+            uriTemplate.set("localName", localName);
             for (String variableName : variablesFromPattern(template.pattern)) {
-                if ("localName".equals(variableName)) {
-                    X3ML.ArgValue argValue = args.getArgValue(variableName, QNAME);
-                    if (argValue == null || argValue.qualifiedName == null) {
-                        throw new X3MLException("Argument failure " + variableName);
-                    }
-                    uriTemplate.set(variableName, argValue.qualifiedName.getLocalName());
-                }
-                else {
+                if (!"localName".equals(variableName)) {
                     X3ML.ArgValue argValue = args.getArgValue(variableName, XPATH);
                     if (argValue == null || argValue.string == null) {
                         throw new X3MLException("Argument failure " + variableName);
@@ -59,7 +55,7 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
                     uriTemplate.set(variableName, argValue.string);
                 }
             }
-            value.uri = uriTemplate.expand();
+            value.uri = namespaceUri + uriTemplate.expand();
             return value;
         }
         catch (MalformedUriTemplateException e) {

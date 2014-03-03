@@ -1,11 +1,9 @@
 package eu.delving.x3ml;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamConverter;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.thoughtworks.xstream.annotations.*;
 import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
 
+import javax.xml.namespace.NamespaceContext;
 import java.util.List;
 
 /**
@@ -226,6 +224,9 @@ public interface X3ML {
     public static class QualifiedName {
         public String tag;
 
+        @XStreamOmitField
+        public String namespaceUri;
+
         public String getPrefix() {
             int colon = tag.indexOf(':');
             if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
@@ -304,9 +305,11 @@ public interface X3ML {
         public String string;
         public QualifiedName qualifiedName;
 
-        public void setQName(String qname) {
+        public QualifiedName setQName(String qname, NamespaceContext namespaceContext) {
             qualifiedName = new QualifiedName();
             qualifiedName.tag = qname;
+            qualifiedName.namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
+            return qualifiedName;
         }
 
         public String toString() {

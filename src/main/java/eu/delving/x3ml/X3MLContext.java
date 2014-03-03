@@ -100,7 +100,7 @@ public class X3MLContext implements X3ML {
                 value.string = valueAt(contextNode, foundArg.value);
                 break;
             case QNAME:
-                value.setQName(foundArg.value);
+                value.setQName(foundArg.value, namespaceContext);
                 break;
             case LITERAL:
                 value.string = foundArg.value;

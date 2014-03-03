@@ -1,8 +1,8 @@
 <uri-policy>
     <template name="PhysicalObject">
-        <pattern>http://purl.org/NET/cidoc-crm/core#{className}/{nameOfMuseum,entry}</pattern>
+        <pattern>http://purl.org/NET/cidoc-crm/core#{localName}/{nameOfMuseum,entry}</pattern>
     </template>
     <template name="PlaceName">
-        <pattern>http://purl.org/NET/cidoc-cr/core#{className}/{entry}</pattern>
+        <pattern>http://purl.org/NET/cidoc-cr/core#{localName}/{entry}</pattern>
     </template>
 </uri-policy>

@@ -16,6 +16,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static eu.delving.x3ml.X3ML.SourceType.LITERAL;
+import static eu.delving.x3ml.X3ML.SourceType.QNAME;
 import static eu.delving.x3ml.X3ML.SourceType.XPATH;
 
 /**
@@ -28,7 +30,7 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
 
     public X3MLValuePolicy(InputStream inputStream) {
         Policy policy = (Policy) stream().fromXML(inputStream);
-        for (Template template: policy.templates) {
+        for (Template template : policy.templates) {
             templateMap.put(template.name, template);
         }
     }
@@ -38,15 +40,24 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
         if (name == null) throw new X3MLException("URI function name missing");
         X3ML.Value value = new X3ML.Value();
         Template template = templateMap.get(name);
-        if (template == null) throw new X3MLException("No template for "+name);
+        if (template == null) throw new X3MLException("No template for " + name);
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(template.pattern);
-            for (String variable : variablesFromPattern(template.pattern)) {
-                X3ML.ArgValue argValue = args.getArgValue(variable, XPATH);
-                if (argValue == null || argValue.string == null) {
-                    throw new X3MLException("Argument failure "+variable);
+            for (String variableName : variablesFromPattern(template.pattern)) {
+                if ("localName".equals(variableName)) {
+                    X3ML.ArgValue argValue = args.getArgValue(variableName, QNAME);
+                    if (argValue == null || argValue.qualifiedName == null) {
+                        throw new X3MLException("Argument failure " + variableName);
+                    }
+                    uriTemplate.set(variableName, argValue.qualifiedName.getLocalName());
                 }
-                uriTemplate.set(variable, argValue.string);
+                else {
+                    X3ML.ArgValue argValue = args.getArgValue(variableName, XPATH);
+                    if (argValue == null || argValue.string == null) {
+                        throw new X3MLException("Argument failure " + variableName);
+                    }
+                    uriTemplate.set(variableName, argValue.string);
+                }
             }
             value.uri = uriTemplate.expand();
             return value;

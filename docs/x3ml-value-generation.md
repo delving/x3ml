@@ -52,12 +52,8 @@ For template-based URI generation there is [RFC 6570](http://tools.ietf.org/html
 The *pattern* element here contains a URI template according to the RFC, and the parameters are fetched from the source like this:
 
 	<value_generator name="PhysicalObject">
-		<arg name="nameOfMuseum">
-			<xpath>museum/text()</xpath>
-		</arg>
-		<arg name="entry">
-			<xpath>identifier/text()</xpath>
-		</arg>
+		<arg name="nameOfMuseum">museum/text()</arg>
+		<arg name="entry">identifier/text()</arg>
 	</value_generator>
 
 

@@ -13,8 +13,6 @@ import java.util.List;
  */
 
 public interface X3ML {
-    String CLASS_NAME = "className";
-    String UUID_NAME = "UUID";
 
     public enum SourceType {
         XPATH,

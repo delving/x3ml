@@ -40,9 +40,7 @@ Each *mapping* contains a *domain* and a number of *links*, and links are built 
 
 ## Conditions
 
-Whether or not the engine will continue to pursue the creation of a particular target element can depend on whether certain conditions are met.
-
-This is intended to allow mappings to be "activated" or not as rules, and the rules are often based on terminology usage in the source.
+Whether or not the engine will continue to pursue the creation of a particular target element can depend on whether certain conditions are met. This is intended to allow mappings to be "activated" like rules, which are often based on terminology usage in the source.
 
 The elements used will be *exists*, *equals*, *narrower*, *and*, *or*, and *not*, each enclosed in an **if** element.
 

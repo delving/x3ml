@@ -169,6 +169,16 @@ public interface X3ML {
         public PropertyElement propertyElement;
     }
 
+    @XStreamAlias("if")
+    public static class Condition {
+        public Narrower narrower;
+        public Exists exists;
+        public Equals equals;
+        public AndCondition and;
+        public OrCondition or;
+        public NotCondition not;
+    }
+
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("exists")
     public static class Exists {
@@ -191,19 +201,6 @@ public interface X3ML {
         public String value;
 
         public String expression;
-    }
-
-    @XStreamAlias("if")
-    public static class Condition {
-        public Narrower narrower;
-        public Exists exists;
-        public Equals equals;
-        public AndCondition and;
-        public OrCondition or;
-        public NotCondition not;
-
-        @XStreamImplicit
-        List<Condition> list;
     }
 
     @XStreamAlias("and")

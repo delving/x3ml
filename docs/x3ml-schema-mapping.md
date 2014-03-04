@@ -40,11 +40,15 @@ Each *mapping* contains a *domain* and a number of *links*, and links are built 
 
 ## Conditions
 
-Whether or not the engine will continue to pursue the evaluation of a particular mapping or a link can depend on certain conditions are met.  This is intended to allow mappings to be "activated" or not according to rules, and the rules are generally based on terminology usage in the source.
+Whether or not the engine will continue to pursue the creation of a particular target element can depend on whether certain conditions are met.
 
-The elements used will be *exists*, *equals*, *narrower_than*, *and*, *or*, and *not*, at the top level enclosed in a **&lt;condition>&lt;/condition>** element.
+This is intended to allow mappings to be "activated" or not as rules, and the rules are often based on terminology usage in the source.
 
-Conditions can be situated in three different places within the mapping definition.
+The elements used will be *exists*, *equals*, *narrower*, *and*, *or*, and *not*, each enclosed in an **if** element.
+
+    <if>...</if>
+
+Conditions can be situated in the three different target blocks within the mapping definition:
 
 	<mappings version="0.1" sourceType="XPATH">
 	    <namespaces/>
@@ -76,46 +80,33 @@ Conditions can be situated in three different places within the mapping definiti
 	    ...
 	</mappings>
 
-Existence can be checked with a condition containing xpath:
+Existence can be checked, as well as equality:
 
-    <if>
-		<exists>...</exists>
-	</if>
-
-Equality is checked with both an xpath to be evaluated and a literal for comparison:
-
-    <if>
-		<equals value="...">...</equals>
-    </if>
+    <if><exists>...</exists></if>
+    <if><not><exists>...</exists></not></if>
+    <if><equals value="...">...</equals></if>
+    <if><not><equals value="...">...</equals></not></if>
 
 An option that will be implemented later when there is a SKOS vocabulary available for querying:
 
-    <if>
-		<narrower value="...">...</narrower>
-    <if>
+    <if><narrower value="...">...</narrower></if>
 
-Conditions can also be combined into boolean expressions (here **ANY** is to mean any of the six conditional elements):
+Multiple conditions can also be combined into boolean expressions:
 
     <if>
 		<and>
-			<ANY/>
+			<if/>
+			<if/>
 			...
 		</and>
-    <if>
-
+    </if>
     <if>
 		<or>
-			<ANY/>
+			<if/>
+			<if/>
 			...
 		</or>
     </if>
-
-    <if>
-		<not>
-			<ANY/>
-		</and>
-    </if>
-
 
 ## Source
 

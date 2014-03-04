@@ -29,6 +29,7 @@ import java.util.*;
 
 @RunWith(Suite.class)
 @org.junit.runners.Suite.SuiteClasses({
+        TestConditions.class,
         TestSimple.class,
         TestCoin.class,
         TestBM.class

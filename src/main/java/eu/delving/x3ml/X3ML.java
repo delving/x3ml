@@ -96,6 +96,8 @@ public interface X3ML {
     @XStreamAlias("target")
     public static class Target {
 
+        public Condition condition;
+
         @XStreamAlias("entity")
         public EntityElement entityElement;
 
@@ -167,25 +169,59 @@ public interface X3ML {
         public PropertyElement propertyElement;
     }
 
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"xpath"})
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("exists")
     public static class Exists {
+        public String expression;
+    }
+
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
+    @XStreamAlias("equals")
+    public static class Equals {
         @XStreamAsAttribute
         public String value;
 
-        public String xpath;
+        public String expression;
+    }
 
-        public boolean evaluate(X3MLContext.DomainContext context) {
-            return true; // todo
-        }
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
+    @XStreamAlias("narrower")
+    public static class Narrower {
+        @XStreamAsAttribute
+        public String value;
 
-        public boolean evaluate(X3MLContext.PathContext context) {
-            return true; // todo
-        }
+        public String expression;
+    }
 
-        public boolean evaluate(X3MLContext.RangeContext context) {
-            return true; // todo
-        }
+    @XStreamAlias("if")
+    public static class Condition {
+        public Narrower narrower;
+        public Exists exists;
+        public Equals equals;
+        public AndCondition and;
+        public OrCondition or;
+        public NotCondition not;
+
+        @XStreamImplicit
+        List<Condition> list;
+    }
+
+    @XStreamAlias("and")
+    public static class AndCondition {
+        @XStreamImplicit
+        List<Condition> list;
+    }
+
+    @XStreamAlias("and")
+    public static class OrCondition {
+        @XStreamImplicit
+        List<Condition> list;
+    }
+
+    @XStreamAlias("not")
+    public static class NotCondition {
+        @XStreamAlias("if")
+        Condition condition;
     }
 
     @XStreamAlias("property")
@@ -194,11 +230,7 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        @XStreamAlias("exists")
-        public Exists exists;
-
         public QualifiedName getPropertyClass(X3MLContext.PathContext context) {
-            if (exists != null && !exists.evaluate(context)) return null;
             if (qualifiedName == null) throw new X3MLException("Missing class element");
             return qualifiedName;
         }
@@ -209,9 +241,6 @@ public interface X3ML {
 
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
-
-//        @XStreamAlias("literal")
-//        public String literal;
 
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;

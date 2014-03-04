@@ -52,20 +52,20 @@ Conditions can be situated in three different places within the mapping definiti
 	        <domain>
 	            <source/>
 	            <target>
-	            	<condition/>
+	            	<if/>
 	            </target>
 	        </domain>
 	        <link>
 	            <path>
 	                <source/>
 	                <target>
-						<condition/>
+						<if/>
 	                </target>
 	            </path>
 	            <range>
 	                <source/>
 	                <target>
-						<condition/>
+						<if/>
 	                </target>
 	            </range>
 	        </link>
@@ -78,43 +78,43 @@ Conditions can be situated in three different places within the mapping definiti
 
 Existence can be checked with a condition containing xpath:
 
-    <condition>
+    <if>
 		<exists>...</exists>
-	</condition>
+	</if>
 
 Equality is checked with both an xpath to be evaluated and a literal for comparison:
 
-    <condition>
+    <if>
 		<equals value="...">...</equals>
-    </condition>
+    </if>
 
 An option that will be implemented later when there is a SKOS vocabulary available for querying:
 
-    <condition>
-		<narrower_than value="...">...</narrower_than>
-    <condition>
+    <if>
+		<narrower value="...">...</narrower>
+    <if>
 
 Conditions can also be combined into boolean expressions (here **ANY** is to mean any of the six conditional elements):
 
-    <condition>
+    <if>
 		<and>
 			<ANY/>
 			...
 		</and>
-    <condition>
+    <if>
 
-    <condition>
+    <if>
 		<or>
 			<ANY/>
 			...
 		</or>
-    </condition>
+    </if>
 
-    <condition>
+    <if>
 		<not>
 			<ANY/>
 		</and>
-    </condition>
+    </if>
 
 
 ## Source
@@ -171,25 +171,31 @@ Sometimes a path in the source schema needs to become more than just a path in t
 
 This is formulated using the *intermediate* element:
 
-	<target>
-	    <property/>
-	    <intermediate>
-	    	<entity/>
-	    	<property/>
-	    </intermediate>
-	</target>
+	<path>
+		<source/>
+		<target>
+			<property/>
+			<intermediate>
+				<entity/>
+				<property/>
+			</intermediate>
+		</target>
+	</path>
 
 ## Additional Entities
 
 When additional properties and entities need to be added to the target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the property which will describe the link.
 
-	<target>
-	    <entity/>
-	    <additional>
-	    	<property/>
-	    	<entity/>
-	    </additional>
-	</target>
+	<range>
+		<source/>
+		<target>
+			<entity/>
+			<additional>
+				<property/>
+				<entity/>
+			</additional>
+		</target>
+	</range>
 
 ## Comments
 

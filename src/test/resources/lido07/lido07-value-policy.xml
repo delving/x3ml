@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<value-policy>
+    <generator name="PhysicalObject">
+        <pattern>{localName}/{nameOfMuseum,entry}</pattern>
+    </generator>
+    <generator name="Type">
+        <pattern>{localName}/{entry}</pattern>
+    </generator>
+    <generator name="PhysicalThing">
+        <pattern>{localName}</pattern>
+    </generator>
+    <generator name="Devil">
+        <pattern>{localName}/{label}</pattern>
+        <literals>label</literals>
+    </generator>
+</value-policy>

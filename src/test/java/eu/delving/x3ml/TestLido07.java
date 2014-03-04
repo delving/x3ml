@@ -9,13 +9,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static eu.delving.x3ml.AllTests.document;
 import static eu.delving.x3ml.AllTests.engine;
+import static eu.delving.x3ml.AllTests.policy;
 import static org.junit.Assert.assertArrayEquals;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-@Ignore
 public class TestLido07 {
     private final Logger log = Logger.getLogger(getClass());
     private Queue<String> uuidQueue = new LinkedBlockingQueue<String>();
@@ -32,32 +32,14 @@ public class TestLido07 {
         uuidQueue.add("uuid:A");
         uuidQueue.add("uuid:B");
         X3MLEngine engine = engine("/lido07/lido07.x3ml");
-        X3MLContext context = engine.execute(document("/lido07/lido07.xml"), new X3ML.ValuePolicy() {
-            @Override
-            public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs arguments) {
-                X3ML.Value value = new X3ML.Value();
-                if ("UUID".equals(name)) {
-                    value.uri = uuidQueue.remove();
-                }
-                else if ("UUID_Label".equals(name)) {
-                    X3ML.ArgValue labelQName = arguments.getArgValue("labelQName", X3ML.SourceType.QNAME);
-                    if (labelQName == null || labelQName.qualifiedName == null) {
-                        throw new X3MLException("Argument failure: labelQName");
-                    }
-                    value.uri = uuidQueue.remove();
-                    value.labelQName = labelQName.qualifiedName;
-                    X3ML.ArgValue labelXPath = arguments.getArgValue("labelXPath", X3ML.SourceType.XPATH);
-                    if (labelXPath == null || labelXPath.string == null) {
-                        throw new X3MLException("Argument failure: labelXPath");
-                    }
-                    value.labelValue = labelXPath.string;
-                }
-                return value;
-            }
-        });
-        String [] mappingResult = context.toStringArray();
+        X3MLContext context = engine.execute(
+                document("/lido07/lido07.xml"),
+                policy("/lido07/lido07-value-policy.xml")
+        );
+        context.write(System.out);
+//        String [] mappingResult = context.toStringArray();
 //        String [] expectedResult = AllTests.xmlToNTriples("/coin/coin1-rdf.xml");
-        log("result", mappingResult);
+//        log("result", mappingResult);
 //        log("expected", expectedResult);
 //        assertArrayEquals("Does not match expected", expectedResult, mappingResult);
     }

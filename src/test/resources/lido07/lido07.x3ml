@@ -1,1612 +1,2420 @@
-<mappings version="0.1">
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings version="0.1" sourceType="XPATH">
+    <namespaces>
+        <namespace prefix="lido" uri="http://www.lido-schema.org"/>
+        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
+    </namespaces>
     <mapping>
         <domain>
-            <source>lido</source>
-            <entity tag="E19_Physical_Object">
-                <uri_function name="PhysicalObject">
-                    <arg name="nameOfMuseum">//lido:lido/lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue/text()</arg>
-                    <arg name="entry">//lido:lido/lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:workID/text()</arg>
-                </uri_function>
-            </entity>
+            <source>//lido:lido</source>
+            <target>
+                <entity>
+                    <qname>crm:E19_Physical_Object</qname>
+                    <value_generator name="PhysicalObject">
+                        <arg name="nameOfMuseum">
+                            lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue/text()
+                        </arg>
+                        <arg name="entry">
+                            lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:workID/text()
+                        </arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>lidoRecID</source>
-                <property tag="P70_is_documented_in"/>
-            </path>
-            <range>
                 <source>lido:lidoRecID</source>
-                <entity tag="E31_Document">
-                    <uri_function name="PhysicalThing"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P70_is_documented_in</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:lidoRecID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E31_Document</qname>
+                        <value_generator name="PhysicalThing"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>category</source>
-                <property tag="P2_has_type"/>
-            </path>
-            <range>
                 <source>lido:category</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:category</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>objectWorkType/term</source>
-                <property tag="P2_has_type"/>
-            </path>
-            <range>
                 <source>lido:objectWorkType/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:objectWorkType/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>objectWorkType/conceptID</source>
-                <property tag="P48_has_preferred_identifier"/>
-            </path>
-            <range>
                 <source>lido:objectWorkType/lido:conceptID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P48_has_preferred_identifier</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:objectWorkType/lido:conceptID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>classification/term</source>
-                <property tag="P2_has_type"/>
-            </path>
-            <range>
                 <source>lido:classification/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:classification/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>classification/conceptID</source>
-                <property tag="P48_has_preferred_identifier"/>
-            </path>
-            <range>
                 <source>lido:classification/lido:conceptID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P48_has_preferred_identifier</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:classification/lido:conceptID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>titleSet/appellationValue</source>
-                <property tag="P1_is_identified_by"/>
-            </path>
-            <range>
                 <source>lido:titleSet/lido:appellationValue</source>
-                <entity tag="E41_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P1_is_identified_by</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:titleSet/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E41_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>titleSet/sourceAppellation</source>
-                <property tag="P1_is_identified_by"/>
-            </path>
-            <range>
                 <source>lido:titleSet/lido:sourceAppellation</source>
-                <entity tag="E41_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P1_is_identified_by</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:titleSet/lido:sourceAppellation</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E41_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>inscriptions</source>
-                <property tag="P65_shows_visual_item"/>
-            </path>
-            <range>
                 <source>lido:inscriptions</source>
-                <entity tag="E36_Visual_Item">
-                    <uri_function name="Literal"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P65_shows_visual_item</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:inscriptions</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E36_Visual_Item</qname>
+                        <value_generator name="Literal"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>repositoryName/legalBodyID</source>
-                <property tag="P50_has_current_keeper"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="Actors">
-                            <arg name="authority">@lido:source</arg>
-                            <arg name="identifier">text()</arg>
-                            <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
-                            <arg name="birthDate">//lido:lido/nothing</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:repositoryName/lido:legalBodyID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P50_has_current_keeper</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="Actors">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                                <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:repositoryName/lido:legalBodyID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>repositoryName/legalBodyName/appellationValue</source>
-                <property tag="P50_has_current_keeper"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="authority">//lido:lido/nothing</arg>
-                            <arg name="identifier">../lido:legalBodyID/text()</arg>
-                            <arg name="name">text()</arg>
-                            <arg name="birthDate">//lido:lido/nothing</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P131_is_identified_by"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:repositoryName/lido:legalBodyName/lido:appellationValue</source>
-                <entity tag="E82_Actor_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P50_has_current_keeper</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">//lido:lido/nothing</arg>
+                                <arg name="identifier">../lido:legalBodyID/text()</arg>
+                                <arg name="name">text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:repositoryName/lido:legalBodyName/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E82_Actor_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>repositoryLocation/placeID</source>
-                <property tag="P55_has_current_location"/>
-                <internal_node>
-                    <entity tag="E53_Place">
-                        <uri_function name="Place">
-                            <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                            <arg name="authority">@lido:source</arg>
-                            <arg name="placeId">text()</arg>
-                            <arg name="coordinates">//lido:lido/nothing</arg>
-                            <arg name="spaces">../lido:partOfPlace</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:repositoryLocation/lido:placeID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P55_has_current_location</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="placeId">text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:repositoryLocation/lido:placeID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>repositoryLocation/namePlaceSet/appellationValue</source>
-                <property tag="P55_has_current_location"/>
-                <internal_node>
-                    <entity tag="E53_Place">
-                        <uri_function name="Place">
-                            <arg name="placeName">text()</arg>
-                            <arg name="authority">../../lido:placeID/@lido:source</arg>
-                            <arg name="placeId">../../lido:placeID/text()</arg>
-                            <arg name="coordinates">//lido:lido/nothing</arg>
-                            <arg name="spaces">../../lido:partOfPlace</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P87_is_identified_by"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</source>
-                <entity tag="E44_Place_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>repositoryLocation/namePlaceSet/sourceAppellation</source>
-                <property tag="P3_has_note"/>
+                <target>
+                    <property>
+                        <qname>crm:P55_has_current_location</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">text()</arg>
+                                <arg name="authority">../../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P87_is_identified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
             </path>
             <range>
-                <source>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>displayState</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:displayState</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>displayEdition</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:displayEdition</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>sourceStateEdition</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:sourceStateEdition</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>objectDescriptionSet/descriptiveNoteValue</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:objectDescriptionSet/lido:descriptiveNoteValue</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>objectDescriptionSet/sourceDescriptiveNote</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>displayObjectMeasurements</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:displayObjectMeasurements</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>measurementsSet</source>
-                <property tag="P43_has_dimension"/>
-            </path>
-            <range>
-                <source>lido:measurementsSet</source>
-                <entity tag="E54_Dimension">
-                    <uri_function name="dimensionURI">
-                        <arg>@lido:value</arg>
-                    </uri_function>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>extentMeasurements</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:extentMeasurements</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>qualifierMeasurements</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:qualifierMeasurements</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>displayEvent</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
-                <source>lido:displayEvent</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>eventID</source>
-                <property tag="P12i_was_present_at"/>
-                <internal_node>
-                    <entity tag="E5_Event">
-                        <uri_function name="uriEvents">
-                            <arg name="authority">@lido:source</arg>
-                            <arg name="identifier">text()</arg>
-                        </uri_function>
+                <!--<source>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E44_Place_Appellation</qname>
+                        <value_generator name="Appellation"/>
                     </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:eventID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventType/term</source>
-                <property tag="P12i_was_present_at"/>
-                <internal_node>
-                    <entity tag="E5_Event">
-                        <uri_function name="uriEvents">
+                <source>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:displayState</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayState</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:displayEdition</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayEdition</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:sourceStateEdition</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:sourceStateEdition</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:objectDescriptionSet/lido:descriptiveNoteValue</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:objectDescriptionSet/lido:descriptiveNoteValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:displayObjectMeasurements</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayObjectMeasurements</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:measurementsSet</source>
+                <target>
+                    <property>
+                        <qname>crm:P43_has_dimension</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:measurementsSet</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E54_Dimension</qname>
+                        <value_generator name="dimensionURI">
+                            <arg>@lido:value</arg>
+                        </value_generator>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:extentMeasurements</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:extentMeasurements</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:qualifierMeasurements</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:qualifierMeasurements</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:displayEvent</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayEvent</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:eventID</source>
+                <target>
+                    <property>
+                        <qname>crm:P12i_was_present_at</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E5_Event</qname>
+                            <value_generator name="uriEvents">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:eventType/lido:term</source>
+                <target>
+                    <property>
+                        <qname>crm:P12i_was_present_at</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E5_Event</qname>
+                            <value_generator name="uriEvents">
+                                <arg name="authority">../../lido:eventID/@lido:source</arg>
+                                <arg name="identifier">../../lido:eventID/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventType/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:eventType/lido:term</source>
+                <target>
+                    <if>
+                        <equals value="produced_by">../../lido:roleInEvent/lido:term/text()</equals>
+                    </if>
+                    <property>
+                        <qname>crm:P108_was_produced_by</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventType/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E12_Production</qname>
+                        <value_generator name="uriEvents">
                             <arg name="authority">../../lido:eventID/@lido:source</arg>
                             <arg name="identifier">../../lido:eventID/text()</arg>
-                        </uri_function>
+                        </value_generator>
                     </entity>
-                    <property tag="P2_has_type"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:eventType/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventType/term</source>
-                <property tag="P108_was_produced_by">
-                    <exists value="produced_by">../../lido:roleInEvent/lido:term/text()</exists>
-                </property>
+                <source>lido:eventType/lido:term</source>
+                <target>
+                    <if>
+                        <equals value="created_by">../../lido:roleInEvent/lido:term/text()</equals>
+                    </if>
+                    <property>
+                        <qname>crm:P94i_was_created_by</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:eventType/lido:term</source>
-                <entity tag="E12_Production">
-                    <uri_function name="uriEvents">
-                        <arg name="authority">../../lido:eventID/@lido:source</arg>
-                        <arg name="identifier">../../lido:eventID/text()</arg>
-                    </uri_function>
-                </entity>
+                <!--<source>lido:eventType/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E65_Creation</qname>
+                        <value_generator name="uriEvents">
+                            <arg name="authority">../../lido:eventID/@lido:source</arg>
+                            <arg name="identifier">../../lido:eventID/text()</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventType/term</source>
-                <property tag="P94i_was_created_by">
-                    <exists value="created_by">../../lido:roleInEvent/lido:term/text()</exists>
-                </property>
+                <source>lido:eventType/lido:term</source>
+                <target>
+                    <if>
+                        <equals value="used_for">../../lido:roleInEvent/lido:term/text()</equals>
+                    </if>
+                    <property>
+                        <qname>crm:P16i_was_used_for</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:eventType/lido:term</source>
-                <entity tag="E65_Creation">
-                    <uri_function name="uriEvents">
-                        <arg name="authority">../../lido:eventID/@lido:source</arg>
-                        <arg name="identifier">../../lido:eventID/text()</arg>
-                    </uri_function>
-                </entity>
+                <!--<source>lido:eventType/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E7_Activity</qname>
+                        <value_generator name="uriEvents">
+                            <arg name="authority">../../lido:eventID/@lido:source</arg>
+                            <arg name="identifier">../../lido:eventID/text()</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventType/term</source>
-                <property tag="P16i_was_used_for">
-                    <exists value="used_for">../../lido:roleInEvent/lido:term/text()</exists>
-                </property>
+                <source>lido:eventType/lido:term</source>
+                <target>
+                    <property>
+                        <qname>crm:P12i_was_present_at</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:eventType/lido:term</source>
-                <entity tag="E7_Activity">
-                    <uri_function name="uriEvents">
-                        <arg name="authority">../../lido:eventID/@lido:source</arg>
-                        <arg name="identifier">../../lido:eventID/text()</arg>
-                    </uri_function>
-                </entity>
+                <!--<source>lido:eventType/lido:term</source>-->
+                <target>
+                    <if>
+                        <equals value="Herstellung">text()</equals>
+                    </if>
+                    <entity>
+                        <qname>crm:E12_Production</qname>
+                        <value_generator name="uriEvents">
+                            <arg name="authority">../../lido:eventID/@lido:source</arg>
+                            <arg name="identifier">../../lido:eventID/text()</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventType/term</source>
-                <property tag="P12i_was_present_at"/>
-            </path>
-            <range>
-                <source>lido:eventType/lido:term</source>
-                <entity tag="E12_Production">
-                    <exists value="Herstellung">text()</exists>
-                    <uri_function name="uriEvents">
-                        <arg name="authority">../../lido:eventID/@lido:source</arg>
-                        <arg name="identifier">../../lido:eventID/text()</arg>
-                    </uri_function>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>displaySubject</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:displaySubject</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displaySubject</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>extentSubject</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:extentSubject</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:extentSubject</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>subjectConcept/conceptID</source>
-                <property tag="P48_has_preferred_identifier"/>
-            </path>
-            <range>
                 <source>lido:subjectConcept/lido:conceptID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P48_has_preferred_identifier</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectConcept/lido:conceptID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>subjectConcept/term</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:subjectConcept/lido:term</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectConcept/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>subjectActor/displayActor</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E73_Information_Object">
-                        <uri_function name="uriConceptual"/>
-                    </entity>
-                    <property tag="P129_is_about"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:subjectActor/lido:displayActor</source>
-                <entity tag="E39_Actor">
-                    <uri_function name="uriForActors">
-                        <arg name="authority">../lido:actor/lido:actorID/@lido:source</arg>
-                        <arg name="identifier">../lido:actor/lido:actorID/text()</arg>
-                        <arg name="name">../lido:actor/lido:nameActorSet/lido:appellationValue/text()</arg>
-                        <arg name="birthDate">../lido:actor/lido:vitalDatesActor/@lido:birthDate</arg>
-                    </uri_function>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectActor/lido:displayActor</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E39_Actor</qname>
+                        <value_generator name="uriForActors">
+                            <arg name="authority">../lido:actor/lido:actorID/@lido:source</arg>
+                            <arg name="identifier">../lido:actor/lido:actorID/text()</arg>
+                            <arg name="name">../lido:actor/lido:nameActorSet/lido:appellationValue/text()</arg>
+                            <arg name="birthDate">../lido:actor/lido:vitalDatesActor/@lido:birthDate</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>subjectDate/displayDate</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E73_Information_Object">
-                        <uri_function name="uriConceptual"/>
-                    </entity>
-                    <property tag="P129_is_about"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:subjectDate/lido:displayDate</source>
-                <entity tag="E50_Date">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectDate/lido:displayDate</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E50_Date</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>subjectEvent/displayEvent</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E73_Information_Object">
-                        <uri_function name="uriConceptual"/>
-                    </entity>
-                    <property tag="P129_is_about"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:subjectEvent/lido:displayEvent</source>
-                <entity tag="E5_Event">
-                    <uri_function name="uriEvents">
-                        <arg name="authority">../lido:event/lido:eventID/@lido:source</arg>
-                        <arg name="identifier">../lido:event/lido:eventID/text()</arg>
-                    </uri_function>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectEvent/lido:displayEvent</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E5_Event</qname>
+                        <value_generator name="uriEvents">
+                            <arg name="authority">../lido:event/lido:eventID/@lido:source</arg>
+                            <arg name="identifier">../lido:event/lido:eventID/text()</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>subjectPlace/displayPlace</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E73_Information_Object">
-                        <uri_function name="uriConceptual"/>
-                    </entity>
-                    <property tag="P129_is_about"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:subjectPlace/lido:displayPlace</source>
-                <entity tag="E53_Place">
-                    <uri_function name="Place">
-                        <arg name="placeName">text()</arg>
-                        <arg name="authority">..//lido:placeID/@lido:source</arg>
-                        <arg name="placeId">..//lido:placeID/text()</arg>
-                        <arg name="coordinates">//lido:lido/nothing</arg>
-                        <arg name="spaces">../lido:place/lido:partOfPlace</arg>
-                    </uri_function>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>subjectObject/displayObject</source>
-                <property tag="P3_has_note"/>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
+                    </intermediate>
+                </target>
             </path>
             <range>
-                <source>lido:subjectObject/lido:displayObject</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>subjectObject/object/objectWebResource</source>
-                <property tag="P67i_is_referred_to_by"/>
-                <internal_node>
-                    <entity tag="E73_Information_Object">
-                        <uri_function name="uriConceptual"/>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:subjectObject/lido:object/lido:objectWebResource</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>subjectObject/object/objectID</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E18_Physical_Thing">
-                        <uri_function name="uriPhysThing">
-                            <arg>/text()</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:subjectObject/lido:object/lido:objectID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>relatedWorkRelType</source>
-                <property tag="P46i_forms_part_of"/>
-                <internal_node>
-                    <entity tag="E18_Physical_Thing">
-                        <uri_function name="uriPhysThing"/>
-                    </entity>
-                    <property tag="P3_has_note"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:relatedWorkRelType</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>rightsType</source>
-                <property tag="P104_is_subject_to"/>
-                <internal_node>
-                    <entity tag="E30_Right">
-                        <uri_function name="uriConceptual"/>
-                    </entity>
-                    <property tag="P2_has_type"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:rightsType</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>recordID</source>
-                <property tag="P70_is_documented_in"/>
-                <internal_node>
-                    <entity tag="E31_Document">
-                        <uri_function name="uriPhysThing"/>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:recordID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
-            </range>
-        </link>
-    </mapping>
-    <mapping>
-        <domain>
-            <source>lido/repositoryName/legalBodyName</source>
-            <entity tag="E39_Actor">
-                <uri_function name="uriForActors">
-                    <arg name="authority">../lido:legalBodyID/@lido:source</arg>
-                    <arg name="identifier">../lido:legalBodyID/text()</arg>
-                    <arg name="name">lido:appellationValue/text()</arg>
-                    <arg name="birthDate">//lido:lido/nothing</arg>
-                </uri_function>
-            </entity>
-        </domain>
-        <link>
-            <path>
-                <source>repositoryName/legalBodyWeblink</source>
-                <property tag="P129i_is_subject_of"/>
-            </path>
-            <range>
-                <source>lido:repositoryName/lido:legalBodyWeblink</source>
-                <entity tag="E73_Information_Object">
-                    <uri_function name="uriConceptual"/>
-                </entity>
-                <additional_node>
-                    <property tag="P2_has_type"/>
-                    <entity tag="E55_Type" binding="web_resource">
-                        <uri_function name="Type"/>
-                    </entity>
-                </additional_node>
-            </range>
-        </link>
-    </mapping>
-    <mapping>
-        <domain>
-            <source>lido:repositoryLocation</source>
-            <entity tag="E53_Place">
-                <uri_function name="Place">
-                    <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
-                    <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
-                    <arg name="placeId">lido:place/lido:placeID/text()</arg>
-                    <arg name="coordinates">//lido:lido/nothing</arg>
-                    <arg name="spaces">lido:place/lido:partOfPlace</arg>
-                </uri_function>
-            </entity>
-        </domain>
-        <link>
-            <path>
-                <source>repositoryLocation/partOfPlace/placeID</source>
-                <property tag="P88_consists_of"/>
-                <internal_node>
-                    <entity tag="E53_Place">
-                        <uri_function name="Place">
-                            <arg name="placeName">../../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                            <arg name="authority">../../lido:placeID/@lido:source</arg>
-                            <arg name="placeId">../../lido:placeID/text()</arg>
+                <!--<source>lido:subjectPlace/lido:displayPlace</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E53_Place</qname>
+                        <value_generator name="Place">
+                            <arg name="placeName">text()</arg>
+                            <arg name="authority">..//lido:placeID/@lido:source</arg>
+                            <arg name="placeId">..//lido:placeID/text()</arg>
                             <arg name="coordinates">//lido:lido/nothing</arg>
-                            <arg name="spaces">../lido:partOfPlace</arg>
-                        </uri_function>
+                            <arg name="spaces">../lido:place/lido:partOfPlace</arg>
+                        </value_generator>
                     </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
-                <source>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>repositoryLocation/placeClassification/term</source>
-                <property tag="P2_has_type"/>
+                <source>lido:subjectObject/lido:displayObject</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:repositoryLocation/lido:placeClassification/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <!--<source>lido:subjectObject/lido:displayObject</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:subjectObject/lido:object/lido:objectWebResource</source>
+                <target>
+                    <property>
+                        <qname>crm:P67i_is_referred_to_by</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectObject/lido:object/lido:objectWebResource</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:subjectObject/lido:object/lido:objectID</source>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E18_Physical_Thing</qname>
+                            <value_generator name="uriPhysThing">
+                                <arg>/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectObject/lido:object/lido:objectID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:relatedWorkRelType</source>
+                <target>
+                    <property>
+                        <qname>crm:P46i_forms_part_of</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E18_Physical_Thing</qname>
+                            <value_generator name="uriPhysThing"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P3_has_note</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:relatedWorkRelType</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:rightsType</source>
+                <target>
+                    <property>
+                        <qname>crm:P104_is_subject_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E30_Right</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsType</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:recordID</source>
+                <target>
+                    <property>
+                        <qname>crm:P70_is_documented_in</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E31_Document</qname>
+                            <value_generator name="uriPhysThing"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:recordID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/measurementsSet</source>
-            <entity tag="E54_Dimension">
-                <uri_function name="dimensionURI">
-                    <arg>@lido:value</arg>
-                </uri_function>
-            </entity>
+            <source>//lido:lido/lido:repositoryName/lido:legalBodyName</source>
+            <target>
+                <entity>
+                    <qname>crm:E39_Actor</qname>
+                    <value_generator name="uriForActors">
+                        <arg name="authority">../lido:legalBodyID/@lido:source</arg>
+                        <arg name="identifier">../lido:legalBodyID/text()</arg>
+                        <arg name="name">lido:appellationValue/text()</arg>
+                        <arg name="birthDate">//lido:lido/nothing</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>formatMeasurements</source>
-                <property tag="P2_has_type"/>
+                <source>lido:repositoryName/lido:legalBodyWeblink</source>
+                <target>
+                    <property>
+                        <qname>crm:P129i_is_subject_of</qname>
+                    </property>
+                </target>
             </path>
             <range>
+                <!--<source>lido:repositoryName/lido:legalBodyWeblink</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E73_Information_Object</qname>
+                        <value_generator name="uriConceptual"/>
+                    </entity>
+                    <additional>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                        <entity tag="E55_Type" binding="web_resource">
+                            <value_generator name="Type"/>
+                        </entity>
+                    </additional>
+                </target>
+            </range>
+        </link>
+    </mapping>
+    <mapping>
+        <domain>
+            <source>//lido:repositoryLocation</source>
+            <target>
+                <entity>
+                    <qname>crm:E53_Place</qname>
+                    <value_generator name="Place">
+                        <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
+                        <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
+                        <arg name="placeId">lido:place/lido:placeID/text()</arg>
+                        <arg name="coordinates">//lido:lido/nothing</arg>
+                        <arg name="spaces">lido:place/lido:partOfPlace</arg>
+                    </value_generator>
+                </entity>
+            </target>
+        </domain>
+        <link>
+            <path>
+                <source>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source>
+                <target>
+                    <property>
+                        <qname>crm:P88_consists_of</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">../../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>lido:repositoryLocation/lido:placeClassification/lido:term</source>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:repositoryLocation/lido:placeClassification/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+    </mapping>
+    <mapping>
+        <domain>
+            <source>//lido/measurementsSet</source>
+            <target>
+                <entity>
+                    <qname>crm:E54_Dimension</qname>
+                    <value_generator name="dimensionURI">
+                        <arg>@lido:value</arg>
+                    </value_generator>
+                </entity>
+            </target>
+        </domain>
+        <link>
+            <path>
                 <source>lido:formatMeasurements</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
-                <additional_node>
-                    <property tag="P2_has_type"/>
-                    <entity tag="E55_Type" binding="Format">
-                        <uri_function name="Type">
-                            <arg>@lido:type</arg>
-                        </uri_function>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:formatMeasurements</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
                     </entity>
-                </additional_node>
+                    <additional>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                        <entity tag="E55_Type" binding="Format">
+                            <value_generator name="Type">
+                                <arg>@lido:type</arg>
+                            </value_generator>
+                        </entity>
+                    </additional>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>shapeMeasurements</source>
-                <property tag="P2_has_type"/>
-            </path>
-            <range>
                 <source>lido:shapeMeasurements</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
-                <additional_node>
-                    <property tag="P2_has_type"/>
-                    <entity tag="E55_Type" binding="Shape">
-                        <uri_function name="Type"/>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:shapeMeasurements</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
                     </entity>
-                </additional_node>
+                    <additional>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                        <entity tag="E55_Type" binding="Shape">
+                            <value_generator name="Type"/>
+                        </entity>
+                    </additional>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>scaleMeasurements</source>
-                <property tag="P2_has_type"/>
+                <source>lido:scaleMeasurements</source>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:scaleMeasurements</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
-                <additional_node>
-                    <property tag="P2_has_type"/>
-                    <entity tag="E55_Type" binding="Scale">
-                        <uri_function name="Type"/>
+                <!--<source>lido:scaleMeasurements</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
                     </entity>
-                </additional_node>
+                    <additional>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                        <entity tag="E55_Type" binding="Scale">
+                            <value_generator name="Type"/>
+                        </entity>
+                    </additional>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
             <source>lido/event</source>
-            <entity/>
+            <target>
+                <entity/>
+            </target>
         </domain>
         <link>
             <path>
-                <source>roleInEvent/term</source>
-                <property tag="P3_has_note"/>
+                <source>lido:roleInEvent/lido:term</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:roleInEvent/lido:term</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <!--<source>lido:roleInEvent/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>roleInEvent/term</source>
-                <property tag="P48_has_preferred_identifier"/>
+                <source>lido:roleInEvent/lido:term</source>
+                <target>
+                    <property>
+                        <qname>crm:P48_has_preferred_identifier</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:roleInEvent/lido:term</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <!--<source>lido:roleInEvent/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventName/appellationValue</source>
-                <property tag="P1_is_identified_by"/>
-            </path>
-            <range>
                 <source>lido:eventName/lido:appellationValue</source>
-                <entity tag="E41_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P1_is_identified_by</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventName/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E41_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventName/sourceAppellation</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:eventName/lido:sourceAppellation</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventName/lido:sourceAppellation</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>displayActorInRole</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:displayActorInRole</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayActorInRole</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>actorID</source>
-                <property tag="P11_had_participant"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="authority">@lido:source</arg>
-                            <arg name="identifier">text()</arg>
-                            <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
-                            <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:actorID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P11_had_participant</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                                <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
+                                <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:actorID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>nameActorSet/appellationValue</source>
-                <property tag="P11_had_participant"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="authority">../../lido:actorID/@lido:source</arg>
-                            <arg name="identifier">../../lido:actorID/text()</arg>
-                            <arg name="name">../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
-                            <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P131_is_identified_by"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:nameActorSet/lido:appellationValue</source>
-                <entity tag="E82_Actor_Appellation">
-                    <uri_function name="Appellation">
-                        <arg>../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
-                    </uri_function>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P11_had_participant</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">../../lido:actorID/@lido:source</arg>
+                                <arg name="identifier">../../lido:actorID/text()</arg>
+                                <arg name="name">../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()
+                                </arg>
+                                <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:nameActorSet/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E82_Actor_Appellation</qname>
+                        <value_generator name="Appellation">
+                            <arg>../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>nameActorSet/sourceAppellation</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:nameActorSet/lido:sourceAppellation</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:nameActorSet/lido:sourceAppellation</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>roleActor/term</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:roleActor/lido:term</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:roleActor/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>attributionQualifierActor</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:attributionQualifierActor</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:attributionQualifierActor</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>extentActor</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:extentActor</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:extentActor</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>culture/term</source>
-                <property tag="P10_falls_within"/>
-            </path>
-            <range>
                 <source>lido:culture/lido:term</source>
-                <entity tag="E4_Period">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P10_falls_within</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:culture/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E4_Period</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>displayDate</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:displayDate</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayDate</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventDate/date/earliestDate</source>
-                <property tag="P4_has_time_span"/>
-                <internal_node>
-                    <entity tag="E52_Time_Span">
-                        <uri_function name="uriTimeSpan"/>
-                    </entity>
-                    <property tag="P79_beginning_is_qualified_by"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:eventDate/lido:date/lido:earliestDate</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P4_has_time_span</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E52_Time_Span</qname>
+                            <value_generator name="uriTimeSpan"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P79_beginning_is_qualified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventDate/lido:date/lido:earliestDate</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventDate/date/latestDate</source>
-                <property tag="P4_has_time_span"/>
-                <internal_node>
-                    <entity tag="E52_Time_Span">
-                        <uri_function name="uriTimeSpan"/>
-                    </entity>
-                    <property tag="P80_end_is_qualified_by"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:eventDate/lido:date/lido:latestDate</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P4_has_time_span</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E52_Time_Span</qname>
+                            <value_generator name="uriTimeSpan"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P80_end_is_qualified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventDate/lido:date/lido:latestDate</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventPlace/displayPlace</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:eventPlace/lido:displayPlace</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventPlace/lido:displayPlace</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventPlace/place/placeID</source>
-                <property tag="P7_took_place_at"/>
-                <internal_node>
-                    <entity tag="E53_Place">
-                        <uri_function name="Place">
-                            <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                            <arg name="authority">@lido:source</arg>
-                            <arg name="placeId">text()</arg>
-                            <arg name="coordinates">//lido:lido/nothing</arg>
-                            <arg name="spaces">../lido:partOfPlace</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:eventPlace/lido:place/lido:placeID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
-            </range>
-        </link>
-        <link>
-            <path>
-                <source>eventPlace/place/namePlaceSet/appellationValue</source>
-                <property tag="P7_took_place_at"/>
-                <internal_node>
-                    <entity tag="E53_Place">
-                        <uri_function name="Place">
-                            <arg name="placeName">text()</arg>
-                            <arg name="authority">../../lido:placeID/@lido:source</arg>
-                            <arg name="placeId">../../lido:placeID/text()</arg>
-                            <arg name="coordinates">//lido:lido/nothing</arg>
-                            <arg name="spaces">../../lido:partOfPlace</arg>
-                        </uri_function>
+                <target>
+                    <property>
+                        <qname>crm:P7_took_place_at</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="placeId">text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventPlace/lido:place/lido:placeID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
                     </entity>
-                    <property tag="P87_is_identified_by"/>
-                </internal_node>
-            </path>
-            <range>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
                 <source>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</source>
-                <entity tag="E44_Place_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P7_took_place_at</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">text()</arg>
+                                <arg name="authority">../../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P87_is_identified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E44_Place_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventMethod/term</source>
-                <property tag="P32_used_general_technique"/>
-            </path>
-            <range>
                 <source>lido:eventMethod/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P32_used_general_technique</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventMethod/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>displayMaterialsTech</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:displayMaterialsTech</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:displayMaterialsTech</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>termMaterialsTech/term</source>
-                <property tag="P32_used_general_technique"/>
-            </path>
-            <range>
                 <source>lido:termMaterialsTech/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P32_used_general_technique</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:termMaterialsTech/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>extentMaterialsTech</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:extentMaterialsTech</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:extentMaterialsTech</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventDescriptionSet/descriptiveNoteValue</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:eventDescriptionSet/lido:descriptiveNoteValue</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventDescriptionSet/lido:descriptiveNoteValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventDescriptionSet/sourceDescriptiveNote</source>
-                <property tag="P3_has_note"/>
+                <source>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <!--<source>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/eventActor</source>
-            <entity tag="E39_Actor">
-                <uri_function name="uriForActors">
-                    <arg name="authority">lido:actorInRole/lido:actor/lido:actorID/@lido:source</arg>
-                    <arg name="identifier">lido:actorInRole/lido:actor/lido:actorID/text()</arg>
-                    <arg name="name">lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue[@lido:pref=&quot;preferred&quot;]/text()</arg>
-                    <arg name="birthDate">lido:actorInRole/lido:actor/lido:vitalDatesActor/text()</arg>
-                </uri_function>
-            </entity>
+            <source>//lido/eventActor</source>
+            <target>
+                <entity>
+                    <qname>crm:E39_Actor</qname>
+                    <value_generator name="uriForActors">
+                        <arg name="authority">lido:actorInRole/lido:actor/lido:actorID/@lido:source</arg>
+                        <arg name="identifier">lido:actorInRole/lido:actor/lido:actorID/text()</arg>
+                        <arg name="name">lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue[@lido:pref=&quot;preferred&quot;]/text()</arg>
+                        <arg name="birthDate">lido:actorInRole/lido:actor/lido:vitalDatesActor/text()</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>nationalityActor/term</source>
-                <property tag="P107_is_current_or_former_member_of"/>
-            </path>
-            <range>
                 <source>lido:nationalityActor/lido:term</source>
-                <entity tag="E74_Group">
-                    <uri_function name="uriForActors">
-                        <arg name="authority">../lido:nationalityActor/lido:concept/lido:conceptID/@lido:source</arg>
-                        <arg name="identifier">../lido:nationalityActor/lido:concept/lido:conceptID/text()</arg>
-                        <arg name="name">../lido:nationalityActor/lido:concept/lido:term/text()</arg>
-                        <arg name="birthDate">//lido:lido/nothing</arg>
-                    </uri_function>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P107_is_current_or_former_member_of</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:nationalityActor/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E74_Group</qname>
+                        <value_generator name="uriForActors">
+                            <arg name="authority">../lido:nationalityActor/lido:concept/lido:conceptID/@lido:source
+                            </arg>
+                            <arg name="identifier">../lido:nationalityActor/lido:concept/lido:conceptID/text()</arg>
+                            <arg name="name">../lido:nationalityActor/lido:concept/lido:term/text()</arg>
+                            <arg name="birthDate">//lido:lido/nothing</arg>
+                        </value_generator>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>nationalityActor/conceptID</source>
-                <property tag="P48_has_preferred_identifier"/>
-            </path>
-            <range>
                 <source>lido:nationalityActor/lido:conceptID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P48_has_preferred_identifier</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:nationalityActor/lido:conceptID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>vitalDatesActor</source>
-                <property tag="P11_participated_in"/>
-            </path>
-            <range>
                 <source>lido:vitalDatesActor</source>
-                <entity tag="E52_Time_Span">
-                    <uri_function name="uriTimeSpan"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P11_participated_in</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:vitalDatesActor</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E52_Time_Span</qname>
+                        <value_generator name="uriTimeSpan"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>genderActor</source>
-                <property tag="P2_has_type"/>
+                <source>lido:genderActor</source>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:genderActor</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <!--<source>lido:genderActor</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
             <source>lido/periodName</source>
-            <entity tag="E52_Time_Span">
-                <uri_function name="uriTimeSpan">
-                    <arg>lido:concept/lido:term/text()</arg>
-                </uri_function>
-            </entity>
+            <target>
+                <entity>
+                    <qname>crm:E52_Time_Span</qname>
+                    <value_generator name="uriTimeSpan">
+                        <arg>lido:concept/lido:term/text()</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>eventDate/date/periodName/term</source>
-                <property tag="P4_has_time_span"/>
-            </path>
-            <range>
                 <source>lido:eventDate/lido:date/lido:periodName/lido:term</source>
-                <entity tag="E4_Period">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P4_has_time_span</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventDate/lido:date/lido:periodName/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E4_Period</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/eventPlace</source>
-            <entity tag="E53_Place">
-                <uri_function name="Place">
-                    <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
-                    <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
-                    <arg name="placeId">lido:place/lido:placeID/text()</arg>
-                    <arg name="coordinates">//lido:lido/nothing</arg>
-                    <arg name="spaces">lido:place/lido:partOfPlace</arg>
-                </uri_function>
-            </entity>
+            <source>//lido:lido/lido:eventPlace</source>
+            <target>
+                <entity>
+                    <qname>crm:E53_Place</qname>
+                    <value_generator name="Place">
+                        <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
+                        <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
+                        <arg name="placeId">lido:place/lido:placeID/text()</arg>
+                        <arg name="coordinates">//lido:lido/nothing</arg>
+                        <arg name="spaces">lido:place/lido:partOfPlace</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>eventPlace/place/partOfPlace/placeID</source>
-                <property tag="P88_consists_of"/>
-                <internal_node>
-                    <entity tag="E53_Place">
-                        <uri_function name="Place">
-                            <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                            <arg name="authority">../lido:placeID/@lido:source</arg>
-                            <arg name="placeId">../lido:placeID/text()</arg>
-                            <arg name="coordinates">//lido:lido/nothing</arg>
-                            <arg name="spaces">../lido:partOfPlace</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P88_consists_of</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>eventPlace/place/placeClassification/term</source>
-                <property tag="P2_has_type"/>
-            </path>
-            <range>
                 <source>lido:eventPlace/lido:place/lido:placeClassification/lido:term</source>
-                <entity tag="E55_Type">
-                    <uri_function name="Type"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:eventPlace/lido:place/lido:placeClassification/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/termMaterialsTech</source>
-            <entity tag="E55_Type">
-                <uri_function name="Type"/>
-            </entity>
+            <source>//lido:lido/lido:termMaterialsTech</source>
+            <target>
+                <entity>
+                    <qname>crm:E55_Type</qname>
+                    <value_generator name="Type"/>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>sourceMaterialsTech</source>
-                <property tag="P71i_is_listed_in"/>
-            </path>
-            <range>
                 <source>lido:sourceMaterialsTech</source>
-                <entity tag="E32_Authority_Document">
-                    <uri_function name="uriPhysThing"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P71i_is_listed_in</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:sourceMaterialsTech</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E32_Authority_Document</qname>
+                        <value_generator name="uriPhysThing"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/object</source>
-            <entity tag="E18_Physical_Thing">
-                <uri_function name="uriPhysThing"/>
-            </entity>
+            <source>//lido:lido/lido:object</source>
+            <target>
+                <entity>
+                    <qname>crm:E18_Physical_Thing</qname>
+                    <value_generator name="uriPhysThing"/>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>subjectObject/object/objectNote</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:subjectObject/lido:object/lido:objectNote</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:subjectObject/lido:object/lido:objectNote</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/rights</source>
-            <entity tag="E30_Right">
-                <uri_function name="uriConceptual">
-                    <arg>lido:rightsType/text()</arg>
-                </uri_function>
-            </entity>
+            <source>lido:lido/lido:rights</source>
+            <target>
+                <entity>
+                    <qname>crm:E30_Right</qname>
+                    <value_generator name="uriConceptual">
+                        <arg>lido:rightsType/text()</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>rightsDate/earliestDate</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:rightsDate/lido:earliestDate</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsDate/lido:earliestDate</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>rightsDate/latestDate</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:rightsDate/lido:latestDate</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsDate/lido:latestDate</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>rightsDate/periodName/term</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:rightsDate/lido:periodName/lido:term</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsDate/lido:periodName/lido:term</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>rightsHolder/legalBodyID</source>
-                <property tag="P75i_is_possessed_by"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="">@lido:source</arg>
-                            <arg name="">text()</arg>
-                            <arg name="">../lido:legalBodyName/lido:appellationValue/text()</arg>
-                            <arg name="">//lido:lido/nothing</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:rightsHolder/lido:legalBodyID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P75i_is_possessed_by</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="">@lido:source</arg>
+                                <arg name="">text()</arg>
+                                <arg name="">../lido:legalBodyName/lido:appellationValue/text()</arg>
+                                <arg name="">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsHolder/lido:legalBodyID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>rightsHolder/legalBodyName/appellationValue</source>
-                <property tag="P75i_is_possessed_by"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
-                            <arg name="identifier">../../lido:legalBodyID/text()</arg>
-                            <arg name="name">text()</arg>
-                            <arg name="birthDate">//lido:lido/nothing</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P131_is_identified_by"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</source>
-                <entity tag="E82_Actor_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P75i_is_possessed_by</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
+                                <arg name="identifier">../../lido:legalBodyID/text()</arg>
+                                <arg name="name">text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E82_Actor_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>creditLine</source>
-                <property tag="P3_has_note"/>
-            </path>
-            <range>
                 <source>lido:creditLine</source>
-                <entity tag="E62_String">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P3_has_note</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:creditLine</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E62_String</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/rightsHolder</source>
-            <entity tag="E39_Actor">
-                <uri_function name="uriForActors">
-                    <arg name="authority">lido:legalBodyID/@lido:source</arg>
-                    <arg name="identifier">lido:legalBodyID/text()</arg>
-                    <arg name="name">lido:legalBodyName/lido:appellationValue/text()</arg>
-                    <arg name="birthDate">//lido:lido/nothing</arg>
-                </uri_function>
-            </entity>
+            <source>//lido:lido/lido:rightsHolder</source>
+            <target>
+                <entity>
+                    <qname>crm:E39_Actor</qname>
+                    <value_generator name="uriForActors">
+                        <arg name="authority">lido:legalBodyID/@lido:source</arg>
+                        <arg name="identifier">lido:legalBodyID/text()</arg>
+                        <arg name="name">lido:legalBodyName/lido:appellationValue/text()</arg>
+                        <arg name="birthDate">//lido:lido/nothing</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>rightsHolder/legalBodyWeblink</source>
-                <property tag="P129i_is_subject_of"/>
-            </path>
-            <range>
                 <source>lido:rightsHolder/lido:legalBodyWeblink</source>
-                <entity tag="E73_Information_Object">
-                    <uri_function name="uriConceptual"/>
-                </entity>
-                <additional_node>
-                    <property tag="P2_has_type"/>
-                    <entity tag="E55_Type" binding="Web_resource">
-                        <uri_function name="Type">
-                            <arg>@lido:formatResource</arg>
-                        </uri_function>
+                <target>
+                    <property>
+                        <qname>crm:P129i_is_subject_of</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:rightsHolder/lido:legalBodyWeblink</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E73_Information_Object</qname>
+                        <value_generator name="uriConceptual"/>
                     </entity>
-                </additional_node>
+                    <additional>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                        <entity tag="E55_Type" binding="Web_resource">
+                            <value_generator name="Type">
+                                <arg>@lido:formatResource</arg>
+                            </value_generator>
+                        </entity>
+                    </additional>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/recordWrap</source>
-            <entity tag="E31_Document">
-                <uri_function name="uriPhysThing">
-                    <arg>lido:recordID/text()</arg>
-                </uri_function>
-            </entity>
+            <source>//lido:lido/lido:recordWrap</source>
+            <target>
+                <entity>
+                    <qname>crm:E31_Document</qname>
+                    <value_generator name="uriPhysThing">
+                        <arg>lido:recordID/text()</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>recordType</source>
-                <property tag="P2_has_type"/>
-            </path>
-            <range>
                 <source>lido:recordType</source>
-                <entity tag="E55_Type">
-                    <uri_function name="createLiteral"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P2_has_type</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:recordType</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E55_Type</qname>
+                        <value_generator name="createLiteral"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>recordSource/legalBodyID</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="authority">@lido:source</arg>
-                            <arg name="identifier">text()</arg>
-                            <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
-                            <arg name="birthDate">//lido:lido/nothing</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P48_has_preferred_identifier"/>
-                </internal_node>
-            </path>
-            <range>
                 <source>lido:recordSource/lido:legalBodyID</source>
-                <entity tag="E42_Identifier">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                                <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
+                    </intermediate>
+                </target>
+            </path>
+            <range>
+                <!--<source>lido:recordSource/lido:legalBodyID</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E42_Identifier</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
         <link>
             <path>
-                <source>recordSource/legalBodyName/appellationValue</source>
-                <property tag="P67_refers_to"/>
-                <internal_node>
-                    <entity tag="E39_Actor">
-                        <uri_function name="uriForActors">
-                            <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
-                            <arg name="identifier">../../lido:legalBodyID/text()</arg>
-                            <arg name="name">text()</arg>
-                            <arg name="birthDate">//lido:lido/nothing</arg>
-                        </uri_function>
-                    </entity>
-                    <property tag="P131_is_identified_by"/>
-                </internal_node>
+                <source>lido:recordSource/lido:legalBodyName/lido:appellationValue</source>
+                <target>
+                    <property>
+                        <qname>crm:P67_refers_to</qname>
+                    </property>
+                    <intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
+                                <arg name="identifier">../../lido:legalBodyID/text()</arg>
+                                <arg name="name">text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
+                    </intermediate>
+                </target>
             </path>
             <range>
-                <source>lido:recordSource/lido:legalBodyName/lido:appellationValue</source>
-                <entity tag="E82_Actor_Appellation">
-                    <uri_function name="Appellation"/>
-                </entity>
+                <!--<source>lido:recordSource/lido:legalBodyName/lido:appellationValue</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E82_Actor_Appellation</qname>
+                        <value_generator name="Appellation"/>
+                    </entity>
+                </target>
             </range>
         </link>
     </mapping>
     <mapping>
         <domain>
-            <source>lido/recordSource</source>
-            <entity tag="E39_Actor">
-                <uri_function name="uriForActors">
-                    <arg name="authority">lido:legalBodyID/@lido:source</arg>
-                    <arg name="identifier">lido:legalBodyID/text()</arg>
-                    <arg name="name">lido:legalBodyName/lido:appellationValue/text()</arg>
-                    <arg name="birthDate">//lido:lido/nothing</arg>
-                </uri_function>
-            </entity>
+            <source>lido:lido/lido:recordSource</source>
+            <target>
+                <entity>
+                    <qname>crm:E39_Actor</qname>
+                    <value_generator name="uriForActors">
+                        <arg name="authority">lido:legalBodyID/@lido:source</arg>
+                        <arg name="identifier">lido:legalBodyID/text()</arg>
+                        <arg name="name">lido:legalBodyName/lido:appellationValue/text()</arg>
+                        <arg name="birthDate">//lido:lido/nothing</arg>
+                    </value_generator>
+                </entity>
+            </target>
         </domain>
         <link>
             <path>
-                <source>recordSource/legalBodyWeblink</source>
-                <property tag="P129i_is_subject_of"/>
+                <source>lido:recordSource/lido:legalBodyWeblink</source>
+                <target>
+                    <property>
+                        <qname>crm:P129i_is_subject_of</qname>
+                    </property>
+                </target>
             </path>
             <range>
-                <source>lido:recordSource/lido:legalBodyWeblink</source>
-                <entity tag="E73_Information_Object">
-                    <uri_function name="uriConceptual"/>
-                </entity>
-                <additional_node>
-                    <property tag="P2_has_type"/>
-                    <entity tag="E55_Type" binding="Web_resource">
-                        <uri_function name="Type">
-                            <arg>@lido:formatResource</arg>
-                        </uri_function>
+                <!--<source>lido:recordSource/lido:legalBodyWeblink</source>-->
+                <target>
+                    <entity>
+                        <qname>crm:E73_Information_Object</qname>
+                        <value_generator name="uriConceptual"/>
                     </entity>
-                </additional_node>
+                    <additional>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
+                        <entity tag="E55_Type" binding="Web_resource">
+                            <value_generator name="Type">
+                                <arg>@lido:formatResource</arg>
+                            </value_generator>
+                        </entity>
+                    </additional>
+                </target>
             </range>
         </link>
     </mapping>

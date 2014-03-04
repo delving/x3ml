@@ -32,6 +32,7 @@ import java.util.*;
         TestConditions.class,
         TestSimple.class,
         TestCoin.class,
+        TestLido07.class,
         TestBM.class
 })
 public class AllTests {

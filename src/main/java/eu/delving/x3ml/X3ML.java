@@ -96,6 +96,7 @@ public interface X3ML {
     @XStreamAlias("target")
     public static class Target {
 
+        @XStreamAlias("if")
         public Condition condition;
 
         @XStreamAlias("entity")
@@ -209,7 +210,7 @@ public interface X3ML {
         List<Condition> list;
     }
 
-    @XStreamAlias("and")
+    @XStreamAlias("or")
     public static class OrCondition {
         @XStreamImplicit
         List<Condition> list;

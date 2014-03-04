@@ -1,21 +1,15 @@
 package eu.delving.x3ml;
 
-import com.sun.deploy.util.StringUtils;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
-import junit.framework.Assert;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
-import static eu.delving.x3ml.AllTests.*;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**

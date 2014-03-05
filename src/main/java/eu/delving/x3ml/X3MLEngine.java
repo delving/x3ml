@@ -41,7 +41,7 @@ public class X3MLEngine {
     }
 
     public X3MLContext execute(Element sourceRoot, X3ML.ValuePolicy valuePolicy) throws X3MLException {
-        X3MLContext context = new X3MLContext(sourceRoot, this.mappings.sourceType, valuePolicy);
+        X3MLContext context = new X3MLContext(sourceRoot, this.mappings, valuePolicy);
         context.setNamespaceContext(namespaceContext, prefixes);
         mappings.apply(context);
         return context;

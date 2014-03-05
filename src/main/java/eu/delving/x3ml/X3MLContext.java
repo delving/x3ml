@@ -1,6 +1,9 @@
 package eu.delving.x3ml;
 
-import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,15 +24,15 @@ import java.util.List;
 
 public class X3MLContext implements X3ML {
     private final Element documentRoot;
-    private final SourceType sourceType;
     private final ValuePolicy valuePolicy;
+    private final Mappings mappings;
     private NamespaceContext namespaceContext;
     private XPathFactory pathFactory = new XPathFactoryImpl();
     private Model model = ModelFactory.createDefaultModel();
 
-    X3MLContext(Element documentRoot, SourceType sourceType, ValuePolicy valuePolicy) {
+    X3MLContext(Element documentRoot, Mappings mappings, ValuePolicy valuePolicy) {
         this.documentRoot = documentRoot;
-        this.sourceType = sourceType;
+        this.mappings = mappings;
         this.valuePolicy = valuePolicy;
     }
 
@@ -56,6 +59,10 @@ public class X3MLContext implements X3ML {
 
     // ===== calls made from within X3ML.* classes ====
 
+    public interface ValueContext {
+        Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement);
+    }
+
     public List<DomainContext> createDomainContexts(Domain domain) {
         List<Node> domainNodes = nodeList(documentRoot, domain.source);
         List<DomainContext> domainContexts = new ArrayList<DomainContext>();
@@ -66,6 +73,202 @@ public class X3MLContext implements X3ML {
             }
         }
         return domainContexts;
+    }
+
+    public class DomainContext implements ValueContext {
+        public final Domain domain;
+        public final Node node;
+        public Resource domainResource;
+        public Value value;
+        public List<AdditionalNode> additionalNodes;
+
+        public DomainContext(Domain domain, Node node) {
+            this.domain = domain;
+            this.node = node;
+        }
+
+        public boolean resolve() {
+            value = domain.target.entityElement.getValue(this);
+            if (value == null) return false;
+            domainResource = createTypedResource(value.uri, domain.target.entityElement.qualifiedName);
+            additionalNodes = createAdditionalNodes(domain.target.additionals, this);
+            return domainResource != null;
+        }
+
+        @Override
+        public Value generateValue(final ValueGenerator valueGenerator, EntityElement entityElement) {
+            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+                @Override
+                public ArgValue getArgValue(String name, SourceType type) {
+                    QualifiedName qualifiedName = domain.target.entityElement.qualifiedName;
+                    return evaluate(node, qualifiedName, valueGenerator, name, type);
+                }
+            });
+        }
+
+        public List<PathContext> createPathContexts(Path path) {
+            List<PathContext> pathContexts = new ArrayList<PathContext>();
+            for (Node pathNode : nodeList(node, path.source)) {
+                PathContext pathContext = new PathContext(this, pathNode, path);
+                if (pathContext.resolve()) {
+                    pathContexts.add(pathContext);
+                }
+            }
+            return pathContexts;
+        }
+
+        public void link() {
+            for (AdditionalNode additionalNode : additionalNodes) {
+                additionalNode.linkFrom(domainResource);
+            }
+        }
+    }
+
+    public class PathContext implements ValueContext {
+        public final DomainContext domainContext;
+        public final Node node;
+        public final Path path;
+        public QualifiedName qualifiedName;
+        public Property property, intermediateProperty;
+        public Resource intermediateResource;
+
+        public PathContext(DomainContext domainContext, Node node, Path path) {
+            this.domainContext = domainContext;
+            this.node = node;
+            this.path = path;
+        }
+
+        public boolean resolve() {
+            qualifiedName = path.target.propertyElement.getPropertyClass(this);
+            if (qualifiedName == null) return false;
+            String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
+            property = model.createProperty(namespaceUri, qualifiedName.getLocalName());
+            if (path.target.intermediate != null) {
+                Intermediate inter = path.target.intermediate;
+                Value interValue = inter.entityElement.getValue(this);
+                intermediateResource = createTypedResource(interValue.uri, inter.entityElement.qualifiedName);
+                intermediateProperty = createProperty(inter.propertyElement.qualifiedName);
+            }
+            return true;
+        }
+
+        public void linkTo(Resource rangeResource) {
+            if (intermediateProperty == null) {
+                domainContext.domainResource.addProperty(property,rangeResource);
+            }
+            else {
+                domainContext.domainResource.addProperty(property, intermediateResource);
+                intermediateResource.addProperty(intermediateProperty, rangeResource);
+            }
+        }
+
+        public List<RangeContext> createRangeContexts(Range range) {
+            List<Node> rangeNodes = nodeList(node, range.source);
+            List<RangeContext> rangeContexts = new ArrayList<RangeContext>();
+            for (Node rangeNode : rangeNodes) {
+                RangeContext rangeContext = new RangeContext(this, rangeNode, range);
+                if (rangeContext.resolve()) {
+                    rangeContexts.add(rangeContext);
+                }
+            }
+            return rangeContexts;
+        }
+
+        @Override
+        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
+            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+                @Override
+                public ArgValue getArgValue(String name, SourceType type) {
+                    return evaluate(node, entityElement.qualifiedName, valueGenerator, name, type);
+                }
+            });
+        }
+    }
+
+    public class RangeContext implements ValueContext {
+        public final PathContext pathContext;
+        public final Node node;
+        public final Range range;
+        public Value value;
+        public Resource rangeResource;
+        public List<AdditionalNode> additionalNodes;
+
+        public RangeContext(PathContext pathContext, Node node, Range range) {
+            this.pathContext = pathContext;
+            this.node = node;
+            this.range = range;
+        }
+
+        public boolean resolve() {
+            value = range.target.entityElement.getValue(this);
+            if (value == null) return false;
+            rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
+            if (rangeResource == null) return false;
+            if (value.labelQName != null && value.labelValue != null) {
+                Property labelProperty = createProperty(value.labelQName);
+                rangeResource.addProperty(labelProperty, value.labelValue);
+            }
+            additionalNodes = createAdditionalNodes(range.target.additionals, this);
+            return true;
+        }
+
+        @Override
+        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
+            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+                @Override
+                public ArgValue getArgValue(String name, SourceType type) {
+                    return evaluate(node, entityElement.qualifiedName, valueGenerator, name, type);
+                }
+            });
+        }
+
+        public void link() {
+            pathContext.linkTo(rangeResource);
+            for (AdditionalNode additionalNode : additionalNodes) {
+                additionalNode.linkFrom(rangeResource);
+            }
+        }
+    }
+
+
+// =============================================
+
+    private List<AdditionalNode> createAdditionalNodes(List<Additional> additionalList, ValueContext valueContext) {
+        List<AdditionalNode> additionalNodes = new ArrayList<AdditionalNode>();
+        if (additionalList != null) {
+            for (Additional additional : additionalList) {
+                AdditionalNode additionalNode = new AdditionalNode(additional, valueContext);
+                if (additionalNode.resolve()) {
+                    additionalNodes.add(additionalNode);
+                }
+            }
+        }
+        return additionalNodes;
+    }
+
+    private class AdditionalNode {
+        public final Additional additional;
+        public final ValueContext valueContext;
+        public Property property;
+        public Resource resource;
+
+        private AdditionalNode(Additional additional, ValueContext valueContext) {
+            this.additional = additional;
+            this.valueContext = valueContext;
+        }
+
+        public boolean resolve() {
+            property = createProperty(additional.propertyElement.qualifiedName);
+            if (property == null) return false;
+            Value value = additional.entityElement.getValue(valueContext);
+            if (value == null) return false;
+            resource = createTypedResource(value.uri, additional.entityElement.qualifiedName);
+            return resource != null;
+        }
+
+        public void linkFrom(Resource fromResource) {
+            fromResource.addProperty(property, resource);
+        }
     }
 
     private ArgValue evaluate(Node contextNode, QualifiedName qualifiedName, ValueGenerator function, String argName, SourceType type) {
@@ -109,148 +312,6 @@ public class X3MLContext implements X3ML {
         return value;
     }
 
-    public class DomainContext {
-        public final Domain domain;
-        public final Node node;
-        public Value value;
-
-        public DomainContext(Domain domain, Node node) {
-            this.domain = domain;
-            this.node = node;
-        }
-
-        public boolean resolve() {
-            this.value = domain.target.entityElement.getValue(this);
-            return this.value != null;
-        }
-
-        public Value generateValue(final ValueGenerator valueGenerator) {
-            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
-                @Override
-                public ArgValue getArgValue(String name, SourceType type) {
-                    QualifiedName qualifiedName = domain.target.entityElement.qualifiedName;
-                    return evaluate(node, qualifiedName, valueGenerator, name, type);
-                }
-            });
-        }
-
-        public List<PathContext> createPathContexts(Path path) {
-            List<Node> pathNodes = nodeList(node, path.source);
-            List<PathContext> pathContexts = new ArrayList<PathContext>();
-            for (Node pathNode : pathNodes) {
-                PathContext pathContext = new PathContext(this, pathNode, path);
-                if (pathContext.generateProperty()) {
-                    pathContexts.add(pathContext);
-                }
-            }
-            return pathContexts;
-        }
-    }
-
-    public class PathContext {
-        public final DomainContext domainContext;
-        public final Node node;
-        public final Path path;
-        public QualifiedName qualifiedName;
-        public Property property;
-
-        public PathContext(DomainContext domainContext, Node node, Path path) {
-            this.domainContext = domainContext;
-            this.node = node;
-            this.path = path;
-        }
-
-        public boolean generateProperty() {
-            qualifiedName = path.target.propertyElement.getPropertyClass(this);
-            if (qualifiedName == null) return false;
-            this.property = model.createProperty(namespaceContext.getNamespaceURI(qualifiedName.getPrefix()), qualifiedName.getLocalName());
-            return true;
-        }
-
-        public List<RangeContext> createRangeContexts(Range range) {
-            List<Node> rangeNodes = nodeList(node, range.source);
-            List<RangeContext> rangeContexts = new ArrayList<RangeContext>();
-            for (Node rangeNode : rangeNodes) {
-                RangeContext rangeContext = new RangeContext(this, rangeNode, range);
-                if (rangeContext.resolve()) {
-                    rangeContexts.add(rangeContext);
-                }
-            }
-            return rangeContexts;
-        }
-    }
-
-    public class RangeContext {
-        public final PathContext pathContext;
-        public final Node node;
-        public final Range range;
-        public Value value;
-
-        public RangeContext(PathContext pathContext, Node node, Range range) {
-            this.pathContext = pathContext;
-            this.node = node;
-            this.range = range;
-        }
-
-        public boolean resolve() {
-            this.value = range.target.entityElement.getValue(this);
-            return this.value != null;
-        }
-
-        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
-            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
-                @Override
-                public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluate(node, entityElement.qualifiedName, valueGenerator, name, type);
-                }
-            });
-        }
-
-        public void generate() {
-            Resource domainResource = createTypedResource(
-                    pathContext.domainContext.value.uri,
-                    pathContext.domainContext.domain.target.entityElement.qualifiedName
-            );
-            Property property = createProperty(pathContext.qualifiedName);
-            Resource rangeResource = createTypedResource(
-                    value.uri,
-                    range.target.entityElement.qualifiedName
-            );
-            if (pathContext.path.target.intermediate != null) {
-                Intermediate intermediate = pathContext.path.target.intermediate;
-                Value intermediateValue = intermediate.entityElement.getValue(this);
-                Resource intermediateResource = createTypedResource(
-                        intermediateValue.uri,
-                        intermediate.entityElement.qualifiedName
-                );
-                Property intermediateProperty = createProperty(
-                        intermediate.propertyElement.qualifiedName
-                );
-                domainResource.addProperty(property, intermediateResource);
-                intermediateResource.addProperty(intermediateProperty, rangeResource);
-            }
-            else {
-                domainResource.addProperty(property, rangeResource);
-            }
-            if (value.labelQName != null && value.labelValue != null) {
-                Property labelProperty = createProperty(value.labelQName);
-                rangeResource.addProperty(labelProperty, value.labelValue);
-            }
-            if (range.target.additional != null) {
-                Additional additional = range.target.additional;
-                Property additionalProperty = createProperty(
-                        additional.propertyElement.qualifiedName
-                );
-                Value additionalValue = additional.entityElement.getValue(this);
-                Resource additionalResource = createTypedResource(
-                        additionalValue.uri,
-                        additional.entityElement.qualifiedName
-                );
-                rangeResource.addProperty(additionalProperty, additionalResource);
-            }
-        }
-    }
-
     private Resource createTypedResource(String uriString, QualifiedName qualifiedName) {
         if (qualifiedName == null) throw new X3MLException("no class element");
         String typeUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
@@ -261,8 +322,6 @@ public class X3MLContext implements X3ML {
         String propertyNamespace = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
         return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
     }
-
-// =============================================
 
     private String valueAt(Node node, String expression) {
         List<Node> nodes = nodeList(node, expression);
@@ -302,7 +361,7 @@ public class X3MLContext implements X3ML {
     }
 
     private XPath path() {
-        if (sourceType != SourceType.XPATH) throw new X3MLException("Only sourceType=\"XPATH\" is implemented");
+        if (mappings.sourceType != SourceType.XPATH) throw new X3MLException("Only sourceType=\"XPATH\" is implemented");
         XPath path = pathFactory.newXPath();
         path.setNamespaceContext(namespaceContext);
         return path;

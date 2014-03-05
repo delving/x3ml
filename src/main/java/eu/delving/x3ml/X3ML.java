@@ -34,7 +34,39 @@ public interface X3ML {
 
         public void apply(X3MLContext context) {
             for (Mapping mapping : mappings) {
-                mapping.applyMapping(context);
+                mapping.apply(context);
+            }
+        }
+    }
+
+    @XStreamAlias("mapping")
+    public static class Mapping {
+        public Domain domain;
+
+        @XStreamImplicit
+        public List<Link> links;
+
+        public void apply(X3MLContext context) {
+            for (X3MLContext.DomainContext domainContext : context.createDomainContexts(domain)) {
+                for (Link link : links) {
+                    link.apply(domainContext);
+                }
+            }
+        }
+    }
+
+    @XStreamAlias("link")
+    public static class Link {
+
+        public Path path;
+
+        public Range range;
+
+        public void apply(X3MLContext.DomainContext context) {
+            for (X3MLContext.PathContext pathContext : context.createPathContexts(path)) {
+                for (X3MLContext.RangeContext rangeContext : pathContext.createRangeContexts(range)) {
+                    rangeContext.link();
+                }
             }
         }
     }
@@ -49,22 +81,6 @@ public interface X3ML {
 
         public String toString() {
             return prefix + ":" + uri;
-        }
-    }
-
-    @XStreamAlias("mapping")
-    public static class Mapping {
-        public Domain domain;
-
-        @XStreamImplicit
-        public List<Link> links;
-
-        public void applyMapping(X3MLContext context) {
-            for (X3MLContext.DomainContext domainContext : context.createDomainContexts(domain)) {
-                for (Link link : links) {
-                    link.applyLink(domainContext);
-                }
-            }
         }
     }
 
@@ -105,28 +121,13 @@ public interface X3ML {
         @XStreamAlias("property")
         public PropertyElement propertyElement;
 
-        public Additional additional;
-
         public Intermediate intermediate;
+
+        @XStreamImplicit
+        public List<Additional> additionals;
 
         public String toString() {
             return "Target(" + entityElement + ", " + propertyElement + ")";
-        }
-    }
-
-    @XStreamAlias("link")
-    public static class Link {
-
-        public Path path;
-
-        public Range range;
-
-        public void applyLink(X3MLContext.DomainContext context) {
-            for (X3MLContext.PathContext pathContext : context.createPathContexts(path)) {
-                for (X3MLContext.RangeContext rangeContext : pathContext.createRangeContexts(range)) {
-                    rangeContext.generate();
-                }
-            }
         }
     }
 
@@ -243,11 +244,7 @@ public interface X3ML {
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;
 
-        public Value getValue(X3MLContext.DomainContext context) {
-            return context.generateValue(valueGenerator);
-        }
-
-        public Value getValue(X3MLContext.RangeContext context) {
+        public Value getValue(X3MLContext.ValueContext context) {
             return context.generateValue(valueGenerator, this);
         }
 

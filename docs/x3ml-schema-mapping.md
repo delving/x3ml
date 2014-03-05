@@ -8,6 +8,10 @@ The requirement that X3ML mappings be built **collaboratively** and that they mu
 
 For the time being, X3ML will be restricted to consuming XML records and producing RDF in various serializations.  As a result, XPath will be the source access used.
 
+[View PDF](X3ML-Prezi-1.pdf) | [View Prezi on prezi.com](http://prezi.com/0tor__p-a0kj/?utm_campaign=share&utm_medium=copy&rc=ex0share)
+------------- | -------------
+![delving logo](X3ML-Prezi-1.pdf?raw=true =360x240)  | ![delving logo](X3ML-Prezi-2.pdf?raw=true =360x240)  
+
 ## Mappings
 
 At first glance, the global structure of X3ML is quite easy to understand.  It consists of some prerequisite information, and then a series of mappings.
@@ -114,9 +118,7 @@ First, the source of the *domain* is used as a kind of "anchor" and then the *li
 
 	<source>...</source>
 
-The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.
-
-* **Note: Considering the range/source to be an extension of the path/source appears to be mistaken, but it is not yet clear how the two are to be used.  If they are independent and the range/source value gives a separate collection of nodes from the path/source, then how to have them result in triples domain-path-range is not clear.**
+The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.  The two are typically identical, but they represent a statement about the semantic origin of the resulting property and entity.  When they are not identical, the range/source extends the path/source
 
 ## Target
 
@@ -148,7 +150,7 @@ The domain and range contain *target* blocks, which can either contain/generate 
 
 The arguments of the **[Value Generator](x3ml-value-generation.md)** are named and optional, since there is logic within the URI Generation to anticipate omissions.  The type of argument is determined by the value function, since the argument values are requested according to type.  The *xpath* expressions which will be evaluated in the current context (see Source below) in order to fetch information from the source record.
 
-## Intermediate Entity
+## Intermediate Nodes
 
 Sometimes a path in the source schema needs to become more than just a path in the output.  Instead, an intermediate entity must be introduced.
 
@@ -171,9 +173,9 @@ This is formulated using the *intermediate* element:
 		</target>
 	</path>
 
-## Additional Entities
+## Additional Nodes
 
-When additional properties and entities need to be added to the target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the property which will describe the link.
+When additional properties and entities need to be added to a target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the property which will describe the link.
 
 	<range>
 		<source/>
@@ -183,8 +185,14 @@ When additional properties and entities need to be added to the target entity, t
 				<property/>
 				<entity/>
 			</additional>
+			<additional/>
+			...
 		</target>
 	</range>
+
+Additional 
+
+Note that the target allows multiple additional nodes.
 
 ## Comments
 

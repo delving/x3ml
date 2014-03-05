@@ -9,8 +9,11 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -19,63 +22,125 @@ import static org.junit.Assert.assertEquals;
 public class TestConditions implements X3ML {
     private final Logger log = Logger.getLogger(getClass());
 
-    private void log(String title, String[] list) {
-        log.info(title);
-        int count = 0;
-        for (String line : list) {
-            log.info((count++) + " ) " + line);
-        }
-    }
-
     @Test
-    public void testSerializations() {
-        testSerialization(new String[] {
+    public void testBasic() {
+        use(
                 "<if>",
                 "  <exists>gumby</exists>",
                 "</if>"
-        });
-        testSerialization(new String[] {
+        )
+                .expect(false)
+                .put("gumby", "yes").expect(true);
+
+        use(
                 "<if>",
                 "  <equals value=\"pokey\">gumby</equals>",
                 "</if>"
-        });
-        testSerialization(new String[] {
+        )
+                .expect(false)
+                .put("gumby", "man").expect(false)
+                .put("gumby", "pokey").expect(true);
+    }
+
+    @Test
+    public void testBooleans() {
+        use(
                 "<if>",
-                "  <narrower value=\"pokey\">gumby</narrower>",
+                "  <not>",
+                "    <equals value=\"clay man\">gumby</equals>",
+                "  <not>",
                 "</if>"
-        });
-        testSerialization(new String[] {
+        )
+                .expect(true)
+                .put("gumby", "horse").expect(true)
+                .put("gumby", "clay man").expect(false);
+
+        use(
                 "<if>",
                 "  <and>",
                 "    <if>",
                 "      <exists>gumby</exists>",
                 "    </if>",
                 "    <if>",
-                "      <equals value=\"pokey\">gumby</equals>",
-                "    </if>",
-                "    <if>",
-                "      <not>",
-                "        <if>",
-                "          <exists>gumby</exists>",
-                "        </if>",
-                "      </not>",
+                "      <equals value=\"horse\">pokey</equals>",
                 "    </if>",
                 "  </and>",
                 "</if>"
-        });
+        )
+                .expect(false)
+                .put("gumby", "present").expect(false)
+                .put("pokey", "dog").expect(false)
+                .put("pokey", "horse").expect(true)
+                .remove("gumby").expect(false);
+
+        use(
+                "<if>",
+                "  <or>",
+                "    <if>",
+                "      <exists>gumby</exists>",
+                "    </if>",
+                "    <if>",
+                "      <equals value=\"horse\">pokey</equals>",
+                "    </if>",
+                "  </or>",
+                "</if>"
+        )
+                .expect(false)
+                .put("gumby", "present").expect(true)
+                .remove("gumby").expect(false)
+                .put("pokey", "dog").expect(false)
+                .put("pokey", "horse").expect(true)
+                .remove("pokey").expect(false);
     }
 
-    private void testSerialization(String[] x3ml) {
-        String x3mlString = toString(x3ml);
-        Condition condition = (Condition) stream().fromXML(x3mlString);
-        condition.failure(new TestContext(
+    // ====================================
 
-        ));
-        String check = stream().toXML(condition);
-        assertEquals("serialization problem", x3mlString, check);
+    static Case use(String... conditionLines) {
+        return new Case(conditionLines);
     }
 
-    private static String toString(String [] array) {
+    static class Case implements X3MLContext.ValueContext {
+        Condition condition;
+        Map<String, String> known = new TreeMap<String, String>();
+
+        Case(String... conditionLines) {
+            String conditionString = TestConditions.toString(conditionLines);
+            this.condition = (Condition) stream().fromXML(conditionString);
+            String check = stream().toXML(condition);
+            assertEquals("serialization problem", conditionString, check);
+        }
+
+        Case put(String key, String value) {
+            known.put(key, value);
+            return this;
+        }
+
+        Case remove(String key) {
+            known.remove(key);
+            return this;
+        }
+
+        Case expect(boolean outcome) {
+            boolean success = outcome != condition.failure(this);
+            if (!success) {
+                fail(condition.toString());
+            }
+            return this;
+        }
+
+        @Override
+        public String evaluate(String expression) {
+            String evaluation = known.get(expression);
+            return evaluation == null ? "" : evaluation;
+        }
+
+        @Override
+        public Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement) {
+            throw new RuntimeException("Didn't expect this to be called");
+        }
+    }
+
+    private static String toString(String[] array) {
         return StringUtils.join(Arrays.asList(array), "\n");
     }
 
@@ -84,28 +149,5 @@ public class TestConditions implements X3ML {
         xstream.setMode(XStream.NO_REFERENCES);
         xstream.processAnnotations(X3ML.Condition.class);
         return xstream;
-    }
-
-    private static class TestContext implements X3MLContext.ValueContext {
-        private String[] truths;
-
-        private TestContext(String... truths) {
-            this.truths = truths;
-        }
-
-        @Override
-        public String evaluate(String expression) {
-            for (String truth : truths) {
-                if (expression.equals(truth)) {
-                    return truth;
-                }
-            }
-            return "";
-        }
-
-        @Override
-        public Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement) {
-            throw new RuntimeException("Didn't expect this to be called");
-        }
     }
 }

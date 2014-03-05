@@ -8,10 +8,6 @@ The requirement that X3ML mappings be built **collaboratively** and that they mu
 
 For the time being, X3ML will be restricted to consuming XML records and producing RDF in various serializations.  As a result, XPath will be the source access used.
 
-[Get PDF](X3ML-Prezi-1.pdf?raw=true) | [View Prezi on prezi.com](http://prezi.com/0tor__p-a0kj/?utm_campaign=share&utm_medium=copy&rc=ex0share)
-------------- | -------------
-![PDF](X3ML-Prezi-1.png?raw=true =360x240)  | ![Prezi](X3ML-Prezi-2.png?raw=true =360x240)  
-
 ## Mappings
 
 At first glance, the global structure of X3ML is quite easy to understand.  It consists of some prerequisite information, and then a series of mappings.

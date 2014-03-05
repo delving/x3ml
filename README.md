@@ -18,6 +18,12 @@ The most important aspects of this engine is its two main functions, and the car
 
 * **[Value Generation](https://github.com/delving/x3ml/blob/master/docs/x3ml-value-generation.md)** - the mechanism of generating URIs and labels.
 
+## Visualized
+
+[Get PDF](docs/X3ML-Prezi-1.pdf?raw=true) | [View Prezi on prezi.com](http://prezi.com/0tor__p-a0kj/?utm_campaign=share&utm_medium=copy&rc=ex0share)
+------------- | -------------
+![PDF](docs/X3ML-Prezi-1.png?raw=true =360x240)  | ![Prezi](docs/X3ML-Prezi-2.png?raw=true =360x240)  
+
 ## Development
 
 This project is a straightforward Maven 3 project, producing a single artifact in the form of a JAR file which contains the engine software.  The artifact will be used in a variety of different contexts, so the main focus of this project is to create exhaustively tested transformation engine.  Examples of input and expected output have been prepared by the participating organizations.

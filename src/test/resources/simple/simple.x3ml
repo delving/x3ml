@@ -18,7 +18,7 @@
         </domain>
         <link>
             <path>
-                <source>type</source>
+                <source>type-wrapper</source>
                 <target>
                     <property>
                         <qname>crm:P2_has_type</qname>
@@ -26,6 +26,7 @@
                 </target>
             </path>
             <range>
+                <source>type-wrapper/type</source>
                 <target>
                     <entity>
                         <qname>crm:E55_Type</qname>
@@ -47,7 +48,7 @@
         </link>
         <link>
             <path>
-                <source>type</source>
+                <source>type-wrapper</source>
                 <target>
                     <property>
                         <qname>crm:P666_has_nemesis</qname>
@@ -66,6 +67,7 @@
                 </target>
             </path>
             <range>
+                <source>type-wrapper/type</source>
                 <target>
                     <entity>
                         <qname>crm:E55_Type</qname>

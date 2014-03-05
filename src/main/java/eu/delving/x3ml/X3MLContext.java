@@ -30,13 +30,10 @@ public class X3MLContext implements X3ML {
     private XPathFactory pathFactory = new XPathFactoryImpl();
     private Model model = ModelFactory.createDefaultModel();
 
-    X3MLContext(Element documentRoot, Mappings mappings, ValuePolicy valuePolicy) {
+    X3MLContext(Element documentRoot, Mappings mappings, ValuePolicy valuePolicy, NamespaceContext namespaceContext, List<String> prefixes) {
         this.documentRoot = documentRoot;
         this.mappings = mappings;
         this.valuePolicy = valuePolicy;
-    }
-
-    public void setNamespaceContext(NamespaceContext namespaceContext, List<String> prefixes) {
         this.namespaceContext = namespaceContext;
         for (String prefix : prefixes) {
             this.model.setNsPrefix(prefix, namespaceContext.getNamespaceURI(prefix));
@@ -107,6 +104,7 @@ public class X3MLContext implements X3ML {
         }
 
         public List<PathContext> createPathContexts(Path path) {
+            if (path.source == null) throw new X3MLException("Path source absent");
             List<PathContext> pathContexts = new ArrayList<PathContext>();
             for (Node pathNode : nodeList(node, path.source)) {
                 PathContext pathContext = new PathContext(this, pathNode, path);
@@ -139,7 +137,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            qualifiedName = path.target.propertyElement.getPropertyClass(this);
+            qualifiedName = path.target.propertyElement.getPropertyClass();
             if (qualifiedName == null) return false;
             String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
             property = model.createProperty(namespaceUri, qualifiedName.getLocalName());
@@ -154,7 +152,7 @@ public class X3MLContext implements X3ML {
 
         public void linkTo(Resource rangeResource) {
             if (intermediateProperty == null) {
-                domainContext.domainResource.addProperty(property,rangeResource);
+                domainContext.domainResource.addProperty(property, rangeResource);
             }
             else {
                 domainContext.domainResource.addProperty(property, intermediateResource);
@@ -163,7 +161,9 @@ public class X3MLContext implements X3ML {
         }
 
         public List<RangeContext> createRangeContexts(Range range) {
-            List<Node> rangeNodes = nodeList(node, range.source);
+            if (range.source == null) throw new X3MLException("Range source absent: " + range);
+            String pathExtension = getPathExtension(range);
+            List<Node> rangeNodes = nodeList(node, pathExtension);
             List<RangeContext> rangeContexts = new ArrayList<RangeContext>();
             for (Node rangeNode : rangeNodes) {
                 RangeContext rangeContext = new RangeContext(this, rangeNode, range);
@@ -172,6 +172,25 @@ public class X3MLContext implements X3ML {
                 }
             }
             return rangeContexts;
+        }
+
+        private String getPathExtension(Range range) {
+            String rangeSource = range.source.expression;
+            String pathSource = path.source.expression;
+            String base = rangeSource.substring(0, pathSource.length());
+            String pathExtension = rangeSource.substring(base.length());
+            if (pathExtension.length() > 0) {
+                if (pathExtension.charAt(0) == '/') {
+                    pathExtension = pathExtension.substring(1);
+                }
+            }
+            if (!base.equals(pathSource)) {
+                throw new X3MLException(String.format(
+                        "Path and Range source expressions are not compatible: %s %s",
+                        pathSource, rangeSource
+                ));
+            }
+            return pathExtension;
         }
 
         @Override
@@ -343,7 +362,7 @@ public class X3MLContext implements X3ML {
     }
 
     private List<Node> nodeList(Node context, String expression) {
-        if (expression == null) {
+        if (expression == null || expression.length() == 0) {
             List<Node> list = new ArrayList<Node>(1);
             list.add(context);
             return list;
@@ -361,7 +380,8 @@ public class X3MLContext implements X3ML {
     }
 
     private XPath path() {
-        if (mappings.sourceType != SourceType.XPATH) throw new X3MLException("Only sourceType=\"XPATH\" is implemented");
+        if (mappings.sourceType != SourceType.XPATH)
+            throw new X3MLException("Only sourceType=\"XPATH\" is implemented");
         XPath path = pathFactory.newXPath();
         path.setNamespaceContext(namespaceContext);
         return path;

@@ -1,7 +1,11 @@
 package eu.delving.x3ml;
 
+import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.*;
 import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
+import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
+import com.thoughtworks.xstream.io.naming.NoNameCoder;
+import com.thoughtworks.xstream.io.xml.XppDriver;
 
 import javax.xml.namespace.NamespaceContext;
 import java.util.List;
@@ -18,8 +22,14 @@ public interface X3ML {
         LITERAL
     }
 
+    static class Visible {
+        public String toString() {
+            return Helper.toString(this);
+        }
+    }
+
     @XStreamAlias("mappings")
-    public static class Mappings {
+    public static class Mappings extends Visible {
 
         @XStreamAsAttribute
         public String version;
@@ -40,7 +50,8 @@ public interface X3ML {
     }
 
     @XStreamAlias("mapping")
-    public static class Mapping {
+    public static class Mapping extends Visible {
+
         public Domain domain;
 
         @XStreamImplicit
@@ -56,7 +67,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("link")
-    public static class Link {
+    public static class Link extends Visible {
 
         public Path path;
 
@@ -72,45 +83,28 @@ public interface X3ML {
     }
 
     @XStreamAlias("namespace")
-    public static class MappingNamespace {
+    public static class MappingNamespace extends Visible {
         @XStreamAsAttribute
         public String prefix;
-
         @XStreamAsAttribute
         public String uri;
-
-        public String toString() {
-            return prefix + ":" + uri;
-        }
     }
 
     @XStreamAlias("domain")
-    public static class Domain {
-
+    public static class Domain extends Visible {
         public Source source;
-
         public Target target;
-
         public Comments comments;
-
-        public String toString() {
-            return "Domain(" + source + ", " + target + ")";
-        }
     }
 
     @XStreamAlias("source")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
-    public static class Source {
-
+    public static class Source extends Visible {
         public String expression;
-
-        public String toString() {
-            return "Source(" + expression + ")";
-        }
     }
 
     @XStreamAlias("target")
-    public static class Target {
+    public static class Target extends Visible {
 
         @XStreamAlias("if")
         public Condition condition;
@@ -125,14 +119,10 @@ public interface X3ML {
 
         @XStreamImplicit
         public List<Additional> additionals;
-
-        public String toString() {
-            return "Target(" + entityElement + ", " + propertyElement + ")";
-        }
     }
 
     @XStreamAlias("path")
-    public static class Path {
+    public static class Path extends Visible {
 
         public Source source;
 
@@ -142,7 +132,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("range")
-    public static class Range {
+    public static class Range extends Visible {
 
         public Source source;
 
@@ -152,7 +142,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("additional")
-    public static class Additional {
+    public static class Additional extends Visible {
 
         @XStreamAlias("property")
         public PropertyElement propertyElement;
@@ -162,7 +152,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("intermediate")
-    public static class Intermediate {
+    public static class Intermediate extends Visible {
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
@@ -172,7 +162,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("if")
-    public static class Condition {
+    public static class Condition extends Visible {
         public Narrower narrower;
         public Exists exists;
         public Equals equals;
@@ -183,13 +173,16 @@ public interface X3ML {
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("exists")
-    public static class Exists {
+    public static class Exists extends Visible {
+
         public String expression;
+
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("equals")
-    public static class Equals {
+    public static class Equals extends Visible {
+
         @XStreamAsAttribute
         public String value;
 
@@ -198,45 +191,53 @@ public interface X3ML {
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("narrower")
-    public static class Narrower {
+    public static class Narrower extends Visible {
+
         @XStreamAsAttribute
         public String value;
 
         public String expression;
+
     }
 
     @XStreamAlias("and")
-    public static class AndCondition {
+    public static class AndCondition extends Visible {
+
         @XStreamImplicit
         List<Condition> list;
+
     }
 
     @XStreamAlias("or")
-    public static class OrCondition {
+    public static class OrCondition extends Visible {
+
         @XStreamImplicit
         List<Condition> list;
+
     }
 
     @XStreamAlias("not")
-    public static class NotCondition {
+    public static class NotCondition extends Visible {
+
         @XStreamAlias("if")
         Condition condition;
+
     }
 
     @XStreamAlias("property")
-    public static class PropertyElement {
+    public static class PropertyElement extends Visible {
 
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        public QualifiedName getPropertyClass(X3MLContext.PathContext context) {
+        public QualifiedName getPropertyClass() {
             if (qualifiedName == null) throw new X3MLException("Missing class element");
             return qualifiedName;
         }
     }
 
     @XStreamAlias("entity")
-    public static class EntityElement {
+    public static class EntityElement extends Visible {
 
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
@@ -247,15 +248,12 @@ public interface X3ML {
         public Value getValue(X3MLContext.ValueContext context) {
             return context.generateValue(valueGenerator, this);
         }
-
-        public String toString() {
-            return "Entity(" + valueGenerator + ")";
-        }
     }
 
     @XStreamAlias("qname")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
-    public static class QualifiedName {
+    public static class QualifiedName extends Visible {
+
         public String tag;
 
         @XStreamOmitField
@@ -272,14 +270,10 @@ public interface X3ML {
             if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
             return tag.substring(colon + 1);
         }
-
-        public String toString() {
-            return "Class(" + tag + ")";
-        }
     }
 
     @XStreamAlias("comments")
-    public static class Comments {
+    public static class Comments extends Visible {
 
         @XStreamImplicit
         public List<Comment> comments;
@@ -288,7 +282,7 @@ public interface X3ML {
 
     @XStreamAlias("comment")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"content"})
-    public static class Comment {
+    public static class Comment extends Visible {
         @XStreamAsAttribute
         public String type;
 
@@ -296,29 +290,21 @@ public interface X3ML {
     }
 
     @XStreamAlias("value_generator")
-    public static class ValueGenerator {
+    public static class ValueGenerator extends Visible {
         @XStreamAsAttribute
         public String name;
 
         @XStreamImplicit
         public List<ValueFunctionArg> args;
-
-        public String toString() {
-            return "URIFunction(" + name + ")";
-        }
     }
 
     @XStreamAlias("arg")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"value"})
-    public static class ValueFunctionArg {
+    public static class ValueFunctionArg extends Visible {
         @XStreamAsAttribute
         public String name;
 
         public String value;
-
-        public String toString() {
-            return name + ":=" + value;
-        }
     }
 
     public static class ArgValue {
@@ -372,5 +358,18 @@ public interface X3ML {
 
     public interface ValuePolicy {
         Value generateValue(String name, ValueFunctionArgs arguments);
+    }
+
+    static class Helper {
+        static String toString(Object thing) {
+            return "\n" + stream().toXML(thing);
+        }
+
+        static XStream stream() {
+            XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
+            xstream.setMode(XStream.NO_REFERENCES);
+            xstream.processAnnotations(X3ML.Mappings.class);
+            return xstream;
+        }
     }
 }

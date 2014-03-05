@@ -25,9 +25,7 @@
                 </target>
             </path>
             <range>
-                <!--<source>-->
-                    <!--<xpath>ID</xpath>-->
-                <!--</source>-->
+                <source>ID</source>
                 <target>
                     <entity>
                         <qname>crm:E41_Appellation</qname>

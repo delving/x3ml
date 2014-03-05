@@ -4,7 +4,9 @@
         <museum>CGI Museum</museum>
         <identifier>SHRK-1</identifier>
         <title>Shrek</title>
-        <type>Computer Animation</type>
+        <type-wrapper>
+            <type>Computer Animation</type>
+        </type-wrapper>
         <reference id="Ref1" type="character">
             <name>Shrek</name>
             <uri>http://www.imdb.com/title/tt0126029/</uri>

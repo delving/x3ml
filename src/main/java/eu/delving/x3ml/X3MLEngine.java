@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
 
+import static eu.delving.x3ml.X3ML.Helper.*;
+
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
@@ -20,7 +22,6 @@ public class X3MLEngine {
     private X3ML.Mappings mappings;
     private NamespaceContext namespaceContext = new XPathContext();
     private List<String> prefixes = new ArrayList<String>();
-    private String tagPrefix;
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
         return new X3MLEngine((X3ML.Mappings) stream().fromXML(inputStream));
@@ -41,8 +42,7 @@ public class X3MLEngine {
     }
 
     public X3MLContext execute(Element sourceRoot, X3ML.ValuePolicy valuePolicy) throws X3MLException {
-        X3MLContext context = new X3MLContext(sourceRoot, this.mappings, valuePolicy);
-        context.setNamespaceContext(namespaceContext, prefixes);
+        X3MLContext context = new X3MLContext(sourceRoot, this.mappings, valuePolicy, namespaceContext, prefixes);
         mappings.apply(context);
         return context;
     }
@@ -52,13 +52,6 @@ public class X3MLEngine {
     }
 
     // ====================
-
-    private static XStream stream() {
-        XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
-        xstream.setMode(XStream.NO_REFERENCES);
-        xstream.processAnnotations(X3ML.Mappings.class);
-        return xstream;
-    }
 
     private class XPathContext implements NamespaceContext {
         private Map<String, String> prefixUri = new TreeMap<String, String>();

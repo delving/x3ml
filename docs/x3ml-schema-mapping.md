@@ -12,7 +12,7 @@ For the time being, X3ML will be restricted to consuming XML records and produci
 
 At first glance, the global structure of X3ML is quite easy to understand.  It consists of some prerequisite information, and then a series of mappings.
 
-	<mappings version="0.1" sourceType="XPATH">
+	<x3ml version="0.1" sourceType="XPATH">
 	    <namespaces/>
 	    <mapping>
 	        <domain>
@@ -34,7 +34,7 @@ At first glance, the global structure of X3ML is quite easy to understand.  It c
 	    </mapping>
 	    <mapping/>
 	    ...
-	</mappings>
+	</x3ml>
 
 Each *mapping* contains a *domain* and a number of *links*, and links are built of of a *path* and a *range*.
 
@@ -48,7 +48,7 @@ The elements used will be *exists*, *equals*, *narrower*, *and*, *or*, and *not*
 
 Conditions can be situated in the three different target blocks within the mapping definition:
 
-	<mappings version="0.1" sourceType="XPATH">
+	<x3ml version="0.1" sourceType="XPATH">
 	    <namespaces/>
 	    <mapping>
 	        <domain>
@@ -76,7 +76,7 @@ Conditions can be situated in the three different target blocks within the mappi
 	    </mapping>
 	    <mapping/>
 	    ...
-	</mappings>
+	</x3ml>
 
 Existence can be checked, as well as equality:
 

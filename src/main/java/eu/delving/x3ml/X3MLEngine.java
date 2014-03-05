@@ -1,9 +1,5 @@
 package eu.delving.x3ml;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
-import com.thoughtworks.xstream.io.naming.NoNameCoder;
-import com.thoughtworks.xstream.io.xml.XppDriver;
 import org.w3c.dom.Element;
 
 import javax.xml.namespace.NamespaceContext;
@@ -19,22 +15,22 @@ import static eu.delving.x3ml.X3ML.Helper.*;
 
 public class X3MLEngine {
 
-    private X3ML.Mappings mappings;
+    private X3ML.Root root;
     private NamespaceContext namespaceContext = new XPathContext();
     private List<String> prefixes = new ArrayList<String>();
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
-        return new X3MLEngine((X3ML.Mappings) stream().fromXML(inputStream));
+        return new X3MLEngine((X3ML.Root) stream().fromXML(inputStream));
     }
 
     public static void save(X3MLEngine engine, OutputStream outputStream) throws X3MLException {
-        stream().toXML(engine.mappings, outputStream);
+        stream().toXML(engine.root, outputStream);
     }
 
-    private X3MLEngine(X3ML.Mappings mappings) {
-        this.mappings = mappings;
-        if (this.mappings.namespaces != null) {
-            for (X3ML.MappingNamespace namespace : this.mappings.namespaces) {
+    private X3MLEngine(X3ML.Root root) {
+        this.root = root;
+        if (this.root.namespaces != null) {
+            for (X3ML.MappingNamespace namespace : this.root.namespaces) {
                 ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
                 prefixes.add(namespace.prefix);
             }
@@ -42,13 +38,13 @@ public class X3MLEngine {
     }
 
     public X3MLContext execute(Element sourceRoot, X3ML.ValuePolicy valuePolicy) throws X3MLException {
-        X3MLContext context = new X3MLContext(sourceRoot, this.mappings, valuePolicy, namespaceContext, prefixes);
-        mappings.apply(context);
+        X3MLContext context = new X3MLContext(sourceRoot, this.root, valuePolicy, namespaceContext, prefixes);
+        root.apply(context);
         return context;
     }
 
     public String toString() {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + stream().toXML(mappings);
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + stream().toXML(root);
     }
 
     // ====================

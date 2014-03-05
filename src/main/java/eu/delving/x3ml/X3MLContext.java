@@ -25,14 +25,14 @@ import java.util.List;
 public class X3MLContext implements X3ML {
     private final Element documentRoot;
     private final ValuePolicy valuePolicy;
-    private final Mappings mappings;
+    private final Root root;
     private NamespaceContext namespaceContext;
     private XPathFactory pathFactory = new XPathFactoryImpl();
     private Model model = ModelFactory.createDefaultModel();
 
-    X3MLContext(Element documentRoot, Mappings mappings, ValuePolicy valuePolicy, NamespaceContext namespaceContext, List<String> prefixes) {
+    X3MLContext(Element documentRoot, Root root, ValuePolicy valuePolicy, NamespaceContext namespaceContext, List<String> prefixes) {
         this.documentRoot = documentRoot;
-        this.mappings = mappings;
+        this.root = root;
         this.valuePolicy = valuePolicy;
         this.namespaceContext = namespaceContext;
         for (String prefix : prefixes) {
@@ -380,7 +380,7 @@ public class X3MLContext implements X3ML {
     }
 
     private XPath path() {
-        if (mappings.sourceType != SourceType.XPATH)
+        if (root.sourceType != SourceType.XPATH)
             throw new X3MLException("Only sourceType=\"XPATH\" is implemented");
         XPath path = pathFactory.newXPath();
         path.setNamespaceContext(namespaceContext);

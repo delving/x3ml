@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mappings version="0.1" sourceType="XPATH">
+<x3ml version="0.1" source_type="XPATH">
     <namespaces>
         <namespace prefix="lido" uri="http://www.lido-schema.org"/>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
@@ -2418,4 +2418,4 @@
             </range>
         </link>
     </mapping>
-</mappings>
+</x3ml>

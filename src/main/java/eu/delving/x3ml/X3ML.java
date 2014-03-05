@@ -28,13 +28,14 @@ public interface X3ML {
         }
     }
 
-    @XStreamAlias("mappings")
-    public static class Mappings extends Visible {
+    @XStreamAlias("x3ml")
+    public static class Root extends Visible {
 
         @XStreamAsAttribute
         public String version;
 
         @XStreamAsAttribute
+        @XStreamAlias("source_type")
         public SourceType sourceType;
 
         public List<MappingNamespace> namespaces;
@@ -368,7 +369,7 @@ public interface X3ML {
         static XStream stream() {
             XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
             xstream.setMode(XStream.NO_REFERENCES);
-            xstream.processAnnotations(X3ML.Mappings.class);
+            xstream.processAnnotations(Root.class);
             return xstream;
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mappings version="1.0" sourceType="XPATH">
+<x3ml version="1.0" source_type="XPATH">
     <namespaces>
         <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
         <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -38,4 +38,4 @@
             </range>
         </link>
     </mapping>
-</mappings>
+</x3ml>

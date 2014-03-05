@@ -76,5 +76,55 @@
                 </target>
             </range>
         </link>
+        <link>
+            <path>
+                <source>type-wrapper</source>
+                <target>
+                    <!--this should prevent the link from doing anything-->
+                    <if>
+                        <not>
+                            <if>
+                                <exists>avoid/text()</exists>
+                            </if>
+                        </not>
+                    </if>
+                    <property>
+                        <qname>crm:P888_has_extraneous</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <source>type-wrapper/type</source>
+                <target>
+                    <entity>
+                        <qname>crm:E888_Extra</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
+        <link>
+            <path>
+                <source>type-wrapper</source>
+                <target>
+                    <!--this should prevent the link from doing anything-->
+                    <if>
+                        <equals value="maybe">avoid/text()</equals>
+                    </if>
+                    <property>
+                        <qname>crm:P888_has_extraneous</qname>
+                    </property>
+                </target>
+            </path>
+            <range>
+                <source>type-wrapper/type</source>
+                <target>
+                    <entity>
+                        <qname>crm:E888_Extra</qname>
+                        <value_generator name="Type"/>
+                    </entity>
+                </target>
+            </range>
+        </link>
     </mapping>
 </x3ml>

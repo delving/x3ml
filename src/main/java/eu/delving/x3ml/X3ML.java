@@ -10,6 +10,8 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
 import javax.xml.namespace.NamespaceContext;
 import java.util.List;
 
+import static eu.delving.x3ml.X3MLContext.ValueContext;
+
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
@@ -20,12 +22,6 @@ public interface X3ML {
         XPATH,
         QNAME,
         LITERAL
-    }
-
-    static class Visible {
-        public String toString() {
-            return Helper.toString(this);
-        }
     }
 
     @XStreamAlias("x3ml")
@@ -170,59 +166,123 @@ public interface X3ML {
         public AndCondition and;
         public OrCondition or;
         public NotCondition not;
+
+        private static class Outcome {
+            final ValueContext context;
+            boolean failure;
+
+            private Outcome(ValueContext context) {
+                this.context = context;
+            }
+
+            Outcome evaluate(YesOrNo yesOrNo) {
+                if (yesOrNo != null && !failure && !yesOrNo.yes(context)) {
+                    failure = true;
+                }
+                return this;
+            }
+        }
+
+        public boolean failure(ValueContext context) {
+            return new Outcome(context)
+                            .evaluate(narrower)
+                            .evaluate(exists)
+                            .evaluate(equals)
+                            .evaluate(and)
+                            .evaluate(or)
+                            .evaluate(not).failure;
+        }
+
+    }
+
+    interface YesOrNo {
+        boolean yes(ValueContext context);
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("exists")
-    public static class Exists extends Visible {
+    public static class Exists extends Visible implements YesOrNo {
 
         public String expression;
 
+        @Override
+        public boolean yes(ValueContext context) {
+            return context.evaluate(expression).length() > 0;
+        }
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("equals")
-    public static class Equals extends Visible {
+    public static class Equals extends Visible implements YesOrNo {
 
         @XStreamAsAttribute
         public String value;
 
         public String expression;
+
+        @Override
+        public boolean yes(ValueContext context) {
+            return value.equals(context.evaluate(expression));
+        }
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     @XStreamAlias("narrower")
-    public static class Narrower extends Visible {
+    public static class Narrower extends Visible implements YesOrNo {
 
         @XStreamAsAttribute
         public String value;
 
         public String expression;
 
+        @Override
+        public boolean yes(ValueContext context) {
+            return true;
+        }
     }
 
     @XStreamAlias("and")
-    public static class AndCondition extends Visible {
+    public static class AndCondition extends Visible implements YesOrNo {
 
         @XStreamImplicit
         List<Condition> list;
 
+        @Override
+        public boolean yes(ValueContext context) {
+            boolean result = true;
+            for (Condition condition : list) {
+                if (condition.failure(context)) result = false;
+            }
+            return result;
+        }
     }
 
     @XStreamAlias("or")
-    public static class OrCondition extends Visible {
+    public static class OrCondition extends Visible implements YesOrNo {
 
         @XStreamImplicit
         List<Condition> list;
 
+        @Override
+        public boolean yes(ValueContext context) {
+            boolean result = false;
+            for (Condition condition : list) {
+                if (!condition.failure(context)) result = true;
+            }
+            return result;
+        }
     }
 
     @XStreamAlias("not")
-    public static class NotCondition extends Visible {
+    public static class NotCondition extends Visible implements YesOrNo {
 
         @XStreamAlias("if")
         Condition condition;
 
+        @Override
+        public boolean yes(ValueContext context) {
+            return condition.failure(context);
+        }
     }
 
     @XStreamAlias("property")
@@ -246,7 +306,7 @@ public interface X3ML {
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;
 
-        public Value getValue(X3MLContext.ValueContext context) {
+        public Value getValue(ValueContext context) {
             return context.generateValue(valueGenerator, this);
         }
     }
@@ -359,6 +419,12 @@ public interface X3ML {
 
     public interface ValuePolicy {
         Value generateValue(String name, ValueFunctionArgs arguments);
+    }
+
+    static class Visible {
+        public String toString() {
+            return Helper.toString(this);
+        }
     }
 
     static class Helper {

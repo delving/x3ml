@@ -6,6 +6,7 @@
         <title>Shrek</title>
         <type-wrapper>
             <type>Computer Animation</type>
+            <avoid>yes</avoid>
         </type-wrapper>
         <reference id="Ref1" type="character">
             <name>Shrek</name>

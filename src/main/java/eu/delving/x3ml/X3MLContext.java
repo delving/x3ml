@@ -57,6 +57,7 @@ public class X3MLContext implements X3ML {
     // ===== calls made from within X3ML.* classes ====
 
     public interface ValueContext {
+        String evaluate(String expression);
         Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement);
     }
 
@@ -85,6 +86,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
+            if (conditionFails(domain.target.condition, this)) return false;
             value = domain.target.entityElement.getValue(this);
             if (value == null) return false;
             domainResource = createTypedResource(value.uri, domain.target.entityElement.qualifiedName);
@@ -93,12 +95,17 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
+        public String evaluate(String expression) {
+            return valueAt(node, expression);
+        }
+
+        @Override
         public Value generateValue(final ValueGenerator valueGenerator, EntityElement entityElement) {
             return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
                     QualifiedName qualifiedName = domain.target.entityElement.qualifiedName;
-                    return evaluate(node, qualifiedName, valueGenerator, name, type);
+                    return evaluateArgument(node, qualifiedName, valueGenerator, name, type);
                 }
             });
         }
@@ -137,6 +144,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
+            if (conditionFails(path.target.condition, this)) return false;
             qualifiedName = path.target.propertyElement.getPropertyClass();
             if (qualifiedName == null) return false;
             String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
@@ -194,11 +202,16 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
+        public String evaluate(String expression) {
+            return valueAt(node, expression);
+        }
+
+        @Override
         public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
             return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluate(node, entityElement.qualifiedName, valueGenerator, name, type);
+                    return evaluateArgument(node, entityElement.qualifiedName, valueGenerator, name, type);
                 }
             });
         }
@@ -219,6 +232,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
+            if (conditionFails(range.target.condition, this)) return false;
             value = range.target.entityElement.getValue(this);
             if (value == null) return false;
             rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
@@ -232,11 +246,16 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
+        public String evaluate(String expression) {
+            return valueAt(node, expression);
+        }
+
+        @Override
         public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
             return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluate(node, entityElement.qualifiedName, valueGenerator, name, type);
+                    return evaluateArgument(node, entityElement.qualifiedName, valueGenerator, name, type);
                 }
             });
         }
@@ -251,6 +270,10 @@ public class X3MLContext implements X3ML {
 
 
 // =============================================
+
+    private boolean conditionFails(Condition condition, ValueContext context) {
+        return condition != null && condition.failure(context);
+    }
 
     private List<AdditionalNode> createAdditionalNodes(List<Additional> additionalList, ValueContext valueContext) {
         List<AdditionalNode> additionalNodes = new ArrayList<AdditionalNode>();
@@ -290,7 +313,7 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private ArgValue evaluate(Node contextNode, QualifiedName qualifiedName, ValueGenerator function, String argName, SourceType type) {
+    private ArgValue evaluateArgument(Node contextNode, QualifiedName qualifiedName, ValueGenerator function, String argName, SourceType type) {
         ValueFunctionArg foundArg = null;
         if (function.args != null) {
             for (ValueFunctionArg arg : function.args) {

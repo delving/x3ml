@@ -34,6 +34,7 @@ public class TestSimple {
         int index = 0;
         for (String originalLine : original) {
             originalLine = originalLine.trim();
+            if (originalLine.startsWith("<!--")) continue;
             String freshLine = fresh[index].trim();
             Assert.assertEquals("Line " + index, originalLine, freshLine);
             index++;

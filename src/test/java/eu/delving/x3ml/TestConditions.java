@@ -68,6 +68,9 @@ public class TestConditions implements X3ML {
     private void testSerialization(String[] x3ml) {
         String x3mlString = toString(x3ml);
         Condition condition = (Condition) stream().fromXML(x3mlString);
+        condition.failure(new TestContext(
+
+        ));
         String check = stream().toXML(condition);
         assertEquals("serialization problem", x3mlString, check);
     }
@@ -83,5 +86,26 @@ public class TestConditions implements X3ML {
         return xstream;
     }
 
+    private static class TestContext implements X3MLContext.ValueContext {
+        private String[] truths;
 
+        private TestContext(String... truths) {
+            this.truths = truths;
+        }
+
+        @Override
+        public String evaluate(String expression) {
+            for (String truth : truths) {
+                if (expression.equals(truth)) {
+                    return truth;
+                }
+            }
+            return "";
+        }
+
+        @Override
+        public Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement) {
+            throw new RuntimeException("Didn't expect this to be called");
+        }
+    }
 }

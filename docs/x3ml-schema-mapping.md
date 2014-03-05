@@ -81,9 +81,9 @@ Conditions can be situated in the three different target blocks within the mappi
 Existence can be checked, as well as equality:
 
     <if><exists>...</exists></if>
-    <if><not><exists>...</exists></not></if>
+    <if><not><if><exists>...</exists></if></not></if>
     <if><equals value="...">...</equals></if>
-    <if><not><equals value="...">...</equals></not></if>
+    <if><not><if><equals value="...">...</equals></if></not></if>
 
 An option that will be implemented later when there is a SKOS vocabulary available for querying:
 

@@ -64,7 +64,7 @@ public class Command {
                     cli.getOptionValue("x3ml"),
                     cli.getOptionValue("policy"),
                     cli.getOptionValue("rdf"),
-                    cli.getOptionValue("rdfFormat")
+                    cli.getOptionValue("format")
             );
         }
         catch (ParseException e) {
@@ -158,8 +158,6 @@ public class Command {
             return System.out;
         }
     }
-
-
 
     static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat) {
         Element xmlElement = xml(file(xml));

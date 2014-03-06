@@ -47,8 +47,10 @@ public class TestConditions implements X3ML {
         use(
                 "<if>",
                 "  <not>",
-                "    <equals value=\"clay man\">gumby</equals>",
-                "  <not>",
+                "    <if>",
+                "      <equals value=\"clay man\">gumby</equals>",
+                "    </if>",
+                "  </not>",
                 "</if>"
         )
                 .expect(true)

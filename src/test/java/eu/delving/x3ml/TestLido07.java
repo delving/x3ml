@@ -1,7 +1,6 @@
 package eu.delving.x3ml;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Queue;
@@ -36,7 +35,7 @@ public class TestLido07 {
                 document("/lido07/lido07.xml"),
                 policy("/lido07/lido07-value-policy.xml")
         );
-        context.write(System.out);
+        context.writeXML(System.out);
 //        String [] mappingResult = context.toStringArray();
 //        String [] expectedResult = AllTests.xmlToNTriples("/coin/coin1-rdf.xml");
 //        log("result", mappingResult);

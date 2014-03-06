@@ -40,8 +40,28 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    public void write(PrintStream out) {
+    public void writeXML(PrintStream out) {
         model.write(out, "RDF/XML-ABBREV");
+    }
+
+    public void writeNTRIPLE(PrintStream out) {
+        model.write(out, "N-TRIPLE");
+    }
+
+    public void writeTURTLE(PrintStream out) {
+        model.write(out, "TURTLE");
+    }
+
+    public void write(PrintStream out, String format) {
+        if ("N-TRIPLE".equalsIgnoreCase(format)) {
+            writeNTRIPLE(out);
+        }
+        else if ("TURTLE".equalsIgnoreCase(format)) {
+            writeTURTLE(out);
+        }
+        else {
+            writeXML(out);
+        }
     }
 
     public String[] toStringArray() {
@@ -50,7 +70,7 @@ public class X3MLContext implements X3ML {
 
     public String toString() {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        model.write(baos, "N-TRIPLE");
+        writeNTRIPLE(new PrintStream(baos));
         return new String(baos.toByteArray());
     }
 

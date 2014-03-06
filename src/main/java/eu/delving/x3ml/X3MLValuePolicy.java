@@ -26,7 +26,11 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, Generator> templateMap = new TreeMap<String, Generator>();
 
-    public X3MLValuePolicy(InputStream inputStream) {
+    public static X3MLValuePolicy load(InputStream inputStream) {
+        return new X3MLValuePolicy(inputStream);
+    }
+
+    private X3MLValuePolicy(InputStream inputStream) {
         ValuePolicy policy = (ValuePolicy) stream().fromXML(inputStream);
         for (Generator generator : policy.generators) {
             templateMap.put(generator.name, generator);

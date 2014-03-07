@@ -25,7 +25,7 @@ public class Command {
         HELP.setLeftPadding(5);
         HELP.printHelp(
                 200,
-                "x3ml -xml <input records> -x3ml <mapping file> [ -rdf <output file> ] [ -format <format> ]",
+                "x3ml -xml <input records> -x3ml <mapping file> [ -policy <value policy file> ] [ -rdf <output file> ] [ -format <format> ]",
                 "Options",
                 options,
                 message

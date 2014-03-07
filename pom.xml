@@ -87,11 +87,6 @@
             <artifactId>woodstox-core-asl</artifactId>
             <version>4.0.9</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.mapdb</groupId>-->
-            <!--<artifactId>mapdb</artifactId>-->
-            <!--<version>0.9.0</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.apache</groupId>
             <artifactId>xml-apis</artifactId>
@@ -132,5 +127,15 @@
             <artifactId>commons-cli</artifactId>
             <version>1.2</version>
         </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.mapdb</groupId>-->
+        <!--<artifactId>mapdb</artifactId>-->
+        <!--<version>0.9.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.igniterealtime.smack</groupId>-->
+        <!--<artifactId>smack</artifactId>-->
+        <!--<version>3.2.1</version>-->
+        <!--</dependency>-->
     </dependencies>
 </project>

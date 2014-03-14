@@ -1,0 +1,10 @@
+<uuid:2c070d40-9de8-11e3-a5e2-0800200c9a66> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.cidoc-crm.org/cidoc-crm/E22_Man-Made_Object> .
+<uuid:2c070d40-9de8-11e3-a5e2-0800200c9a66> <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> <uuid:822db060-9de9-11e3-a5e2-0800200c9a66> .
+<uuid:822db060-9de9-11e3-a5e2-0800200c9a66> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.cidoc-crm.org/cidoc-crm/E41_Appellation> .
+<uuid:822db060-9de9-11e3-a5e2-0800200c9a66> <http://www.w3.org/2000/01/rdf-schema#label> "627"@en .
+<uuid:2c070d40-9de8-11e3-a5e2-0800200c9a66> <http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through> <uuid:63fad6b0-ab7a-11e3-a5e2-0800200c9a66> .
+<uuid:63fad6b0-ab7a-11e3-a5e2-0800200c9a66> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody> .
+<uuid:63fad6b0-ab7a-11e3-a5e2-0800200c9a66> <http://www.w3.org/2000/01/rdf-schema#label> "find event"@en .
+<uuid:63fad6b0-ab7a-11e3-a5e2-0800200c9a66> <http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at> <uuid:407f0e60-a060-11e3-a5e2-0800200c9a66> .
+<uuid:407f0e60-a060-11e3-a5e2-0800200c9a66> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.cidoc-crm.org/cidoc-crm/E53_Place> .
+<uuid:407f0e60-a060-11e3-a5e2-0800200c9a66> <http://www.w3.org/2000/01/rdf-schema#label> "Mautern"@en .

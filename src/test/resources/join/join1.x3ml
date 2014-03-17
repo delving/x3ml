@@ -40,7 +40,7 @@
             </link>
             <link>
                 <path>
-                    <source join="FS_ID = ../FIND_SPOT_ID">../FIND_SPOT</source>
+                    <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
                     <target>
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
@@ -60,7 +60,7 @@
                     </target>
                 </path>
                 <range>
-                    <source>../FIND_SPOT</source>
+                    <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
                     <target>
                         <entity>
                             <qname>crm:E53_Place</qname>

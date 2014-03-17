@@ -318,17 +318,6 @@ public class X3MLContext implements X3ML {
 
 // =============================================
 
-    private ArgValue getQNameValue(String argName, SourceType type, QualifiedName qualifiedName) {
-        if (argName == null && type == SourceType.QNAME && qualifiedName != null) {
-            ArgValue v = new ArgValue();
-            v.setQName(qualifiedName.tag, namespaceContext);
-            return v;
-        }
-        else {
-            return null;
-        }
-    }
-
     private boolean conditionFails(Condition condition, ValueContext context) {
         return condition != null && condition.failure(context);
     }

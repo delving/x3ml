@@ -36,13 +36,13 @@
         <FS_S_ORDER_KEY>000020_000030_000090_000170_000010</FS_S_ORDER_KEY>
         <EXCLUDE>0</EXCLUDE>
     </FIND_SPOT>
-    <!--<FIND_SPOT>-->
-        <!--<FS_ID>666</FS_ID>-->
-        <!--<FS_NAME>To Be Avoided</FS_NAME>-->
-        <!--<FS_ORDER_KEY>10</FS_ORDER_KEY>-->
-        <!--<FS_S_ORDER_KEY>9494949494949</FS_S_ORDER_KEY>-->
-        <!--<EXCLUDE>0</EXCLUDE>-->
-    <!--</FIND_SPOT>-->
+    <FIND_SPOT>
+        <FS_ID>666</FS_ID>
+        <FS_NAME>To Be Avoided</FS_NAME>
+        <FS_ORDER_KEY>10</FS_ORDER_KEY>
+        <FS_S_ORDER_KEY>9494949494949</FS_S_ORDER_KEY>
+        <EXCLUDE>0</EXCLUDE>
+    </FIND_SPOT>
     <FIND_MANNER>
         <FM_ID>2</FM_ID>
         <FM_NAME>Streufund</FM_NAME>

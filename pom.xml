@@ -139,6 +139,11 @@
             <artifactId>commons-cli</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>9.5.1-4</version>
+        </dependency>
         <!--<dependency>-->
         <!--<groupId>org.mapdb</groupId>-->
         <!--<artifactId>mapdb</artifactId>-->

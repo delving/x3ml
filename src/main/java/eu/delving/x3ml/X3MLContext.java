@@ -1,8 +1,6 @@
 package eu.delving.x3ml;
 
 import com.hp.hpl.jena.rdf.model.*;
-import com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl;
-import com.sun.tools.hat.internal.server.QueryListener;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -25,7 +23,7 @@ public class X3MLContext implements X3ML {
     private final ValuePolicy valuePolicy;
     private final Root root;
     private NamespaceContext namespaceContext;
-    private XPathFactory pathFactory = new XPathFactoryImpl();
+    private XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private Model model = ModelFactory.createDefaultModel();
 
     X3MLContext(Element documentRoot, Root root, ValuePolicy valuePolicy, NamespaceContext namespaceContext, List<String> prefixes) {

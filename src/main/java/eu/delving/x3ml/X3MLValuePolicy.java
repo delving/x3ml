@@ -39,11 +39,11 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
 
     @Override
     public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs args) {
-        if (name == null) throw new X3MLException("URI function name missing");
+        if (name == null) throw new X3MLException("Value function name missing");
         X3ML.Value value = new X3ML.Value();
         Generator generator = templateMap.get(name);
         if (generator == null) throw new X3MLException("No template for " + name);
-        X3ML.ArgValue qname = args.getArgValue("qname", QNAME);
+        X3ML.ArgValue qname = args.getArgValue(null, QNAME);
         String localName = qname.qualifiedName.getLocalName();
         String namespaceUri = qname.qualifiedName.namespaceUri;
         try {
@@ -54,9 +54,9 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
             for (String variableName : variablesFromPattern(generator.pattern)) {
                 if ("localName".equals(variableName)) continue;
                 boolean isLiteral = literals.contains(variableName);
-                X3ML.ArgValue argValue = args.getArgValue(variableName, isLiteral ? LITERAL :XPATH);
+                X3ML.ArgValue argValue = args.getArgValue(variableName, isLiteral ? LITERAL : XPATH);
                 if (argValue == null || argValue.string == null) {
-                    throw new X3MLException("Argument failure " + variableName);
+                    throw new X3MLException("Argument failure in value function " + name + ": " + variableName + "\n" + args);
                 }
                 uriTemplate.set(variableName, argValue.string);
             }

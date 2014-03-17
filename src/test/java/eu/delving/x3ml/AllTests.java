@@ -132,6 +132,23 @@ public class AllTests {
         return new String(baos.toByteArray()).split("\n");
     }
 
+    public static List<String> compareNTriples(String [] expected, String [] actual) {
+        Set<String> actualSet = new TreeSet<String>(Arrays.asList(actual));
+        Set<String> expectedSet = new TreeSet<String>(Arrays.asList(expected));
+        List<String> errors = new ArrayList<String>();
+        for (String actualOne : actualSet) {
+            if (!expectedSet.contains(actualOne)) {
+                errors.add("actual not expected: "+actualOne);
+            }
+        }
+        for (String expectedOne : expectedSet) {
+            if (!actualSet.contains(expectedOne)) {
+                errors.add("expected not actual: "+expectedOne);
+            }
+        }
+        return errors;
+    }
+
     // === private stuff
 
     private static void nodeToXml(XMLEventWriter out, Node node, int level) throws XMLStreamException {

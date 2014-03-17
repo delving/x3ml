@@ -3,38 +3,41 @@
     <namespaces>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
     </namespaces>
-    <mapping>
-        <domain>
-            <source>//input</source>
-            <target>
-                <entity>
-                    <qname>crm:E19_Physical_Object</qname>
-                    <value_generator name="PhysicalObject">
-                        <arg name="entry">bm_object_id/text()</arg>
-                    </value_generator>
-                </entity>
-            </target>
-        </domain>
-        <link>
-            <path>
-                <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
-                <target>
-                    <property>
-                        <qname>crm:P54_has_current_permanent_location</qname>
-                    </property>
-                </target>
-            </path>
-            <range>
-                <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
+    <mappings>
+        <mapping>
+            <domain>
+                <source>//input</source>
                 <target>
                     <entity>
-                        <qname>crm:E48_Place_Name</qname>
-                        <value_generator name="PlaceName">
-                            <arg name="entry">bm_loc/text()</arg>
+                        <qname>crm:E19_Physical_Object</qname>
+                        <value_generator name="PhysicalObject">
+                            <arg name="nameOfMuseum">British Museum</arg>
+                            <arg name="entry">bm_object_id/text()</arg>
                         </value_generator>
                     </entity>
                 </target>
-            </range>
-        </link>
-    </mapping>
+            </domain>
+            <link>
+                <path>
+                    <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
+                    <target>
+                        <property>
+                            <qname>crm:P54_has_current_permanent_location</qname>
+                        </property>
+                    </target>
+                </path>
+                <range>
+                    <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
+                    <target>
+                        <entity>
+                            <qname>crm:E48_Place_Name</qname>
+                            <value_generator name="PlaceName">
+                                <arg name="entry">bm_loc/text()</arg>
+                            </value_generator>
+                        </entity>
+                    </target>
+                </range>
+            </link>
+        </mapping>
+    </mappings>
 </x3ml>

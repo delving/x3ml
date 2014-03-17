@@ -5,37 +5,39 @@
         <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
         <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
     </namespaces>
-    <mapping>
-        <domain>
-            <source>//COIN</source>
-            <target>
-                <entity>
-                    <qname>crm:E22_Man-Made_Object</qname>
-                    <value_generator name="UUID"/>
-                </entity>
-            </target>
-        </domain>
-        <link>
-            <path>
-                <source>ID</source>
-                <target>
-                    <property>
-                        <qname>crm:P1_is_identified_by</qname>
-                    </property>
-                </target>
-            </path>
-            <range>
-                <source>ID</source>
+    <mappings>
+        <mapping>
+            <domain>
+                <source>//COIN</source>
                 <target>
                     <entity>
-                        <qname>crm:E41_Appellation</qname>
-                        <value_generator name="UUID_Label">
-                            <arg name="labelQName">rdfs:label</arg>
-                            <arg name="labelXPath">text()</arg>
-                        </value_generator>
+                        <qname>crm:E22_Man-Made_Object</qname>
+                        <value_generator name="UUID"/>
                     </entity>
                 </target>
-            </range>
-        </link>
-    </mapping>
+            </domain>
+            <link>
+                <path>
+                    <source>ID</source>
+                    <target>
+                        <property>
+                            <qname>crm:P1_is_identified_by</qname>
+                        </property>
+                    </target>
+                </path>
+                <range>
+                    <source>ID</source>
+                    <target>
+                        <entity>
+                            <qname>crm:E41_Appellation</qname>
+                            <value_generator name="UUID_Label">
+                                <arg name="labelQName">rdfs:label</arg>
+                                <arg name="labelXPath">text()</arg>
+                            </value_generator>
+                        </entity>
+                    </target>
+                </range>
+            </link>
+        </mapping>
+    </mappings>
 </x3ml>

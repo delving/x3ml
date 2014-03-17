@@ -36,7 +36,6 @@ public interface X3ML {
 
         public List<MappingNamespace> namespaces;
 
-        @XStreamImplicit
         public List<Mapping> mappings;
 
         public void apply(X3MLContext context) {
@@ -292,7 +291,7 @@ public interface X3ML {
         public QualifiedName qualifiedName;
 
         public QualifiedName getPropertyClass() {
-            if (qualifiedName == null) throw new X3MLException("Missing class element");
+            if (qualifiedName == null) throw new X3MLException("Property missing qualified name");
             return qualifiedName;
         }
     }
@@ -322,13 +321,17 @@ public interface X3ML {
 
         public String getPrefix() {
             int colon = tag.indexOf(':');
-            if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
+            if (colon < 0) {
+                throw new X3MLException("Unqualified tag " + tag);
+            }
             return tag.substring(0, colon);
         }
 
         public String getLocalName() {
             int colon = tag.indexOf(':');
-            if (colon < 0) throw new X3MLException("Unqualified tag " + tag);
+            if (colon < 0) {
+                throw new X3MLException("Unqualified tag " + tag);
+            }
             return tag.substring(colon + 1);
         }
     }

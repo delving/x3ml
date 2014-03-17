@@ -2,6 +2,7 @@
 <value-policy>
     <generator name="PhysicalObject">
         <pattern>{localName}/{nameOfMuseum,entry}</pattern>
+        <literals>nameOfMuseum</literals>
     </generator>
     <generator name="PlaceName">
         <pattern>{localName}/{entry}</pattern>

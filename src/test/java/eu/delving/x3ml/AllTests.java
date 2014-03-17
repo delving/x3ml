@@ -1,5 +1,6 @@
 package eu.delving.x3ml;
 
+import com.apple.jobjc.appkit._NSProgressIndicatorThreadInfoOpaque;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import org.apache.xml.resolver.apps.xread;
@@ -10,6 +11,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.swing.text.html.HTMLDocument;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLEventWriter;
@@ -22,6 +24,8 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -44,7 +48,7 @@ public class AllTests {
         return X3MLEngine.load(resource(path));
     }
 
-//    public static X3MLContext context(String contextPath, String policyPath) throws X3MLException {
+    //    public static X3MLContext context(String contextPath, String policyPath) throws X3MLException {
 //        return X3MLContext.create(document(contextPath), policy(policyPath));
 //    }
 //
@@ -132,24 +136,45 @@ public class AllTests {
         return new String(baos.toByteArray()).split("\n");
     }
 
-    public static List<String> compareNTriples(String [] expected, String [] actual) {
+    public static List<String> compareNTriples(String[] expected, String[] actual) {
         Set<String> actualSet = new TreeSet<String>(Arrays.asList(actual));
         Set<String> expectedSet = new TreeSet<String>(Arrays.asList(expected));
         List<String> errors = new ArrayList<String>();
         for (String actualOne : actualSet) {
-            if (!expectedSet.contains(actualOne)) {
-                errors.add("actual not expected: "+actualOne);
-            }
+            errors.add((expectedSet.contains(actualOne) ? "correct " : "!error  ") + ":     " + filterTriple(actualOne));
         }
         for (String expectedOne : expectedSet) {
             if (!actualSet.contains(expectedOne)) {
-                errors.add("expected not actual: "+expectedOne);
+                errors.add("!missing:     " + filterTriple(expectedOne));
             }
         }
         return errors;
     }
 
     // === private stuff
+
+    private static Pattern TRIPLE = Pattern.compile("^<?_?([^> ]+)>?\\s+<([^>]+)>\\s+<?([^>]+)>? \\.$");
+
+    private static String filterTriple(String triple) {
+        Matcher matcher = TRIPLE.matcher(triple);
+        if (!matcher.matches()) {
+            throw new RuntimeException("Mismatch: [" + triple + "]");
+        }
+        String subject = matcher.group(1);
+        String predicate = matcher.group(2);
+        String object = matcher.group(3);
+        return String.format("[%s] -(%s)-> [%s]", lastSlash(subject), lastSlash(predicate), lastSlash(object));
+    }
+
+    private static String lastSlash(String part) {
+        int delim = Math.max(part.lastIndexOf('/'), Math.max(part.lastIndexOf('#'), part.lastIndexOf(':')));
+        if (delim < 0) {
+            return part;
+        }
+        else {
+            return part.substring(delim + 1);
+        }
+    }
 
     private static void nodeToXml(XMLEventWriter out, Node node, int level) throws XMLStreamException {
         if (node.getLocalName() == null) return;

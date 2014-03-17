@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3ml version="0.1" source_type="XPATH">
+    <namespaces>
+        <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+        <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+    </namespaces>
+    <mappings>
+        <mapping>
+            <domain>
+                <source>COIN</source>
+                <target>
+                    <entity>
+                        <qname>crm:E22_Man-Made_Object</qname>
+                        <value_generator name="UUID"/>
+                    </entity>
+                </target>
+            </domain>
+            <link>
+                <path>
+                    <source>ID</source>
+                    <target>
+                        <property>
+                            <qname>crm:P1_is_identified_by</qname>
+                        </property>
+                    </target>
+                </path>
+                <range>
+                    <source>ID</source>
+                    <target>
+                        <entity>
+                            <qname>crm:E41_Appellation</qname>
+                            <value_generator name="UUID_Label">
+                                <arg name="labelQName">rdfs:label</arg>
+                                <arg name="labelXPath">text()</arg>
+                            </value_generator>
+                        </entity>
+                    </target>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
+                    <target>
+                        <property>
+                            <qname>crm:P30i_custody_transferred_through</qname>
+                        </property>
+                        <intermediate>
+                            <entity>
+                                <variable>tc1</variable>
+                                <qname>crm:E10_Transfer_of_Custody</qname>
+                                <value_generator name="UUID_Label">
+                                    <arg name="labelQName">rdfs:label</arg>
+                                    <arg name="labelLiteral">find event</arg>
+                                </value_generator>
+                            </entity>
+                            <property>
+                                <qname>crm:P7_took_place_at</qname>
+                            </property>
+                        </intermediate>
+                    </target>
+                </path>
+                <range>
+                    <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
+                    <target>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="UUID_Label">
+                                <arg name="labelQName">rdfs:label</arg>
+                                <arg name="labelXPath">FS_NAME/text()</arg>
+                            </value_generator>
+                        </entity>
+                    </target>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source>FIND_DATE</source>
+                    <target>
+                        <property>
+                            <qname>crm:P30i_custody_transferred_through</qname>
+                        </property>
+                        <intermediate>
+                            <entity>
+                                <variable>tc1</variable>
+                                <qname>crm:E10_Transfer_of_Custody</qname>
+                                <value_generator name="UUID_Label">
+                                    <arg name="labelQName">rdfs:label</arg>
+                                    <arg name="labelLiteral">find event</arg>
+                                </value_generator>
+                            </entity>
+                            <property>
+                                <qname>crm:P4_has_time-span</qname>
+                            </property>
+                        </intermediate>
+                        <intermediate>
+                            <entity>
+                                <variable>ts1</variable>
+                                <qname>crm:E52_Time-Span</qname>
+                                <value_generator name="UUID_Label">
+                                    <arg name="labelQName">rdfs:label</arg>
+                                    <arg name="labelLiteral">find event date</arg>
+                                </value_generator>
+                            </entity>
+                            <property>
+                                <qname>crm:P81_ongoing_throughout</qname>
+                            </property>
+                        </intermediate>
+                    </target>
+                </path>
+                <range>
+                    <source>FIND_DATE</source>
+                    <target>
+                        <entity>
+                            <value_generator name="Literal">
+                                <arg name="literalQName">rdfs:label</arg>
+                                <arg name="literalXPath">text()</arg>
+                            </value_generator>
+                        </entity>
+                    </target>
+                </range>
+            </link>
+        </mapping>
+    </mappings>
+</x3ml>

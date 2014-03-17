@@ -111,7 +111,8 @@ public interface X3ML {
         @XStreamAlias("property")
         public PropertyElement propertyElement;
 
-        public Intermediate intermediate;
+        @XStreamImplicit
+        public List<Intermediate> intermediates;
 
         @XStreamImplicit
         public List<Additional> additionals;
@@ -299,11 +300,15 @@ public interface X3ML {
     @XStreamAlias("entity")
     public static class EntityElement extends Visible {
 
+        public String variable;
+
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;
+
+        public String literal;
 
         public Value getValue(ValueContext context) {
             return context.generateValue(valueGenerator, this);

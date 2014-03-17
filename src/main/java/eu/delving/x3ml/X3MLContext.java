@@ -155,8 +155,10 @@ public class X3MLContext implements X3ML {
         public final Node node;
         public final Path path;
         public QualifiedName qualifiedName;
-        public Property property, intermediateProperty;
-        public Resource intermediateResource;
+        public Property property;
+        public List<IntermediateNode> intermediateNodes;
+        public Resource lastResource;
+        public Property lastProperty;
 
         public PathContext(DomainContext domainContext, Node node, Path path) {
             this.domainContext = domainContext;
@@ -170,28 +172,17 @@ public class X3MLContext implements X3ML {
             if (qualifiedName == null) return false;
             String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
             property = model.createProperty(namespaceUri, qualifiedName.getLocalName());
-            if (path.target.intermediate != null) {
-                Intermediate inter = path.target.intermediate;
-                Value interValue = inter.entityElement.getValue(this);
-                intermediateResource = createTypedResource(interValue.uri, inter.entityElement.qualifiedName);
-                intermediateProperty = createProperty(inter.propertyElement.qualifiedName);
-                if (interValue.labelQName != null) {
-                    intermediateResource.addLiteral(
-                            createProperty(interValue.labelQName),
-                            createLiteral(interValue.labelValue)
-                    );
-                }
-            }
+            intermediateNodes = createIntermediateNodes(path.target.intermediates, this);
             return true;
         }
 
-        public void linkTo(Resource rangeResource) {
-            if (intermediateProperty == null) {
-                domainContext.domainResource.addProperty(property, rangeResource);
-            }
-            else {
-                domainContext.domainResource.addProperty(property, intermediateResource);
-                intermediateResource.addProperty(intermediateProperty, rangeResource);
+        public void link() {
+            lastResource = domainContext.domainResource;
+            lastProperty = property;
+            for (IntermediateNode intermediateNode : intermediateNodes) {
+                lastResource.addProperty(lastProperty, intermediateNode.resource);
+                lastResource = intermediateNode.resource;
+                lastProperty = intermediateNode.property;
             }
         }
 
@@ -261,6 +252,8 @@ public class X3MLContext implements X3ML {
         public final Range range;
         public Value value;
         public Resource rangeResource;
+        public Property literalProperty;
+        public Literal literalValue;
         public List<AdditionalNode> additionalNodes;
 
         public RangeContext(PathContext pathContext, Node node, Range range) {
@@ -273,13 +266,16 @@ public class X3MLContext implements X3ML {
             if (conditionFails(range.target.condition, this)) return false;
             value = range.target.entityElement.getValue(this);
             if (value == null) return false;
-            rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
-            if (rangeResource == null) return false;
-            if (value.labelQName != null) {
-                rangeResource.addLiteral(
-                        createProperty(value.labelQName),
-                        createLiteral(value.labelValue)
-                );
+            if (value.uri == null) {
+                literalProperty = createProperty(value.labelQName);
+                literalValue = createLiteral(value.labelValue);
+            }
+            else {
+                rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
+                if (rangeResource == null) return false;
+                if (value.labelQName != null) {
+                    rangeResource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
+                }
             }
             additionalNodes = createAdditionalNodes(range.target.additionals, this);
             return true;
@@ -306,9 +302,18 @@ public class X3MLContext implements X3ML {
         }
 
         public void link() {
-            pathContext.linkTo(rangeResource);
-            for (AdditionalNode additionalNode : additionalNodes) {
-                additionalNode.linkFrom(rangeResource);
+            pathContext.link();
+            if (rangeResource != null) {
+                pathContext.lastResource.addProperty(pathContext.lastProperty, rangeResource);
+                for (AdditionalNode additionalNode : additionalNodes) {
+                    additionalNode.linkFrom(rangeResource);
+                }
+            }
+            else {
+                if (!additionalNodes.isEmpty()) {
+                    throw new X3MLException("Additional nodes when there's no range resource?");
+                }
+                pathContext.lastResource.addLiteral(literalProperty, literalValue);
             }
         }
     }
@@ -356,6 +361,43 @@ public class X3MLContext implements X3ML {
         public void linkFrom(Resource fromResource) {
             fromResource.addProperty(property, resource);
         }
+    }
+
+    private List<IntermediateNode> createIntermediateNodes(List<Intermediate> intermediateList, ValueContext valueContext) {
+        List<IntermediateNode> intermediateNodes = new ArrayList<IntermediateNode>();
+        if (intermediateList != null) {
+            for (Intermediate intermediate : intermediateList) {
+                IntermediateNode intermediateNode = new IntermediateNode(intermediate, valueContext);
+                if (intermediateNode.resolve()) {
+                    intermediateNodes.add(intermediateNode);
+                }
+            }
+        }
+        return intermediateNodes;
+    }
+
+    private class IntermediateNode {
+        public final Intermediate intermediate;
+        public final ValueContext valueContext;
+        public Resource resource;
+        public Property property;
+
+        private IntermediateNode(Intermediate intermediate, ValueContext valueContext) {
+            this.intermediate = intermediate;
+            this.valueContext = valueContext;
+        }
+
+        public boolean resolve() {
+            Value value = intermediate.entityElement.getValue(valueContext);
+            if (value == null) return false;
+            resource = createTypedResource(value.uri, intermediate.entityElement.qualifiedName);
+            if (value.labelQName != null) {
+                resource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
+            }
+            property = createProperty(intermediate.propertyElement.qualifiedName);
+            return property != null && resource != null;
+        }
+
     }
 
     private ArgValue evaluateArgument(Node contextNode, ValueGenerator function, String argName, SourceType type, QualifiedName qualifiedName) {

@@ -2,12 +2,10 @@ package eu.delving.x3ml;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import static eu.delving.x3ml.AllTests.*;
 import static org.junit.Assert.*;
@@ -19,31 +17,44 @@ import static org.junit.Assert.*;
 public class TestCoin {
     private final Logger log = Logger.getLogger(getClass());
 
-    private void log(String title, String[] list) {
-        log.info(title);
-        for (String line : list) {
-            log.info(line);
-        }
-    }
-
     @Test
     public void testSimpleCoinExample() throws X3MLException {
         X3MLEngine engine = engine("/coin/coin1.x3ml");
         X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new SimplePolicy());
-        String [] mappingResult = context.toStringArray();
-        String [] expectedResult = xmlToNTriples("/coin/coin1-rdf.xml");
+        String[] mappingResult = context.toStringArray();
+        String[] expectedResult = xmlToNTriples("/coin/coin1-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
-        assertTrue("\n"+ StringUtils.join(diff, "\n"), diff.isEmpty());
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 
     @Test
     public void testJoinExample() throws X3MLException {
         X3MLEngine engine = engine("/join/join1.x3ml");
         X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new SimplePolicy());
-        String [] mappingResult = context.toStringArray();
-        String [] expectedResult = xmlToNTriples("/join/join1-rdf.xml");
+        String[] mappingResult = context.toStringArray();
+        String[] expectedResult = xmlToNTriples("/join/join1-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
-        assertTrue("\n"+ StringUtils.join(diff, "\n"), diff.isEmpty());
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+    }
+
+    @Ignore
+    @Test
+    public void testJoinVariableExample() throws X3MLException {
+        X3MLEngine engine = engine("/join/join2.x3ml");
+        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new SimplePolicy());
+        String[] mappingResult = context.toStringArray();
+        String[] expectedResult = xmlToNTriples("/join/join2-rdf.xml");
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+    }
+
+    private boolean errorFree(List<String> diff) {
+        for (String line : diff) {
+            if (line.startsWith("!")) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -51,7 +62,7 @@ public class TestCoin {
         private char uuidLetter = 'A';
 
         private String createUUID() {
-            return "uuid:"+(uuidLetter++);
+            return "uuid:" + (uuidLetter++);
         }
 
         @Override
@@ -78,6 +89,18 @@ public class TestCoin {
                 else {
                     value.labelValue = labelXPath.string;
                 }
+            }
+            else if ("Literal".equals(name)) {
+                X3ML.ArgValue literalXPath = arguments.getArgValue("literalXPath", X3ML.SourceType.XPATH);
+                if (literalXPath == null) {
+                    throw new X3MLException("Argument failure: literalXPath required");
+                }
+                X3ML.ArgValue literalQName = arguments.getArgValue("literalQName", X3ML.SourceType.QNAME);
+                if (literalQName == null || literalQName.qualifiedName == null) {
+                    throw new X3MLException("Argument failure: literalQName");
+                }
+                value.labelQName = literalQName.qualifiedName;
+                value.labelValue = literalXPath.string;
             }
             else {
                 throw new X3MLException("Unknown function: " + name);

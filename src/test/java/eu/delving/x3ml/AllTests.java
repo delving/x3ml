@@ -1,9 +1,7 @@
 package eu.delving.x3ml;
 
-import com.apple.jobjc.appkit._NSProgressIndicatorThreadInfoOpaque;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import org.apache.xml.resolver.apps.xread;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.w3c.dom.Element;
@@ -11,7 +9,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.swing.text.html.HTMLDocument;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLEventWriter;

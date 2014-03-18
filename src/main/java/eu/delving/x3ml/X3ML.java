@@ -111,6 +111,8 @@ public interface X3ML {
         @XStreamAlias("property")
         public PropertyElement propertyElement;
 
+        public String literal;
+
         @XStreamImplicit
         public List<Intermediate> intermediates;
 
@@ -307,8 +309,6 @@ public interface X3ML {
 
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;
-
-        public String literal;
 
         public Value getValue(ValueContext context) {
             return context.generateValue(valueGenerator, this);

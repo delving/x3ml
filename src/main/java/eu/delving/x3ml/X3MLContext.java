@@ -11,6 +11,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * The context in which the engine acts
@@ -73,9 +75,60 @@ public class X3MLContext implements X3ML {
     // ===== calls made from within X3ML.* classes ====
 
     public interface ValueContext {
+
+        Resource get(String variable);
+
+        void put(String variable, Resource resource);
+
         String evaluate(String expression);
 
         Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement);
+    }
+
+    public abstract class LocalContext implements ValueContext {
+        public final ValueContext parent;
+        public final Node node;
+
+        protected LocalContext(ValueContext parent, Node node) {
+            this.parent = parent;
+            this.node = node;
+        }
+
+        @Override
+        public Resource get(String variable) {
+            if (parent == null) throw new X3MLException("Parent context missing");
+            return parent.get(variable);
+        }
+
+        @Override
+        public void put(String variable, Resource resource) {
+            if (parent == null) throw new X3MLException("Parent context missing");
+            parent.put(variable, resource);
+        }
+
+        @Override
+        public String evaluate(String expression) {
+            return valueAt(node, expression);
+        }
+
+        @Override
+        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
+            if (valueGenerator == null) {
+                throw new X3MLException("Value generator missing");
+            }
+            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+                @Override
+                public ArgValue getArgValue(String name, SourceType type) {
+                    return evaluateArgument(node, valueGenerator, name, type, entityElement.qualifiedName);
+                }
+
+                @Override
+                public String toString() {
+                    return entityElement.toString();
+                }
+            });
+        }
+
     }
 
     public List<DomainContext> createDomainContexts(Domain domain) {
@@ -90,16 +143,28 @@ public class X3MLContext implements X3ML {
         return domainContexts;
     }
 
-    public class DomainContext implements ValueContext {
+    public class DomainContext extends LocalContext {
         public final Domain domain;
-        public final Node node;
         public Resource domainResource;
         public Value value;
         public List<AdditionalNode> additionalNodes;
+        private Map<String, Resource> variables = new TreeMap<String, Resource>();
 
         public DomainContext(Domain domain, Node node) {
+            super(null, node);
             this.domain = domain;
-            this.node = node;
+        }
+
+        @Override
+        public Resource get(String variable) {
+//            System.out.println("GET " + variable);
+            return variables.get(variable);
+        }
+
+        @Override
+        public void put(String variable, Resource resource) {
+//            System.out.println("PUT " + variable + " = " + resource);
+            variables.put(variable, resource);
         }
 
         public boolean resolve() {
@@ -109,26 +174,6 @@ public class X3MLContext implements X3ML {
             domainResource = createTypedResource(value.uri, domain.target.entityElement.qualifiedName);
             additionalNodes = createAdditionalNodes(domain.target.additionals, this);
             return domainResource != null;
-        }
-
-        @Override
-        public String evaluate(String expression) {
-            return valueAt(node, expression);
-        }
-
-        @Override
-        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
-            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
-                @Override
-                public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluateArgument(node, valueGenerator, name, type, domain.target.entityElement.qualifiedName);
-                }
-
-                @Override
-                public String toString() {
-                    return entityElement.toString();
-                }
-            });
         }
 
         public List<PathContext> createPathContexts(Path path) {
@@ -150,9 +195,8 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    public class PathContext implements ValueContext {
+    public class PathContext extends LocalContext {
         public final DomainContext domainContext;
-        public final Node node;
         public final Path path;
         public QualifiedName qualifiedName;
         public Property property;
@@ -161,8 +205,8 @@ public class X3MLContext implements X3ML {
         public Property lastProperty;
 
         public PathContext(DomainContext domainContext, Node node, Path path) {
+            super(domainContext, node);
             this.domainContext = domainContext;
-            this.node = node;
             this.path = path;
         }
 
@@ -224,31 +268,10 @@ public class X3MLContext implements X3ML {
             }
             return pathExtension;
         }
-
-        @Override
-        public String evaluate(String expression) {
-            return valueAt(node, expression);
-        }
-
-        @Override
-        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
-            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
-                @Override
-                public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluateArgument(node, valueGenerator, name, type, entityElement.qualifiedName);
-                }
-
-                @Override
-                public String toString() {
-                    return entityElement.toString();
-                }
-            });
-        }
     }
 
-    public class RangeContext implements ValueContext {
+    public class RangeContext extends LocalContext {
         public final PathContext pathContext;
-        public final Node node;
         public final Range range;
         public Value value;
         public Resource rangeResource;
@@ -257,48 +280,36 @@ public class X3MLContext implements X3ML {
         public List<AdditionalNode> additionalNodes;
 
         public RangeContext(PathContext pathContext, Node node, Range range) {
+            super(pathContext, node);
             this.pathContext = pathContext;
-            this.node = node;
             this.range = range;
         }
 
         public boolean resolve() {
             if (conditionFails(range.target.condition, this)) return false;
-            value = range.target.entityElement.getValue(this);
-            if (value == null) return false;
-            if (value.uri == null) {
-                literalProperty = createProperty(value.labelQName);
-                literalValue = createLiteral(value.labelValue);
+            if (range.target.entityElement != null) {
+                value = range.target.entityElement.getValue(this);
+                if (value == null) return false;
+                if (value.uri == null) {
+                    literalProperty = createProperty(value.labelQName);
+                    literalValue = createLiteral(value.labelValue);
+                }
+                else {
+                    rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
+                    if (rangeResource == null) return false;
+                    if (value.labelQName != null) {
+                        rangeResource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
+                    }
+                }
+            }
+            else if (range.target.literal != null) {
+                literalValue = createLiteral(evaluate(range.target.literal));
             }
             else {
-                rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
-                if (rangeResource == null) return false;
-                if (value.labelQName != null) {
-                    rangeResource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
-                }
+                throw new X3MLException("Target must have entity or literal");
             }
             additionalNodes = createAdditionalNodes(range.target.additionals, this);
             return true;
-        }
-
-        @Override
-        public String evaluate(String expression) {
-            return valueAt(node, expression);
-        }
-
-        @Override
-        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
-            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
-                @Override
-                public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluateArgument(node, valueGenerator, name, type, entityElement.qualifiedName);
-                }
-
-                @Override
-                public String toString() {
-                    return entityElement.toString();
-                }
-            });
         }
 
         public void link() {
@@ -313,7 +324,15 @@ public class X3MLContext implements X3ML {
                 if (!additionalNodes.isEmpty()) {
                     throw new X3MLException("Additional nodes when there's no range resource?");
                 }
-                pathContext.lastResource.addLiteral(literalProperty, literalValue);
+                if (literalProperty != null) {
+                    pathContext.lastResource.addLiteral(literalProperty, literalValue);
+                }
+                else if (literalValue != null) {
+                    pathContext.lastResource.addLiteral(pathContext.lastProperty, literalValue);
+                }
+                else {
+                    throw new X3MLException("Range context must have at least a literal value");
+                }
             }
         }
     }
@@ -388,14 +407,28 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
+            String variable = intermediate.entityElement.variable;
+            if (variable != null) {
+                resource = valueContext.get(variable);
+                if (resource == null && resolveResource()) {
+                    valueContext.put(variable, resource);
+                }
+            }
+            else if (!resolveResource()) {
+                return false;
+            }
+            property = createProperty(intermediate.propertyElement.qualifiedName);
+            return property != null && resource != null;
+        }
+
+        private boolean resolveResource() {
             Value value = intermediate.entityElement.getValue(valueContext);
             if (value == null) return false;
             resource = createTypedResource(value.uri, intermediate.entityElement.qualifiedName);
             if (value.labelQName != null) {
                 resource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
             }
-            property = createProperty(intermediate.propertyElement.qualifiedName);
-            return property != null && resource != null;
+            return true;
         }
 
     }

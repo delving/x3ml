@@ -111,12 +111,7 @@
                 <range>
                     <source>FIND_DATE</source>
                     <target>
-                        <entity>
-                            <value_generator name="Literal">
-                                <arg name="literalQName">rdfs:label</arg>
-                                <arg name="literalXPath">text()</arg>
-                            </value_generator>
-                        </entity>
+                        <literal>text()</literal>
                     </target>
                 </range>
             </link>

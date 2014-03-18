@@ -27,6 +27,7 @@
                 <crm:P4_has_time-span>
                     <crm:E52_Time-Span rdf:about="uuid:E">
                         <crm:P81_ongoing_throughout>1980er Jahre</crm:P81_ongoing_throughout>
+                        <rdfs:label>find event date</rdfs:label>
                     </crm:E52_Time-Span>
                 </crm:P4_has_time-span>
             </crm:E10_Transfer_of_Custody>

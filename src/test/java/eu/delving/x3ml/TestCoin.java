@@ -37,7 +37,6 @@ public class TestCoin {
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 
-    @Ignore
     @Test
     public void testJoinVariableExample() throws X3MLException {
         X3MLEngine engine = engine("/join/join2.x3ml");
@@ -46,6 +45,7 @@ public class TestCoin {
         String[] expectedResult = xmlToNTriples("/join/join2-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+        System.out.println(StringUtils.join(diff, "\n"));
     }
 
     private boolean errorFree(List<String> diff) {
@@ -89,18 +89,6 @@ public class TestCoin {
                 else {
                     value.labelValue = labelXPath.string;
                 }
-            }
-            else if ("Literal".equals(name)) {
-                X3ML.ArgValue literalXPath = arguments.getArgValue("literalXPath", X3ML.SourceType.XPATH);
-                if (literalXPath == null) {
-                    throw new X3MLException("Argument failure: literalXPath required");
-                }
-                X3ML.ArgValue literalQName = arguments.getArgValue("literalQName", X3ML.SourceType.QNAME);
-                if (literalQName == null || literalQName.qualifiedName == null) {
-                    throw new X3MLException("Argument failure: literalQName");
-                }
-                value.labelQName = literalQName.qualifiedName;
-                value.labelValue = literalXPath.string;
             }
             else {
                 throw new X3MLException("Unknown function: " + name);

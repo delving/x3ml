@@ -1,5 +1,6 @@
 package eu.delving.x3ml;
 
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
@@ -128,6 +129,15 @@ public class TestConditions implements X3ML {
                 fail(condition.toString());
             }
             return this;
+        }
+
+        @Override
+        public Resource get(String variable) {
+            return null;
+        }
+
+        @Override
+        public void put(String variable, Resource resource) {
         }
 
         @Override

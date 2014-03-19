@@ -2,13 +2,12 @@ package eu.delving.x3ml;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
 
 import static eu.delving.x3ml.AllTests.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -70,25 +69,24 @@ public class TestCoin {
             X3ML.Value value = new X3ML.Value();
             if ("UUID".equals(name)) {
                 value.uri = createUUID();
+//                System.out.println(arguments + ":\n"+ value.uri);
             }
-            else if ("UUID_Label".equals(name)) {
-                X3ML.ArgValue labelQName = arguments.getArgValue("labelQName", X3ML.SourceType.QNAME);
-                if (labelQName == null || labelQName.qualifiedName == null) {
-                    throw new X3MLException("Argument failure: labelQName");
+            else if ("Literal".equals(name)) {
+                X3ML.ArgValue literalXPath = arguments.getArgValue(null, X3ML.SourceType.XPATH);
+                if (literalXPath == null) {
+                    throw new X3MLException("Argument failure: need one argument");
                 }
-                value.uri = createUUID();
-                value.labelQName = labelQName.qualifiedName;
-                X3ML.ArgValue labelXPath = arguments.getArgValue("labelXPath", X3ML.SourceType.XPATH);
-                if (labelXPath == null) {
-                    X3ML.ArgValue labelLiteral = arguments.getArgValue("labelLiteral", X3ML.SourceType.LITERAL);
-                    if (labelLiteral == null) {
-                        throw new X3MLException("Argument failure: labelXPath or labelLiteral required");
-                    }
-                    value.labelValue = labelLiteral.string;
+                if (literalXPath.string == null || literalXPath.string.isEmpty()) {
+                    throw new X3MLException("Argument failure: empty argument");
                 }
-                else {
-                    value.labelValue = labelXPath.string;
+                value.literal = literalXPath.string;
+            }
+            else if ("Constant".equals(name)) {
+                X3ML.ArgValue constant = arguments.getArgValue(null, X3ML.SourceType.LITERAL);
+                if (constant == null) {
+                    throw new X3MLException("Argument failure: need one argument");
                 }
+                value.literal = constant.string;
             }
             else {
                 throw new X3MLException("Unknown function: " + name);

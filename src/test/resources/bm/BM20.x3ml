@@ -7,7 +7,7 @@
         <mapping>
             <domain>
                 <source>//input</source>
-                <target>
+                <target_node>
                     <entity>
                         <qname>crm:E19_Physical_Object</qname>
                         <value_generator name="PhysicalObject">
@@ -15,27 +15,27 @@
                             <arg name="entry">bm_object_id/text()</arg>
                         </value_generator>
                     </entity>
-                </target>
+                </target_node>
             </domain>
             <link>
                 <path>
                     <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
-                    <target>
+                    <target_relation>
                         <property>
                             <qname>crm:P54_has_current_permanent_location</qname>
                         </property>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E48_Place_Name</qname>
                             <value_generator name="PlaceName">
                                 <arg name="entry">bm_loc/text()</arg>
                             </value_generator>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
         </mapping>

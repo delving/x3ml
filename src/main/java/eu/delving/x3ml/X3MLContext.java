@@ -116,7 +116,7 @@ public class X3MLContext implements X3ML {
             if (valueGenerator == null) {
                 throw new X3MLException("Value generator missing");
             }
-            return valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+            Value value = valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
                     return evaluateArgument(node, valueGenerator, name, type, entityElement.qualifiedName);
@@ -127,6 +127,10 @@ public class X3MLContext implements X3ML {
                     return entityElement.toString();
                 }
             });
+            if (value.uri == null && value.literal == null) {
+                throw new X3MLException("Empty value produced");
+            }
+            return value;
         }
 
     }
@@ -145,9 +149,7 @@ public class X3MLContext implements X3ML {
 
     public class DomainContext extends LocalContext {
         public final Domain domain;
-        public Resource domainResource;
-        public Value value;
-        public List<AdditionalNode> additionalNodes;
+        public EntityResolver entityResolver;
         private Map<String, Resource> variables = new TreeMap<String, Resource>();
 
         public DomainContext(Domain domain, Node node) {
@@ -168,12 +170,9 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            if (conditionFails(domain.target.condition, this)) return false;
-            value = domain.target.entityElement.getValue(this);
-            if (value == null) return false;
-            domainResource = createTypedResource(value.uri, domain.target.entityElement.qualifiedName);
-            additionalNodes = createAdditionalNodes(domain.target.additionals, this);
-            return domainResource != null;
+            if (conditionFails(domain.target_node.condition, this)) return false;
+            entityResolver = new EntityResolver(domain.target_node.entityElement, this);
+            return entityResolver.resolve();
         }
 
         public List<PathContext> createPathContexts(Path path) {
@@ -189,9 +188,7 @@ public class X3MLContext implements X3ML {
         }
 
         public void link() {
-            for (AdditionalNode additionalNode : additionalNodes) {
-                additionalNode.linkFrom(domainResource);
-            }
+            entityResolver.link();
         }
     }
 
@@ -211,21 +208,29 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            if (conditionFails(path.target.condition, this)) return false;
-            qualifiedName = path.target.propertyElement.getPropertyClass();
+            if (conditionFails(path.target_relation.condition, this)) return false;
+            qualifiedName = path.target_relation.propertyElement.getPropertyClass();
             if (qualifiedName == null) return false;
             String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
             property = model.createProperty(namespaceUri, qualifiedName.getLocalName());
-            intermediateNodes = createIntermediateNodes(path.target.intermediates, this);
+            intermediateNodes = createIntermediateNodes(path.target_relation.intermediates, this);
             return true;
         }
 
         public void link() {
-            lastResource = domainContext.domainResource;
+            domainContext.link();
+            if (!domainContext.entityResolver.hasResource()) {
+                throw new X3MLException("Domain node has no resource");
+            }
+            lastResource = domainContext.entityResolver.resource;
             lastProperty = property;
             for (IntermediateNode intermediateNode : intermediateNodes) {
-                lastResource.addProperty(lastProperty, intermediateNode.resource);
-                lastResource = intermediateNode.resource;
+                intermediateNode.entityResolver.link();
+                if (!intermediateNode.entityResolver.hasResource()) {
+                    throw new X3MLException("Intermediate node has no resource");
+                }
+                lastResource.addProperty(lastProperty, intermediateNode.entityResolver.resource);
+                lastResource = intermediateNode.entityResolver.resource;
                 lastProperty = intermediateNode.property;
             }
         }
@@ -273,11 +278,7 @@ public class X3MLContext implements X3ML {
     public class RangeContext extends LocalContext {
         public final PathContext pathContext;
         public final Range range;
-        public Value value;
-        public Resource rangeResource;
-        public Property literalProperty;
-        public Literal literalValue;
-        public List<AdditionalNode> additionalNodes;
+        public EntityResolver rangeResolver;
 
         public RangeContext(PathContext pathContext, Node node, Range range) {
             super(pathContext, node);
@@ -286,59 +287,80 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            if (conditionFails(range.target.condition, this)) return false;
-            if (range.target.entityElement != null) {
-                value = range.target.entityElement.getValue(this);
-                if (value == null) return false;
-                if (value.uri == null) {
-                    literalProperty = createProperty(value.labelQName);
-                    literalValue = createLiteral(value.labelValue);
-                }
-                else {
-                    rangeResource = createTypedResource(value.uri, range.target.entityElement.qualifiedName);
-                    if (rangeResource == null) return false;
-                    if (value.labelQName != null) {
-                        rangeResource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
-                    }
-                }
-            }
-            else if (range.target.literal != null) {
-                literalValue = createLiteral(evaluate(range.target.literal));
-            }
-            else {
-                throw new X3MLException("Target must have entity or literal");
-            }
-            additionalNodes = createAdditionalNodes(range.target.additionals, this);
-            return true;
+            if (conditionFails(range.target_node.condition, this)) return false;
+            rangeResolver = new EntityResolver(range.target_node.entityElement, this);
+            return rangeResolver.resolve();
         }
 
         public void link() {
             pathContext.link();
-            if (rangeResource != null) {
-                pathContext.lastResource.addProperty(pathContext.lastProperty, rangeResource);
-                for (AdditionalNode additionalNode : additionalNodes) {
-                    additionalNode.linkFrom(rangeResource);
-                }
+            if (rangeResolver.hasResource()) {
+                rangeResolver.link();
+                pathContext.lastResource.addProperty(pathContext.lastProperty, rangeResolver.resource);
             }
-            else {
-                if (!additionalNodes.isEmpty()) {
-                    throw new X3MLException("Additional nodes when there's no range resource?");
-                }
-                if (literalProperty != null) {
-                    pathContext.lastResource.addLiteral(literalProperty, literalValue);
-                }
-                else if (literalValue != null) {
-                    pathContext.lastResource.addLiteral(pathContext.lastProperty, literalValue);
-                }
-                else {
-                    throw new X3MLException("Range context must have at least a literal value");
-                }
+            else if (rangeResolver.hasLiteral()) {
+                pathContext.lastResource.addLiteral(pathContext.lastProperty, rangeResolver.literal);
             }
         }
     }
 
-
 // =============================================
+
+    private class EntityResolver {
+        public final EntityElement entityElement;
+        public final ValueContext valueContext;
+        public Resource resource;
+        public List<AdditionalNode> additionalNodes;
+        public Literal literal;
+
+        EntityResolver(EntityElement entityElement, ValueContext valueContext) {
+            this.entityElement = entityElement;
+            this.valueContext = valueContext;
+        }
+
+        boolean resolve() {
+            if (entityElement == null) {
+                throw new X3MLException("Missing entity");
+            }
+            if (entityElement.variable == null) {
+                return resolveResource();
+            }
+            resource = valueContext.get(entityElement.variable);
+            if (resource != null) return true;
+            if (!resolveResource()) return false;
+            valueContext.put(entityElement.variable, resource);
+            return true;
+        }
+
+        private boolean resolveResource() {
+            Value value = entityElement.getValue(valueContext);
+            if (value == null) return false;
+            if (value.uri != null) {
+                resource = createTypedResource(value.uri, entityElement.qualifiedName);
+                additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
+            }
+            if (value.literal != null) {
+                literal = createLiteral(value.literal);
+            }
+            return hasResource() || hasLiteral();
+        }
+
+        boolean hasResource() {
+            return resource != null;
+        }
+
+        boolean hasLiteral() {
+            return literal != null;
+        }
+
+        void link() {
+            if (resource != null) {
+                for (AdditionalNode additionalNode : createAdditionalNodes(entityElement.additionals, valueContext)) {
+                    additionalNode.linkFrom(resource);
+                }
+            }
+        }
+    }
 
     private boolean conditionFails(Condition condition, ValueContext context) {
         return condition != null && condition.failure(context);
@@ -362,6 +384,7 @@ public class X3MLContext implements X3ML {
         public final ValueContext valueContext;
         public Property property;
         public Resource resource;
+        public Literal literal;
 
         private AdditionalNode(Additional additional, ValueContext valueContext) {
             this.additional = additional;
@@ -373,12 +396,27 @@ public class X3MLContext implements X3ML {
             if (property == null) return false;
             Value value = additional.entityElement.getValue(valueContext);
             if (value == null) return false;
-            resource = createTypedResource(value.uri, additional.entityElement.qualifiedName);
-            return resource != null;
+            if (additional.entityElement.qualifiedName != null) {
+                resource = createTypedResource(value.uri, additional.entityElement.qualifiedName);
+                return true;
+            }
+            if (value.literal != null) {
+                literal = createLiteral(value.literal);
+                return true;
+            }
+            return false;
         }
 
         public void linkFrom(Resource fromResource) {
-            fromResource.addProperty(property, resource);
+            if (resource != null) {
+                fromResource.addProperty(property, resource);
+            }
+            else if (literal != null) {
+                fromResource.addLiteral(property, literal);
+            }
+            else {
+                throw new X3MLException("Cannot link without property or literal");
+            }
         }
     }
 
@@ -398,7 +436,7 @@ public class X3MLContext implements X3ML {
     private class IntermediateNode {
         public final Intermediate intermediate;
         public final ValueContext valueContext;
-        public Resource resource;
+        public EntityResolver entityResolver;
         public Property property;
 
         private IntermediateNode(Intermediate intermediate, ValueContext valueContext) {
@@ -407,30 +445,11 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            String variable = intermediate.entityElement.variable;
-            if (variable != null) {
-                resource = valueContext.get(variable);
-                if (resource == null && resolveResource()) {
-                    valueContext.put(variable, resource);
-                }
-            }
-            else if (!resolveResource()) {
-                return false;
-            }
+            entityResolver = new EntityResolver(intermediate.entityElement, valueContext);
+            if (!entityResolver.resolve()) return false;
             property = createProperty(intermediate.propertyElement.qualifiedName);
-            return property != null && resource != null;
+            return property != null && entityResolver.hasResource();
         }
-
-        private boolean resolveResource() {
-            Value value = intermediate.entityElement.getValue(valueContext);
-            if (value == null) return false;
-            resource = createTypedResource(value.uri, intermediate.entityElement.qualifiedName);
-            if (value.labelQName != null) {
-                resource.addLiteral(createProperty(value.labelQName), createLiteral(value.labelValue));
-            }
-            return true;
-        }
-
     }
 
     private ArgValue evaluateArgument(Node contextNode, ValueGenerator function, String argName, SourceType type, QualifiedName qualifiedName) {
@@ -466,6 +485,9 @@ public class X3MLContext implements X3ML {
         switch (type) {
             case XPATH:
                 value.string = valueAt(contextNode, foundArg.value);
+                if (value.string.isEmpty()) {
+                    throw new X3MLException("Empty result");
+                }
                 break;
             case QNAME:
                 value.setQName(foundArg.value, namespaceContext);
@@ -478,12 +500,17 @@ public class X3MLContext implements X3ML {
     }
 
     private Resource createTypedResource(String uriString, QualifiedName qualifiedName) {
-        if (qualifiedName == null) throw new X3MLException("Missing qualified name");
+        if (qualifiedName == null) {
+            throw new X3MLException("Missing qualified name");
+        }
         String typeUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
         return model.createResource(uriString, model.createResource(typeUri + qualifiedName.getLocalName()));
     }
 
     private Property createProperty(QualifiedName qualifiedName) {
+        if (qualifiedName == null) {
+            throw new X3MLException("Missing qualified name");
+        }
         String propertyNamespace = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
         return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
     }

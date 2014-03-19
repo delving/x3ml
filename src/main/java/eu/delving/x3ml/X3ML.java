@@ -88,8 +88,11 @@ public interface X3ML {
 
     @XStreamAlias("domain")
     public static class Domain extends Visible {
+
         public Source source;
-        public Target target;
+
+        public TargetNode target_node;
+
         public Comments comments;
     }
 
@@ -99,25 +102,27 @@ public interface X3ML {
         public String expression;
     }
 
-    @XStreamAlias("target")
-    public static class Target extends Visible {
+    @XStreamAlias("target_relation")
+    public static class TargetRelation extends Visible {
+
+        @XStreamAlias("if")
+        public Condition condition;
+
+        @XStreamAlias("property")
+        public PropertyElement propertyElement;
+
+        @XStreamImplicit
+        public List<Intermediate> intermediates;
+    }
+
+    @XStreamAlias("target_node")
+    public static class TargetNode extends Visible {
 
         @XStreamAlias("if")
         public Condition condition;
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
-
-        @XStreamAlias("property")
-        public PropertyElement propertyElement;
-
-        public String literal;
-
-        @XStreamImplicit
-        public List<Intermediate> intermediates;
-
-        @XStreamImplicit
-        public List<Additional> additionals;
     }
 
     @XStreamAlias("path")
@@ -125,7 +130,7 @@ public interface X3ML {
 
         public Source source;
 
-        public Target target;
+        public TargetRelation target_relation;
 
         public Comments comments;
     }
@@ -135,7 +140,7 @@ public interface X3ML {
 
         public Source source;
 
-        public Target target;
+        public TargetNode target_node;
 
         public Comments comments;
     }
@@ -310,6 +315,9 @@ public interface X3ML {
         @XStreamAlias("value_generator")
         public ValueGenerator valueGenerator;
 
+        @XStreamImplicit
+        public List<Additional> additionals;
+
         public Value getValue(ValueContext context) {
             return context.generateValue(valueGenerator, this);
         }
@@ -406,18 +414,14 @@ public interface X3ML {
 
     public static class Value {
         public String uri;
-        public QualifiedName labelQName;
-        public String labelValue;
+        public String literal;
 
         public String toString() {
-            if (uri != null && labelQName != null) {
-                return "Value(" + uri + ", " + labelQName + " := " + labelValue + ")";
+            if (uri != null) {
+                return "Value(uri=" + uri + ")";
             }
-            else if (uri != null) {
-                return "Value(" + uri + ")";
-            }
-            else if (labelQName != null) {
-                return "Value(" + labelQName + " := " + labelValue + ")";
+            else if (literal != null) {
+                return "Value(literal=" + literal + ")";
             }
             else {
                 return "Value?";

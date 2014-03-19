@@ -9,67 +9,88 @@
         <mapping>
             <domain>
                 <source>//COIN</source>
-                <target>
+                <target_node>
                     <entity>
                         <qname>crm:E22_Man-Made_Object</qname>
                         <value_generator name="UUID"/>
                     </entity>
-                </target>
+                </target_node>
             </domain>
             <link>
                 <path>
                     <source>ID</source>
-                    <target>
+                    <target_relation>
                         <property>
                             <qname>crm:P1_is_identified_by</qname>
                         </property>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>ID</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="UUID_Label">
-                                <arg name="labelQName">rdfs:label</arg>
-                                <arg name="labelXPath">text()</arg>
-                            </value_generator>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Literal">
+                                        <arg>text()</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
             <link>
                 <path>
                     <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
-                    <target>
+                    <target_relation>
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
                         </property>
                         <intermediate>
                             <entity>
                                 <qname>crm:E10_Transfer_of_Custody</qname>
-                                <value_generator name="UUID_Label">
-                                    <arg name="labelQName">rdfs:label</arg>
-                                    <arg name="labelLiteral">find event</arg>
-                                </value_generator>
+                                <value_generator name="UUID"/>
+                                <additional>
+                                    <property>
+                                        <qname>rdfs:label</qname>
+                                    </property>
+                                    <entity>
+                                        <value_generator name="Constant">
+                                            <arg>find event</arg>
+                                        </value_generator>
+                                    </entity>
+                                </additional>
                             </entity>
                             <property>
                                 <qname>crm:P7_took_place_at</qname>
                             </property>
                         </intermediate>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="UUID_Label">
-                                <arg name="labelQName">rdfs:label</arg>
-                                <arg name="labelXPath">FS_NAME/text()</arg>
-                            </value_generator>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Literal">
+                                        <arg>FS_NAME/text()</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
         </mapping>

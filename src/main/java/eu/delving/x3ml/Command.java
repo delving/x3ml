@@ -119,22 +119,10 @@ public class Command {
                 @Override
                 public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs arguments) {
                     X3ML.Value value = new X3ML.Value();
-                    if ("UUID".equals(name)) {
-                        value.uri = uuid();
+                    if (!"UUID".equals(name)) {
+                        throw new X3MLException("Only UUID function defined");
                     }
-                    else if ("UUID_Label".equals(name)) {
-                        X3ML.ArgValue labelQName = arguments.getArgValue("labelQName", X3ML.SourceType.QNAME);
-                        if (labelQName == null || labelQName.qualifiedName == null) {
-                            throw new X3MLException("Argument failure: labelQName");
-                        }
-                        value.uri = uuid();
-                        value.labelQName = labelQName.qualifiedName;
-                        X3ML.ArgValue labelXPath = arguments.getArgValue("labelXPath", X3ML.SourceType.XPATH);
-                        if (labelXPath == null || labelXPath.string == null) {
-                            throw new X3MLException("Argument failure: labelXPath");
-                        }
-                        value.labelValue = labelXPath.string;
-                    }
+                    value.uri = uuid();
                     return value;
                 }
             };

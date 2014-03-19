@@ -9,33 +9,40 @@
         <mapping>
             <domain>
                 <source>//COIN</source>
-                <target>
+                <target_node>
                     <entity>
                         <qname>crm:E22_Man-Made_Object</qname>
                         <value_generator name="UUID"/>
                     </entity>
-                </target>
+                </target_node>
             </domain>
             <link>
                 <path>
                     <source>ID</source>
-                    <target>
+                    <target_relation>
                         <property>
                             <qname>crm:P1_is_identified_by</qname>
                         </property>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>ID</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="UUID_Label">
-                                <arg name="labelQName">rdfs:label</arg>
-                                <arg name="labelXPath">text()</arg>
-                            </value_generator>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Literal">
+                                        <arg>text()</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
         </mapping>

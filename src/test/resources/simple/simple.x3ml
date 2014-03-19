@@ -7,7 +7,7 @@
         <mapping>
             <domain>
                 <source>//movie</source>
-                <target>
+                <target_node>
                     <entity>
                         <qname>crm:E19_Physical_Object</qname>
                         <value_generator name="PhysicalObject">
@@ -15,44 +15,44 @@
                             <arg name="entry">identifier/text()</arg>
                         </value_generator>
                     </entity>
-                </target>
+                </target_node>
             </domain>
             <link>
                 <path>
                     <source>type-wrapper</source>
-                    <target>
+                    <target_relation>
                         <property>
                             <qname>crm:P2_has_type</qname>
                         </property>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>type-wrapper/type</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
                             <value_generator name="Type">
                                 <arg name="entry">text()</arg>
                             </value_generator>
+                            <additional>
+                                <property>
+                                    <qname>crm:P0_has_deity</qname>
+                                </property>
+                                <entity>
+                                    <qname>crm:E0_God</qname>
+                                    <value_generator name="God">
+                                        <arg name="label">Gumby</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
                         </entity>
-                        <additional>
-                            <property>
-                                <qname>crm:P0_has_deity</qname>
-                            </property>
-                            <entity>
-                                <qname>crm:E0_God</qname>
-                                <value_generator name="God">
-                                    <arg name="label">Gumby</arg>
-                                </value_generator>
-                            </entity>
-                        </additional>
-                    </target>
+                    </target_node>
                 </range>
             </link>
             <link>
                 <path>
                     <source>type-wrapper</source>
-                    <target>
+                    <target_relation>
                         <property>
                             <qname>crm:P666_has_nemesis</qname>
                         </property>
@@ -67,24 +67,24 @@
                                 <qname>crm:P2_has_type</qname>
                             </property>
                         </intermediate>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>type-wrapper/type</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
                             <value_generator name="Type">
                                 <arg name="entry">text()</arg>
                             </value_generator>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
             <link>
                 <path>
                     <source>type-wrapper</source>
-                    <target>
+                    <target_relation>
                         <!--this should prevent the link from doing anything-->
                         <if>
                             <not>
@@ -96,24 +96,24 @@
                         <property>
                             <qname>crm:P888_has_extraneous</qname>
                         </property>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>type-wrapper/type</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E888_Extra</qname>
                             <value_generator name="Type">
                                 <arg name="entry">text()</arg>
                             </value_generator>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
             <link>
                 <path>
                     <source>type-wrapper</source>
-                    <target>
+                    <target_relation>
                         <!--this should prevent the link from doing anything-->
                         <if>
                             <equals value="maybe">avoid/text()</equals>
@@ -121,18 +121,18 @@
                         <property>
                             <qname>crm:P888_has_extraneous</qname>
                         </property>
-                    </target>
+                    </target_relation>
                 </path>
                 <range>
                     <source>type-wrapper/type</source>
-                    <target>
+                    <target_node>
                         <entity>
                             <qname>crm:E888_Extra</qname>
                             <value_generator name="Type">
                                 <arg name="entry">text()</arg>
                             </value_generator>
                         </entity>
-                    </target>
+                    </target_node>
                 </range>
             </link>
         </mapping>

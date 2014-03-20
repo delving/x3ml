@@ -441,14 +441,12 @@ public interface X3ML {
     }
 
     public static class ArgValue {
-        public String string;
-        public QualifiedName qualifiedName;
+        public final QualifiedName qualifiedName;
+        public final String string;
 
-        public QualifiedName setQName(String qname, NamespaceContext namespaceContext) {
-            qualifiedName = new QualifiedName();
-            qualifiedName.tag = qname;
-            qualifiedName.namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-            return qualifiedName;
+        public ArgValue(QualifiedName qualifiedName, String string) {
+            this.qualifiedName = qualifiedName;
+            this.string = string;
         }
 
         public String toString() {
@@ -464,29 +462,31 @@ public interface X3ML {
         }
     }
 
-    public interface ValueFunctionArgs {
+    public interface ArgValues {
         ArgValue getArgValue(String name, SourceType sourceType);
     }
 
+    public enum ValueType {
+        URI,
+        LITERAL
+    }
+
     public static class Value {
-        public String uri;
-        public String literal;
+        public final ValueType valueType;
+        public final String value;
+
+        public Value(ValueType valueType, String value) {
+            this.valueType = valueType;
+            this.value = value;
+        }
 
         public String toString() {
-            if (uri != null) {
-                return "Value(uri=" + uri + ")";
-            }
-            else if (literal != null) {
-                return "Value(literal=" + literal + ")";
-            }
-            else {
-                return "Value?";
-            }
+            return valueType + ":" + value;
         }
     }
 
     public interface ValuePolicy {
-        Value generateValue(String name, ValueFunctionArgs arguments);
+        Value generateValue(String name, ArgValues arguments);
     }
 
     static class Visible {
@@ -505,6 +505,25 @@ public interface X3ML {
             xstream.setMode(XStream.NO_REFERENCES);
             xstream.processAnnotations(Root.class);
             return xstream;
+        }
+
+        public static ArgValue argQName(String tag, NamespaceContext namespaceContext) {
+            QualifiedName qualifiedName = new QualifiedName();
+            qualifiedName.tag = tag;
+            qualifiedName.namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
+            return new ArgValue(qualifiedName, null);
+        }
+
+        public static ArgValue argVal(String string) {
+            return new ArgValue(null, string);
+        }
+
+        public static Value uriValue(String uri) {
+            return new Value(ValueType.URI, uri);
+        }
+
+        public static Value literalValue(String uri) {
+            return new Value(ValueType.LITERAL, uri);
         }
     }
 }

@@ -109,27 +109,17 @@ public class Command {
     }
 
     static int uuidVal = 1;
+
     static String uuid() {
         return String.valueOf(uuidVal++);
     }
 
     static X3ML.ValuePolicy getValuePolicy(String policy) {
-        if (policy == null) {
-            return new X3ML.ValuePolicy() {
-                @Override
-                public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs arguments) {
-                    X3ML.Value value = new X3ML.Value();
-                    if (!"UUID".equals(name)) {
-                        throw new X3MLException("Only UUID function defined");
-                    }
-                    value.uri = uuid();
-                    return value;
-                }
-            };
+        FileInputStream stream = null;
+        if (policy != null) {
+            stream = getStream(file(policy));
         }
-        else {
-            return X3MLValuePolicy.load(getStream(file(policy)));
-        }
+        return X3MLValuePolicy.load(stream);
     }
 
     static PrintStream rdf(String file) {

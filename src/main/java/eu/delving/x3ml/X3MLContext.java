@@ -11,6 +11,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.*;
 
+import static eu.delving.x3ml.X3ML.Helper.argQName;
+import static eu.delving.x3ml.X3ML.Helper.argVal;
+
 /**
  * The context in which the engine acts
  *
@@ -113,7 +116,7 @@ public class X3MLContext implements X3ML {
             if (generator == null) {
                 throw new X3MLException("Value generator missing");
             }
-            Value value = valuePolicy.generateValue(generator.name, new ValueFunctionArgs() {
+            Value value = valuePolicy.generateValue(generator.name, new ArgValues() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
                     return evaluateArgument(node, generator, name, type, entityElement.qualifiedName);
@@ -124,7 +127,7 @@ public class X3MLContext implements X3ML {
                     return entityElement.toString();
                 }
             });
-            if (value.uri == null && value.literal == null) {
+            if (value == null) {
                 throw new X3MLException("Empty value produced");
             }
             return value;
@@ -345,12 +348,14 @@ public class X3MLContext implements X3ML {
         private boolean resolveResource() {
             Value value = entityElement.getValue(valueContext);
             if (value == null) return false;
-            if (value.uri != null) {
-                resource = createTypedResource(value.uri, entityElement.qualifiedName);
-                additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
-            }
-            if (value.literal != null) {
-                literal = createLiteral(value.literal);
+            switch (value.valueType) {
+                case URI:
+                    resource = createTypedResource(value.value, entityElement.qualifiedName);
+                    additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
+                    break;
+                case LITERAL:
+                    literal = createLiteral(value.value);
+                    break;
             }
             return hasResource() || hasLiteral();
         }
@@ -406,13 +411,16 @@ public class X3MLContext implements X3ML {
             if (property == null) return false;
             Value value = additional.entityElement.getValue(valueContext);
             if (value == null) return false;
-            if (additional.entityElement.qualifiedName != null) {
-                resource = createTypedResource(value.uri, additional.entityElement.qualifiedName);
-                return true;
-            }
-            if (value.literal != null) {
-                literal = createLiteral(value.literal);
-                return true;
+            switch (value.valueType) {
+                case URI:
+                    if (additional.entityElement.qualifiedName != null) {
+                        resource = createTypedResource(value.value, additional.entityElement.qualifiedName);
+                        return true;
+                    }
+                    break;
+                case LITERAL:
+                    literal = createLiteral(value.value);
+                    return true;
             }
             return false;
         }
@@ -468,9 +476,7 @@ public class X3MLContext implements X3ML {
 
     private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type, QualifiedName qualifiedName) {
         if (argName == null && type == SourceType.QNAME && qualifiedName != null) {
-            ArgValue v = new ArgValue();
-            v.setQName(qualifiedName.tag, namespaceContext);
-            return v;
+            return argQName(qualifiedName.tag, namespaceContext);
         }
         else {
             return evaluateArgumentZ(contextNode, function, argName, type);
@@ -495,20 +501,22 @@ public class X3MLContext implements X3ML {
         if (foundArg == null) {
             return null;
         }
-        ArgValue value = new ArgValue();
+        ArgValue value;
         switch (type) {
             case XPATH:
-                value.string = valueAt(contextNode, foundArg.value);
+                value = argVal(valueAt(contextNode, foundArg.value));
                 if (value.string.isEmpty()) {
                     throw new X3MLException("Empty result");
                 }
                 break;
             case QNAME:
-                value.setQName(foundArg.value, namespaceContext);
+                value = argQName(foundArg.value, namespaceContext);
                 break;
             case LITERAL:
-                value.string = foundArg.value;
+                value = argVal(foundArg.value);
                 break;
+            default:
+                throw new RuntimeException();
         }
         return value;
     }

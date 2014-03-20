@@ -24,6 +24,27 @@
                         <property>
                             <qname>crm:P2_has_type</qname>
                         </property>
+                        <!--<intermediate>-->
+                            <!--<entity>-->
+                                <!--<qname>crm:EEK_Place</qname>-->
+                                <!--<value_generator name="Constant">-->
+                                    <!--<arg>Somewhere</arg>-->
+                                <!--</value_generator>-->
+                                <!--<additional>-->
+                                    <!--<property>-->
+                                        <!--<qname>rdfs:label</qname>-->
+                                    <!--</property>-->
+                                    <!--<entity>-->
+                                        <!--<value_generator name="Constant">-->
+                                            <!--<arg>Gumbyland</arg>-->
+                                        <!--</value_generator>-->
+                                    <!--</entity>-->
+                                <!--</additional>-->
+                            <!--</entity>-->
+                            <!--<property>-->
+                                <!--<qname>crm:P2_has_type</qname>-->
+                            <!--</property>-->
+                        <!--</intermediate>-->
                     </target_relation>
                 </path>
                 <range>

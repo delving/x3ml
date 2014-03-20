@@ -2,6 +2,7 @@ package eu.delving.x3ml;
 
 import junit.framework.Assert;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static eu.delving.x3ml.AllTests.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -47,9 +48,9 @@ public class TestSimple {
         X3MLContext context = engine.execute(document("/simple/simple.xml"), policy("/simple/simple-value-policy.xml"));
         String[] mappingResult = context.toStringArray();
         String[] expectedResult = AllTests.xmlToNTriples("/simple/simple-rdf.xml");
-        log("result", mappingResult);
-        log("expected", expectedResult);
-        assertArrayEquals("Does not match expected", expectedResult, mappingResult);
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+        System.out.println(StringUtils.join(diff, "\n"));
     }
 }
 

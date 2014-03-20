@@ -25,15 +25,18 @@ import static eu.delving.x3ml.X3ML.SourceType.*;
 public class X3MLValuePolicy implements X3ML.ValuePolicy {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, Generator> templateMap = new TreeMap<String, Generator>();
+    private char uuidLetter = 'A';
 
     public static X3MLValuePolicy load(InputStream inputStream) {
         return new X3MLValuePolicy(inputStream);
     }
 
     private X3MLValuePolicy(InputStream inputStream) {
-        ValuePolicy policy = (ValuePolicy) stream().fromXML(inputStream);
-        for (Generator generator : policy.generators) {
-            templateMap.put(generator.name, generator);
+        if (inputStream != null) {
+            ValuePolicy policy = (ValuePolicy) stream().fromXML(inputStream);
+            for (Generator generator : policy.generators) {
+                templateMap.put(generator.name, generator);
+            }
         }
     }
 
@@ -41,37 +44,63 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
     public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs args) {
         if (name == null) throw new X3MLException("Value function name missing");
         X3ML.Value value = new X3ML.Value();
-        Generator generator = templateMap.get(name);
-        if (generator == null) throw new X3MLException("No template for " + name);
-        X3ML.ArgValue qname = args.getArgValue(null, QNAME);
-        String localName = qname.qualifiedName.getLocalName();
-        String namespaceUri = qname.qualifiedName.namespaceUri;
-        try {
-            UriTemplate uriTemplate = UriTemplate.fromTemplate(generator.pattern);
-            uriTemplate.set("localName", localName);
-            Set<String> literals = new TreeSet<String>();
-            if (generator.literals != null) literals.addAll(Arrays.asList(generator.literals.split(",")));
-            for (String variableName : variablesFromPattern(generator.pattern)) {
-                if ("localName".equals(variableName)) continue;
-                boolean isLiteral = literals.contains(variableName);
-                X3ML.ArgValue argValue = args.getArgValue(variableName, isLiteral ? LITERAL : XPATH);
-                if (argValue == null || argValue.string == null) {
-                    throw new X3MLException("Argument failure in value function " + name + ": " + variableName + "\n" + args);
-                }
-                uriTemplate.set(variableName, argValue.string);
+        if ("UUID".equals(name)) {
+            value.uri = createUUID();
+        }
+        else if ("Literal".equals(name)) {
+            X3ML.ArgValue literalXPath = args.getArgValue(null, X3ML.SourceType.XPATH);
+            if (literalXPath == null) {
+                throw new X3MLException("Argument failure: need one argument");
             }
-            value.uri = namespaceUri + uriTemplate.expand();
-            return value;
+            if (literalXPath.string == null || literalXPath.string.isEmpty()) {
+                throw new X3MLException("Argument failure: empty argument");
+            }
+            value.literal = literalXPath.string;
         }
-        catch (MalformedUriTemplateException e) {
-            throw new X3MLException("Malformed", e);
+        else if ("Constant".equals(name)) {
+            X3ML.ArgValue constant = args.getArgValue(null, X3ML.SourceType.LITERAL);
+            if (constant == null) {
+                throw new X3MLException("Argument failure: need one argument");
+            }
+            value.literal = constant.string;
         }
-        catch (VariableExpansionException e) {
-            throw new X3MLException("Variable", e);
+        else {
+            Generator generator = templateMap.get(name);
+            if (generator == null) throw new X3MLException("No template for " + name);
+            X3ML.ArgValue qname = args.getArgValue(null, QNAME);
+            String localName = qname.qualifiedName.getLocalName();
+            String namespaceUri = qname.qualifiedName.namespaceUri;
+            try {
+                UriTemplate uriTemplate = UriTemplate.fromTemplate(generator.pattern);
+                uriTemplate.set("localName", localName);
+                Set<String> literals = new TreeSet<String>();
+                if (generator.literals != null) literals.addAll(Arrays.asList(generator.literals.split(",")));
+                for (String variableName : variablesFromPattern(generator.pattern)) {
+                    if ("localName".equals(variableName)) continue;
+                    boolean isLiteral = literals.contains(variableName);
+                    X3ML.ArgValue argValue = args.getArgValue(variableName, isLiteral ? LITERAL : XPATH);
+                    if (argValue == null || argValue.string == null) {
+                        throw new X3MLException("Argument failure in value function " + name + ": " + variableName + "\n" + args);
+                    }
+                    uriTemplate.set(variableName, argValue.string);
+                }
+                value.uri = namespaceUri + uriTemplate.expand();
+            }
+            catch (MalformedUriTemplateException e) {
+                throw new X3MLException("Malformed", e);
+            }
+            catch (VariableExpansionException e) {
+                throw new X3MLException("Variable", e);
+            }
         }
+        return value;
     }
 
     // == the rest is for the XML form
+
+    private String createUUID() {
+        return "uuid:" + (uuidLetter++);
+    }
 
     private static List<String> variablesFromPattern(String pattern) {
         Matcher braces = BRACES.matcher(pattern);

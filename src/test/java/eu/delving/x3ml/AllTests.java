@@ -148,6 +148,15 @@ public class AllTests {
         return errors;
     }
 
+    public static boolean errorFree(List<String> diff) {
+        for (String line : diff) {
+            if (line.startsWith("!")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // === private stuff
 
     private static Pattern TRIPLE = Pattern.compile("^<?_?([^> ]+)>?\\s+<([^>]+)>\\s+<?([^>]+)>? \\.$");

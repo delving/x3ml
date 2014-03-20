@@ -15,11 +15,12 @@ import static org.junit.Assert.assertTrue;
 
 public class TestCoin {
     private final Logger log = Logger.getLogger(getClass());
+    private final X3ML.ValuePolicy VALUE_POLICY = X3MLValuePolicy.load(null);
 
     @Test
     public void testSimpleCoinExample() throws X3MLException {
         X3MLEngine engine = engine("/coin/coin1.x3ml");
-        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new SimplePolicy());
+        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = context.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin/coin1-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
@@ -29,7 +30,7 @@ public class TestCoin {
     @Test
     public void testJoinExample() throws X3MLException {
         X3MLEngine engine = engine("/join/join1.x3ml");
-        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new SimplePolicy());
+        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = context.toStringArray();
         String[] expectedResult = xmlToNTriples("/join/join1-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
@@ -39,59 +40,11 @@ public class TestCoin {
     @Test
     public void testJoinVariableExample() throws X3MLException {
         X3MLEngine engine = engine("/join/join2.x3ml");
-        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), new SimplePolicy());
+        X3MLContext context = engine.execute(document("/coin/coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = context.toStringArray();
         String[] expectedResult = xmlToNTriples("/join/join2-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
         System.out.println(StringUtils.join(diff, "\n"));
-    }
-
-    private boolean errorFree(List<String> diff) {
-        for (String line : diff) {
-            if (line.startsWith("!")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    private class SimplePolicy implements X3ML.ValuePolicy {
-        private char uuidLetter = 'A';
-
-        private String createUUID() {
-            return "uuid:" + (uuidLetter++);
-        }
-
-        @Override
-        public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs arguments) {
-            X3ML.Value value = new X3ML.Value();
-            if ("UUID".equals(name)) {
-                value.uri = createUUID();
-//                System.out.println(arguments + ":\n"+ value.uri);
-            }
-            else if ("Literal".equals(name)) {
-                X3ML.ArgValue literalXPath = arguments.getArgValue(null, X3ML.SourceType.XPATH);
-                if (literalXPath == null) {
-                    throw new X3MLException("Argument failure: need one argument");
-                }
-                if (literalXPath.string == null || literalXPath.string.isEmpty()) {
-                    throw new X3MLException("Argument failure: empty argument");
-                }
-                value.literal = literalXPath.string;
-            }
-            else if ("Constant".equals(name)) {
-                X3ML.ArgValue constant = arguments.getArgValue(null, X3ML.SourceType.LITERAL);
-                if (constant == null) {
-                    throw new X3MLException("Argument failure: need one argument");
-                }
-                value.literal = constant.string;
-            }
-            else {
-                throw new X3MLException("Unknown function: " + name);
-            }
-            return value;
-        }
     }
 }

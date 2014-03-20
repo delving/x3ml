@@ -120,8 +120,18 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
 
     @XStreamAlias("value-policy")
     public static class ValuePolicy {
+        List<MappingNamespace> namespaces; // todo: use
+
         @XStreamImplicit
         List<Generator> generators;
+    }
+
+    @XStreamAlias("namespace")
+    public static class MappingNamespace {
+        @XStreamAsAttribute
+        public String prefix;
+        @XStreamAsAttribute
+        public String uri;
     }
 
     @XStreamAlias("generator")

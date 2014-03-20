@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<records>
+    <record>
+        <title>Title</title>
+        <identifier>Identifier</identifier>
+        <inner1>
+            <inner_title>Other Title</inner_title>
+            <inner_identifier>OT</inner_identifier>
+            <avoid>yes</avoid>
+        </inner1>
+        <inner2 id="id2">
+            <name>Other Name</name>
+            <features>
+                <color>Green</color>
+                <size>Large</size>
+            </features>
+        </inner2>
+    </record>
+</records>

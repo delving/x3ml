@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class TestSimple {
+public class TestBase {
     private final Logger log = Logger.getLogger(getClass());
 
     private void log(String title, String[] list) {
@@ -29,9 +29,9 @@ public class TestSimple {
 
     @Test
     public void testReadWrite() throws IOException, X3MLException {
-        String xml = engine("/simple/simple.x3ml").toString();
+        String xml = engine("/base/base.x3ml").toString();
         String[] fresh = xml.split("\n");
-        List<String> original = IOUtils.readLines(resource("/simple/simple.x3ml"));
+        List<String> original = IOUtils.readLines(resource("/base/base.x3ml"));
         int index = 0;
         for (String originalLine : original) {
             originalLine = originalLine.trim();
@@ -44,10 +44,12 @@ public class TestSimple {
 
     @Test
     public void testSimple() throws X3MLException {
-        X3MLEngine engine = engine("/simple/simple.x3ml");
-        X3MLContext context = engine.execute(document("/simple/simple.xml"), policy("/simple/simple-value-policy.xml"));
+        X3MLEngine engine = engine("/base/base.x3ml");
+        X3MLContext context = engine.execute(document("/base/base.xml"), policy("/base/base-value-policy.xml"));
         String[] mappingResult = context.toStringArray();
-        String[] expectedResult = AllTests.xmlToNTriples("/simple/simple-rdf.xml");
+        String[] expectedResult = AllTests.xmlToNTriples("/base/base-rdf.xml");
+//        log("Expected", expectedResult);
+//        log("Actual", mappingResult);
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
         System.out.println(StringUtils.join(diff, "\n"));

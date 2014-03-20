@@ -448,7 +448,7 @@ public class X3MLContext implements X3ML {
             entityResolver = new EntityResolver(intermediate.entityElement, valueContext);
             if (!entityResolver.resolve()) return false;
             property = createProperty(intermediate.propertyElement.qualifiedName);
-            return property != null && entityResolver.hasResource();
+            return true;
         }
     }
 

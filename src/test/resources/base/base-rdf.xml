@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:pre="http://base.ns/#">
+    <pre:Thing rdf:about="http://base.ns/#Thing/Title,Identifier">
+        <pre:Relation1>
+            <pre:IntermediateEntity rdf:about="uuid:A">
+                <pre:Relation2>
+                    <pre:OtherThing rdf:about="http://base.ns/#OtherThing/OT">
+                        <rdfs:label>Other Title</rdfs:label>
+                    </pre:OtherThing>
+                </pre:Relation2>
+            </pre:IntermediateEntity>
+        </pre:Relation1>
+        <!--<pre:Relation3>-->
+            <!--<pre:E666_Devil rdf:about="http://purl.org/NET/cidoc-crm/core#E666_Devil/Pokey">-->
+                <!--<pre:P2_has_type>-->
+                    <!--<pre:E55_Type rdf:about="http://purl.org/NET/cidoc-crm/core#E55_Type/Computer%20Animation"/>-->
+                <!--</pre:P2_has_type>-->
+            <!--</pre:E666_Devil>-->
+        <!--</pre:Relation3>-->
+    </pre:Thing>
+</rdf:RDF>

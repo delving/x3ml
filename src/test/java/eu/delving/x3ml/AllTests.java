@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 @RunWith(Suite.class)
 @org.junit.runners.Suite.SuiteClasses({
         TestConditions.class,
-        TestSimple.class,
+        TestBase.class,
         TestCoin.class,
         TestLido07.class,
         TestBM.class

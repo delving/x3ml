@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3ml version="0.1" source_type="XPATH">
+    <namespaces>
+        <namespace prefix="pre" uri="http://base.ns/#"/>
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+    </namespaces>
+    <mappings>
+        <mapping>
+            <domain>
+                <source>//record</source>
+                <target_node>
+                    <entity>
+                        <qname>pre:Thing</qname>
+                        <value_generator name="Pair">
+                            <arg name="title">title/text()</arg>
+                            <arg name="identifier">identifier/text()</arg>
+                        </value_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source>inner1</source>
+                    <target_relation>
+                        <property>
+                            <qname>pre:Relation1</qname>
+                        </property>
+                        <intermediate>
+                            <entity>
+                                <qname>pre:IntermediateEntity</qname>
+                                <value_generator name="UUID"/>
+                            </entity>
+                            <property>
+                                <qname>pre:Relation2</qname>
+                            </property>
+                        </intermediate>
+                    </target_relation>
+                </path>
+                <range>
+                    <source>inner1</source>
+                    <target_node>
+                        <entity>
+                            <qname>pre:OtherThing</qname>
+                            <value_generator name="Single">
+                                <arg name="entry">inner_identifier/text()</arg>
+                            </value_generator>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Literal">
+                                        <arg>inner_title/text()</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <!--<link>-->
+                <!--<path>-->
+                    <!--<source>type-wrapper</source>-->
+                    <!--<target_relation>-->
+                        <!--<property>-->
+                            <!--<qname>pre:P666_has_nemesis</qname>-->
+                        <!--</property>-->
+                        <!--<intermediate>-->
+                            <!--<entity>-->
+                                <!--<qname>pre:E666_Devil</qname>-->
+                                <!--<value_generator name="Devil">-->
+                                    <!--<arg name="label">Pokey</arg>-->
+                                <!--</value_generator>-->
+                            <!--</entity>-->
+                            <!--<property>-->
+                                <!--<qname>pre:P2_has_type</qname>-->
+                            <!--</property>-->
+                        <!--</intermediate>-->
+                    <!--</target_relation>-->
+                <!--</path>-->
+                <!--<range>-->
+                    <!--<source>type-wrapper/type</source>-->
+                    <!--<target_node>-->
+                        <!--<entity>-->
+                            <!--<qname>pre:E55_Type</qname>-->
+                            <!--<value_generator name="Type">-->
+                                <!--<arg name="entry">text()</arg>-->
+                            <!--</value_generator>-->
+                        <!--</entity>-->
+                    <!--</target_node>-->
+                <!--</range>-->
+            <!--</link>-->
+            <!--<link>-->
+                <!--<path>-->
+                    <!--<source>type-wrapper</source>-->
+                    <!--<target_relation>-->
+                        <!--&lt;!&ndash;this should prevent the link from doing anything&ndash;&gt;-->
+                        <!--<if>-->
+                            <!--<not>-->
+                                <!--<if>-->
+                                    <!--<exists>avoid/text()</exists>-->
+                                <!--</if>-->
+                            <!--</not>-->
+                        <!--</if>-->
+                        <!--<property>-->
+                            <!--<qname>pre:P888_has_extraneous</qname>-->
+                        <!--</property>-->
+                    <!--</target_relation>-->
+                <!--</path>-->
+                <!--<range>-->
+                    <!--<source>type-wrapper/type</source>-->
+                    <!--<target_node>-->
+                        <!--<entity>-->
+                            <!--<qname>pre:E888_Extra</qname>-->
+                            <!--<value_generator name="Type">-->
+                                <!--<arg name="entry">text()</arg>-->
+                            <!--</value_generator>-->
+                        <!--</entity>-->
+                    <!--</target_node>-->
+                <!--</range>-->
+            <!--</link>-->
+            <!--<link>-->
+                <!--<path>-->
+                    <!--<source>type-wrapper</source>-->
+                    <!--<target_relation>-->
+                        <!--&lt;!&ndash;this should prevent the link from doing anything&ndash;&gt;-->
+                        <!--<if>-->
+                            <!--<equals value="maybe">avoid/text()</equals>-->
+                        <!--</if>-->
+                        <!--<property>-->
+                            <!--<qname>pre:P888_has_extraneous</qname>-->
+                        <!--</property>-->
+                    <!--</target_relation>-->
+                <!--</path>-->
+                <!--<range>-->
+                    <!--<source>type-wrapper/type</source>-->
+                    <!--<target_node>-->
+                        <!--<entity>-->
+                            <!--<qname>pre:E888_Extra</qname>-->
+                            <!--<value_generator name="Type">-->
+                                <!--<arg name="entry">text()</arg>-->
+                            <!--</value_generator>-->
+                        <!--</entity>-->
+                    <!--</target_node>-->
+                <!--</range>-->
+            <!--</link>-->
+        </mapping>
+    </mappings>
+</x3ml>

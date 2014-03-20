@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<value-policy>
+    <namespaces>
+        <namespace prefix="pre" uri="http://base.ns/#"/>
+    </namespaces>
+    <generator name="Pair">
+        <pattern>{localName}/{title,identifier}</pattern>
+    </generator>
+    <generator name="Single">
+        <pattern>{localName}/{entry}</pattern>
+    </generator>
+</value-policy>

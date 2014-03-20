@@ -365,14 +365,17 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        @XStreamAlias("value_generator")
-        public ValueGenerator valueGenerator;
+        @XStreamAlias("uri_generator")
+        public Generator uriGenerator;
+
+        @XStreamImplicit
+        public List<Generator> labelGenerators;
 
         @XStreamImplicit
         public List<Additional> additionals;
 
         public Value getValue(ValueContext context) {
-            return context.generateValue(valueGenerator, this);
+            return context.generateValue(uriGenerator, this);
         }
     }
 
@@ -419,18 +422,18 @@ public interface X3ML {
         public String content;
     }
 
-    @XStreamAlias("value_generator")
-    public static class ValueGenerator extends Visible {
+    @XStreamAlias("label_generator")
+    public static class Generator extends Visible {
         @XStreamAsAttribute
         public String name;
 
         @XStreamImplicit
-        public List<ValueFunctionArg> args;
+        public List<GeneratorArg> args;
     }
 
     @XStreamAlias("arg")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"value"})
-    public static class ValueFunctionArg extends Visible {
+    public static class GeneratorArg extends Visible {
         @XStreamAsAttribute
         public String name;
 

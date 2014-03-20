@@ -12,7 +12,7 @@
                 <target_node>
                     <entity>
                         <qname>crm:E22_Man-Made_Object</qname>
-                        <value_generator name="UUID"/>
+                        <uri_generator name="UUID"/>
                     </entity>
                 </target_node>
             </domain>
@@ -30,15 +30,15 @@
                     <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="UUID"/>
+                            <uri_generator name="UUID"/>
                             <additional>
                                 <property>
                                     <qname>rdfs:label</qname>
                                 </property>
                                 <entity>
-                                    <value_generator name="Literal">
+                                    <uri_generator name="Literal">
                                         <arg>text()</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -55,15 +55,15 @@
                         <entity>
                             <variable>tc1</variable>
                             <qname>crm:E10_Transfer_of_Custody</qname>
-                            <value_generator name="UUID"/>
+                            <uri_generator name="UUID"/>
                             <additional>
                                 <property>
                                     <qname>rdfs:label</qname>
                                 </property>
                                 <entity>
-                                    <value_generator name="Constant">
+                                    <uri_generator name="Constant">
                                         <arg>find event</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -77,15 +77,15 @@
                     <target_node>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="UUID"/>
+                            <uri_generator name="UUID"/>
                             <additional>
                                 <property>
                                     <qname>rdfs:label</qname>
                                 </property>
                                 <entity>
-                                    <value_generator name="Literal">
+                                    <uri_generator name="Literal">
                                         <arg>FS_NAME/text()</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -102,15 +102,15 @@
                         <entity>
                             <variable>tc1</variable>
                             <qname>crm:E10_Transfer_of_Custody</qname>
-                            <value_generator name="UUID"/>
+                            <uri_generator name="UUID"/>
                             <additional>
                                 <property>
                                     <qname>rdfs:label</qname>
                                 </property>
                                 <entity>
-                                    <value_generator name="Constant">
+                                    <uri_generator name="Constant">
                                         <arg>find event</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -120,15 +120,15 @@
                         <entity>
                             <variable>ts1</variable>
                             <qname>crm:E52_Time-Span</qname>
-                            <value_generator name="UUID"/>
+                            <uri_generator name="UUID"/>
                             <additional>
                                 <property>
                                     <qname>rdfs:label</qname>
                                 </property>
                                 <entity>
-                                    <value_generator name="Constant">
+                                    <uri_generator name="Constant">
                                         <arg>find event date</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -141,9 +141,9 @@
                     <source>FIND_DATE</source>
                     <target_node>
                         <entity>
-                            <value_generator name="Literal">
+                            <uri_generator name="Literal">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>

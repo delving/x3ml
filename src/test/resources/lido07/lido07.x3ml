@@ -11,14 +11,14 @@
                 <target_node>
                     <entity>
                         <qname>crm:E19_Physical_Object</qname>
-                        <value_generator name="PhysicalObject">
+                        <uri_generator name="PhysicalObject">
                             <arg name="nameOfMuseum">
                                 lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue/text()
                             </arg>
                             <arg name="entry">
                                 lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:workID/text()
                             </arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -36,7 +36,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E31_Document</qname>
-                            <value_generator name="PhysicalThing"/>
+                            <uri_generator name="PhysicalThing"/>
                         </entity>
                     </target_node>
                 </range>
@@ -55,9 +55,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -76,9 +76,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -97,7 +97,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -116,9 +116,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -137,7 +137,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -156,7 +156,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -175,7 +175,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -194,7 +194,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E36_Visual_Item</qname>
-                            <value_generator name="Literal"/>
+                            <uri_generator name="Literal"/>
                         </entity>
                     </target_node>
                 </range>
@@ -208,12 +208,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="Actors">
+                            <uri_generator name="Actors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
                                 <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
                                 <arg name="birthDate">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -225,7 +225,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -239,12 +239,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">//lido:lido/nothing</arg>
                                 <arg name="identifier">../lido:legalBodyID/text()</arg>
                                 <arg name="name">text()</arg>
                                 <arg name="birthDate">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P131_is_identified_by</qname>
@@ -256,7 +256,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E82_Actor_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -270,13 +270,13 @@
                         </property>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="placeId">text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -288,7 +288,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -302,13 +302,13 @@
                         </property>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">text()</arg>
                                 <arg name="authority">../../lido:placeID/@lido:source</arg>
                                 <arg name="placeId">../../lido:placeID/text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../../lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P87_is_identified_by</qname>
@@ -320,7 +320,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E44_Place_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -339,7 +339,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -358,7 +358,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -377,7 +377,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -396,7 +396,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -415,7 +415,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -434,7 +434,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -453,7 +453,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -472,9 +472,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E54_Dimension</qname>
-                            <value_generator name="dimensionURI">
+                            <uri_generator name="dimensionURI">
                                 <arg>@lido:value</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -493,7 +493,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -512,7 +512,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -531,7 +531,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -545,10 +545,10 @@
                         </property>
                         <entity>
                             <qname>crm:E5_Event</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -560,7 +560,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -574,10 +574,10 @@
                         </property>
                         <entity>
                             <qname>crm:E5_Event</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P2_has_type</qname>
@@ -589,9 +589,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -613,10 +613,10 @@
                     <target_node>
                         <entity>
                             <qname>crm:E12_Production</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -638,10 +638,10 @@
                     <target_node>
                         <entity>
                             <qname>crm:E65_Creation</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -663,10 +663,10 @@
                     <target_node>
                         <entity>
                             <qname>crm:E7_Activity</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -688,10 +688,10 @@
                         </if>
                         <entity>
                             <qname>crm:E12_Production</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -710,7 +710,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -729,7 +729,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -748,7 +748,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -767,7 +767,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -781,7 +781,7 @@
                         </property>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                         </entity>
                         <property>
                             <qname>crm:P129_is_about</qname>
@@ -793,12 +793,12 @@
                     <target_node>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">../lido:actor/lido:actorID/@lido:source</arg>
                                 <arg name="identifier">../lido:actor/lido:actorID/text()</arg>
                                 <arg name="name">../lido:actor/lido:nameActorSet/lido:appellationValue/text()</arg>
                                 <arg name="birthDate">../lido:actor/lido:vitalDatesActor/@lido:birthDate</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -812,7 +812,7 @@
                         </property>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                         </entity>
                         <property>
                             <qname>crm:P129_is_about</qname>
@@ -824,7 +824,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E50_Date</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -838,7 +838,7 @@
                         </property>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                         </entity>
                         <property>
                             <qname>crm:P129_is_about</qname>
@@ -850,10 +850,10 @@
                     <target_node>
                         <entity>
                             <qname>crm:E5_Event</qname>
-                            <value_generator name="uriEvents">
+                            <uri_generator name="uriEvents">
                                 <arg name="authority">../lido:event/lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../lido:event/lido:eventID/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -867,7 +867,7 @@
                         </property>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                         </entity>
                         <property>
                             <qname>crm:P129_is_about</qname>
@@ -879,13 +879,13 @@
                     <target_node>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">text()</arg>
                                 <arg name="authority">..//lido:placeID/@lido:source</arg>
                                 <arg name="placeId">..//lido:placeID/text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../lido:place/lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -904,7 +904,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -918,7 +918,7 @@
                         </property>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -930,7 +930,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -944,9 +944,9 @@
                         </property>
                         <entity>
                             <qname>crm:E18_Physical_Thing</qname>
-                            <value_generator name="uriPhysThing">
+                            <uri_generator name="uriPhysThing">
                                 <arg>/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -958,7 +958,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -972,7 +972,7 @@
                         </property>
                         <entity>
                             <qname>crm:E18_Physical_Thing</qname>
-                            <value_generator name="uriPhysThing"/>
+                            <uri_generator name="uriPhysThing"/>
                         </entity>
                         <property>
                             <qname>crm:P3_has_note</qname>
@@ -984,7 +984,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -998,7 +998,7 @@
                         </property>
                         <entity>
                             <qname>crm:E30_Right</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                         </entity>
                         <property>
                             <qname>crm:P2_has_type</qname>
@@ -1010,9 +1010,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1026,7 +1026,7 @@
                         </property>
                         <entity>
                             <qname>crm:E31_Document</qname>
-                            <value_generator name="uriPhysThing"/>
+                            <uri_generator name="uriPhysThing"/>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -1038,7 +1038,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1050,12 +1050,12 @@
                 <target_node>
                     <entity>
                         <qname>crm:E39_Actor</qname>
-                        <value_generator name="uriForActors">
+                        <uri_generator name="uriForActors">
                             <arg name="authority">../lido:legalBodyID/@lido:source</arg>
                             <arg name="identifier">../lido:legalBodyID/text()</arg>
                             <arg name="name">lido:appellationValue/text()</arg>
                             <arg name="birthDate">//lido:lido/nothing</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -1073,15 +1073,15 @@
                     <target_node>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                             <additional>
                                 <property>
                                     <qname>crm:P2_has_type</qname>
                                 </property>
                                 <entity tag="E55_Type" binding="web_resource">
-                                    <value_generator name="Type">
+                                    <uri_generator name="Type">
                                         <arg>text()</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -1095,13 +1095,13 @@
                 <target_node>
                     <entity>
                         <qname>crm:E53_Place</qname>
-                        <value_generator name="Place">
+                        <uri_generator name="Place">
                             <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
                             <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
                             <arg name="placeId">lido:place/lido:placeID/text()</arg>
                             <arg name="coordinates">//lido:lido/nothing</arg>
                             <arg name="spaces">lido:place/lido:partOfPlace</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -1114,13 +1114,13 @@
                         </property>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">../../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">../../lido:placeID/@lido:source</arg>
                                 <arg name="placeId">../../lido:placeID/text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -1132,7 +1132,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1151,9 +1151,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1165,9 +1165,9 @@
                 <target_node>
                     <entity>
                         <qname>crm:E54_Dimension</qname>
-                        <value_generator name="dimensionURI">
+                        <uri_generator name="dimensionURI">
                             <arg>@lido:value</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -1185,17 +1185,17 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                             <additional>
                                 <property>
                                     <qname>crm:P2_has_type</qname>
                                 </property>
                                 <entity tag="E55_Type" binding="Format">
-                                    <value_generator name="Type">
+                                    <uri_generator name="Type">
                                         <arg>@lido:type</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -1216,17 +1216,17 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                             <additional>
                                 <property>
                                     <qname>crm:P2_has_type</qname>
                                 </property>
                                 <entity tag="E55_Type" binding="Shape">
-                                    <value_generator name="Type">
+                                    <uri_generator name="Type">
                                         <arg>text()</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -1247,17 +1247,17 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                             <additional>
                                 <property>
                                     <qname>crm:P2_has_type</qname>
                                 </property>
                                 <entity tag="E55_Type" binding="Scale">
-                                    <value_generator name="Type">
+                                    <uri_generator name="Type">
                                         <arg>text()</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -1286,7 +1286,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1305,7 +1305,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1324,7 +1324,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1343,7 +1343,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1362,7 +1362,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1376,12 +1376,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
                                 <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
                                 <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -1393,7 +1393,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1407,13 +1407,13 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">../../lido:actorID/@lido:source</arg>
                                 <arg name="identifier">../../lido:actorID/text()</arg>
                                 <arg name="name">../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()
                                 </arg>
                                 <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P131_is_identified_by</qname>
@@ -1425,9 +1425,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E82_Actor_Appellation</qname>
-                            <value_generator name="Appellation">
+                            <uri_generator name="Appellation">
                                 <arg>../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1446,7 +1446,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1465,7 +1465,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1484,7 +1484,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1503,7 +1503,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1522,9 +1522,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E4_Period</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1543,7 +1543,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1557,7 +1557,7 @@
                         </property>
                         <entity>
                             <qname>crm:E52_Time_Span</qname>
-                            <value_generator name="uriTimeSpan"/>
+                            <uri_generator name="uriTimeSpan"/>
                         </entity>
                         <property>
                             <qname>crm:P79_beginning_is_qualified_by</qname>
@@ -1569,7 +1569,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1583,7 +1583,7 @@
                         </property>
                         <entity>
                             <qname>crm:E52_Time_Span</qname>
-                            <value_generator name="uriTimeSpan"/>
+                            <uri_generator name="uriTimeSpan"/>
                         </entity>
                         <property>
                             <qname>crm:P80_end_is_qualified_by</qname>
@@ -1595,7 +1595,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1614,7 +1614,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1628,13 +1628,13 @@
                         </property>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="placeId">text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -1646,7 +1646,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1660,13 +1660,13 @@
                         </property>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">text()</arg>
                                 <arg name="authority">../../lido:placeID/@lido:source</arg>
                                 <arg name="placeId">../../lido:placeID/text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../../lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P87_is_identified_by</qname>
@@ -1678,7 +1678,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E44_Place_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1697,9 +1697,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1718,7 +1718,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1737,9 +1737,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1758,7 +1758,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1777,7 +1777,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1796,7 +1796,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1808,14 +1808,14 @@
                 <target_node>
                     <entity>
                         <qname>crm:E39_Actor</qname>
-                        <value_generator name="uriForActors">
+                        <uri_generator name="uriForActors">
                             <arg name="authority">lido:actorInRole/lido:actor/lido:actorID/@lido:source</arg>
                             <arg name="identifier">lido:actorInRole/lido:actor/lido:actorID/text()</arg>
                             <arg name="name">
                                 lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue[@lido:pref=&quot;preferred&quot;]/text()
                             </arg>
                             <arg name="birthDate">lido:actorInRole/lido:actor/lido:vitalDatesActor/text()</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -1833,13 +1833,13 @@
                     <target_node>
                         <entity>
                             <qname>crm:E74_Group</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">../lido:nationalityActor/lido:concept/lido:conceptID/@lido:source
                                 </arg>
                                 <arg name="identifier">../lido:nationalityActor/lido:concept/lido:conceptID/text()</arg>
                                 <arg name="name">../lido:nationalityActor/lido:concept/lido:term/text()</arg>
                                 <arg name="birthDate">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1858,7 +1858,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1877,7 +1877,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E52_Time_Span</qname>
-                            <value_generator name="uriTimeSpan"/>
+                            <uri_generator name="uriTimeSpan"/>
                         </entity>
                     </target_node>
                 </range>
@@ -1896,9 +1896,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1910,9 +1910,9 @@
                 <target_node>
                     <entity>
                         <qname>crm:E52_Time_Span</qname>
-                        <value_generator name="uriTimeSpan">
+                        <uri_generator name="uriTimeSpan">
                             <arg>lido:concept/lido:term/text()</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -1930,9 +1930,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E4_Period</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -1944,13 +1944,13 @@
                 <target_node>
                     <entity>
                         <qname>crm:E53_Place</qname>
-                        <value_generator name="Place">
+                        <uri_generator name="Place">
                             <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
                             <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
                             <arg name="placeId">lido:place/lido:placeID/text()</arg>
                             <arg name="coordinates">//lido:lido/nothing</arg>
                             <arg name="spaces">lido:place/lido:partOfPlace</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -1963,13 +1963,13 @@
                         </property>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="Place">
+                            <uri_generator name="Place">
                                 <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">../lido:placeID/@lido:source</arg>
                                 <arg name="placeId">../lido:placeID/text()</arg>
                                 <arg name="coordinates">//lido:lido/nothing</arg>
                                 <arg name="spaces">../lido:partOfPlace</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -1981,7 +1981,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2000,9 +2000,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="Type">
+                            <uri_generator name="Type">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>
@@ -2014,9 +2014,9 @@
                 <target_node>
                     <entity>
                         <qname>crm:E55_Type</qname>
-                        <value_generator name="Type">
+                        <uri_generator name="Type">
                             <arg>text()</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -2034,7 +2034,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E32_Authority_Document</qname>
-                            <value_generator name="uriPhysThing"/>
+                            <uri_generator name="uriPhysThing"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2046,7 +2046,7 @@
                 <target_node>
                     <entity>
                         <qname>crm:E18_Physical_Thing</qname>
-                        <value_generator name="uriPhysThing"/>
+                        <uri_generator name="uriPhysThing"/>
                     </entity>
                 </target_node>
             </domain>
@@ -2064,7 +2064,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2076,9 +2076,9 @@
                 <target_node>
                     <entity>
                         <qname>crm:E30_Right</qname>
-                        <value_generator name="uriConceptual">
+                        <uri_generator name="uriConceptual">
                             <arg>lido:rightsType/text()</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -2096,7 +2096,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2115,7 +2115,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2134,7 +2134,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2148,12 +2148,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="">@lido:source</arg>
                                 <arg name="">text()</arg>
                                 <arg name="">../lido:legalBodyName/lido:appellationValue/text()</arg>
                                 <arg name="">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -2165,7 +2165,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2179,12 +2179,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
                                 <arg name="identifier">../../lido:legalBodyID/text()</arg>
                                 <arg name="name">text()</arg>
                                 <arg name="birthDate">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P131_is_identified_by</qname>
@@ -2196,7 +2196,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E82_Actor_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2215,7 +2215,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E62_String</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2227,12 +2227,12 @@
                 <target_node>
                     <entity>
                         <qname>crm:E39_Actor</qname>
-                        <value_generator name="uriForActors">
+                        <uri_generator name="uriForActors">
                             <arg name="authority">lido:legalBodyID/@lido:source</arg>
                             <arg name="identifier">lido:legalBodyID/text()</arg>
                             <arg name="name">lido:legalBodyName/lido:appellationValue/text()</arg>
                             <arg name="birthDate">//lido:lido/nothing</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -2250,15 +2250,15 @@
                     <target_node>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                             <additional>
                                 <property>
                                     <qname>crm:P2_has_type</qname>
                                 </property>
                                 <entity tag="E55_Type" binding="Web_resource">
-                                    <value_generator name="Type">
+                                    <uri_generator name="Type">
                                         <arg>@lido:formatResource</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -2272,9 +2272,9 @@
                 <target_node>
                     <entity>
                         <qname>crm:E31_Document</qname>
-                        <value_generator name="uriPhysThing">
+                        <uri_generator name="uriPhysThing">
                             <arg>lido:recordID/text()</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -2292,7 +2292,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E55_Type</qname>
-                            <value_generator name="createLiteral"/>
+                            <uri_generator name="createLiteral"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2306,12 +2306,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
                                 <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
                                 <arg name="birthDate">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P48_has_preferred_identifier</qname>
@@ -2323,7 +2323,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E42_Identifier</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2337,12 +2337,12 @@
                         </property>
                         <entity>
                             <qname>crm:E39_Actor</qname>
-                            <value_generator name="uriForActors">
+                            <uri_generator name="uriForActors">
                                 <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
                                 <arg name="identifier">../../lido:legalBodyID/text()</arg>
                                 <arg name="name">text()</arg>
                                 <arg name="birthDate">//lido:lido/nothing</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                         <property>
                             <qname>crm:P131_is_identified_by</qname>
@@ -2354,7 +2354,7 @@
                     <target_node>
                         <entity>
                             <qname>crm:E82_Actor_Appellation</qname>
-                            <value_generator name="Appellation"/>
+                            <uri_generator name="Appellation"/>
                         </entity>
                     </target_node>
                 </range>
@@ -2366,12 +2366,12 @@
                 <target_node>
                     <entity>
                         <qname>crm:E39_Actor</qname>
-                        <value_generator name="uriForActors">
+                        <uri_generator name="uriForActors">
                             <arg name="authority">lido:legalBodyID/@lido:source</arg>
                             <arg name="identifier">lido:legalBodyID/text()</arg>
                             <arg name="name">lido:legalBodyName/lido:appellationValue/text()</arg>
                             <arg name="birthDate">//lido:lido/nothing</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -2389,15 +2389,15 @@
                     <target_node>
                         <entity>
                             <qname>crm:E73_Information_Object</qname>
-                            <value_generator name="uriConceptual"/>
+                            <uri_generator name="uriConceptual"/>
                             <additional>
                                 <property>
                                     <qname>crm:P2_has_type</qname>
                                 </property>
                                 <entity tag="E55_Type" binding="Web_resource">
-                                    <value_generator name="Type">
+                                    <uri_generator name="Type">
                                         <arg>@lido:formatResource</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>

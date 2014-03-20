@@ -79,7 +79,7 @@ public class X3MLContext implements X3ML {
 
         String evaluate(String expression);
 
-        Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement);
+        Value generateValue(Generator generator, EntityElement entityElement);
     }
 
     public abstract class LocalContext implements ValueContext {
@@ -109,14 +109,14 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
-        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
-            if (valueGenerator == null) {
+        public Value generateValue(final Generator generator, final EntityElement entityElement) {
+            if (generator == null) {
                 throw new X3MLException("Value generator missing");
             }
-            Value value = valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+            Value value = valuePolicy.generateValue(generator.name, new ValueFunctionArgs() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluateArgument(node, valueGenerator, name, type, entityElement.qualifiedName);
+                    return evaluateArgument(node, generator, name, type, entityElement.qualifiedName);
                 }
 
                 @Override
@@ -466,7 +466,7 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private ArgValue evaluateArgument(Node contextNode, ValueGenerator function, String argName, SourceType type, QualifiedName qualifiedName) {
+    private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type, QualifiedName qualifiedName) {
         if (argName == null && type == SourceType.QNAME && qualifiedName != null) {
             ArgValue v = new ArgValue();
             v.setQName(qualifiedName.tag, namespaceContext);
@@ -477,15 +477,15 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private ArgValue evaluateArgumentZ(Node contextNode, ValueGenerator function, String argName, SourceType type) {
-        ValueFunctionArg foundArg = null;
+    private ArgValue evaluateArgumentZ(Node contextNode, Generator function, String argName, SourceType type) {
+        GeneratorArg foundArg = null;
         if (function.args != null) {
             if (function.args.size() == 1 && function.args.get(0).name == null) {
                 foundArg = function.args.get(0);
                 foundArg.name = argName;
             }
             else {
-                for (ValueFunctionArg arg : function.args) {
+                for (GeneratorArg arg : function.args) {
                     if (arg.name.equals(argName)) {
                         foundArg = arg;
                     }

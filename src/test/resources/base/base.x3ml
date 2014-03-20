@@ -11,10 +11,10 @@
                 <target_node>
                     <entity>
                         <qname>pre:Thing</qname>
-                        <value_generator name="Pair">
+                        <uri_generator name="Pair">
                             <arg name="title">title/text()</arg>
                             <arg name="identifier">identifier/text()</arg>
-                        </value_generator>
+                        </uri_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -27,7 +27,7 @@
                         </property>
                         <entity>
                             <qname>pre:IntermediateEntity</qname>
-                            <value_generator name="UUID"/>
+                            <uri_generator name="UUID"/>
                         </entity>
                         <property>
                             <qname>pre:Relation2</qname>
@@ -39,17 +39,21 @@
                     <target_node>
                         <entity>
                             <qname>pre:OtherThing</qname>
-                            <value_generator name="Single">
+                            <uri_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>
-                            </value_generator>
+                            </uri_generator>
+                            <!--todo: use label_generator-->
+                            <label_generator>
+                                <arg>inner_title/text()</arg>
+                            </label_generator>
                             <additional>
                                 <property>
                                     <qname>rdfs:label</qname>
                                 </property>
                                 <entity>
-                                    <value_generator name="Literal">
+                                    <uri_generator name="Literal">
                                         <arg>inner_title/text()</arg>
-                                    </value_generator>
+                                    </uri_generator>
                                 </entity>
                             </additional>
                         </entity>
@@ -66,9 +70,9 @@
                         <!--<intermediate>-->
                             <!--<entity>-->
                                 <!--<qname>pre:E666_Devil</qname>-->
-                                <!--<value_generator name="Devil">-->
+                                <!--<uri_generator name="Devil">-->
                                     <!--<arg name="label">Pokey</arg>-->
-                                <!--</value_generator>-->
+                                <!--</uri_generator>-->
                             <!--</entity>-->
                             <!--<property>-->
                                 <!--<qname>pre:P2_has_type</qname>-->
@@ -81,9 +85,9 @@
                     <!--<target_node>-->
                         <!--<entity>-->
                             <!--<qname>pre:E55_Type</qname>-->
-                            <!--<value_generator name="Type">-->
+                            <!--<uri_generator name="Type">-->
                                 <!--<arg name="entry">text()</arg>-->
-                            <!--</value_generator>-->
+                            <!--</uri_generator>-->
                         <!--</entity>-->
                     <!--</target_node>-->
                 <!--</range>-->
@@ -110,9 +114,9 @@
                     <!--<target_node>-->
                         <!--<entity>-->
                             <!--<qname>pre:E888_Extra</qname>-->
-                            <!--<value_generator name="Type">-->
+                            <!--<uri_generator name="Type">-->
                                 <!--<arg name="entry">text()</arg>-->
-                            <!--</value_generator>-->
+                            <!--</uri_generator>-->
                         <!--</entity>-->
                     <!--</target_node>-->
                 <!--</range>-->
@@ -135,9 +139,9 @@
                     <!--<target_node>-->
                         <!--<entity>-->
                             <!--<qname>pre:E888_Extra</qname>-->
-                            <!--<value_generator name="Type">-->
+                            <!--<uri_generator name="Type">-->
                                 <!--<arg name="entry">text()</arg>-->
-                            <!--</value_generator>-->
+                            <!--</uri_generator>-->
                         <!--</entity>-->
                     <!--</target_node>-->
                 <!--</range>-->

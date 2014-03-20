@@ -25,15 +25,13 @@
                         <property>
                             <qname>pre:Relation1</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>pre:IntermediateEntity</qname>
-                                <value_generator name="UUID"/>
-                            </entity>
-                            <property>
-                                <qname>pre:Relation2</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>pre:IntermediateEntity</qname>
+                            <value_generator name="UUID"/>
+                        </entity>
+                        <property>
+                            <qname>pre:Relation2</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>

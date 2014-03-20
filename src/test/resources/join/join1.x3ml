@@ -52,25 +52,23 @@
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E10_Transfer_of_Custody</qname>
-                                <value_generator name="UUID"/>
-                                <additional>
-                                    <property>
-                                        <qname>rdfs:label</qname>
-                                    </property>
-                                    <entity>
-                                        <value_generator name="Constant">
-                                            <arg>find event</arg>
-                                        </value_generator>
-                                    </entity>
-                                </additional>
-                            </entity>
-                            <property>
-                                <qname>crm:P7_took_place_at</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E10_Transfer_of_Custody</qname>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Constant">
+                                        <arg>find event</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
+                        </entity>
+                        <property>
+                            <qname>crm:P7_took_place_at</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>

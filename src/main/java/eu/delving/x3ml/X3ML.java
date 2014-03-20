@@ -1,13 +1,21 @@
 package eu.delving.x3ml;
 
+import com.hp.hpl.jena.ontology.ConversionException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.*;
+import com.thoughtworks.xstream.converters.Converter;
+import com.thoughtworks.xstream.converters.MarshallingContext;
+import com.thoughtworks.xstream.converters.UnmarshallingContext;
 import com.thoughtworks.xstream.converters.extended.ToAttributedValueConverter;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
+import com.thoughtworks.xstream.io.HierarchicalStreamReader;
+import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
 import javax.xml.namespace.NamespaceContext;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLContext.ValueContext;
@@ -102,17 +110,76 @@ public interface X3ML {
         public String expression;
     }
 
+
     @XStreamAlias("target_relation")
+    @XStreamConverter(TargetRelationConverter.class)
     public static class TargetRelation extends Visible {
 
         @XStreamAlias("if")
         public Condition condition;
 
-        @XStreamAlias("property")
-        public PropertyElement propertyElement;
+        @XStreamImplicit
+        public List<PropertyElement> properties;
 
         @XStreamImplicit
-        public List<Intermediate> intermediates;
+        public List<EntityElement> entities;
+    }
+
+    public static class TargetRelationConverter implements Converter {
+        // make sure the output is property-entity-property-entity-property
+
+        @Override
+        public boolean canConvert(Class type) {
+            return TargetRelation.class.equals(type);
+        }
+
+        @Override
+        public void marshal(Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
+            TargetRelation relation = (TargetRelation)source;
+            if (relation.condition != null) {
+                writer.startNode("if");
+                context.convertAnother(relation.condition);
+                writer.endNode();
+            }
+            Iterator<PropertyElement> walkProperties = relation.properties.iterator();
+            PropertyElement propertyElement = walkProperties.next();
+            writer.startNode("property");
+            context.convertAnother(propertyElement);
+            writer.endNode();
+            for (EntityElement entityElement : relation.entities) {
+                propertyElement = walkProperties.next();
+                writer.startNode("entity");
+                context.convertAnother(entityElement);
+                writer.endNode();
+                writer.startNode("property");
+                context.convertAnother(propertyElement);
+                writer.endNode();
+            }
+        }
+
+        @Override
+        public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
+            TargetRelation relation = new TargetRelation();
+            relation.properties = new ArrayList<PropertyElement>();
+            relation.entities = new ArrayList<EntityElement>();
+            while (reader.hasMoreChildren()) {
+                reader.moveDown();
+                if ("if".equals(reader.getNodeName())) {
+                    relation.condition = (Condition) context.convertAnother(relation, Condition.class);
+                }
+                else if ("property".equals(reader.getNodeName())) {
+                    relation.properties.add((PropertyElement) context.convertAnother(relation, PropertyElement.class));
+                }
+                else if ("entity".equals(reader.getNodeName())) {
+                    relation.entities.add((EntityElement) context.convertAnother(relation, EntityElement.class));
+                }
+                else {
+                    throw new ConversionException("Unrecognized: "+reader.getNodeName());
+                }
+                reader.moveUp();
+            }
+            return relation;
+        }
     }
 
     @XStreamAlias("target_node")
@@ -153,16 +220,6 @@ public interface X3ML {
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
-    }
-
-    @XStreamAlias("intermediate")
-    public static class Intermediate extends Visible {
-
-        @XStreamAlias("entity")
-        public EntityElement entityElement;
-
-        @XStreamAlias("property")
-        public PropertyElement propertyElement;
     }
 
     @XStreamAlias("if")
@@ -298,10 +355,6 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        public QualifiedName getPropertyClass() {
-            if (qualifiedName == null) throw new X3MLException("Property missing qualified name");
-            return qualifiedName;
-        }
     }
 
     @XStreamAlias("entity")

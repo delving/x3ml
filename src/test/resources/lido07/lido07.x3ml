@@ -206,20 +206,18 @@
                         <property>
                             <qname>crm:P50_has_current_keeper</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="Actors">
-                                    <arg name="authority">@lido:source</arg>
-                                    <arg name="identifier">text()</arg>
-                                    <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
-                                    <arg name="birthDate">//lido:lido/nothing</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="Actors">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                                <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -239,20 +237,18 @@
                         <property>
                             <qname>crm:P50_has_current_keeper</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="authority">//lido:lido/nothing</arg>
-                                    <arg name="identifier">../lido:legalBodyID/text()</arg>
-                                    <arg name="name">text()</arg>
-                                    <arg name="birthDate">//lido:lido/nothing</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P131_is_identified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">//lido:lido/nothing</arg>
+                                <arg name="identifier">../lido:legalBodyID/text()</arg>
+                                <arg name="name">text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -272,21 +268,19 @@
                         <property>
                             <qname>crm:P55_has_current_location</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E53_Place</qname>
-                                <value_generator name="Place">
-                                    <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                                    <arg name="authority">@lido:source</arg>
-                                    <arg name="placeId">text()</arg>
-                                    <arg name="coordinates">//lido:lido/nothing</arg>
-                                    <arg name="spaces">../lido:partOfPlace</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="placeId">text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -306,21 +300,19 @@
                         <property>
                             <qname>crm:P55_has_current_location</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E53_Place</qname>
-                                <value_generator name="Place">
-                                    <arg name="placeName">text()</arg>
-                                    <arg name="authority">../../lido:placeID/@lido:source</arg>
-                                    <arg name="placeId">../../lido:placeID/text()</arg>
-                                    <arg name="coordinates">//lido:lido/nothing</arg>
-                                    <arg name="spaces">../../lido:partOfPlace</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P87_is_identified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">text()</arg>
+                                <arg name="authority">../../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P87_is_identified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -551,18 +543,16 @@
                         <property>
                             <qname>crm:P12i_was_present_at</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E5_Event</qname>
-                                <value_generator name="uriEvents">
-                                    <arg name="authority">@lido:source</arg>
-                                    <arg name="identifier">text()</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E5_Event</qname>
+                            <value_generator name="uriEvents">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -582,18 +572,16 @@
                         <property>
                             <qname>crm:P12i_was_present_at</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E5_Event</qname>
-                                <value_generator name="uriEvents">
-                                    <arg name="authority">../../lido:eventID/@lido:source</arg>
-                                    <arg name="identifier">../../lido:eventID/text()</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P2_has_type</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E5_Event</qname>
+                            <value_generator name="uriEvents">
+                                <arg name="authority">../../lido:eventID/@lido:source</arg>
+                                <arg name="identifier">../../lido:eventID/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -791,15 +779,13 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E73_Information_Object</qname>
-                                <value_generator name="uriConceptual"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P129_is_about</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -824,15 +810,13 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E73_Information_Object</qname>
-                                <value_generator name="uriConceptual"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P129_is_about</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -852,15 +836,13 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E73_Information_Object</qname>
-                                <value_generator name="uriConceptual"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P129_is_about</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -883,15 +865,13 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E73_Information_Object</qname>
-                                <value_generator name="uriConceptual"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P129_is_about</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P129_is_about</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -936,15 +916,13 @@
                         <property>
                             <qname>crm:P67i_is_referred_to_by</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E73_Information_Object</qname>
-                                <value_generator name="uriConceptual"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E73_Information_Object</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -964,17 +942,15 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E18_Physical_Thing</qname>
-                                <value_generator name="uriPhysThing">
-                                    <arg>/text()</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E18_Physical_Thing</qname>
+                            <value_generator name="uriPhysThing">
+                                <arg>/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -994,15 +970,13 @@
                         <property>
                             <qname>crm:P46i_forms_part_of</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E18_Physical_Thing</qname>
-                                <value_generator name="uriPhysThing"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P3_has_note</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E18_Physical_Thing</qname>
+                            <value_generator name="uriPhysThing"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P3_has_note</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1022,15 +996,13 @@
                         <property>
                             <qname>crm:P104_is_subject_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E30_Right</qname>
-                                <value_generator name="uriConceptual"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P2_has_type</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E30_Right</qname>
+                            <value_generator name="uriConceptual"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P2_has_type</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1052,15 +1024,13 @@
                         <property>
                             <qname>crm:P70_is_documented_in</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E31_Document</qname>
-                                <value_generator name="uriPhysThing"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E31_Document</qname>
+                            <value_generator name="uriPhysThing"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1142,21 +1112,19 @@
                         <property>
                             <qname>crm:P88_consists_of</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E53_Place</qname>
-                                <value_generator name="Place">
-                                    <arg name="placeName">../../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                                    <arg name="authority">../../lido:placeID/@lido:source</arg>
-                                    <arg name="placeId">../../lido:placeID/text()</arg>
-                                    <arg name="coordinates">//lido:lido/nothing</arg>
-                                    <arg name="spaces">../lido:partOfPlace</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">../../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1406,20 +1374,18 @@
                         <property>
                             <qname>crm:P11_had_participant</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="authority">@lido:source</arg>
-                                    <arg name="identifier">text()</arg>
-                                    <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
-                                    <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                                <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
+                                <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1439,21 +1405,19 @@
                         <property>
                             <qname>crm:P11_had_participant</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="authority">../../lido:actorID/@lido:source</arg>
-                                    <arg name="identifier">../../lido:actorID/text()</arg>
-                                    <arg name="name">../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()
-                                    </arg>
-                                    <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P131_is_identified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">../../lido:actorID/@lido:source</arg>
+                                <arg name="identifier">../../lido:actorID/text()</arg>
+                                <arg name="name">../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()
+                                </arg>
+                                <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1591,15 +1555,13 @@
                         <property>
                             <qname>crm:P4_has_time_span</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E52_Time_Span</qname>
-                                <value_generator name="uriTimeSpan"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P79_beginning_is_qualified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E52_Time_Span</qname>
+                            <value_generator name="uriTimeSpan"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P79_beginning_is_qualified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1619,15 +1581,13 @@
                         <property>
                             <qname>crm:P4_has_time_span</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E52_Time_Span</qname>
-                                <value_generator name="uriTimeSpan"/>
-                            </entity>
-                            <property>
-                                <qname>crm:P80_end_is_qualified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E52_Time_Span</qname>
+                            <value_generator name="uriTimeSpan"/>
+                        </entity>
+                        <property>
+                            <qname>crm:P80_end_is_qualified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1666,21 +1626,19 @@
                         <property>
                             <qname>crm:P7_took_place_at</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E53_Place</qname>
-                                <value_generator name="Place">
-                                    <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                                    <arg name="authority">@lido:source</arg>
-                                    <arg name="placeId">text()</arg>
-                                    <arg name="coordinates">//lido:lido/nothing</arg>
-                                    <arg name="spaces">../lido:partOfPlace</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="placeId">text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -1700,21 +1658,19 @@
                         <property>
                             <qname>crm:P7_took_place_at</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E53_Place</qname>
-                                <value_generator name="Place">
-                                    <arg name="placeName">text()</arg>
-                                    <arg name="authority">../../lido:placeID/@lido:source</arg>
-                                    <arg name="placeId">../../lido:placeID/text()</arg>
-                                    <arg name="coordinates">//lido:lido/nothing</arg>
-                                    <arg name="spaces">../../lido:partOfPlace</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P87_is_identified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">text()</arg>
+                                <arg name="authority">../../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P87_is_identified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -2005,21 +1961,19 @@
                         <property>
                             <qname>crm:P88_consists_of</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E53_Place</qname>
-                                <value_generator name="Place">
-                                    <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
-                                    <arg name="authority">../lido:placeID/@lido:source</arg>
-                                    <arg name="placeId">../lido:placeID/text()</arg>
-                                    <arg name="coordinates">//lido:lido/nothing</arg>
-                                    <arg name="spaces">../lido:partOfPlace</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E53_Place</qname>
+                            <value_generator name="Place">
+                                <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
+                                <arg name="authority">../lido:placeID/@lido:source</arg>
+                                <arg name="placeId">../lido:placeID/text()</arg>
+                                <arg name="coordinates">//lido:lido/nothing</arg>
+                                <arg name="spaces">../lido:partOfPlace</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -2192,20 +2146,18 @@
                         <property>
                             <qname>crm:P75i_is_possessed_by</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="">@lido:source</arg>
-                                    <arg name="">text()</arg>
-                                    <arg name="">../lido:legalBodyName/lido:appellationValue/text()</arg>
-                                    <arg name="">//lido:lido/nothing</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="">@lido:source</arg>
+                                <arg name="">text()</arg>
+                                <arg name="">../lido:legalBodyName/lido:appellationValue/text()</arg>
+                                <arg name="">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -2225,20 +2177,18 @@
                         <property>
                             <qname>crm:P75i_is_possessed_by</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
-                                    <arg name="identifier">../../lido:legalBodyID/text()</arg>
-                                    <arg name="name">text()</arg>
-                                    <arg name="birthDate">//lido:lido/nothing</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P131_is_identified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
+                                <arg name="identifier">../../lido:legalBodyID/text()</arg>
+                                <arg name="name">text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -2354,20 +2304,18 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="authority">@lido:source</arg>
-                                    <arg name="identifier">text()</arg>
-                                    <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
-                                    <arg name="birthDate">//lido:lido/nothing</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P48_has_preferred_identifier</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">@lido:source</arg>
+                                <arg name="identifier">text()</arg>
+                                <arg name="name">../lido:legalBodyName/lido:appellationValue/text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P48_has_preferred_identifier</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -2387,20 +2335,18 @@
                         <property>
                             <qname>crm:P67_refers_to</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <qname>crm:E39_Actor</qname>
-                                <value_generator name="uriForActors">
-                                    <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
-                                    <arg name="identifier">../../lido:legalBodyID/text()</arg>
-                                    <arg name="name">text()</arg>
-                                    <arg name="birthDate">//lido:lido/nothing</arg>
-                                </value_generator>
-                            </entity>
-                            <property>
-                                <qname>crm:P131_is_identified_by</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <qname>crm:E39_Actor</qname>
+                            <value_generator name="uriForActors">
+                                <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
+                                <arg name="identifier">../../lido:legalBodyID/text()</arg>
+                                <arg name="name">text()</arg>
+                                <arg name="birthDate">//lido:lido/nothing</arg>
+                            </value_generator>
+                        </entity>
+                        <property>
+                            <qname>crm:P131_is_identified_by</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>

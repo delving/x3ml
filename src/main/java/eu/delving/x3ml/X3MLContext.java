@@ -9,10 +9,7 @@ import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * The context in which the engine acts
@@ -208,12 +205,25 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            if (conditionFails(path.target_relation.condition, this)) return false;
-            qualifiedName = path.target_relation.propertyElement.getPropertyClass();
+            TargetRelation relation = path.target_relation;
+            if (conditionFails(relation.condition, this)) return false;
+            if (relation.properties == null) {
+                throw new X3MLException("Target relation must have at least one property");
+            }
+            if (relation.entities != null) {
+                if (relation.entities.size() + 1 != relation.properties.size()) {
+                    throw new X3MLException("Target relation must have one more property than entity");
+                }
+            }
+            else if (relation.properties.size() != 1) {
+                throw new X3MLException("Target relation must just one property if it has no entiti3s");
+            }
+
+            qualifiedName = relation.properties.get(0).qualifiedName;
             if (qualifiedName == null) return false;
             String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
             property = model.createProperty(namespaceUri, qualifiedName.getLocalName());
-            intermediateNodes = createIntermediateNodes(path.target_relation.intermediates, this);
+            intermediateNodes = createIntermediateNodes(relation.entities, relation.properties, this);
             return true;
         }
 
@@ -420,11 +430,13 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private List<IntermediateNode> createIntermediateNodes(List<Intermediate> intermediateList, ValueContext valueContext) {
+    private List<IntermediateNode> createIntermediateNodes(List<EntityElement> entityList, List<PropertyElement> propertyList, ValueContext valueContext) {
         List<IntermediateNode> intermediateNodes = new ArrayList<IntermediateNode>();
-        if (intermediateList != null) {
-            for (Intermediate intermediate : intermediateList) {
-                IntermediateNode intermediateNode = new IntermediateNode(intermediate, valueContext);
+        if (entityList != null) {
+            Iterator<PropertyElement> walkProperty = propertyList.iterator();
+            walkProperty.next(); // ignore
+            for (EntityElement entityElement : entityList) {
+                IntermediateNode intermediateNode = new IntermediateNode(entityElement, walkProperty.next(), valueContext);
                 if (intermediateNode.resolve()) {
                     intermediateNodes.add(intermediateNode);
                 }
@@ -434,20 +446,22 @@ public class X3MLContext implements X3ML {
     }
 
     private class IntermediateNode {
-        public final Intermediate intermediate;
+        public final EntityElement entityElement;
+        public final PropertyElement propertyElement;
         public final ValueContext valueContext;
         public EntityResolver entityResolver;
         public Property property;
 
-        private IntermediateNode(Intermediate intermediate, ValueContext valueContext) {
-            this.intermediate = intermediate;
+        private IntermediateNode(EntityElement entityElement, PropertyElement propertyElement, ValueContext valueContext) {
+            this.entityElement = entityElement;
+            this.propertyElement = propertyElement;
             this.valueContext = valueContext;
         }
 
         public boolean resolve() {
-            entityResolver = new EntityResolver(intermediate.entityElement, valueContext);
+            entityResolver = new EntityResolver(entityElement, valueContext);
             if (!entityResolver.resolve()) return false;
-            property = createProperty(intermediate.propertyElement.qualifiedName);
+            property = createProperty(propertyElement.qualifiedName);
             return true;
         }
     }

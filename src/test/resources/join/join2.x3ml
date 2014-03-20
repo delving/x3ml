@@ -52,26 +52,24 @@
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <variable>tc1</variable>
-                                <qname>crm:E10_Transfer_of_Custody</qname>
-                                <value_generator name="UUID"/>
-                                <additional>
-                                    <property>
-                                        <qname>rdfs:label</qname>
-                                    </property>
-                                    <entity>
-                                        <value_generator name="Constant">
-                                            <arg>find event</arg>
-                                        </value_generator>
-                                    </entity>
-                                </additional>
-                            </entity>
-                            <property>
-                                <qname>crm:P7_took_place_at</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <variable>tc1</variable>
+                            <qname>crm:E10_Transfer_of_Custody</qname>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Constant">
+                                        <arg>find event</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
+                        </entity>
+                        <property>
+                            <qname>crm:P7_took_place_at</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>
@@ -101,46 +99,42 @@
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
                         </property>
-                        <intermediate>
-                            <entity>
-                                <variable>tc1</variable>
-                                <qname>crm:E10_Transfer_of_Custody</qname>
-                                <value_generator name="UUID"/>
-                                <additional>
-                                    <property>
-                                        <qname>rdfs:label</qname>
-                                    </property>
-                                    <entity>
-                                        <value_generator name="Constant">
-                                            <arg>find event</arg>
-                                        </value_generator>
-                                    </entity>
-                                </additional>
-                            </entity>
-                            <property>
-                                <qname>crm:P4_has_time-span</qname>
-                            </property>
-                        </intermediate>
-                        <intermediate>
-                            <entity>
-                                <variable>ts1</variable>
-                                <qname>crm:E52_Time-Span</qname>
-                                <value_generator name="UUID"/>
-                                <additional>
-                                    <property>
-                                        <qname>rdfs:label</qname>
-                                    </property>
-                                    <entity>
-                                        <value_generator name="Constant">
-                                            <arg>find event date</arg>
-                                        </value_generator>
-                                    </entity>
-                                </additional>
-                            </entity>
-                            <property>
-                                <qname>crm:P81_ongoing_throughout</qname>
-                            </property>
-                        </intermediate>
+                        <entity>
+                            <variable>tc1</variable>
+                            <qname>crm:E10_Transfer_of_Custody</qname>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Constant">
+                                        <arg>find event</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
+                        </entity>
+                        <property>
+                            <qname>crm:P4_has_time-span</qname>
+                        </property>
+                        <entity>
+                            <variable>ts1</variable>
+                            <qname>crm:E52_Time-Span</qname>
+                            <value_generator name="UUID"/>
+                            <additional>
+                                <property>
+                                    <qname>rdfs:label</qname>
+                                </property>
+                                <entity>
+                                    <value_generator name="Constant">
+                                        <arg>find event date</arg>
+                                    </value_generator>
+                                </entity>
+                            </additional>
+                        </entity>
+                        <property>
+                            <qname>crm:P81_ongoing_throughout</qname>
+                        </property>
                     </target_relation>
                 </path>
                 <range>

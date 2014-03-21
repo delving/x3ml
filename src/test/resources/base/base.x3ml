@@ -42,8 +42,7 @@
                             <uri_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>
                             </uri_generator>
-                            <!--todo: use label_generator-->
-                            <label_generator>
+                            <label_generator name="Literal">
                                 <arg>inner_title/text()</arg>
                             </label_generator>
                             <additional>
@@ -96,7 +95,7 @@
                 <!--<path>-->
                     <!--<source>type-wrapper</source>-->
                     <!--<target_relation>-->
-                        <!--&lt;!&ndash;this should prevent the link from doing anything&ndash;&gt;-->
+                        <!--this should prevent the link from doing anything-->
                         <!--<if>-->
                             <!--<not>-->
                                 <!--<if>-->
@@ -125,7 +124,7 @@
                 <!--<path>-->
                     <!--<source>type-wrapper</source>-->
                     <!--<target_relation>-->
-                        <!--&lt;!&ndash;this should prevent the link from doing anything&ndash;&gt;-->
+                        <!--this should prevent the link from doing anything-->
                         <!--<if>-->
                             <!--<equals value="maybe">avoid/text()</equals>-->
                         <!--</if>-->

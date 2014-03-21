@@ -82,7 +82,7 @@ public class X3MLContext implements X3ML {
 
         String evaluate(String expression);
 
-        Value generateValue(Generator generator, EntityElement entityElement);
+        Value generateValue(Generator generator, QualifiedName qualifiedName);
     }
 
     public abstract class LocalContext implements ValueContext {
@@ -112,19 +112,14 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
-        public Value generateValue(final Generator generator, final EntityElement entityElement) {
+        public Value generateValue(final Generator generator, final QualifiedName qualifiedName) {
             if (generator == null) {
                 throw new X3MLException("Value generator missing");
             }
             Value value = valuePolicy.generateValue(generator.name, new ArgValues() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluateArgument(node, generator, name, type, entityElement.qualifiedName);
-                }
-
-                @Override
-                public String toString() {
-                    return entityElement.toString();
+                    return evaluateArgument(node, generator, name, type, qualifiedName);
                 }
             });
             if (value == null) {
@@ -323,6 +318,7 @@ public class X3MLContext implements X3ML {
         public final EntityElement entityElement;
         public final ValueContext valueContext;
         public Resource resource;
+        public List<LabelNode> labelNodes;
         public List<AdditionalNode> additionalNodes;
         public Literal literal;
 
@@ -351,6 +347,7 @@ public class X3MLContext implements X3ML {
             switch (value.valueType) {
                 case URI:
                     resource = createTypedResource(value.value, entityElement.qualifiedName);
+                    labelNodes = createLabelNodes(entityElement.labelGenerators, valueContext);
                     additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
                     break;
                 case LITERAL:
@@ -369,8 +366,11 @@ public class X3MLContext implements X3ML {
         }
 
         void link() {
-            if (resource != null) {
-                for (AdditionalNode additionalNode : createAdditionalNodes(entityElement.additionals, valueContext)) {
+            if (resource != null && labelNodes != null) {
+                for (LabelNode labelNode : labelNodes) {
+                    labelNode.linkFrom(resource);
+                }
+                for (AdditionalNode additionalNode : additionalNodes) {
                     additionalNode.linkFrom(resource);
                 }
             }
@@ -438,6 +438,49 @@ public class X3MLContext implements X3ML {
         }
     }
 
+    private List<LabelNode> createLabelNodes(List<Generator> generatorList, ValueContext valueContext) {
+        List<LabelNode> labelNodes = new ArrayList<LabelNode>();
+        if (generatorList != null) {
+            for (Generator generator : generatorList) {
+                LabelNode labelNode = new LabelNode(generator, valueContext);
+                if (labelNode.resolve()) {
+                    labelNodes.add(labelNode);
+                }
+            }
+        }
+        return labelNodes;
+    }
+
+    private class LabelNode {
+        public final Generator generator;
+        public final ValueContext valueContext;
+        public Property property;
+        public Literal literal;
+
+        private LabelNode(Generator generator, ValueContext valueContext) {
+            this.generator = generator;
+            this.valueContext = valueContext;
+        }
+
+        public boolean resolve() {
+            property = createProperty(new QualifiedName("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
+            Value value = valueContext.generateValue(generator, null);
+            if (value == null) return false;
+            switch (value.valueType) {
+                case URI:
+                    throw new X3MLException("Label node must produce a literal");
+                case LITERAL:
+                    literal = createLiteral(value.value);
+                    return true;
+            }
+            return false;
+        }
+
+        public void linkFrom(Resource fromResource) {
+            fromResource.addLiteral(property, literal);
+        }
+    }
+
     private List<IntermediateNode> createIntermediateNodes(List<EntityElement> entityList, List<PropertyElement> propertyList, ValueContext valueContext) {
         List<IntermediateNode> intermediateNodes = new ArrayList<IntermediateNode>();
         if (entityList != null) {
@@ -479,11 +522,11 @@ public class X3MLContext implements X3ML {
             return argQName(qualifiedName.tag, namespaceContext);
         }
         else {
-            return evaluateArgumentZ(contextNode, function, argName, type);
+            return evaluateArgument(contextNode, function, argName, type);
         }
     }
 
-    private ArgValue evaluateArgumentZ(Node contextNode, Generator function, String argName, SourceType type) {
+    private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type) {
         GeneratorArg foundArg = null;
         if (function.args != null) {
             if (function.args.size() == 1 && function.args.get(0).name == null) {

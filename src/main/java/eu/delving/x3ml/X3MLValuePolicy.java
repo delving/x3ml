@@ -44,7 +44,9 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
 
     @Override
     public X3ML.Value generateValue(String name, X3ML.ArgValues args) {
-        if (name == null) throw new X3MLException("Value function name missing");
+        if (name == null) {
+            throw new X3MLException("Value function name missing");
+        }
         X3ML.Value value;
         if ("UUID".equals(name)) {
             value = uriValue(createUUID());

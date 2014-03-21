@@ -375,7 +375,7 @@ public interface X3ML {
         public List<Additional> additionals;
 
         public Value getValue(ValueContext context) {
-            return context.generateValue(uriGenerator, this);
+            return context.generateValue(uriGenerator, qualifiedName);
         }
     }
 
@@ -387,6 +387,14 @@ public interface X3ML {
 
         @XStreamOmitField
         public String namespaceUri;
+
+        public QualifiedName() {
+        }
+
+        public QualifiedName(String tag, String namespaceUri) {
+            this.tag = tag;
+            this.namespaceUri = namespaceUri;
+        }
 
         public String getPrefix() {
             int colon = tag.indexOf(':');

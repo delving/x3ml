@@ -31,16 +31,18 @@
                         <entity>
                             <qname>crm:E41_Appellation</qname>
                             <uri_generator name="UUID"/>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <uri_generator name="Literal">
-                                        <arg>text()</arg>
-                                    </uri_generator>
-                                </entity>
-                            </additional>
+                            <label_generator name="Literal">
+                                <arg>text()</arg>
+                            </label_generator>
+                            <!--<additional>-->
+                                <!--<property>-->
+                                    <!--<qname>rdfs:label</qname>-->
+                                <!--</property>-->
+                                <!--<entity>-->
+                                    <!--<uri_generator name="Literal">-->
+                                    <!--</uri_generator>-->
+                                <!--</entity>-->
+                            <!--</additional>-->
                         </entity>
                     </target_node>
                 </range>

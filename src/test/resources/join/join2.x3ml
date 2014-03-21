@@ -8,17 +8,17 @@
     <mappings>
         <mapping>
             <domain>
-                <source>COIN</source>
+                <source_node>COIN</source_node>
                 <target_node>
                     <entity>
                         <qname>crm:E22_Man-Made_Object</qname>
-                        <value_generator name="UUID"/>
+                        <uri_generator name="UUID"/>
                     </entity>
                 </target_node>
             </domain>
             <link>
                 <path>
-                    <source>ID</source>
+                    <source_relation>ID</source_relation>
                     <target_relation>
                         <property>
                             <qname>crm:P1_is_identified_by</qname>
@@ -26,28 +26,30 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source>ID</source>
+                    <source_node>ID</source_node>
                     <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>
-                            <value_generator name="UUID"/>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <value_generator name="Literal">
-                                        <arg>text()</arg>
-                                    </value_generator>
-                                </entity>
-                            </additional>
+                            <uri_generator name="UUID"/>
+                            <label_generator name="Literal">
+                                <arg>text()</arg>
+                            </label_generator>
+                            <!--<additional>-->
+                                <!--<property>-->
+                                    <!--<qname>rdfs:label</qname>-->
+                                <!--</property>-->
+                                <!--<entity>-->
+                                    <!--<uri_generator name="Literal">-->
+                                    <!--</uri_generator>-->
+                                <!--</entity>-->
+                            <!--</additional>-->
                         </entity>
                     </target_node>
                 </range>
             </link>
             <link>
                 <path>
-                    <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
+                    <source_relation>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_relation>
                     <target_relation>
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
@@ -55,17 +57,20 @@
                         <entity>
                             <variable>tc1</variable>
                             <qname>crm:E10_Transfer_of_Custody</qname>
-                            <value_generator name="UUID"/>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <value_generator name="Constant">
-                                        <arg>find event</arg>
-                                    </value_generator>
-                                </entity>
-                            </additional>
+                            <uri_generator name="UUID"/>
+                            <label_generator name="Constant">
+                                <arg>find event</arg>
+                            </label_generator>
+                            <!--<additional>-->
+                                <!--<property>-->
+                                    <!--<qname>rdfs:label</qname>-->
+                                <!--</property>-->
+                                <!--<entity>-->
+                                    <!--<uri_generator name="Constant">-->
+                                        <!--<arg>find event</arg>-->
+                                    <!--</uri_generator>-->
+                                <!--</entity>-->
+                            <!--</additional>-->
                         </entity>
                         <property>
                             <qname>crm:P7_took_place_at</qname>
@@ -73,28 +78,31 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source>
+                    <source_node>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_node>
                     <target_node>
                         <entity>
                             <qname>crm:E53_Place</qname>
-                            <value_generator name="UUID"/>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <value_generator name="Literal">
-                                        <arg>FS_NAME/text()</arg>
-                                    </value_generator>
-                                </entity>
-                            </additional>
+                            <uri_generator name="UUID"/>
+                            <label_generator name="Literal">
+                                <arg>FS_NAME/text()</arg>
+                            </label_generator>
+                            <!--<additional>-->
+                                <!--<property>-->
+                                    <!--<qname>rdfs:label</qname>-->
+                                <!--</property>-->
+                                <!--<entity>-->
+                                    <!--<uri_generator name="Literal">-->
+                                        <!--<arg>FS_NAME/text()</arg>-->
+                                    <!--</uri_generator>-->
+                                <!--</entity>-->
+                            <!--</additional>-->
                         </entity>
                     </target_node>
                 </range>
             </link>
             <link>
                 <path>
-                    <source>FIND_DATE</source>
+                    <source_relation>FIND_DATE</source_relation>
                     <target_relation>
                         <property>
                             <qname>crm:P30i_custody_transferred_through</qname>
@@ -102,17 +110,20 @@
                         <entity>
                             <variable>tc1</variable>
                             <qname>crm:E10_Transfer_of_Custody</qname>
-                            <value_generator name="UUID"/>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <value_generator name="Constant">
-                                        <arg>find event</arg>
-                                    </value_generator>
-                                </entity>
-                            </additional>
+                            <uri_generator name="UUID"/>
+                            <label_generator name="Constant">
+                                <arg>find event</arg>
+                            </label_generator>
+                            <!--<additional>-->
+                                <!--<property>-->
+                                    <!--<qname>rdfs:label</qname>-->
+                                <!--</property>-->
+                                <!--<entity>-->
+                                    <!--<uri_generator name="Constant">-->
+                                        <!--<arg>find event</arg>-->
+                                    <!--</uri_generator>-->
+                                <!--</entity>-->
+                            <!--</additional>-->
                         </entity>
                         <property>
                             <qname>crm:P4_has_time-span</qname>
@@ -120,17 +131,20 @@
                         <entity>
                             <variable>ts1</variable>
                             <qname>crm:E52_Time-Span</qname>
-                            <value_generator name="UUID"/>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <value_generator name="Constant">
-                                        <arg>find event date</arg>
-                                    </value_generator>
-                                </entity>
-                            </additional>
+                            <uri_generator name="UUID"/>
+                            <label_generator name="Constant">
+                                <arg>find event date</arg>
+                            </label_generator>
+                            <!--<additional>-->
+                                <!--<property>-->
+                                    <!--<qname>rdfs:label</qname>-->
+                                <!--</property>-->
+                                <!--<entity>-->
+                                    <!--<uri_generator name="Constant">-->
+                                        <!--<arg>find event date</arg>-->
+                                    <!--</uri_generator>-->
+                                <!--</entity>-->
+                            <!--</additional>-->
                         </entity>
                         <property>
                             <qname>crm:P81_ongoing_throughout</qname>
@@ -138,12 +152,12 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source>FIND_DATE</source>
+                    <source_node>FIND_DATE</source_node>
                     <target_node>
                         <entity>
-                            <value_generator name="Literal">
+                            <uri_generator name="Literal">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </uri_generator>
                         </entity>
                     </target_node>
                 </range>

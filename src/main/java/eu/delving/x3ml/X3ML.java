@@ -94,34 +94,29 @@ public interface X3ML {
         public String uri;
     }
 
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
+    public static class Source extends Visible {
+        public String expression;
+    }
+
     @XStreamAlias("domain")
     public static class Domain extends Visible {
 
-        public Source source;
+        public Source source_node;
 
         public TargetNode target_node;
 
         public Comments comments;
     }
 
-    @XStreamAlias("source")
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
-    public static class Source extends Visible {
-        public String expression;
-    }
-
-
     @XStreamAlias("target_relation")
     @XStreamConverter(TargetRelationConverter.class)
     public static class TargetRelation extends Visible {
 
-        @XStreamAlias("if")
         public Condition condition;
 
-        @XStreamImplicit
         public List<PropertyElement> properties;
 
-        @XStreamImplicit
         public List<EntityElement> entities;
     }
 
@@ -195,7 +190,7 @@ public interface X3ML {
     @XStreamAlias("path")
     public static class Path extends Visible {
 
-        public Source source;
+        public Source source_relation;
 
         public TargetRelation target_relation;
 
@@ -205,7 +200,7 @@ public interface X3ML {
     @XStreamAlias("range")
     public static class Range extends Visible {
 
-        public Source source;
+        public Source source_node;
 
         public TargetNode target_node;
 
@@ -365,14 +360,17 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        @XStreamAlias("value_generator")
-        public ValueGenerator valueGenerator;
+        @XStreamAlias("uri_generator")
+        public Generator uriGenerator;
+
+        @XStreamImplicit
+        public List<Generator> labelGenerators;
 
         @XStreamImplicit
         public List<Additional> additionals;
 
         public Value getValue(ValueContext context) {
-            return context.generateValue(valueGenerator, this);
+            return context.generateValue(uriGenerator, qualifiedName);
         }
     }
 
@@ -384,6 +382,14 @@ public interface X3ML {
 
         @XStreamOmitField
         public String namespaceUri;
+
+        public QualifiedName() {
+        }
+
+        public QualifiedName(String tag, String namespaceUri) {
+            this.tag = tag;
+            this.namespaceUri = namespaceUri;
+        }
 
         public String getPrefix() {
             int colon = tag.indexOf(':');
@@ -419,18 +425,18 @@ public interface X3ML {
         public String content;
     }
 
-    @XStreamAlias("value_generator")
-    public static class ValueGenerator extends Visible {
+    @XStreamAlias("label_generator")
+    public static class Generator extends Visible {
         @XStreamAsAttribute
         public String name;
 
         @XStreamImplicit
-        public List<ValueFunctionArg> args;
+        public List<GeneratorArg> args;
     }
 
     @XStreamAlias("arg")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"value"})
-    public static class ValueFunctionArg extends Visible {
+    public static class GeneratorArg extends Visible {
         @XStreamAsAttribute
         public String name;
 
@@ -438,14 +444,12 @@ public interface X3ML {
     }
 
     public static class ArgValue {
-        public String string;
-        public QualifiedName qualifiedName;
+        public final QualifiedName qualifiedName;
+        public final String string;
 
-        public QualifiedName setQName(String qname, NamespaceContext namespaceContext) {
-            qualifiedName = new QualifiedName();
-            qualifiedName.tag = qname;
-            qualifiedName.namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-            return qualifiedName;
+        public ArgValue(QualifiedName qualifiedName, String string) {
+            this.qualifiedName = qualifiedName;
+            this.string = string;
         }
 
         public String toString() {
@@ -461,29 +465,31 @@ public interface X3ML {
         }
     }
 
-    public interface ValueFunctionArgs {
+    public interface ArgValues {
         ArgValue getArgValue(String name, SourceType sourceType);
     }
 
+    public enum ValueType {
+        URI,
+        LITERAL
+    }
+
     public static class Value {
-        public String uri;
-        public String literal;
+        public final ValueType valueType;
+        public final String value;
+
+        public Value(ValueType valueType, String value) {
+            this.valueType = valueType;
+            this.value = value;
+        }
 
         public String toString() {
-            if (uri != null) {
-                return "Value(uri=" + uri + ")";
-            }
-            else if (literal != null) {
-                return "Value(literal=" + literal + ")";
-            }
-            else {
-                return "Value?";
-            }
+            return valueType + ":" + value;
         }
     }
 
     public interface ValuePolicy {
-        Value generateValue(String name, ValueFunctionArgs arguments);
+        Value generateValue(String name, ArgValues arguments);
     }
 
     static class Visible {
@@ -502,6 +508,25 @@ public interface X3ML {
             xstream.setMode(XStream.NO_REFERENCES);
             xstream.processAnnotations(Root.class);
             return xstream;
+        }
+
+        public static ArgValue argQName(String tag, NamespaceContext namespaceContext) {
+            QualifiedName qualifiedName = new QualifiedName();
+            qualifiedName.tag = tag;
+            qualifiedName.namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
+            return new ArgValue(qualifiedName, null);
+        }
+
+        public static ArgValue argVal(String string) {
+            return new ArgValue(null, string);
+        }
+
+        public static Value uriValue(String uri) {
+            return new Value(ValueType.URI, uri);
+        }
+
+        public static Value literalValue(String uri) {
+            return new Value(ValueType.LITERAL, uri);
         }
     }
 }

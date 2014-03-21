@@ -16,6 +16,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static eu.delving.x3ml.X3ML.Helper.literalValue;
+import static eu.delving.x3ml.X3ML.Helper.uriValue;
 import static eu.delving.x3ml.X3ML.SourceType.*;
 
 /**
@@ -41,11 +43,13 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
     }
 
     @Override
-    public X3ML.Value generateValue(String name, X3ML.ValueFunctionArgs args) {
-        if (name == null) throw new X3MLException("Value function name missing");
-        X3ML.Value value = new X3ML.Value();
+    public X3ML.Value generateValue(String name, X3ML.ArgValues args) {
+        if (name == null) {
+            throw new X3MLException("Value function name missing");
+        }
+        X3ML.Value value;
         if ("UUID".equals(name)) {
-            value.uri = createUUID();
+            value = uriValue(createUUID());
         }
         else if ("Literal".equals(name)) {
             X3ML.ArgValue literalXPath = args.getArgValue(null, X3ML.SourceType.XPATH);
@@ -55,14 +59,14 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
             if (literalXPath.string == null || literalXPath.string.isEmpty()) {
                 throw new X3MLException("Argument failure: empty argument");
             }
-            value.literal = literalXPath.string;
+            value = literalValue(literalXPath.string);
         }
         else if ("Constant".equals(name)) {
             X3ML.ArgValue constant = args.getArgValue(null, X3ML.SourceType.LITERAL);
             if (constant == null) {
                 throw new X3MLException("Argument failure: need one argument");
             }
-            value.literal = constant.string;
+            value = literalValue(constant.string);
         }
         else {
             Generator generator = templateMap.get(name);
@@ -84,7 +88,7 @@ public class X3MLValuePolicy implements X3ML.ValuePolicy {
                     }
                     uriTemplate.set(variableName, argValue.string);
                 }
-                value.uri = namespaceUri + uriTemplate.expand();
+                value = uriValue(namespaceUri + uriTemplate.expand());
             }
             catch (MalformedUriTemplateException e) {
                 throw new X3MLException("Malformed", e);

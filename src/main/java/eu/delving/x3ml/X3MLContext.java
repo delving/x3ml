@@ -11,6 +11,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.*;
 
+import static eu.delving.x3ml.X3ML.Helper.argQName;
+import static eu.delving.x3ml.X3ML.Helper.argVal;
+
 /**
  * The context in which the engine acts
  *
@@ -79,7 +82,7 @@ public class X3MLContext implements X3ML {
 
         String evaluate(String expression);
 
-        Value generateValue(ValueGenerator valueGenerator, EntityElement entityElement);
+        Value generateValue(Generator generator, QualifiedName qualifiedName);
     }
 
     public abstract class LocalContext implements ValueContext {
@@ -109,22 +112,17 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
-        public Value generateValue(final ValueGenerator valueGenerator, final EntityElement entityElement) {
-            if (valueGenerator == null) {
+        public Value generateValue(final Generator generator, final QualifiedName qualifiedName) {
+            if (generator == null) {
                 throw new X3MLException("Value generator missing");
             }
-            Value value = valuePolicy.generateValue(valueGenerator.name, new ValueFunctionArgs() {
+            Value value = valuePolicy.generateValue(generator.name, new ArgValues() {
                 @Override
                 public ArgValue getArgValue(String name, SourceType type) {
-                    return evaluateArgument(node, valueGenerator, name, type, entityElement.qualifiedName);
-                }
-
-                @Override
-                public String toString() {
-                    return entityElement.toString();
+                    return evaluateArgument(node, generator, name, type, qualifiedName);
                 }
             });
-            if (value.uri == null && value.literal == null) {
+            if (value == null) {
                 throw new X3MLException("Empty value produced");
             }
             return value;
@@ -133,7 +131,7 @@ public class X3MLContext implements X3ML {
     }
 
     public List<DomainContext> createDomainContexts(Domain domain) {
-        List<Node> domainNodes = nodeList(documentRoot, domain.source);
+        List<Node> domainNodes = nodeList(documentRoot, domain.source_node);
         List<DomainContext> domainContexts = new ArrayList<DomainContext>();
         for (Node domainNode : domainNodes) {
             DomainContext domainContext = new DomainContext(domain, domainNode);
@@ -173,9 +171,9 @@ public class X3MLContext implements X3ML {
         }
 
         public List<PathContext> createPathContexts(Path path) {
-            if (path.source == null) throw new X3MLException("Path source absent");
+            if (path.source_relation == null) throw new X3MLException("Path source absent");
             List<PathContext> pathContexts = new ArrayList<PathContext>();
-            for (Node pathNode : nodeList(node, path.source)) {
+            for (Node pathNode : nodeList(node, path.source_relation)) {
                 PathContext pathContext = new PathContext(this, pathNode, path);
                 if (pathContext.resolve()) {
                     pathContexts.add(pathContext);
@@ -246,7 +244,7 @@ public class X3MLContext implements X3ML {
         }
 
         public List<RangeContext> createRangeContexts(Range range) {
-            if (range.source == null) throw new X3MLException("Range source absent: " + range);
+            if (range.source_node == null) throw new X3MLException("Range source absent: " + range);
             String pathExtension = getPathExtension(range);
             List<Node> rangeNodes = nodeList(node, pathExtension);
             List<RangeContext> rangeContexts = new ArrayList<RangeContext>();
@@ -260,8 +258,8 @@ public class X3MLContext implements X3ML {
         }
 
         private String getPathExtension(Range range) {
-            String rangeSource = range.source.expression;
-            String pathSource = path.source.expression;
+            String rangeSource = range.source_node.expression;
+            String pathSource = path.source_relation.expression;
             if (pathSource.length() > rangeSource.length()) {
                 throw new X3MLException(String.format(
                         "Path source [%s] longer than range source [%s]",
@@ -320,6 +318,7 @@ public class X3MLContext implements X3ML {
         public final EntityElement entityElement;
         public final ValueContext valueContext;
         public Resource resource;
+        public List<LabelNode> labelNodes;
         public List<AdditionalNode> additionalNodes;
         public Literal literal;
 
@@ -345,12 +344,15 @@ public class X3MLContext implements X3ML {
         private boolean resolveResource() {
             Value value = entityElement.getValue(valueContext);
             if (value == null) return false;
-            if (value.uri != null) {
-                resource = createTypedResource(value.uri, entityElement.qualifiedName);
-                additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
-            }
-            if (value.literal != null) {
-                literal = createLiteral(value.literal);
+            switch (value.valueType) {
+                case URI:
+                    resource = createTypedResource(value.value, entityElement.qualifiedName);
+                    labelNodes = createLabelNodes(entityElement.labelGenerators, valueContext);
+                    additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
+                    break;
+                case LITERAL:
+                    literal = createLiteral(value.value);
+                    break;
             }
             return hasResource() || hasLiteral();
         }
@@ -364,8 +366,11 @@ public class X3MLContext implements X3ML {
         }
 
         void link() {
-            if (resource != null) {
-                for (AdditionalNode additionalNode : createAdditionalNodes(entityElement.additionals, valueContext)) {
+            if (resource != null && labelNodes != null) {
+                for (LabelNode labelNode : labelNodes) {
+                    labelNode.linkFrom(resource);
+                }
+                for (AdditionalNode additionalNode : additionalNodes) {
                     additionalNode.linkFrom(resource);
                 }
             }
@@ -406,13 +411,16 @@ public class X3MLContext implements X3ML {
             if (property == null) return false;
             Value value = additional.entityElement.getValue(valueContext);
             if (value == null) return false;
-            if (additional.entityElement.qualifiedName != null) {
-                resource = createTypedResource(value.uri, additional.entityElement.qualifiedName);
-                return true;
-            }
-            if (value.literal != null) {
-                literal = createLiteral(value.literal);
-                return true;
+            switch (value.valueType) {
+                case URI:
+                    if (additional.entityElement.qualifiedName != null) {
+                        resource = createTypedResource(value.value, additional.entityElement.qualifiedName);
+                        return true;
+                    }
+                    break;
+                case LITERAL:
+                    literal = createLiteral(value.value);
+                    return true;
             }
             return false;
         }
@@ -427,6 +435,49 @@ public class X3MLContext implements X3ML {
             else {
                 throw new X3MLException("Cannot link without property or literal");
             }
+        }
+    }
+
+    private List<LabelNode> createLabelNodes(List<Generator> generatorList, ValueContext valueContext) {
+        List<LabelNode> labelNodes = new ArrayList<LabelNode>();
+        if (generatorList != null) {
+            for (Generator generator : generatorList) {
+                LabelNode labelNode = new LabelNode(generator, valueContext);
+                if (labelNode.resolve()) {
+                    labelNodes.add(labelNode);
+                }
+            }
+        }
+        return labelNodes;
+    }
+
+    private class LabelNode {
+        public final Generator generator;
+        public final ValueContext valueContext;
+        public Property property;
+        public Literal literal;
+
+        private LabelNode(Generator generator, ValueContext valueContext) {
+            this.generator = generator;
+            this.valueContext = valueContext;
+        }
+
+        public boolean resolve() {
+            property = createProperty(new QualifiedName("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
+            Value value = valueContext.generateValue(generator, null);
+            if (value == null) return false;
+            switch (value.valueType) {
+                case URI:
+                    throw new X3MLException("Label node must produce a literal");
+                case LITERAL:
+                    literal = createLiteral(value.value);
+                    return true;
+            }
+            return false;
+        }
+
+        public void linkFrom(Resource fromResource) {
+            fromResource.addLiteral(property, literal);
         }
     }
 
@@ -466,26 +517,24 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private ArgValue evaluateArgument(Node contextNode, ValueGenerator function, String argName, SourceType type, QualifiedName qualifiedName) {
+    private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type, QualifiedName qualifiedName) {
         if (argName == null && type == SourceType.QNAME && qualifiedName != null) {
-            ArgValue v = new ArgValue();
-            v.setQName(qualifiedName.tag, namespaceContext);
-            return v;
+            return argQName(qualifiedName.tag, namespaceContext);
         }
         else {
-            return evaluateArgumentZ(contextNode, function, argName, type);
+            return evaluateArgument(contextNode, function, argName, type);
         }
     }
 
-    private ArgValue evaluateArgumentZ(Node contextNode, ValueGenerator function, String argName, SourceType type) {
-        ValueFunctionArg foundArg = null;
+    private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type) {
+        GeneratorArg foundArg = null;
         if (function.args != null) {
             if (function.args.size() == 1 && function.args.get(0).name == null) {
                 foundArg = function.args.get(0);
                 foundArg.name = argName;
             }
             else {
-                for (ValueFunctionArg arg : function.args) {
+                for (GeneratorArg arg : function.args) {
                     if (arg.name.equals(argName)) {
                         foundArg = arg;
                     }
@@ -495,20 +544,22 @@ public class X3MLContext implements X3ML {
         if (foundArg == null) {
             return null;
         }
-        ArgValue value = new ArgValue();
+        ArgValue value;
         switch (type) {
             case XPATH:
-                value.string = valueAt(contextNode, foundArg.value);
+                value = argVal(valueAt(contextNode, foundArg.value));
                 if (value.string.isEmpty()) {
                     throw new X3MLException("Empty result");
                 }
                 break;
             case QNAME:
-                value.setQName(foundArg.value, namespaceContext);
+                value = argQName(foundArg.value, namespaceContext);
                 break;
             case LITERAL:
-                value.string = foundArg.value;
+                value = argVal(foundArg.value);
                 break;
+            default:
+                throw new RuntimeException();
         }
         return value;
     }

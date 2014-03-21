@@ -150,6 +150,11 @@ public class TestConditions implements X3ML {
         public Value generateValue(Generator generator, QualifiedName qualifiedName) {
             throw new RuntimeException("Didn't expect this to be called");
         }
+
+        @Override
+        public String getLanguage() {
+            return null;
+        }
     }
 
     private static String toString(String[] array) {

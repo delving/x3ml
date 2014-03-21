@@ -2,6 +2,7 @@ package eu.delving.x3ml;
 
 import com.hp.hpl.jena.rdf.model.*;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -83,6 +84,8 @@ public class X3MLContext implements X3ML {
         String evaluate(String expression);
 
         Value generateValue(Generator generator, QualifiedName qualifiedName);
+
+        String getLanguage();
     }
 
     public abstract class LocalContext implements ValueContext {
@@ -126,6 +129,22 @@ public class X3MLContext implements X3ML {
                 throw new X3MLException("Empty value produced");
             }
             return value;
+        }
+
+        @Override
+        public String getLanguage() {
+            Node walkNode = node;
+            while (walkNode != null) {
+                NamedNodeMap attributes = walkNode.getAttributes();
+                if (attributes != null) {
+                    Node lang = attributes.getNamedItemNS("http://www.w3.org/XML/1998/namespace", "lang");
+                    if (lang != null) {
+                        return lang.getNodeValue();
+                    }
+                }
+                walkNode = walkNode.getParentNode();
+            }
+            throw new X3MLException("Missing language");
         }
 
     }
@@ -351,7 +370,7 @@ public class X3MLContext implements X3ML {
                     additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
                     break;
                 case LITERAL:
-                    literal = createLiteral(value.value);
+                    literal = createLiteral(value.value, valueContext.getLanguage());
                     break;
             }
             return hasResource() || hasLiteral();
@@ -419,7 +438,7 @@ public class X3MLContext implements X3ML {
                     }
                     break;
                 case LITERAL:
-                    literal = createLiteral(value.value);
+                    literal = createLiteral(value.value, valueContext.getLanguage());
                     return true;
             }
             return false;
@@ -470,7 +489,7 @@ public class X3MLContext implements X3ML {
                 case URI:
                     throw new X3MLException("Label node must produce a literal");
                 case LITERAL:
-                    literal = createLiteral(value.value);
+                    literal = createLiteral(value.value, valueContext.getLanguage());
                     return true;
             }
             return false;
@@ -580,8 +599,8 @@ public class X3MLContext implements X3ML {
         return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
     }
 
-    private Literal createLiteral(String value) {
-        return model.createLiteral(value); // todo: language
+    private Literal createLiteral(String value, String language) {
+        return model.createLiteral(value, language);
     }
 
     private String valueAt(Node node, String expression) {

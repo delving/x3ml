@@ -131,7 +131,7 @@ public class X3MLContext implements X3ML {
     }
 
     public List<DomainContext> createDomainContexts(Domain domain) {
-        List<Node> domainNodes = nodeList(documentRoot, domain.source);
+        List<Node> domainNodes = nodeList(documentRoot, domain.source_node);
         List<DomainContext> domainContexts = new ArrayList<DomainContext>();
         for (Node domainNode : domainNodes) {
             DomainContext domainContext = new DomainContext(domain, domainNode);
@@ -171,9 +171,9 @@ public class X3MLContext implements X3ML {
         }
 
         public List<PathContext> createPathContexts(Path path) {
-            if (path.source == null) throw new X3MLException("Path source absent");
+            if (path.source_relation == null) throw new X3MLException("Path source absent");
             List<PathContext> pathContexts = new ArrayList<PathContext>();
-            for (Node pathNode : nodeList(node, path.source)) {
+            for (Node pathNode : nodeList(node, path.source_relation)) {
                 PathContext pathContext = new PathContext(this, pathNode, path);
                 if (pathContext.resolve()) {
                     pathContexts.add(pathContext);
@@ -244,7 +244,7 @@ public class X3MLContext implements X3ML {
         }
 
         public List<RangeContext> createRangeContexts(Range range) {
-            if (range.source == null) throw new X3MLException("Range source absent: " + range);
+            if (range.source_node == null) throw new X3MLException("Range source absent: " + range);
             String pathExtension = getPathExtension(range);
             List<Node> rangeNodes = nodeList(node, pathExtension);
             List<RangeContext> rangeContexts = new ArrayList<RangeContext>();
@@ -258,8 +258,8 @@ public class X3MLContext implements X3ML {
         }
 
         private String getPathExtension(Range range) {
-            String rangeSource = range.source.expression;
-            String pathSource = path.source.expression;
+            String rangeSource = range.source_node.expression;
+            String pathSource = path.source_relation.expression;
             if (pathSource.length() > rangeSource.length()) {
                 throw new X3MLException(String.format(
                         "Path source [%s] longer than range source [%s]",

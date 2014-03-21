@@ -8,7 +8,7 @@
     <mappings>
         <mapping>
             <domain>
-                <source>//COIN</source>
+                <source_node>//COIN</source_node>
                 <target_node>
                     <entity>
                         <qname>crm:E22_Man-Made_Object</qname>
@@ -18,7 +18,7 @@
             </domain>
             <link>
                 <path>
-                    <source>ID</source>
+                    <source_relation>ID</source_relation>
                     <target_relation>
                         <property>
                             <qname>crm:P1_is_identified_by</qname>
@@ -26,7 +26,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source>ID</source>
+                    <source_node>ID</source_node>
                     <target_node>
                         <entity>
                             <qname>crm:E41_Appellation</qname>

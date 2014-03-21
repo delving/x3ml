@@ -94,34 +94,29 @@ public interface X3ML {
         public String uri;
     }
 
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
+    public static class Source extends Visible {
+        public String expression;
+    }
+
     @XStreamAlias("domain")
     public static class Domain extends Visible {
 
-        public Source source;
+        public Source source_node;
 
         public TargetNode target_node;
 
         public Comments comments;
     }
 
-    @XStreamAlias("source")
-    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
-    public static class Source extends Visible {
-        public String expression;
-    }
-
-
     @XStreamAlias("target_relation")
     @XStreamConverter(TargetRelationConverter.class)
     public static class TargetRelation extends Visible {
 
-        @XStreamAlias("if")
         public Condition condition;
 
-        @XStreamImplicit
         public List<PropertyElement> properties;
 
-        @XStreamImplicit
         public List<EntityElement> entities;
     }
 
@@ -195,7 +190,7 @@ public interface X3ML {
     @XStreamAlias("path")
     public static class Path extends Visible {
 
-        public Source source;
+        public Source source_relation;
 
         public TargetRelation target_relation;
 
@@ -205,7 +200,7 @@ public interface X3ML {
     @XStreamAlias("range")
     public static class Range extends Visible {
 
-        public Source source;
+        public Source source_node;
 
         public TargetNode target_node;
 

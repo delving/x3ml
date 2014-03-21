@@ -6,7 +6,7 @@
     <mappings>
         <mapping>
             <domain>
-                <source>//input</source>
+                <source_node>//input</source_node>
                 <target_node>
                     <entity>
                         <qname>crm:E19_Physical_Object</qname>
@@ -19,7 +19,7 @@
             </domain>
             <link>
                 <path>
-                    <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
+                    <source_relation>bm_object_part/underscore/bm_alias_loc/underscore</source_relation>
                     <target_relation>
                         <property>
                             <qname>crm:P54_has_current_permanent_location</qname>
@@ -27,7 +27,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source>bm_object_part/underscore/bm_alias_loc/underscore</source>
+                    <source_node>bm_object_part/underscore/bm_alias_loc/underscore</source_node>
                     <target_node>
                         <entity>
                             <qname>crm:E48_Place_Name</qname>

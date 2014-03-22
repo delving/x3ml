@@ -34,16 +34,6 @@
                             <label_generator name="Literal">
                                 <arg>text()</arg>
                             </label_generator>
-                            <!--<additional>-->
-                                <!--<property>-->
-                                    <!--<qname>rdfs:label</qname>-->
-                                <!--</property>-->
-                                <!--<entity>-->
-                                    <!--<value_generator name="Literal">-->
-                                        <!--<arg>text()</arg>-->
-                                    <!--</value_generator>-->
-                                <!--</entity>-->
-                            <!--</additional>-->
                         </entity>
                     </target_node>
                 </range>
@@ -61,16 +51,6 @@
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
-                            <!--<additional>-->
-                                <!--<property>-->
-                                    <!--<qname>rdfs:label</qname>-->
-                                <!--</property>-->
-                                <!--<entity>-->
-                                    <!--<value_generator name="Constant">-->
-                                        <!--<arg>find event</arg>-->
-                                    <!--</value_generator>-->
-                                <!--</entity>-->
-                            <!--</additional>-->
                         </entity>
                         <property>
                             <qname>crm:P7_took_place_at</qname>
@@ -86,16 +66,6 @@
                             <label_generator name="Literal">
                                 <arg>FS_NAME/text()</arg>
                             </label_generator>
-                            <!--<additional>-->
-                                <!--<property>-->
-                                    <!--<qname>rdfs:label</qname>-->
-                                <!--</property>-->
-                                <!--<entity>-->
-                                    <!--<value_generator name="Literal">-->
-                                        <!--<arg>FS_NAME/text()</arg>-->
-                                    <!--</value_generator>-->
-                                <!--</entity>-->
-                            <!--</additional>-->
                         </entity>
                     </target_node>
                 </range>

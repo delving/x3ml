@@ -45,16 +45,6 @@
                             <label_generator name="Literal">
                                 <arg>inner_title/text()</arg>
                             </label_generator>
-                            <additional>
-                                <property>
-                                    <qname>rdfs:label</qname>
-                                </property>
-                                <entity>
-                                    <value_generator name="Literal">
-                                        <arg>inner_title/text()</arg>
-                                    </value_generator>
-                                </entity>
-                            </additional>
                         </entity>
                     </target_node>
                 </range>

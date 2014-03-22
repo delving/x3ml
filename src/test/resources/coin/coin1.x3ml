@@ -34,15 +34,6 @@
                             <label_generator name="Literal">
                                 <arg>text()</arg>
                             </label_generator>
-                            <!--<additional>-->
-                                <!--<property>-->
-                                    <!--<qname>rdfs:label</qname>-->
-                                <!--</property>-->
-                                <!--<entity>-->
-                                    <!--<value_generator name="Literal">-->
-                                    <!--</value_generator>-->
-                                <!--</entity>-->
-                            <!--</additional>-->
                         </entity>
                     </target_node>
                 </range>

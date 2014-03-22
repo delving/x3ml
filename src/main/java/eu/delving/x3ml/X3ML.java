@@ -360,8 +360,8 @@ public interface X3ML {
         @XStreamAlias("qname")
         public QualifiedName qualifiedName;
 
-        @XStreamAlias("uri_generator")
-        public Generator uriGenerator;
+        @XStreamAlias("value_generator")
+        public Generator valueGenerator;
 
         @XStreamImplicit
         public List<Generator> labelGenerators;
@@ -370,7 +370,7 @@ public interface X3ML {
         public List<Additional> additionals;
 
         public Value getValue(ValueContext context) {
-            return context.generateValue(uriGenerator, qualifiedName);
+            return context.generateValue(valueGenerator, qualifiedName);
         }
     }
 

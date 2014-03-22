@@ -10,10 +10,10 @@
                 <target_node>
                     <entity>
                         <qname>crm:E19_Physical_Object</qname>
-                        <uri_generator name="PhysicalObject">
+                        <value_generator name="PhysicalObject">
                             <arg name="nameOfMuseum">British Museum</arg>
                             <arg name="entry">bm_object_id/text()</arg>
-                        </uri_generator>
+                        </value_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -31,9 +31,9 @@
                     <target_node>
                         <entity>
                             <qname>crm:E48_Place_Name</qname>
-                            <uri_generator name="PlaceName">
+                            <value_generator name="PlaceName">
                                 <arg name="entry">bm_loc/text()</arg>
-                            </uri_generator>
+                            </value_generator>
                         </entity>
                     </target_node>
                 </range>

@@ -565,7 +565,7 @@ public class X3MLContext implements X3ML {
             case QNAME:
                 value = argQName(qualifiedName, argName);
                 break;
-            case LITERAL:
+            case CONSTANT:
                 if (foundArg == null) {
                     return null;
                 }

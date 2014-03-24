@@ -4,7 +4,7 @@
         <namespace prefix="bm" uri="http://bm.co.uk/#"/>
     </namespaces>
     <generator name="PhysicalObject" prefix="bm">
-        <pattern>/{literal:nameOfMuseum,xpath:entry}</pattern>
+        <pattern>/{constant:nameOfMuseum,xpath:entry}</pattern>
     </generator>
     <generator name="PlaceName" prefix="bm">
         <pattern>/{xpath:entry}</pattern>

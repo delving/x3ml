@@ -61,7 +61,7 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
             return literalValue(literalXPath.string);
         }
         if ("Constant".equals(name)) {
-            ArgValue constant = args.getArgValue(null, LITERAL);
+            ArgValue constant = args.getArgValue(null, CONSTANT);
             if (constant == null) {
                 throw new X3MLException("Argument failure: need one argument");
             }
@@ -130,7 +130,7 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
         List<TypedArgument> typedArguments = new ArrayList<TypedArgument>();
         while (braces.find()) {
             for (String argString : braces.group(1).split(",")) {
-                ArgType argType = LITERAL;
+                ArgType argType = CONSTANT;
                 String argName = argString;
                 int colon = argString.indexOf(':');
                 if (colon > 0) {
@@ -148,7 +148,7 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
         return pattern
                 .replaceAll("xpath:", "")
                 .replaceAll("qname:", "")
-                .replaceAll("literal:", "");
+                .replaceAll("constant:", "");
     }
 
 }

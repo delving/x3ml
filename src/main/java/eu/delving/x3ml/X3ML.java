@@ -466,8 +466,8 @@ public interface X3ML {
 
     public enum ArgType {
         XPATH,
-        QNAME,
-        LITERAL
+        CONSTANT,
+        QNAME
     }
 
     public static class ArgValue {

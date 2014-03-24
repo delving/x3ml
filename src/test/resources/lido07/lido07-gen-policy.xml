@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <namespaces>
+        <namespace prefix="xxx" uri="http://xxx.eu/#"/>
+    </namespaces>
+    <generator name="PhysicalObject" prefix="xxx">
+        <pattern>/{xpath:nameOfMuseum,xpath:entry}</pattern>
+    </generator>
+    <generator name="Type" prefix="xxx">
+        <pattern>/{xpath:entry}</pattern>
+    </generator>
+    <generator name="PhysicalThing" prefix="xxx">
+        <pattern>/{qname:localName}</pattern>
+    </generator>
+</generator_policy>

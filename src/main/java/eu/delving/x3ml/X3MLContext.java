@@ -83,7 +83,7 @@ public class X3MLContext implements X3ML {
 
         String evaluate(String expression);
 
-        Value generateValue(Generator generator, QualifiedName qualifiedName);
+        Value generateValue(GeneratorElement generator, QualifiedName qualifiedName);
 
         String getLanguage();
     }
@@ -115,13 +115,13 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
-        public Value generateValue(final Generator generator, final QualifiedName qualifiedName) {
+        public Value generateValue(final GeneratorElement generator, final QualifiedName qualifiedName) {
             if (generator == null) {
                 throw new X3MLException("Value generator missing");
             }
             Value value = valuePolicy.generateValue(generator.name, new ArgValues() {
                 @Override
-                public ArgValue getArgValue(String name, SourceType type) {
+                public ArgValue getArgValue(String name, ArgType type) {
                     return evaluateArgument(node, generator, name, type, qualifiedName);
                 }
             });
@@ -457,10 +457,10 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private List<LabelNode> createLabelNodes(List<Generator> generatorList, ValueContext valueContext) {
+    private List<LabelNode> createLabelNodes(List<GeneratorElement> generatorList, ValueContext valueContext) {
         List<LabelNode> labelNodes = new ArrayList<LabelNode>();
         if (generatorList != null) {
-            for (Generator generator : generatorList) {
+            for (GeneratorElement generator : generatorList) {
                 LabelNode labelNode = new LabelNode(generator, valueContext);
                 if (labelNode.resolve()) {
                     labelNodes.add(labelNode);
@@ -471,12 +471,12 @@ public class X3MLContext implements X3ML {
     }
 
     private class LabelNode {
-        public final Generator generator;
+        public final GeneratorElement generator;
         public final ValueContext valueContext;
         public Property property;
         public Literal literal;
 
-        private LabelNode(Generator generator, ValueContext valueContext) {
+        private LabelNode(GeneratorElement generator, ValueContext valueContext) {
             this.generator = generator;
             this.valueContext = valueContext;
         }
@@ -536,16 +536,7 @@ public class X3MLContext implements X3ML {
         }
     }
 
-    private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type, QualifiedName qualifiedName) {
-        if (argName == null && type == SourceType.QNAME && qualifiedName != null) {
-            return argQName(qualifiedName.tag, namespaceContext);
-        }
-        else {
-            return evaluateArgument(contextNode, function, argName, type);
-        }
-    }
-
-    private ArgValue evaluateArgument(Node contextNode, Generator function, String argName, SourceType type) {
+    private ArgValue evaluateArgument(Node contextNode, GeneratorElement function, String argName, ArgType type, QualifiedName qualifiedName) {
         GeneratorArg foundArg = null;
         if (function.args != null) {
             if (function.args.size() == 1 && function.args.get(0).name == null) {
@@ -560,25 +551,28 @@ public class X3MLContext implements X3ML {
                 }
             }
         }
-        if (foundArg == null) {
-            return null;
-        }
         ArgValue value;
         switch (type) {
             case XPATH:
+                if (foundArg == null) {
+                    return null;
+                }
                 value = argVal(valueAt(contextNode, foundArg.value));
                 if (value.string.isEmpty()) {
                     throw new X3MLException("Empty result");
                 }
                 break;
             case QNAME:
-                value = argQName(foundArg.value, namespaceContext);
+                value = argQName(qualifiedName, argName);
                 break;
             case LITERAL:
+                if (foundArg == null) {
+                    return null;
+                }
                 value = argVal(foundArg.value);
                 break;
             default:
-                throw new RuntimeException();
+                throw new RuntimeException("Not implemented");
         }
         return value;
     }

@@ -13,7 +13,6 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
-import javax.xml.namespace.NamespaceContext;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,9 +26,7 @@ import static eu.delving.x3ml.X3MLContext.ValueContext;
 public interface X3ML {
 
     public enum SourceType {
-        XPATH,
-        QNAME,
-        LITERAL
+        XPATH
     }
 
     @XStreamAlias("x3ml")
@@ -130,7 +127,7 @@ public interface X3ML {
 
         @Override
         public void marshal(Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
-            TargetRelation relation = (TargetRelation)source;
+            TargetRelation relation = (TargetRelation) source;
             if (relation.condition != null) {
                 writer.startNode("if");
                 context.convertAnother(relation.condition);
@@ -169,7 +166,7 @@ public interface X3ML {
                     relation.entities.add((EntityElement) context.convertAnother(relation, EntityElement.class));
                 }
                 else {
-                    throw new ConversionException("Unrecognized: "+reader.getNodeName());
+                    throw new ConversionException("Unrecognized: " + reader.getNodeName());
                 }
                 reader.moveUp();
             }
@@ -244,12 +241,12 @@ public interface X3ML {
 
         public boolean failure(ValueContext context) {
             return new Outcome(context)
-                            .evaluate(narrower)
-                            .evaluate(exists)
-                            .evaluate(equals)
-                            .evaluate(and)
-                            .evaluate(or)
-                            .evaluate(not).failure;
+                    .evaluate(narrower)
+                    .evaluate(exists)
+                    .evaluate(equals)
+                    .evaluate(and)
+                    .evaluate(or)
+                    .evaluate(not).failure;
         }
 
     }
@@ -361,10 +358,10 @@ public interface X3ML {
         public QualifiedName qualifiedName;
 
         @XStreamAlias("value_generator")
-        public Generator valueGenerator;
+        public GeneratorElement valueGenerator;
 
         @XStreamImplicit
-        public List<Generator> labelGenerators;
+        public List<GeneratorElement> labelGenerators;
 
         @XStreamImplicit
         public List<Additional> additionals;
@@ -426,7 +423,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("label_generator")
-    public static class Generator extends Visible {
+    public static class GeneratorElement extends Visible {
         @XStreamAsAttribute
         public String name;
 
@@ -441,6 +438,36 @@ public interface X3ML {
         public String name;
 
         public String value;
+    }
+
+
+    @XStreamAlias("generator_policy")
+    public static class GeneratorPolicy extends Visible {
+        List<MappingNamespace> namespaces;
+
+        @XStreamImplicit
+        List<GeneratorSpec> generators;
+    }
+
+    @XStreamAlias("generator")
+    public static class GeneratorSpec extends Visible {
+        @XStreamAsAttribute
+        public String name;
+
+        @XStreamAsAttribute
+        public String prefix;
+
+        public String pattern;
+
+        public String toString() {
+            return pattern;
+        }
+    }
+
+    public enum ArgType {
+        XPATH,
+        QNAME,
+        LITERAL
     }
 
     public static class ArgValue {
@@ -466,7 +493,7 @@ public interface X3ML {
     }
 
     public interface ArgValues {
-        ArgValue getArgValue(String name, SourceType sourceType);
+        ArgValue getArgValue(String name, ArgType argType);
     }
 
     public enum ValueType {
@@ -500,21 +527,38 @@ public interface X3ML {
 
     static class Helper {
         static String toString(Object thing) {
-            return "\n" + stream().toXML(thing);
+            return "\n" + x3mlStream().toXML(thing);
         }
 
-        static XStream stream() {
+        static XStream generatorStream() {
+            XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
+            xstream.setMode(XStream.NO_REFERENCES);
+            xstream.processAnnotations(GeneratorPolicy.class);
+            return xstream;
+        }
+
+        static XStream x3mlStream() {
             XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
             xstream.setMode(XStream.NO_REFERENCES);
             xstream.processAnnotations(Root.class);
             return xstream;
         }
 
-        public static ArgValue argQName(String tag, NamespaceContext namespaceContext) {
-            QualifiedName qualifiedName = new QualifiedName();
-            qualifiedName.tag = tag;
-            qualifiedName.namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-            return new ArgValue(qualifiedName, null);
+        public static ArgValue argQName(QualifiedName qualifiedName, String name) {
+            String value = null;
+            if ("localName".equals(name)) {
+                value = qualifiedName.getLocalName();
+            }
+            else if ("prefix".equals(name)) {
+                value = qualifiedName.getPrefix();
+            }
+            else if ("namespaceUri".equals(name)) {
+                value = qualifiedName.namespaceUri;
+            }
+            if (value == null) {
+                throw new X3MLException("Expected 'localName', 'prefix', or 'namespaceUri', got " + name);
+            }
+            return new ArgValue(qualifiedName, value);
         }
 
         public static ArgValue argVal(String string) {

@@ -7,7 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
 
-import static eu.delving.x3ml.X3ML.Helper.*;
+import static eu.delving.x3ml.X3ML.Helper.x3mlStream;
+import static eu.delving.x3ml.X3ML.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -15,36 +16,36 @@ import static eu.delving.x3ml.X3ML.Helper.*;
 
 public class X3MLEngine {
 
-    private X3ML.Root root;
+    private Root root;
     private NamespaceContext namespaceContext = new XPathContext();
     private List<String> prefixes = new ArrayList<String>();
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
-        return new X3MLEngine((X3ML.Root) stream().fromXML(inputStream));
+        return new X3MLEngine((Root) x3mlStream().fromXML(inputStream));
     }
 
     public static void save(X3MLEngine engine, OutputStream outputStream) throws X3MLException {
-        stream().toXML(engine.root, outputStream);
+        x3mlStream().toXML(engine.root, outputStream);
     }
 
-    private X3MLEngine(X3ML.Root root) {
+    private X3MLEngine(Root root) {
         this.root = root;
         if (this.root.namespaces != null) {
-            for (X3ML.MappingNamespace namespace : this.root.namespaces) {
+            for (MappingNamespace namespace : this.root.namespaces) {
                 ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
                 prefixes.add(namespace.prefix);
             }
         }
     }
 
-    public X3MLContext execute(Element sourceRoot, X3ML.ValuePolicy valuePolicy) throws X3MLException {
+    public X3MLContext execute(Element sourceRoot, ValuePolicy valuePolicy) throws X3MLException {
         X3MLContext context = new X3MLContext(sourceRoot, this.root, valuePolicy, namespaceContext, prefixes);
         root.apply(context);
         return context;
     }
 
     public String toString() {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + stream().toXML(root);
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + x3mlStream().toXML(root);
     }
 
     // ====================

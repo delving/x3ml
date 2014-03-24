@@ -6,10 +6,7 @@ import org.junit.Test;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static eu.delving.x3ml.AllTests.document;
-import static eu.delving.x3ml.AllTests.engine;
-import static eu.delving.x3ml.AllTests.policy;
-import static org.junit.Assert.assertArrayEquals;
+import static eu.delving.x3ml.AllTests.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -27,13 +24,13 @@ public class TestLido07 {
     }
 
     @Test
-    public void testSimpleCoinExample() throws X3MLException {
+    public void testLIDOExample() throws X3MLException {
         uuidQueue.add("uuid:A");
         uuidQueue.add("uuid:B");
         X3MLEngine engine = engine("/lido07/lido07.x3ml");
         X3MLContext context = engine.execute(
                 document("/lido07/lido07.xml"),
-                policy("/lido07/lido07-value-policy.xml")
+                policy("/lido07/lido07-gen-policy.xml")
         );
         context.writeXML(System.out);
 //        String [] mappingResult = context.toStringArray();

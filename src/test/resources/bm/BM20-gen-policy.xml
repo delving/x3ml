@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <namespaces>
+        <namespace prefix="bm" uri="http://bm.co.uk/#"/>
+    </namespaces>
+    <generator name="PhysicalObject" prefix="bm">
+        <pattern>/{literal:nameOfMuseum,xpath:entry}</pattern>
+    </generator>
+    <generator name="PlaceName" prefix="bm">
+        <pattern>/{xpath:entry}</pattern>
+    </generator>
+</generator_policy>

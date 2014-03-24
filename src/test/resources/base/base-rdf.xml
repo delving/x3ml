@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xml:lang="en"
-        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-        xmlns:pre="http://base.ns/#">
-    <pre:Thing rdf:about="http://base.ns/#Thing/Title,Identifier">
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:pre="http://base.ns/#"
+        >
+    <pre:Thing rdf:about="http://gen.ns/#/Title,Identifier">
         <pre:Relation1>
             <pre:IntermediateEntity rdf:about="uuid:A">
                 <pre:Relation2>
-                    <pre:OtherThing rdf:about="http://base.ns/#OtherThing/OT">
+                    <pre:OtherThing rdf:about="http://gen.ns/#/OT">
                         <rdfs:label>Other Title</rdfs:label>
                     </pre:OtherThing>
                 </pre:Relation2>

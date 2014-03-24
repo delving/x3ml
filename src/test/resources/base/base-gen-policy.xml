@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <namespaces>
+        <namespace prefix="gen" uri="http://gen.ns/#"/>
+    </namespaces>
+    <generator name="Pair" prefix="gen">
+        <pattern>/{xpath:title,xpath:identifier}</pattern>
+    </generator>
+    <generator name="Single" prefix="gen">
+        <pattern>/{xpath:entry}</pattern>
+    </generator>
+</generator_policy>

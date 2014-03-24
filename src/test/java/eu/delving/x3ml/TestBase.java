@@ -45,7 +45,7 @@ public class TestBase {
     @Test
     public void testSimple() throws X3MLException {
         X3MLEngine engine = engine("/base/base.x3ml");
-        X3MLContext context = engine.execute(document("/base/base.xml"), policy("/base/base-value-policy.xml"));
+        X3MLContext context = engine.execute(document("/base/base.xml"), policy("/base/base-gen-policy.xml"));
         String[] mappingResult = context.toStringArray();
         String[] expectedResult = AllTests.xmlToNTriples("/base/base-rdf.xml");
 //        log("Expected", expectedResult);

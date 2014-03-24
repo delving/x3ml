@@ -119,7 +119,7 @@ public class Command {
         if (policy != null) {
             stream = getStream(file(policy));
         }
-        return X3MLValuePolicy.load(stream);
+        return X3MLGenPolicy.load(stream);
     }
 
     static PrintStream rdf(String file) {

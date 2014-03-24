@@ -21,7 +21,6 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -54,7 +53,7 @@ public class AllTests {
 //    }
 //
     public static X3ML.ValuePolicy policy(String path) {
-        return X3MLValuePolicy.load(resource(path));
+        return X3MLGenPolicy.load(resource(path));
     }
 
     public static Element document(String path) throws X3MLException {
@@ -162,14 +161,15 @@ public class AllTests {
     private static Pattern TRIPLE = Pattern.compile("^<?_?([^> ]+)>?\\s+<([^>]+)>\\s+<?([^>]+)>? \\.$");
 
     private static String filterTriple(String triple) {
-        Matcher matcher = TRIPLE.matcher(triple);
-        if (!matcher.matches()) {
-            throw new RuntimeException("Mismatch: [" + triple + "]");
-        }
-        String subject = matcher.group(1);
-        String predicate = matcher.group(2);
-        String object = matcher.group(3);
-        return String.format("[%s] -(%s)-> [%s]", lastSlash(subject), lastSlash(predicate), lastSlash(object));
+        return triple;
+//        Matcher matcher = TRIPLE.matcher(triple);
+//        if (!matcher.matches()) {
+//            throw new RuntimeException("Mismatch: [" + triple + "]");
+//        }
+//        String subject = matcher.group(1);
+//        String predicate = matcher.group(2);
+//        String object = matcher.group(3);
+//        return String.format("[%s] -(%s)-> [%s]", lastSlash(subject), lastSlash(predicate), lastSlash(object));
     }
 
     private static String lastSlash(String part) {

@@ -13,7 +13,7 @@ public class TestBM {
     @Test
     public void testFirstSteps() throws X3MLException {
         X3MLEngine engine = engine("/bm/BM20.x3ml");
-        X3MLContext context = engine.execute(document("/bm/BM20.xml"), policy("/bm/BM20-value-policy.xml"));
+        X3MLContext context = engine.execute(document("/bm/BM20.xml"), policy("/bm/BM20-gen-policy.xml"));
         context.writeXML(System.out);
     }
 }

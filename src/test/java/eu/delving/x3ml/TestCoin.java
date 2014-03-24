@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TestCoin {
     private final Logger log = Logger.getLogger(getClass());
-    private final X3ML.ValuePolicy VALUE_POLICY = X3MLValuePolicy.load(null);
+    private final X3ML.ValuePolicy VALUE_POLICY = X3MLGenPolicy.load(null);
 
     @Test
     public void testSimpleCoinExample() throws X3MLException {

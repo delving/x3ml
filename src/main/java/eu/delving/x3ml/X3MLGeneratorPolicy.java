@@ -20,17 +20,17 @@ import static eu.delving.x3ml.X3ML.Helper.*;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class X3MLGenPolicy implements ValuePolicy {
+public class X3MLGeneratorPolicy implements ValuePolicy {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, GeneratorSpec> generatorMap = new TreeMap<String, GeneratorSpec>();
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
     private char uuidLetter = 'A';
 
-    public static X3MLGenPolicy load(InputStream inputStream) {
-        return new X3MLGenPolicy(inputStream);
+    public static X3MLGeneratorPolicy load(InputStream inputStream) {
+        return new X3MLGeneratorPolicy(inputStream);
     }
 
-    private X3MLGenPolicy(InputStream inputStream) {
+    private X3MLGeneratorPolicy(InputStream inputStream) {
         if (inputStream != null) {
             GeneratorPolicy policy = (GeneratorPolicy) generatorStream().fromXML(inputStream);
             for (MappingNamespace namespace : policy.namespaces) {

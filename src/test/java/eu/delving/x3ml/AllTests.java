@@ -53,7 +53,7 @@ public class AllTests {
 //    }
 //
     public static X3ML.ValuePolicy policy(String path) {
-        return X3MLGenPolicy.load(resource(path));
+        return X3MLGeneratorPolicy.load(resource(path));
     }
 
     public static Element document(String path) throws X3MLException {

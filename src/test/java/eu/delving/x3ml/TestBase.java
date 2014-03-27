@@ -35,13 +35,18 @@ public class TestBase {
         List<String> serialized = new ArrayList<String>();
         List<String> originalLines = IOUtils.readLines(resource("/base/base.x3ml"));
         List<String> original = new ArrayList<String>();
+        boolean ignore = false;
         int index = 0;
-        for (String originalLine : originalLines) {
-            originalLine = originalLine.trim();
-            if (originalLine.startsWith("<!--")) continue;
-            serialized.add(lines[index].trim());
-            original.add(originalLine);
-            index++;
+        for (String orig : originalLines) {
+            orig = orig.trim();
+            if (orig.startsWith("<!--")) continue;
+            if (orig.startsWith("<comments") || orig.startsWith("<info")) ignore = true;
+            if (!ignore) {
+                serialized.add(lines[index].trim());
+                original.add(orig);
+                index++;
+            }
+            if (orig.startsWith("</comments") || orig.startsWith("</info")) ignore = false;
         }
         Assert.assertEquals("Mismatch", StringUtils.join(original, "\n"), StringUtils.join(serialized, "\n"));
     }

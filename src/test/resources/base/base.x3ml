@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x3ml version="0.1" source_type="XPATH">
+    <info>
+        <title>Base</title>
+        <general_description>Simplest test</general_description>
+        <source_info>
+            <source_schema type="?" version="">?</source_schema>
+            <source_collection>?</source_collection>
+        </source_info>
+        <target_info>
+            <target_schema schema_file="" type="" version="">?</target_schema>
+            <target_collection/>
+        </target_info>
+        <target_info>
+            <target_schema schema_file="" type="" version="">?</target_schema>
+            <target_collection/>
+        </target_info>
+        <mapping_info>
+            <mapping_created_by_org>?</mapping_created_by_org>
+            <mapping_created_by_person>?</mapping_created_by_person>
+            <in_collaboration_with/>
+        </mapping_info>
+        <example_data_info>
+            <example_data_from>?</example_data_from>
+            <example_data_contact_person>?</example_data_contact_person>
+            <example_data_source_record xml_link="?">?</example_data_source_record>
+            <example_data_target_record rdf_link="">?</example_data_target_record>
+        </example_data_info>
+    </info>
     <namespaces>
         <namespace prefix="pre" uri="http://base.ns/#"/>
         <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
@@ -52,4 +79,18 @@
             </link>
         </mapping>
     </mappings>
+    <comments>
+        <comment type="fun">
+            <rationale>?</rationale>
+            <alternatives>?</alternatives>
+            <typical_mistakes>?</typical_mistakes>
+            <local_habits>?</local_habits>
+            <link_to_cook_book>?</link_to_cook_book>
+            <example>
+                <example_source>?</example_source>
+                <example_target>?</example_target>
+            </example>
+            <comments_last_update person="me" date="now">?</comments_last_update>
+        </comment>
+    </comments>
 </x3ml>

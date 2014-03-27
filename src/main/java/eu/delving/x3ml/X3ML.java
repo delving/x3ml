@@ -39,6 +39,9 @@ public interface X3ML {
         @XStreamAlias("source_type")
         public SourceType sourceType;
 
+        @XStreamOmitField
+        public String info;
+
         public List<MappingNamespace> namespaces;
 
         public List<Mapping> mappings;
@@ -48,6 +51,9 @@ public interface X3ML {
                 mapping.apply(context);
             }
         }
+
+        @XStreamOmitField
+        public String comments;
     }
 
     @XStreamAlias("mapping")

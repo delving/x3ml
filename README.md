@@ -30,6 +30,9 @@ This project is a straightforward Maven 3 project, producing a single artifact i
 
 As the project progresses, more information will be provided regarding integration and deployment of this engine.
 
+* **[Change Log](https://github.com/delving/x3ml/blob/master/docs/change-log.md)** - Changes between versions
+
+
 ## Design Principles
 
 * **Simplicity**

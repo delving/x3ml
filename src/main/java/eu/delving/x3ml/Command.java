@@ -26,7 +26,7 @@ public class Command {
         HELP.setLeftPadding(5);
         HELP.printHelp(
                 200,
-                "x3ml -xml <input records> -x3ml <mapping file> [ -policy <value policy file> ] [ -rdf <output file> ] [ -format <format> ]",
+                "x3ml -xml <input records> -x3ml <mapping file>",
                 "Options",
                 options,
                 message
@@ -37,25 +37,25 @@ public class Command {
     public static void main(String[] args) {
         Option xml = new Option(
                 "xml", true,
-                "XML input records"
+                "XML input records: -xml input.xml"
         );
         xml.setRequired(true);
         Option x3ml = new Option(
                 "x3ml", true,
-                "X3ML mapping definition"
+                "X3ML mapping definition: -x3ml mapping.x3ml"
         );
         x3ml.setRequired(true);
         Option rdf = new Option(
                 "rdf", true,
-                "The RDF output file name"
+                "The RDF output file name: -rdf output.rdf"
         );
         Option policy = new Option(
                 "policy", true,
-                "The value policy file"
+                "The value policy file: -policy policy.xml"
         );
         Option rdfFormat = new Option(
                 "format", true,
-                "Output format: XML (default), N-TRIPLE, TURTLE"
+                "Output format: -format XML (default), N-TRIPLE, TURTLE"
         );
         Option validate = new Option(
                 "validate", false,

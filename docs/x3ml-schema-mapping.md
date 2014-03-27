@@ -13,27 +13,31 @@ For the time being, X3ML will be restricted to consuming XML records and produci
 At first glance, the global structure of X3ML is quite easy to understand.  It consists of some prerequisite information, and then a series of mappings.
 
 	<x3ml version="0.1" sourceType="XPATH">
+		<info/>
 	    <namespaces/>
-	    <mapping>
-	        <domain>
-	            <source/>
-	            <target/>
-	        </domain>
-	        <link>
-	            <path>
-	                <source/>
-	                <target/>
-	            </path>
-	            <range>
-	                <source/>
-	                <target/>
-	            </range>
-	        </link>
-	        <link/>
-	        ...
-	    </mapping>
-	    <mapping/>
-	    ...
+	    <mappings>
+		    <mapping>
+		        <domain>
+		            <source_node/>
+		            <target_node/>
+		        </domain>
+		        <link>
+		            <path>
+		                <source_relation/>
+		                <target_relation/>
+		            </path>
+		            <range>
+	            	    <source_node/>
+	        	        <target_node/>
+	    	        </range>
+		        </link>
+		        <link/>
+	        	...
+	    	</mapping>
+		    <mapping/>
+		    ...
+	    <mappings>
+	    <comments/>
 	</x3ml>
 
 Each *mapping* contains a *domain* and a number of *links*, and links are built of of a *path* and a *range*.
@@ -50,32 +54,34 @@ Conditions can be situated in the three different target blocks within the mappi
 
 	<x3ml version="0.1" sourceType="XPATH">
 	    <namespaces/>
-	    <mapping>
-	        <domain>
-	            <source/>
-	            <target>
-	            	<if/>
-	            </target>
-	        </domain>
-	        <link>
-	            <path>
-	                <source/>
-	                <target>
-						<if/>
-	                </target>
-	            </path>
-	            <range>
-	                <source/>
-	                <target>
-						<if/>
-	                </target>
-	            </range>
-	        </link>
-	        <link/>
-	        ...
-	    </mapping>
-	    <mapping/>
-	    ...
+	    <mappings>
+		    <mapping>
+		        <domain>
+		            <source_node/>
+		            <target_node>
+		            	<if/>
+		            </target_node>
+		        </domain>
+		        <link>
+		            <path>
+		                <source_relation/>
+		                <target_relation>
+							<if/>
+		                </target_relation>
+		            </path>
+		            <range>
+		                <source_node/>
+		                <target_node>
+							<if/>
+		                </target_node>
+		            </range>
+		        </link>
+		        <link/>
+		        ...
+		    </mapping>
+		    <mapping/>
+		    ...
+	    <mappings>
 	</x3ml>
 
 Existence can be checked, as well as equality:
@@ -112,7 +118,8 @@ The source element provides the engine with the information needed to navigate t
 
 First, the source of the *domain* is used as a kind of "anchor" and then the *links* are traversed such that their rules determine what RDF statements can be made about the source.
 
-	<source>...</source>
+	<source_node>...</source_node>
+	<source_relation>...</source_relation>
 
 The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.  The two are typically identical, but they represent a statement about the semantic origin of the resulting property and entity.  When they are not identical, the range/source extends the path/source
 
@@ -122,13 +129,13 @@ The domain and range contain *target* blocks, which can either contain/generate 
 
 	<target>
 	    <property>
-			<qname>...</qname>
+			<class>...</class>
 		</property>
 	</target>
 
 	<target>
 		<entity>
-			<qname>...</qname>
+			<class>...</class>
 			<value_generator name="...">
 			    <arg name="...">...</arg>
 			    <arg/>
@@ -139,8 +146,8 @@ The domain and range contain *target* blocks, which can either contain/generate 
 
 	<target>
 		<entity>
-			<qname>...</qname>
-			<literal>...</literal>
+			<class>...</class>
+			<constant>...</constant>
 		</entity>
 	</target>
 
@@ -159,13 +166,11 @@ Sometimes a path in the source schema needs to become more than just a path in t
 This is formulated using the *intermediate* element:
 
 	<path>
-		<source/>
-		<target>
+		<source_relation/>
+		<target_relation>
 			<property/>
-			<intermediate>
-				<entity/>
-				<property/>
-			</intermediate>
+			<entity/>
+			<property/>
 		</target>
 	</path>
 
@@ -174,28 +179,31 @@ This is formulated using the *intermediate* element:
 When additional properties and entities need to be added to a target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the property which will describe the link.
 
 	<range>
-		<source/>
-		<target>
-			<entity/>
-			<additional>
-				<property/>
-				<entity/>
-			</additional>
-			<additional/>
-			...
-		</target>
+		<source_node/>
+		<target_node>
+			<entity>
+				...
+				<additional>
+					<property/>
+					<entity/>
+				</additional>
+				<additional/>
+				...
+			</entity>
+		</target_node>
 	</range>
-
-Additional 
 
 Note that the target allows multiple additional nodes.
 
-## Comments
+## Info and Comments
 
 Tools for managing X3ML will make use of these note elements to record all information arising from the mapping building process which may be useful people accessing the *Mapping Memory* in the future.  
 
 A simple open-ended structure where each *comment* has a **type** and content allows for different tools to easily define their own note structures.  We could maintain a definition of what the different known **type** values are, and this could be easily expanded without changing the schema.
 
+	<info>
+		... various fields describing the mapping ...
+	</info>
 	<comments>
 		<comment type="...">
 			....

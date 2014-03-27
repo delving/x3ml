@@ -336,9 +336,9 @@ public class X3MLContext implements X3ML {
     private class EntityResolver {
         public final EntityElement entityElement;
         public final ValueContext valueContext;
-        public Resource resource;
         public List<LabelNode> labelNodes;
         public List<AdditionalNode> additionalNodes;
+        public Resource resource;
         public Literal literal;
 
         EntityResolver(EntityElement entityElement, ValueContext valueContext) {
@@ -361,17 +361,19 @@ public class X3MLContext implements X3ML {
         }
 
         private boolean resolveResource() {
-            Value value = entityElement.getValue(valueContext);
-            if (value == null) return false;
-            switch (value.valueType) {
-                case URI:
-                    resource = createTypedResource(value.value, entityElement.qualifiedName);
-                    labelNodes = createLabelNodes(entityElement.labelGenerators, valueContext);
-                    additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
-                    break;
-                case LITERAL:
-                    literal = createLiteral(value.value, valueContext.getLanguage());
-                    break;
+            List<ValueEntry> values = entityElement.getValues(valueContext);
+            if (values.isEmpty()) return false;
+            for (ValueEntry valueEntry : values) { // todo: this will fail for multiple value entries
+                switch (valueEntry.value.valueType) {
+                    case URI:
+                        resource = createTypedResource(valueEntry.value.text, valueEntry.qualifiedName);
+                        labelNodes = createLabelNodes(entityElement.labelGenerators, valueContext);
+                        additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
+                        break;
+                    case LITERAL:
+                        literal = createLiteral(valueEntry.value.text, valueContext.getLanguage());
+                        break;
+                }
             }
             return hasResource() || hasLiteral();
         }
@@ -428,20 +430,19 @@ public class X3MLContext implements X3ML {
         public boolean resolve() {
             property = createProperty(additional.propertyElement.qualifiedName);
             if (property == null) return false;
-            Value value = additional.entityElement.getValue(valueContext);
-            if (value == null) return false;
-            switch (value.valueType) {
-                case URI:
-                    if (additional.entityElement.qualifiedName != null) {
-                        resource = createTypedResource(value.value, additional.entityElement.qualifiedName);
-                        return true;
-                    }
-                    break;
-                case LITERAL:
-                    literal = createLiteral(value.value, valueContext.getLanguage());
-                    return true;
+            List<ValueEntry> values = additional.entityElement.getValues(valueContext);
+            if (values.isEmpty()) return false;
+            for (ValueEntry valueEntry : values) { // todo: this will fail for multiple value entries
+                switch (valueEntry.value.valueType) {
+                    case URI:
+                        resource = createTypedResource(valueEntry.value.text, valueEntry.qualifiedName);
+                        break;
+                    case LITERAL:
+                        literal = createLiteral(valueEntry.value.text, valueContext.getLanguage());
+                        break;
+                }
             }
-            return false;
+            return true;
         }
 
         public void linkFrom(Resource fromResource) {
@@ -489,7 +490,7 @@ public class X3MLContext implements X3ML {
                 case URI:
                     throw new X3MLException("Label node must produce a literal");
                 case LITERAL:
-                    literal = createLiteral(value.value, valueContext.getLanguage());
+                    literal = createLiteral(value.text, valueContext.getLanguage());
                     return true;
             }
             return false;

@@ -355,8 +355,8 @@ public interface X3ML {
         @XStreamAsAttribute
         public String variable;
 
-        @XStreamAlias("class")
-        public QualifiedName qualifiedName; // todo: this must become an array
+        @XStreamImplicit
+        public List<QualifiedName> qualifiedNames;
 
         public String constant;
 
@@ -369,8 +369,27 @@ public interface X3ML {
         @XStreamImplicit
         public List<Additional> additionals;
 
-        public Value getValue(ValueContext context) {
-            return context.generateValue(valueGenerator, qualifiedName);
+        public List<ValueEntry> getValues(ValueContext context) {
+            List<ValueEntry> values = new ArrayList<ValueEntry>();
+            if (qualifiedNames != null) {
+                for (QualifiedName qualifiedName: qualifiedNames) {
+                   values.add(new ValueEntry(
+                           qualifiedName,
+                           context.generateValue(valueGenerator, qualifiedName)
+                   ));
+                }
+            }
+            return values;
+        }
+    }
+
+    public static class ValueEntry {
+        public final QualifiedName qualifiedName;
+        public final Value value;
+
+        public ValueEntry(QualifiedName qualifiedName, Value value) {
+            this.qualifiedName = qualifiedName;
+            this.value = value;
         }
     }
 
@@ -506,15 +525,15 @@ public interface X3ML {
 
     public static class Value {
         public final ValueType valueType;
-        public final String value;
+        public final String text;
 
-        public Value(ValueType valueType, String value) {
+        public Value(ValueType valueType, String text) {
             this.valueType = valueType;
-            this.value = value;
+            this.text = text;
         }
 
         public String toString() {
-            return valueType + ":" + value;
+            return valueType + ":" + text;
         }
     }
 

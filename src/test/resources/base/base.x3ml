@@ -10,7 +10,7 @@
                 <source_node>//record</source_node>
                 <target_node>
                     <entity>
-                        <qname>pre:Thing</qname>
+                        <class>pre:Thing</class>
                         <value_generator name="Pair">
                             <arg name="title">title/text()</arg>
                             <arg name="identifier">identifier/text()</arg>
@@ -23,22 +23,23 @@
                     <source_relation>inner1</source_relation>
                     <target_relation>
                         <property>
-                            <qname>pre:Relation1</qname>
+                            <class>pre:Relation1</class>
                         </property>
                         <entity>
-                            <qname>pre:IntermediateEntity</qname>
+                            <class>pre:IntermediateEntity</class>
                             <value_generator name="UUID"/>
                         </entity>
                         <property>
-                            <qname>pre:Relation2</qname>
+                            <class>pre:Relation2</class>
                         </property>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>inner1</source_node>
                     <target_node>
-                        <entity>
-                            <qname>pre:OtherThing</qname>
+                        <entity variable="boo">
+                            <class>pre:OtherThing</class>
+                            <constant>This is something the engine does not use</constant>
                             <value_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>
                             </value_generator>
@@ -49,92 +50,6 @@
                     </target_node>
                 </range>
             </link>
-            <!--<link>-->
-                <!--<path>-->
-                    <!--<source_node_node>type-wrapper</source_node>-->
-                    <!--<target_relation>-->
-                        <!--<property>-->
-                            <!--<qname>pre:P666_has_nemesis</qname>-->
-                        <!--</property>-->
-                        <!--<intermediate>-->
-                            <!--<entity>-->
-                                <!--<qname>pre:E666_Devil</qname>-->
-                                <!--<value_generator name="Devil">-->
-                                    <!--<arg name="label">Pokey</arg>-->
-                                <!--</value_generator>-->
-                            <!--</entity>-->
-                            <!--<property>-->
-                                <!--<qname>pre:P2_has_type</qname>-->
-                            <!--</property>-->
-                        <!--</intermediate>-->
-                    <!--</target_relation>-->
-                <!--</path>-->
-                <!--<range>-->
-                    <!--<source_node>type-wrapper/type</source_node>-->
-                    <!--<target_node>-->
-                        <!--<entity>-->
-                            <!--<qname>pre:E55_Type</qname>-->
-                            <!--<value_generator name="Type">-->
-                                <!--<arg name="entry">text()</arg>-->
-                            <!--</value_generator>-->
-                        <!--</entity>-->
-                    <!--</target_node>-->
-                <!--</range>-->
-            <!--</link>-->
-            <!--<link>-->
-                <!--<path>-->
-                    <!--<source_node>type-wrapper</source_node>-->
-                    <!--<target_relation>-->
-                        <!--this should prevent the link from doing anything-->
-                        <!--<if>-->
-                            <!--<not>-->
-                                <!--<if>-->
-                                    <!--<exists>avoid/text()</exists>-->
-                                <!--</if>-->
-                            <!--</not>-->
-                        <!--</if>-->
-                        <!--<property>-->
-                            <!--<qname>pre:P888_has_extraneous</qname>-->
-                        <!--</property>-->
-                    <!--</target_relation>-->
-                <!--</path>-->
-                <!--<range>-->
-                    <!--<source_node>type-wrapper/type</source_node>-->
-                    <!--<target_node>-->
-                        <!--<entity>-->
-                            <!--<qname>pre:E888_Extra</qname>-->
-                            <!--<value_generator name="Type">-->
-                                <!--<arg name="entry">text()</arg>-->
-                            <!--</value_generator>-->
-                        <!--</entity>-->
-                    <!--</target_node>-->
-                <!--</range>-->
-            <!--</link>-->
-            <!--<link>-->
-                <!--<path>-->
-                    <!--<source_node>type-wrapper</source_node>-->
-                    <!--<target_relation>-->
-                        <!--this should prevent the link from doing anything-->
-                        <!--<if>-->
-                            <!--<equals value="maybe">avoid/text()</equals>-->
-                        <!--</if>-->
-                        <!--<property>-->
-                            <!--<qname>pre:P888_has_extraneous</qname>-->
-                        <!--</property>-->
-                    <!--</target_relation>-->
-                <!--</path>-->
-                <!--<range>-->
-                    <!--<source_node>type-wrapper/type</source_node>-->
-                    <!--<target_node>-->
-                        <!--<entity>-->
-                            <!--<qname>pre:E888_Extra</qname>-->
-                            <!--<value_generator name="Type">-->
-                                <!--<arg name="entry">text()</arg>-->
-                            <!--</value_generator>-->
-                        <!--</entity>-->
-                    <!--</target_node>-->
-                <!--</range>-->
-            <!--</link>-->
         </mapping>
     </mappings>
 </x3ml>

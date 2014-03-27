@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="comment">
+		<xs:annotation>
+			<xs:documentation>Root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="rationale" type="xs:string"/>
+				<xs:element name="alternatives" type="xs:string"/>
+				<xs:element name="typical_mistakes" type="xs:string"/>
+				<xs:element name="local_habits" type="xs:string"/>
+				<xs:element name="link_to_cook_book" type="xs:string"/>
+				<xs:element name="example" type="exampleComplexType"/>
+				<xs:element ref="comments_last_update"/>
+			</xs:sequence>
+			<xs:attribute name="type" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="exampleComplexType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="example_source" type="xs:string" minOccurs="1"/>
+			<xs:element name="example_target" type="xs:string" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="comments_last_update">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="date" type="xs:string" use="required"/>
+					<xs:attribute name="person" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static eu.delving.x3ml.AllTests.*;
@@ -30,16 +31,19 @@ public class TestBase {
     @Test
     public void testReadWrite() throws IOException, X3MLException {
         String xml = engine("/base/base.x3ml").toString();
-        String[] fresh = xml.split("\n");
-        List<String> original = IOUtils.readLines(resource("/base/base.x3ml"));
+        String[] lines = xml.split("\n");
+        List<String> serialized = new ArrayList<String>();
+        List<String> originalLines = IOUtils.readLines(resource("/base/base.x3ml"));
+        List<String> original = new ArrayList<String>();
         int index = 0;
-        for (String originalLine : original) {
+        for (String originalLine : originalLines) {
             originalLine = originalLine.trim();
             if (originalLine.startsWith("<!--")) continue;
-            String freshLine = fresh[index].trim();
-            Assert.assertEquals("Line " + index, originalLine, freshLine);
+            serialized.add(lines[index].trim());
+            original.add(originalLine);
             index++;
         }
+        Assert.assertEquals("Mismatch", StringUtils.join(original, "\n"), StringUtils.join(serialized, "\n"));
     }
 
     @Test

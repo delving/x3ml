@@ -1,8 +1,10 @@
 package eu.delving.x3ml;
 
 import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 import javax.xml.namespace.NamespaceContext;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
@@ -19,6 +21,18 @@ public class X3MLEngine {
     private Root root;
     private NamespaceContext namespaceContext = new XPathContext();
     private List<String> prefixes = new ArrayList<String>();
+
+    public static List<String> validate(InputStream inputStream) {
+        try {
+            return (new X3MLValidator().validate(inputStream));
+        }
+        catch (SAXException e) {
+            throw new X3MLException("Unable to validate: SAX", e);
+        }
+        catch (IOException e) {
+            throw new X3MLException("Unable to validate: IO", e);
+        }
+    }
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
         return new X3MLEngine((Root) x3mlStream().fromXML(inputStream));

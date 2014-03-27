@@ -11,7 +11,7 @@
                 <source_node>//COIN</source_node>
                 <target_node>
                     <entity>
-                        <qname>crm:E22_Man-Made_Object</qname>
+                        <class>crm:E22_Man-Made_Object</class>
                         <value_generator name="UUID"/>
                     </entity>
                 </target_node>
@@ -21,7 +21,7 @@
                     <source_relation>ID</source_relation>
                     <target_relation>
                         <property>
-                            <qname>crm:P1_is_identified_by</qname>
+                            <class>crm:P1_is_identified_by</class>
                         </property>
                     </target_relation>
                 </path>
@@ -29,7 +29,7 @@
                     <source_node>ID</source_node>
                     <target_node>
                         <entity>
-                            <qname>crm:E41_Appellation</qname>
+                            <class>crm:E41_Appellation</class>
                             <value_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>text()</arg>
@@ -43,17 +43,17 @@
                     <source_relation>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_relation>
                     <target_relation>
                         <property>
-                            <qname>crm:P30i_custody_transferred_through</qname>
+                            <class>crm:P30i_custody_transferred_through</class>
                         </property>
                         <entity>
-                            <qname>crm:E10_Transfer_of_Custody</qname>
+                            <class>crm:E10_Transfer_of_Custody</class>
                             <value_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
                         </entity>
                         <property>
-                            <qname>crm:P7_took_place_at</qname>
+                            <class>crm:P7_took_place_at</class>
                         </property>
                     </target_relation>
                 </path>
@@ -61,7 +61,7 @@
                     <source_node>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_node>
                     <target_node>
                         <entity>
-                            <qname>crm:E53_Place</qname>
+                            <class>crm:E53_Place</class>
                             <value_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>FS_NAME/text()</arg>

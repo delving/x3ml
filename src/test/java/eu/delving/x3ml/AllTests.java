@@ -23,6 +23,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
@@ -41,6 +43,8 @@ public class AllTests {
     private static List<String> indentStrings = new ArrayList<String>();
 
     public static X3MLEngine engine(String path) throws X3MLException {
+        List<String> errors = X3MLEngine.validate(resource(path));
+        assertTrue("Invalid: " + errors, errors.isEmpty());
         return X3MLEngine.load(resource(path));
     }
 

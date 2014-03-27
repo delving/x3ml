@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.List;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -56,7 +57,11 @@ public class Command {
                 "format", true,
                 "Output format: XML (default), N-TRIPLE, TURTLE"
         );
-        options.addOption(rdfFormat).addOption(rdf).addOption(x3ml).addOption(xml).addOption(policy);
+        Option validate = new Option(
+                "validate", false,
+                "Validate X3ML v1.0 using XSD"
+        );
+        options.addOption(rdfFormat).addOption(rdf).addOption(x3ml).addOption(xml).addOption(policy).addOption(validate);
         try {
             CommandLine cli = PARSER.parse(options, args);
             go(
@@ -64,7 +69,8 @@ public class Command {
                     cli.getOptionValue("x3ml"),
                     cli.getOptionValue("policy"),
                     cli.getOptionValue("rdf"),
-                    cli.getOptionValue("format")
+                    cli.getOptionValue("format"),
+                    cli.hasOption("validate")
             );
         }
         catch (ParseException e) {
@@ -108,12 +114,6 @@ public class Command {
         }
     }
 
-    static int uuidVal = 1;
-
-    static String uuid() {
-        return String.valueOf(uuidVal++);
-    }
-
     static X3ML.ValuePolicy getValuePolicy(String policy) {
         FileInputStream stream = null;
         if (policy != null) {
@@ -137,8 +137,18 @@ public class Command {
         }
     }
 
-    static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat) {
+    static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat, boolean validate) {
         Element xmlElement = xml(file(xml));
+        if (validate) {
+            List<String> errors = X3MLEngine.validate(getStream(file(x3ml)));
+            if (!errors.isEmpty()) {
+                System.out.println("Validation:");
+                for (String error : errors) {
+                    System.out.println(error);
+                }
+                return;
+            }
+        }
         X3MLEngine engine = X3MLEngine.load(getStream(file(x3ml)));
         X3MLContext context = engine.execute(xmlElement, getValuePolicy(policy));
         context.write(rdf(rdf), rdfFormat);

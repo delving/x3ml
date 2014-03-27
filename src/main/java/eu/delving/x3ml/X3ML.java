@@ -344,7 +344,7 @@ public interface X3ML {
     @XStreamAlias("property")
     public static class PropertyElement extends Visible {
 
-        @XStreamAlias("qname")
+        @XStreamAlias("class")
         public QualifiedName qualifiedName;
 
     }
@@ -352,10 +352,13 @@ public interface X3ML {
     @XStreamAlias("entity")
     public static class EntityElement extends Visible {
 
+        @XStreamAsAttribute
         public String variable;
 
-        @XStreamAlias("qname")
-        public QualifiedName qualifiedName;
+        @XStreamAlias("class")
+        public QualifiedName qualifiedName; // todo: this must become an array
+
+        public String constant;
 
         @XStreamAlias("value_generator")
         public GeneratorElement valueGenerator;
@@ -371,7 +374,7 @@ public interface X3ML {
         }
     }
 
-    @XStreamAlias("qname")
+    @XStreamAlias("class")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
     public static class QualifiedName extends Visible {
 

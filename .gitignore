@@ -10,3 +10,5 @@
 *.prj
 
 target
+
+.DS_Store

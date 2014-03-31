@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <x3ml version="0.1" source_type="XPATH">
     <namespaces>
         <namespace prefix="lido" uri="http://www.lido-schema.org"/>
@@ -26,9 +26,7 @@
                 <path>
                     <source_relation>lido:lidoRecID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P70_is_documented_in</class>
-                        </property>
+                        <property>crm:P70_is_documented_in</property>
                     </target_relation>
                 </path>
                 <range>
@@ -45,9 +43,7 @@
                 <path>
                     <source_relation>lido:category</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -66,9 +62,7 @@
                 <path>
                     <source_relation>lido:objectWorkType/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -87,9 +81,7 @@
                 <path>
                     <source_relation>lido:objectWorkType/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -106,9 +98,7 @@
                 <path>
                     <source_relation>lido:classification/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -127,9 +117,7 @@
                 <path>
                     <source_relation>lido:classification/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -146,9 +134,7 @@
                 <path>
                     <source_relation>lido:titleSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P1_is_identified_by</class>
-                        </property>
+                        <property>crm:P1_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -165,9 +151,7 @@
                 <path>
                     <source_relation>lido:titleSet/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P1_is_identified_by</class>
-                        </property>
+                        <property>crm:P1_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -184,9 +168,7 @@
                 <path>
                     <source_relation>lido:inscriptions</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P65_shows_visual_item</class>
-                        </property>
+                        <property>crm:P65_shows_visual_item</property>
                     </target_relation>
                 </path>
                 <range>
@@ -203,9 +185,7 @@
                 <path>
                     <source_relation>lido:repositoryName/lido:legalBodyID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P50_has_current_keeper</class>
-                        </property>
+                        <property>crm:P50_has_current_keeper</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="Actors">
@@ -215,9 +195,7 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -234,9 +212,7 @@
                 <path>
                     <source_relation>lido:repositoryName/lido:legalBodyName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P50_has_current_keeper</class>
-                        </property>
+                        <property>crm:P50_has_current_keeper</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
@@ -246,9 +222,7 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P131_is_identified_by</class>
-                        </property>
+                        <property>crm:P131_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -265,9 +239,7 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:placeID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P55_has_current_location</class>
-                        </property>
+                        <property>crm:P55_has_current_location</property>
                         <entity>
                             <class>crm:E53_Place</class>
                             <value_generator name="Place">
@@ -278,9 +250,7 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -297,9 +267,7 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P55_has_current_location</class>
-                        </property>
+                        <property>crm:P55_has_current_location</property>
                         <entity>
                             <class>crm:E53_Place</class>
                             <value_generator name="Place">
@@ -310,9 +278,7 @@
                                 <arg name="spaces">../../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P87_is_identified_by</class>
-                        </property>
+                        <property>crm:P87_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -329,9 +295,7 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -348,9 +312,7 @@
                 <path>
                     <source_relation>lido:displayState</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -367,9 +329,7 @@
                 <path>
                     <source_relation>lido:displayEdition</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -386,9 +346,7 @@
                 <path>
                     <source_relation>lido:sourceStateEdition</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -405,9 +363,7 @@
                 <path>
                     <source_relation>lido:objectDescriptionSet/lido:descriptiveNoteValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -424,9 +380,7 @@
                 <path>
                     <source_relation>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -443,9 +397,7 @@
                 <path>
                     <source_relation>lido:displayObjectMeasurements</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -462,9 +414,7 @@
                 <path>
                     <source_relation>lido:measurementsSet</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P43_has_dimension</class>
-                        </property>
+                        <property>crm:P43_has_dimension</property>
                     </target_relation>
                 </path>
                 <range>
@@ -483,9 +433,7 @@
                 <path>
                     <source_relation>lido:extentMeasurements</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -502,9 +450,7 @@
                 <path>
                     <source_relation>lido:qualifierMeasurements</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -521,9 +467,7 @@
                 <path>
                     <source_relation>lido:displayEvent</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -540,9 +484,7 @@
                 <path>
                     <source_relation>lido:eventID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P12i_was_present_at</class>
-                        </property>
+                        <property>crm:P12i_was_present_at</property>
                         <entity>
                             <class>crm:E5_Event</class>
                             <value_generator name="uriEvents">
@@ -550,9 +492,7 @@
                                 <arg name="identifier">text()</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -569,9 +509,7 @@
                 <path>
                     <source_relation>lido:eventType/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P12i_was_present_at</class>
-                        </property>
+                        <property>crm:P12i_was_present_at</property>
                         <entity>
                             <class>crm:E5_Event</class>
                             <value_generator name="uriEvents">
@@ -579,9 +517,7 @@
                                 <arg name="identifier">../../lido:eventID/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -603,9 +539,7 @@
                         <if>
                             <equals value="produced_by">../../lido:roleInEvent/lido:term/text()</equals>
                         </if>
-                        <property>
-                            <class>crm:P108_was_produced_by</class>
-                        </property>
+                        <property>crm:P108_was_produced_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -628,9 +562,7 @@
                         <if>
                             <equals value="created_by">../../lido:roleInEvent/lido:term/text()</equals>
                         </if>
-                        <property>
-                            <class>crm:P94i_was_created_by</class>
-                        </property>
+                        <property>crm:P94i_was_created_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -653,9 +585,7 @@
                         <if>
                             <equals value="used_for">../../lido:roleInEvent/lido:term/text()</equals>
                         </if>
-                        <property>
-                            <class>crm:P16i_was_used_for</class>
-                        </property>
+                        <property>crm:P16i_was_used_for</property>
                     </target_relation>
                 </path>
                 <range>
@@ -675,9 +605,7 @@
                 <path>
                     <source_relation>lido:eventType/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P12i_was_present_at</class>
-                        </property>
+                        <property>crm:P12i_was_present_at</property>
                     </target_relation>
                 </path>
                 <range>
@@ -700,9 +628,7 @@
                 <path>
                     <source_relation>lido:displaySubject</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -719,9 +645,7 @@
                 <path>
                     <source_relation>lido:extentSubject</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -738,9 +662,7 @@
                 <path>
                     <source_relation>lido:subjectConcept/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -757,9 +679,7 @@
                 <path>
                     <source_relation>lido:subjectConcept/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -776,16 +696,12 @@
                 <path>
                     <source_relation>lido:subjectActor/lido:displayActor</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>
-                            <class>crm:P129_is_about</class>
-                        </property>
+                        <property>crm:P129_is_about</property>
                     </target_relation>
                 </path>
                 <range>
@@ -807,16 +723,12 @@
                 <path>
                     <source_relation>lido:subjectDate/lido:displayDate</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>
-                            <class>crm:P129_is_about</class>
-                        </property>
+                        <property>crm:P129_is_about</property>
                     </target_relation>
                 </path>
                 <range>
@@ -833,16 +745,12 @@
                 <path>
                     <source_relation>lido:subjectEvent/lido:displayEvent</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>
-                            <class>crm:P129_is_about</class>
-                        </property>
+                        <property>crm:P129_is_about</property>
                     </target_relation>
                 </path>
                 <range>
@@ -862,16 +770,12 @@
                 <path>
                     <source_relation>lido:subjectPlace/lido:displayPlace</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>
-                            <class>crm:P129_is_about</class>
-                        </property>
+                        <property>crm:P129_is_about</property>
                     </target_relation>
                 </path>
                 <range>
@@ -894,9 +798,7 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:displayObject</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -913,16 +815,12 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:object/lido:objectWebResource</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67i_is_referred_to_by</class>
-                        </property>
+                        <property>crm:P67i_is_referred_to_by</property>
                         <entity>
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -939,18 +837,14 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:object/lido:objectID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E18_Physical_Thing</class>
                             <value_generator name="uriPhysThing">
                                 <arg>/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -967,16 +861,12 @@
                 <path>
                     <source_relation>lido:relatedWorkRelType</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P46i_forms_part_of</class>
-                        </property>
+                        <property>crm:P46i_forms_part_of</property>
                         <entity>
                             <class>crm:E18_Physical_Thing</class>
                             <value_generator name="uriPhysThing"/>
                         </entity>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -993,16 +883,12 @@
                 <path>
                     <source_relation>lido:rightsType</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P104_is_subject_to</class>
-                        </property>
+                        <property>crm:P104_is_subject_to</property>
                         <entity>
                             <class>crm:E30_Right</class>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1021,16 +907,12 @@
                 <path>
                     <source_relation>lido:recordID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P70_is_documented_in</class>
-                        </property>
+                        <property>crm:P70_is_documented_in</property>
                         <entity>
                             <class>crm:E31_Document</class>
                             <value_generator name="uriPhysThing"/>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1063,9 +945,7 @@
                 <path>
                     <source_relation>lido:repositoryName/lido:legalBodyWeblink</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P129i_is_subject_of</class>
-                        </property>
+                        <property>crm:P129i_is_subject_of</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1075,9 +955,7 @@
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                             <additional>
-                                <property>
-                                    <class>crm:P2_has_type</class>
-                                </property>
+                                <property>crm:P2_has_type</property>
                                 <entity>
                                     <class>crm:E55_Type</class>
                                     <value_generator name="Type">
@@ -1110,9 +988,7 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P88_consists_of</class>
-                        </property>
+                        <property>crm:P88_consists_of</property>
                         <entity>
                             <class>crm:E53_Place</class>
                             <value_generator name="Place">
@@ -1123,9 +999,7 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1142,9 +1016,7 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:placeClassification/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1176,9 +1048,7 @@
                 <path>
                     <source_relation>lido:formatMeasurements</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1190,9 +1060,7 @@
                                 <arg>text()</arg>
                             </value_generator>
                             <additional>
-                                <property>
-                                    <class>crm:P2_has_type</class>
-                                </property>
+                                <property>crm:P2_has_type</property>
                                 <entity>
                                     <class>crm:E55_Type</class>
                                     <value_generator name="Type">
@@ -1208,9 +1076,7 @@
                 <path>
                     <source_relation>lido:shapeMeasurements</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1222,9 +1088,7 @@
                                 <arg>text()</arg>
                             </value_generator>
                             <additional>
-                                <property>
-                                    <class>crm:P2_has_type</class>
-                                </property>
+                                <property>crm:P2_has_type</property>
                                 <entity>
                                     <class>crm:E55_Type</class>
                                     <value_generator name="Type">
@@ -1240,9 +1104,7 @@
                 <path>
                     <source_relation>lido:scaleMeasurements</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1254,9 +1116,7 @@
                                 <arg>text()</arg>
                             </value_generator>
                             <additional>
-                                <property>
-                                    <class>crm:P2_has_type</class>
-                                </property>
+                                <property>crm:P2_has_type</property>
                                 <entity>
                                     <class>crm:E55_Type</class>
                                     <value_generator name="Type">
@@ -1282,9 +1142,7 @@
                 <path>
                     <source_relation>lido:roleInEvent/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1301,9 +1159,7 @@
                 <path>
                     <source_relation>lido:roleInEvent/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1320,9 +1176,7 @@
                 <path>
                     <source_relation>lido:eventName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P1_is_identified_by</class>
-                        </property>
+                        <property>crm:P1_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1339,9 +1193,7 @@
                 <path>
                     <source_relation>lido:eventName/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1358,9 +1210,7 @@
                 <path>
                     <source_relation>lido:displayActorInRole</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1377,21 +1227,17 @@
                 <path>
                     <source_relation>lido:actorID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P11_had_participant</class>
-                        </property>
+                        <property>crm:P11_had_participant</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
-                                <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
+                                <arg name="name">../lido:nameActorSet/lido:appellationValue[@lido:pref = "preferred"]/text()</arg>
                                 <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1408,22 +1254,18 @@
                 <path>
                     <source_relation>lido:nameActorSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P11_had_participant</class>
-                        </property>
+                        <property>crm:P11_had_participant</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
                                 <arg name="authority">../../lido:actorID/@lido:source</arg>
                                 <arg name="identifier">../../lido:actorID/text()</arg>
-                                <arg name="name">../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()
+                                <arg name="name">../lido:appellationValue[@lido:pref = "preferred"]/text()
                                 </arg>
                                 <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P131_is_identified_by</class>
-                        </property>
+                        <property>crm:P131_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1432,7 +1274,7 @@
                         <entity>
                             <class>crm:E82_Actor_Appellation</class>
                             <value_generator name="Appellation">
-                                <arg>../lido:appellationValue[@lido:pref = &quot;preferred&quot;]/text()</arg>
+                                <arg>../lido:appellationValue[@lido:pref = "preferred"]/text()</arg>
                             </value_generator>
                         </entity>
                     </target_node>
@@ -1442,9 +1284,7 @@
                 <path>
                     <source_relation>lido:nameActorSet/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1461,9 +1301,7 @@
                 <path>
                     <source_relation>lido:roleActor/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1480,9 +1318,7 @@
                 <path>
                     <source_relation>lido:attributionQualifierActor</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1499,9 +1335,7 @@
                 <path>
                     <source_relation>lido:extentActor</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1518,9 +1352,7 @@
                 <path>
                     <source_relation>lido:culture/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P10_falls_within</class>
-                        </property>
+                        <property>crm:P10_falls_within</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1539,9 +1371,7 @@
                 <path>
                     <source_relation>lido:displayDate</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1558,16 +1388,12 @@
                 <path>
                     <source_relation>lido:eventDate/lido:date/lido:earliestDate</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P4_has_time_span</class>
-                        </property>
+                        <property>crm:P4_has_time_span</property>
                         <entity>
                             <class>crm:E52_Time_Span</class>
                             <value_generator name="uriTimeSpan"/>
                         </entity>
-                        <property>
-                            <class>crm:P79_beginning_is_qualified_by</class>
-                        </property>
+                        <property>crm:P79_beginning_is_qualified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1584,16 +1410,12 @@
                 <path>
                     <source_relation>lido:eventDate/lido:date/lido:latestDate</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P4_has_time_span</class>
-                        </property>
+                        <property>crm:P4_has_time_span</property>
                         <entity>
                             <class>crm:E52_Time_Span</class>
                             <value_generator name="uriTimeSpan"/>
                         </entity>
-                        <property>
-                            <class>crm:P80_end_is_qualified_by</class>
-                        </property>
+                        <property>crm:P80_end_is_qualified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1610,9 +1432,7 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:displayPlace</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1629,9 +1449,7 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:placeID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P7_took_place_at</class>
-                        </property>
+                        <property>crm:P7_took_place_at</property>
                         <entity>
                             <class>crm:E53_Place</class>
                             <value_generator name="Place">
@@ -1642,9 +1460,7 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1661,9 +1477,7 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P7_took_place_at</class>
-                        </property>
+                        <property>crm:P7_took_place_at</property>
                         <entity>
                             <class>crm:E53_Place</class>
                             <value_generator name="Place">
@@ -1674,9 +1488,7 @@
                                 <arg name="spaces">../../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P87_is_identified_by</class>
-                        </property>
+                        <property>crm:P87_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1693,9 +1505,7 @@
                 <path>
                     <source_relation>lido:eventMethod/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P32_used_general_technique</class>
-                        </property>
+                        <property>crm:P32_used_general_technique</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1714,9 +1524,7 @@
                 <path>
                     <source_relation>lido:displayMaterialsTech</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1733,9 +1541,7 @@
                 <path>
                     <source_relation>lido:termMaterialsTech/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P32_used_general_technique</class>
-                        </property>
+                        <property>crm:P32_used_general_technique</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1754,9 +1560,7 @@
                 <path>
                     <source_relation>lido:extentMaterialsTech</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1773,9 +1577,7 @@
                 <path>
                     <source_relation>lido:eventDescriptionSet/lido:descriptiveNoteValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1792,9 +1594,7 @@
                 <path>
                     <source_relation>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1818,7 +1618,7 @@
                             <arg name="authority">lido:actorInRole/lido:actor/lido:actorID/@lido:source</arg>
                             <arg name="identifier">lido:actorInRole/lido:actor/lido:actorID/text()</arg>
                             <arg name="name">
-                                lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue[@lido:pref=&quot;preferred&quot;]/text()
+                                lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue[@lido:pref="preferred"]/text()
                             </arg>
                             <arg name="birthDate">lido:actorInRole/lido:actor/lido:vitalDatesActor/text()</arg>
                         </value_generator>
@@ -1829,9 +1629,7 @@
                 <path>
                     <source_relation>lido:nationalityActor/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P107_is_current_or_former_member_of</class>
-                        </property>
+                        <property>crm:P107_is_current_or_former_member_of</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1853,9 +1651,7 @@
                 <path>
                     <source_relation>lido:nationalityActor/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1872,9 +1668,7 @@
                 <path>
                     <source_relation>lido:vitalDatesActor</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P11_participated_in</class>
-                        </property>
+                        <property>crm:P11_participated_in</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1891,9 +1685,7 @@
                 <path>
                     <source_relation>lido:genderActor</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1925,9 +1717,7 @@
                 <path>
                     <source_relation>lido:eventDate/lido:date/lido:periodName/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P4_has_time_span</class>
-                        </property>
+                        <property>crm:P4_has_time_span</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1963,9 +1753,7 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P88_consists_of</class>
-                        </property>
+                        <property>crm:P88_consists_of</property>
                         <entity>
                             <class>crm:E53_Place</class>
                             <value_generator name="Place">
@@ -1976,9 +1764,7 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -1995,9 +1781,7 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:placeClassification/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2029,9 +1813,7 @@
                 <path>
                     <source_relation>lido:sourceMaterialsTech</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P71i_is_listed_in</class>
-                        </property>
+                        <property>crm:P71i_is_listed_in</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2059,9 +1841,7 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:object/lido:objectNote</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2091,9 +1871,7 @@
                 <path>
                     <source_relation>lido:rightsDate/lido:earliestDate</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2110,9 +1888,7 @@
                 <path>
                     <source_relation>lido:rightsDate/lido:latestDate</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2129,9 +1905,7 @@
                 <path>
                     <source_relation>lido:rightsDate/lido:periodName/lido:term</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2148,9 +1922,7 @@
                 <path>
                     <source_relation>lido:rightsHolder/lido:legalBodyID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P75i_is_possessed_by</class>
-                        </property>
+                        <property>crm:P75i_is_possessed_by</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
@@ -2160,9 +1932,7 @@
                                 <arg name="">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2179,9 +1949,7 @@
                 <path>
                     <source_relation>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P75i_is_possessed_by</class>
-                        </property>
+                        <property>crm:P75i_is_possessed_by</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
@@ -2191,9 +1959,7 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P131_is_identified_by</class>
-                        </property>
+                        <property>crm:P131_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2210,9 +1976,7 @@
                 <path>
                     <source_relation>lido:creditLine</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P3_has_note</class>
-                        </property>
+                        <property>crm:P3_has_note</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2245,9 +2009,7 @@
                 <path>
                     <source_relation>lido:rightsHolder/lido:legalBodyWeblink</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P129i_is_subject_of</class>
-                        </property>
+                        <property>crm:P129i_is_subject_of</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2257,9 +2019,7 @@
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                             <additional>
-                                <property>
-                                    <class>crm:P2_has_type</class>
-                                </property>
+                                <property>crm:P2_has_type</property>
                                 <entity>
                                     <class>crm:E55_Type</class>
                                     <value_generator name="Type">
@@ -2288,9 +2048,7 @@
                 <path>
                     <source_relation>lido:recordType</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P2_has_type</class>
-                        </property>
+                        <property>crm:P2_has_type</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2307,9 +2065,7 @@
                 <path>
                     <source_relation>lido:recordSource/lido:legalBodyID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
@@ -2319,9 +2075,7 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P48_has_preferred_identifier</class>
-                        </property>
+                        <property>crm:P48_has_preferred_identifier</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2338,9 +2092,7 @@
                 <path>
                     <source_relation>lido:recordSource/lido:legalBodyName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P67_refers_to</class>
-                        </property>
+                        <property>crm:P67_refers_to</property>
                         <entity>
                             <class>crm:E39_Actor</class>
                             <value_generator name="uriForActors">
@@ -2350,9 +2102,7 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>
-                            <class>crm:P131_is_identified_by</class>
-                        </property>
+                        <property>crm:P131_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2385,9 +2135,7 @@
                 <path>
                     <source_relation>lido:recordSource/lido:legalBodyWeblink</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P129i_is_subject_of</class>
-                        </property>
+                        <property>crm:P129i_is_subject_of</property>
                     </target_relation>
                 </path>
                 <range>
@@ -2397,9 +2145,7 @@
                             <class>crm:E73_Information_Object</class>
                             <value_generator name="uriConceptual"/>
                             <additional>
-                                <property>
-                                    <class>crm:P2_has_type</class>
-                                </property>
+                                <property>crm:P2_has_type</property>
                                 <entity>
                                     <class>crm:E55_Type</class>
                                     <value_generator name="Type">

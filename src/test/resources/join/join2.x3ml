@@ -20,9 +20,7 @@
                 <path>
                     <source_relation>ID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P1_is_identified_by</class>
-                        </property>
+                        <property>crm:P1_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>
@@ -42,9 +40,7 @@
                 <path>
                     <source_relation>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P30i_custody_transferred_through</class>
-                        </property>
+                        <property>crm:P30i_custody_transferred_through</property>
                         <entity variable="tc1">
                             <class>crm:E10_Transfer_of_Custody</class>
                             <value_generator name="UUID"/>
@@ -52,9 +48,7 @@
                                 <arg>find event</arg>
                             </label_generator>
                         </entity>
-                        <property>
-                            <class>crm:P7_took_place_at</class>
-                        </property>
+                        <property>crm:P7_took_place_at</property>
                     </target_relation>
                 </path>
                 <range>
@@ -74,9 +68,7 @@
                 <path>
                     <source_relation>FIND_DATE</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P30i_custody_transferred_through</class>
-                        </property>
+                        <property>crm:P30i_custody_transferred_through</property>
                         <entity variable="tc1">
                             <class>crm:E10_Transfer_of_Custody</class>
                             <value_generator name="UUID"/>
@@ -84,9 +76,7 @@
                                 <arg>find event</arg>
                             </label_generator>
                         </entity>
-                        <property>
-                            <class>crm:P4_has_time-span</class>
-                        </property>
+                        <property>crm:P4_has_time-span</property>
                         <entity variable="ts1">
                             <class>crm:E52_Time-Span</class>
                             <value_generator name="UUID"/>
@@ -94,9 +84,7 @@
                                 <arg>find event date</arg>
                             </label_generator>
                         </entity>
-                        <property>
-                            <class>crm:P81_ongoing_throughout</class>
-                        </property>
+                        <property>crm:P81_ongoing_throughout</property>
                     </target_relation>
                 </path>
                 <range>

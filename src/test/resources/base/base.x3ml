@@ -49,16 +49,12 @@
                 <path>
                     <source_relation>inner1</source_relation>
                     <target_relation>
-                        <property>
-                            <class>pre:Relation1</class>
-                        </property>
+                        <property>pre:Relation1</property>
                         <entity>
                             <class>pre:IntermediateEntity</class>
                             <value_generator name="UUID"/>
                         </entity>
-                        <property>
-                            <class>pre:Relation2</class>
-                        </property>
+                        <property>pre:Relation2</property>
                     </target_relation>
                 </path>
                 <range>

@@ -83,7 +83,7 @@ public class X3MLContext implements X3ML {
 
         String evaluate(String expression);
 
-        Value generateValue(GeneratorElement generator, QualifiedName qualifiedName);
+        Value generateValue(GeneratorElement generator, ClassElement classElement);
 
         String getLanguage();
     }
@@ -115,14 +115,14 @@ public class X3MLContext implements X3ML {
         }
 
         @Override
-        public Value generateValue(final GeneratorElement generator, final QualifiedName qualifiedName) {
+        public Value generateValue(final GeneratorElement generator, final ClassElement classElement) {
             if (generator == null) {
                 throw new X3MLException("Value generator missing");
             }
             Value value = valuePolicy.generateValue(generator.name, new ArgValues() {
                 @Override
                 public ArgValue getArgValue(String name, ArgType type) {
-                    return evaluateArgument(node, generator, name, type, qualifiedName);
+                    return evaluateArgument(node, generator, name, type, classElement);
                 }
             });
             if (value == null) {
@@ -209,7 +209,7 @@ public class X3MLContext implements X3ML {
     public class PathContext extends LocalContext {
         public final DomainContext domainContext;
         public final Path path;
-        public QualifiedName qualifiedName;
+        public PropertyElement propertyElement;
         public Property property;
         public List<IntermediateNode> intermediateNodes;
         public Resource lastResource;
@@ -224,7 +224,7 @@ public class X3MLContext implements X3ML {
         public boolean resolve() {
             TargetRelation relation = path.target_relation;
             if (conditionFails(relation.condition, this)) return false;
-            if (relation.properties == null) {
+            if (relation.properties == null || relation.properties.isEmpty()) {
                 throw new X3MLException("Target relation must have at least one property");
             }
             if (relation.entities != null) {
@@ -233,13 +233,11 @@ public class X3MLContext implements X3ML {
                 }
             }
             else if (relation.properties.size() != 1) {
-                throw new X3MLException("Target relation must just one property if it has no entiti3s");
+                throw new X3MLException("Target relation must just one property if it has no entities");
             }
-
-            qualifiedName = relation.properties.get(0).qualifiedName;
-            if (qualifiedName == null) return false;
-            String namespaceUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-            property = model.createProperty(namespaceUri, qualifiedName.getLocalName());
+            propertyElement = relation.properties.get(0);
+            String namespaceUri = namespaceContext.getNamespaceURI(propertyElement.getPrefix());
+            property = model.createProperty(namespaceUri, propertyElement.getLocalName());
             intermediateNodes = createIntermediateNodes(relation.entities, relation.properties, this);
             return true;
         }
@@ -366,7 +364,7 @@ public class X3MLContext implements X3ML {
             for (ValueEntry valueEntry : values) { // todo: this will fail for multiple value entries
                 switch (valueEntry.value.valueType) {
                     case URI:
-                        resource = createTypedResource(valueEntry.value.text, valueEntry.qualifiedName);
+                        resource = createTypedResource(valueEntry.value.text, valueEntry.classElement);
                         labelNodes = createLabelNodes(entityElement.labelGenerators, valueContext);
                         additionalNodes = createAdditionalNodes(entityElement.additionals, valueContext);
                         break;
@@ -428,14 +426,14 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            property = createProperty(additional.propertyElement.qualifiedName);
+            property = createProperty(additional.propertyElement);
             if (property == null) return false;
             List<ValueEntry> values = additional.entityElement.getValues(valueContext);
             if (values.isEmpty()) return false;
             for (ValueEntry valueEntry : values) { // todo: this will fail for multiple value entries
                 switch (valueEntry.value.valueType) {
                     case URI:
-                        resource = createTypedResource(valueEntry.value.text, valueEntry.qualifiedName);
+                        resource = createTypedResource(valueEntry.value.text, valueEntry.classElement);
                         break;
                     case LITERAL:
                         literal = createLiteral(valueEntry.value.text, valueContext.getLanguage());
@@ -483,7 +481,7 @@ public class X3MLContext implements X3ML {
         }
 
         public boolean resolve() {
-            property = createProperty(new QualifiedName("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
+            property = createProperty(new ClassElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
             Value value = valueContext.generateValue(generator, null);
             if (value == null) return false;
             switch (value.valueType) {
@@ -532,12 +530,12 @@ public class X3MLContext implements X3ML {
         public boolean resolve() {
             entityResolver = new EntityResolver(entityElement, valueContext);
             if (!entityResolver.resolve()) return false;
-            property = createProperty(propertyElement.qualifiedName);
+            property = createProperty(propertyElement);
             return true;
         }
     }
 
-    private ArgValue evaluateArgument(Node contextNode, GeneratorElement function, String argName, ArgType type, QualifiedName qualifiedName) {
+    private ArgValue evaluateArgument(Node contextNode, GeneratorElement function, String argName, ArgType type, ClassElement classElement) {
         GeneratorArg foundArg = null;
         if (function.args != null) {
             if (function.args.size() == 1 && function.args.get(0).name == null) {
@@ -564,7 +562,7 @@ public class X3MLContext implements X3ML {
                 }
                 break;
             case QNAME:
-                value = argQName(qualifiedName, argName);
+                value = argQName(classElement, argName);
                 break;
             case CONSTANT:
                 if (foundArg == null) {
@@ -578,20 +576,28 @@ public class X3MLContext implements X3ML {
         return value;
     }
 
-    private Resource createTypedResource(String uriString, QualifiedName qualifiedName) {
-        if (qualifiedName == null) {
+    private Resource createTypedResource(String uriString, ClassElement classElement) {
+        if (classElement == null) {
             throw new X3MLException("Missing qualified name");
         }
-        String typeUri = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-        return model.createResource(uriString, model.createResource(typeUri + qualifiedName.getLocalName()));
+        String typeUri = namespaceContext.getNamespaceURI(classElement.getPrefix());
+        return model.createResource(uriString, model.createResource(typeUri + classElement.getLocalName()));
     }
 
-    private Property createProperty(QualifiedName qualifiedName) {
-        if (qualifiedName == null) {
+    private Property createProperty(ClassElement classElement) {
+        if (classElement == null) {
             throw new X3MLException("Missing qualified name");
         }
-        String propertyNamespace = namespaceContext.getNamespaceURI(qualifiedName.getPrefix());
-        return model.createProperty(propertyNamespace, qualifiedName.getLocalName());
+        String propertyNamespace = namespaceContext.getNamespaceURI(classElement.getPrefix());
+        return model.createProperty(propertyNamespace, classElement.getLocalName());
+    }
+
+    private Property createProperty(PropertyElement propertyElement) {
+        if (propertyElement == null) {
+            throw new X3MLException("Missing qualified name");
+        }
+        String propertyNamespace = namespaceContext.getNamespaceURI(propertyElement.getPrefix());
+        return model.createProperty(propertyNamespace, propertyElement.getLocalName());
     }
 
     private Literal createLiteral(String value, String language) {

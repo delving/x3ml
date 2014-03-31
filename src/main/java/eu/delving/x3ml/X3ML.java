@@ -348,11 +348,37 @@ public interface X3ML {
     }
 
     @XStreamAlias("property")
+    @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
     public static class PropertyElement extends Visible {
 
-        @XStreamAlias("class")
-        public QualifiedName qualifiedName;
+        public String tag;
 
+        @XStreamOmitField
+        public String namespaceUri;
+
+        public PropertyElement() {
+        }
+
+        public PropertyElement(String tag, String namespaceUri) {
+            this.tag = tag;
+            this.namespaceUri = namespaceUri;
+        }
+
+        public String getPrefix() {
+            int colon = tag.indexOf(':');
+            if (colon < 0) {
+                throw new X3MLException("Unqualified tag " + tag);
+            }
+            return tag.substring(0, colon);
+        }
+
+        public String getLocalName() {
+            int colon = tag.indexOf(':');
+            if (colon < 0) {
+                throw new X3MLException("Unqualified tag " + tag);
+            }
+            return tag.substring(colon + 1);
+        }
     }
 
     @XStreamAlias("entity")
@@ -362,7 +388,7 @@ public interface X3ML {
         public String variable;
 
         @XStreamImplicit
-        public List<QualifiedName> qualifiedNames;
+        public List<ClassElement> classElements;
 
         public String constant;
 
@@ -377,11 +403,11 @@ public interface X3ML {
 
         public List<ValueEntry> getValues(ValueContext context) {
             List<ValueEntry> values = new ArrayList<ValueEntry>();
-            if (qualifiedNames != null) {
-                for (QualifiedName qualifiedName: qualifiedNames) {
+            if (classElements != null) {
+                for (ClassElement classElement : classElements) {
                    values.add(new ValueEntry(
-                           qualifiedName,
-                           context.generateValue(valueGenerator, qualifiedName)
+                           classElement,
+                           context.generateValue(valueGenerator, classElement)
                    ));
                 }
             }
@@ -390,28 +416,28 @@ public interface X3ML {
     }
 
     public static class ValueEntry {
-        public final QualifiedName qualifiedName;
+        public final ClassElement classElement;
         public final Value value;
 
-        public ValueEntry(QualifiedName qualifiedName, Value value) {
-            this.qualifiedName = qualifiedName;
+        public ValueEntry(ClassElement classElement, Value value) {
+            this.classElement = classElement;
             this.value = value;
         }
     }
 
     @XStreamAlias("class")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
-    public static class QualifiedName extends Visible {
+    public static class ClassElement extends Visible {
 
         public String tag;
 
         @XStreamOmitField
         public String namespaceUri;
 
-        public QualifiedName() {
+        public ClassElement() {
         }
 
-        public QualifiedName(String tag, String namespaceUri) {
+        public ClassElement(String tag, String namespaceUri) {
             this.tag = tag;
             this.namespaceUri = namespaceUri;
         }
@@ -499,11 +525,11 @@ public interface X3ML {
     }
 
     public static class ArgValue {
-        public final QualifiedName qualifiedName;
+        public final ClassElement classElement;
         public final String string;
 
-        public ArgValue(QualifiedName qualifiedName, String string) {
-            this.qualifiedName = qualifiedName;
+        public ArgValue(ClassElement classElement, String string) {
+            this.classElement = classElement;
             this.string = string;
         }
 
@@ -511,8 +537,8 @@ public interface X3ML {
             if (string != null) {
                 return "ArgValue(" + string + ")";
             }
-            else if (qualifiedName != null) {
-                return "ArgValue(" + qualifiedName + ")";
+            else if (classElement != null) {
+                return "ArgValue(" + classElement + ")";
             }
             else {
                 return "ArgValue?";
@@ -572,21 +598,21 @@ public interface X3ML {
             return xstream;
         }
 
-        public static ArgValue argQName(QualifiedName qualifiedName, String name) {
+        public static ArgValue argQName(ClassElement classElement, String name) {
             String value = null;
             if ("localName".equals(name)) {
-                value = qualifiedName.getLocalName();
+                value = classElement.getLocalName();
             }
             else if ("prefix".equals(name)) {
-                value = qualifiedName.getPrefix();
+                value = classElement.getPrefix();
             }
             else if ("namespaceUri".equals(name)) {
-                value = qualifiedName.namespaceUri;
+                value = classElement.namespaceUri;
             }
             if (value == null) {
                 throw new X3MLException("Expected 'localName', 'prefix', or 'namespaceUri', got " + name);
             }
-            return new ArgValue(qualifiedName, value);
+            return new ArgValue(classElement, value);
         }
 
         public static ArgValue argVal(String string) {

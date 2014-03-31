@@ -21,9 +21,7 @@
                 <path>
                     <source_relation>bm_object_part/underscore/bm_alias_loc/underscore</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P54_has_current_permanent_location</class>
-                        </property>
+                        <property>crm:P54_has_current_permanent_location</property>
                     </target_relation>
                 </path>
                 <range>

@@ -132,13 +132,7 @@
 			<xs:attribute name="variable"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="property">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="class"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
+	<xs:element name="property"/>
 	<xs:element name="class" type="xs:string"/>
 	<xs:complexType name="commentsType">
 		<xs:sequence>

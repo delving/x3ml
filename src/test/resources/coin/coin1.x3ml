@@ -20,9 +20,7 @@
                 <path>
                     <source_relation>ID</source_relation>
                     <target_relation>
-                        <property>
-                            <class>crm:P1_is_identified_by</class>
-                        </property>
+                        <property>crm:P1_is_identified_by</property>
                     </target_relation>
                 </path>
                 <range>

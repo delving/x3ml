@@ -11,7 +11,7 @@
                 <source_node>//COIN</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E22_Man-Made_Object</class>
+                        <type>crm:E22_Man-Made_Object</type>
                         <value_generator name="UUID"/>
                     </entity>
                 </target_node>
@@ -20,14 +20,14 @@
                 <path>
                     <source_relation>ID</source_relation>
                     <target_relation>
-                        <property>crm:P1_is_identified_by</property>
+                        <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>ID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E41_Appellation</class>
+                            <type>crm:E41_Appellation</type>
                             <value_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>text()</arg>

@@ -11,7 +11,7 @@
                 <source_node>COIN</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E22_Man-Made_Object</class>
+                        <type>crm:E22_Man-Made_Object</type>
                         <value_generator name="UUID"/>
                     </entity>
                 </target_node>
@@ -20,14 +20,14 @@
                 <path>
                     <source_relation>ID</source_relation>
                     <target_relation>
-                        <property>crm:P1_is_identified_by</property>
+                        <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>ID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E41_Appellation</class>
+                            <type>crm:E41_Appellation</type>
                             <value_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>text()</arg>
@@ -40,22 +40,22 @@
                 <path>
                     <source_relation>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_relation>
                     <target_relation>
-                        <property>crm:P30i_custody_transferred_through</property>
+                        <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity variable="tc1">
-                            <class>crm:E10_Transfer_of_Custody</class>
+                            <type>crm:E10_Transfer_of_Custody</type>
                             <value_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
                         </entity>
-                        <property>crm:P7_took_place_at</property>
+                        <relationship>crm:P7_took_place_at</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>FS_NAME/text()</arg>
@@ -68,30 +68,30 @@
                 <path>
                     <source_relation>FIND_DATE</source_relation>
                     <target_relation>
-                        <property>crm:P30i_custody_transferred_through</property>
+                        <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity variable="tc1">
-                            <class>crm:E10_Transfer_of_Custody</class>
+                            <type>crm:E10_Transfer_of_Custody</type>
                             <value_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
                         </entity>
-                        <property>crm:P4_has_time-span</property>
+                        <relationship>crm:P4_has_time-span</relationship>
                         <entity variable="ts1">
-                            <class>crm:E52_Time-Span</class>
+                            <type>crm:E52_Time-Span</type>
                             <value_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event date</arg>
                             </label_generator>
                         </entity>
-                        <property>crm:P81_ongoing_throughout</property>
+                        <relationship>crm:P81_ongoing_throughout</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>FIND_DATE</source_node>
                     <target_node>
                         <entity>
-                            <class>rdf:Literal</class>
+                            <type>rdf:Literal</type>
                             <value_generator name="Literal">
                                 <arg>text()</arg>
                             </value_generator>

@@ -83,17 +83,17 @@
 	<xs:complexType name="target_relationType">
 		<xs:sequence>
 			<xs:element ref="if" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="property"/>
+			<xs:element ref="relationship"/>
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="entity" maxOccurs="1"/>
-				<xs:element ref="property"/>
+				<xs:element ref="relationship"/>
 			</xs:sequence>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="entity">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="class" maxOccurs="unbounded"/>
+				<xs:element ref="type" maxOccurs="unbounded"/>
 				<xs:element name="constant" minOccurs="0"/>
 				<xs:element name="value_generator" minOccurs="0">
 					<xs:complexType>
@@ -132,8 +132,8 @@
 			<xs:attribute name="variable"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="property"/>
-	<xs:element name="class" type="xs:string"/>
+	<xs:element name="relationship"/>
+	<xs:element name="type" type="xs:string"/>
 	<xs:complexType name="commentsType">
 		<xs:sequence>
 			<xs:element ref="comment" maxOccurs="unbounded"/>
@@ -189,7 +189,7 @@
 	<xs:element name="additional">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="property"/>
+				<xs:element ref="relationship"/>
 				<xs:element ref="entity"/>
 			</xs:sequence>
 		</xs:complexType>

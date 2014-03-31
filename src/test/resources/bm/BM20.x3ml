@@ -9,7 +9,7 @@
                 <source_node>//input</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E19_Physical_Object</class>
+                        <type>crm:E19_Physical_Object</type>
                         <value_generator name="PhysicalObject">
                             <arg name="nameOfMuseum">British Museum</arg>
                             <arg name="entry">bm_object_id/text()</arg>
@@ -21,14 +21,14 @@
                 <path>
                     <source_relation>bm_object_part/underscore/bm_alias_loc/underscore</source_relation>
                     <target_relation>
-                        <property>crm:P54_has_current_permanent_location</property>
+                        <relationship>crm:P54_has_current_permanent_location</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>bm_object_part/underscore/bm_alias_loc/underscore</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E48_Place_Name</class>
+                            <type>crm:E48_Place_Name</type>
                             <value_generator name="PlaceName">
                                 <arg name="entry">bm_loc/text()</arg>
                             </value_generator>

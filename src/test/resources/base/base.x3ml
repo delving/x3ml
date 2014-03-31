@@ -37,7 +37,7 @@
                 <source_node>//record</source_node>
                 <target_node>
                     <entity>
-                        <class>pre:Thing</class>
+                        <type>pre:Thing</type>
                         <value_generator name="Pair">
                             <arg name="title">title/text()</arg>
                             <arg name="identifier">identifier/text()</arg>
@@ -49,19 +49,19 @@
                 <path>
                     <source_relation>inner1</source_relation>
                     <target_relation>
-                        <property>pre:Relation1</property>
+                        <relationship>pre:Relation1</relationship>
                         <entity>
-                            <class>pre:IntermediateEntity</class>
+                            <type>pre:IntermediateEntity</type>
                             <value_generator name="UUID"/>
                         </entity>
-                        <property>pre:Relation2</property>
+                        <relationship>pre:Relation2</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>inner1</source_node>
                     <target_node>
                         <entity variable="boo">
-                            <class>pre:OtherThing</class>
+                            <type>pre:OtherThing</type>
                             <constant>This is something the engine does not use</constant>
                             <value_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>

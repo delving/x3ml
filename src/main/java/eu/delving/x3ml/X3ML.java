@@ -118,7 +118,7 @@ public interface X3ML {
 
         public Condition condition;
 
-        public List<PropertyElement> properties;
+        public List<Relationship> properties;
 
         public List<EntityElement> entities;
     }
@@ -139,18 +139,18 @@ public interface X3ML {
                 context.convertAnother(relation.condition);
                 writer.endNode();
             }
-            Iterator<PropertyElement> walkProperties = relation.properties.iterator();
-            PropertyElement propertyElement = walkProperties.next();
-            writer.startNode("property");
-            context.convertAnother(propertyElement);
+            Iterator<Relationship> walkProperties = relation.properties.iterator();
+            Relationship relationship = walkProperties.next();
+            writer.startNode("relationship");
+            context.convertAnother(relationship);
             writer.endNode();
             for (EntityElement entityElement : relation.entities) {
-                propertyElement = walkProperties.next();
+                relationship = walkProperties.next();
                 writer.startNode("entity");
                 context.convertAnother(entityElement);
                 writer.endNode();
-                writer.startNode("property");
-                context.convertAnother(propertyElement);
+                writer.startNode("relationship");
+                context.convertAnother(relationship);
                 writer.endNode();
             }
         }
@@ -158,15 +158,15 @@ public interface X3ML {
         @Override
         public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
             TargetRelation relation = new TargetRelation();
-            relation.properties = new ArrayList<PropertyElement>();
+            relation.properties = new ArrayList<Relationship>();
             relation.entities = new ArrayList<EntityElement>();
             while (reader.hasMoreChildren()) {
                 reader.moveDown();
                 if ("if".equals(reader.getNodeName())) {
                     relation.condition = (Condition) context.convertAnother(relation, Condition.class);
                 }
-                else if ("property".equals(reader.getNodeName())) {
-                    relation.properties.add((PropertyElement) context.convertAnother(relation, PropertyElement.class));
+                else if ("relationship".equals(reader.getNodeName())) {
+                    relation.properties.add((Relationship) context.convertAnother(relation, Relationship.class));
                 }
                 else if ("entity".equals(reader.getNodeName())) {
                     relation.entities.add((EntityElement) context.convertAnother(relation, EntityElement.class));
@@ -214,7 +214,7 @@ public interface X3ML {
     public static class Additional extends Visible {
 
         @XStreamAlias("property")
-        public PropertyElement propertyElement;
+        public Relationship relationship;
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
@@ -347,19 +347,19 @@ public interface X3ML {
         }
     }
 
-    @XStreamAlias("property")
+    @XStreamAlias("relationship")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
-    public static class PropertyElement extends Visible {
+    public static class Relationship extends Visible {
 
         public String tag;
 
         @XStreamOmitField
         public String namespaceUri;
 
-        public PropertyElement() {
+        public Relationship() {
         }
 
-        public PropertyElement(String tag, String namespaceUri) {
+        public Relationship(String tag, String namespaceUri) {
             this.tag = tag;
             this.namespaceUri = namespaceUri;
         }
@@ -388,7 +388,7 @@ public interface X3ML {
         public String variable;
 
         @XStreamImplicit
-        public List<ClassElement> classElements;
+        public List<TypeElement> typeElements;
 
         public String constant;
 
@@ -403,11 +403,11 @@ public interface X3ML {
 
         public List<ValueEntry> getValues(ValueContext context) {
             List<ValueEntry> values = new ArrayList<ValueEntry>();
-            if (classElements != null) {
-                for (ClassElement classElement : classElements) {
+            if (typeElements != null) {
+                for (TypeElement typeElement : typeElements) {
                    values.add(new ValueEntry(
-                           classElement,
-                           context.generateValue(valueGenerator, classElement)
+                           typeElement,
+                           context.generateValue(valueGenerator, typeElement)
                    ));
                 }
             }
@@ -416,28 +416,28 @@ public interface X3ML {
     }
 
     public static class ValueEntry {
-        public final ClassElement classElement;
+        public final TypeElement typeElement;
         public final Value value;
 
-        public ValueEntry(ClassElement classElement, Value value) {
-            this.classElement = classElement;
+        public ValueEntry(TypeElement typeElement, Value value) {
+            this.typeElement = typeElement;
             this.value = value;
         }
     }
 
-    @XStreamAlias("class")
+    @XStreamAlias("type")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"tag"})
-    public static class ClassElement extends Visible {
+    public static class TypeElement extends Visible {
 
         public String tag;
 
         @XStreamOmitField
         public String namespaceUri;
 
-        public ClassElement() {
+        public TypeElement() {
         }
 
-        public ClassElement(String tag, String namespaceUri) {
+        public TypeElement(String tag, String namespaceUri) {
             this.tag = tag;
             this.namespaceUri = namespaceUri;
         }
@@ -525,11 +525,11 @@ public interface X3ML {
     }
 
     public static class ArgValue {
-        public final ClassElement classElement;
+        public final TypeElement typeElement;
         public final String string;
 
-        public ArgValue(ClassElement classElement, String string) {
-            this.classElement = classElement;
+        public ArgValue(TypeElement typeElement, String string) {
+            this.typeElement = typeElement;
             this.string = string;
         }
 
@@ -537,8 +537,8 @@ public interface X3ML {
             if (string != null) {
                 return "ArgValue(" + string + ")";
             }
-            else if (classElement != null) {
-                return "ArgValue(" + classElement + ")";
+            else if (typeElement != null) {
+                return "ArgValue(" + typeElement + ")";
             }
             else {
                 return "ArgValue?";
@@ -598,21 +598,21 @@ public interface X3ML {
             return xstream;
         }
 
-        public static ArgValue argQName(ClassElement classElement, String name) {
+        public static ArgValue argQName(TypeElement typeElement, String name) {
             String value = null;
             if ("localName".equals(name)) {
-                value = classElement.getLocalName();
+                value = typeElement.getLocalName();
             }
             else if ("prefix".equals(name)) {
-                value = classElement.getPrefix();
+                value = typeElement.getPrefix();
             }
             else if ("namespaceUri".equals(name)) {
-                value = classElement.namespaceUri;
+                value = typeElement.namespaceUri;
             }
             if (value == null) {
                 throw new X3MLException("Expected 'localName', 'prefix', or 'namespaceUri', got " + name);
             }
-            return new ArgValue(classElement, value);
+            return new ArgValue(typeElement, value);
         }
 
         public static ArgValue argVal(String string) {

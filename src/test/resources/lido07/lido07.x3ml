@@ -10,7 +10,7 @@
                 <source_node>//lido:lido</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E19_Physical_Object</class>
+                        <type>crm:E19_Physical_Object</type>
                         <value_generator name="PhysicalObject">
                             <arg name="nameOfMuseum">
                                 lido:descriptiveMetadata/lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue/text()
@@ -26,14 +26,14 @@
                 <path>
                     <source_relation>lido:lidoRecID</source_relation>
                     <target_relation>
-                        <property>crm:P70_is_documented_in</property>
+                        <relationship>crm:P70_is_documented_in</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:lidoRecID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E31_Document</class>
+                            <type>crm:E31_Document</type>
                             <value_generator name="PhysicalThing"/>
                         </entity>
                     </target_node>
@@ -43,14 +43,14 @@
                 <path>
                     <source_relation>lido:category</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:category</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -62,14 +62,14 @@
                 <path>
                     <source_relation>lido:objectWorkType/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:objectWorkType/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -81,14 +81,14 @@
                 <path>
                     <source_relation>lido:objectWorkType/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:objectWorkType/lido:conceptID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -98,14 +98,14 @@
                 <path>
                     <source_relation>lido:classification/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:classification/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -117,14 +117,14 @@
                 <path>
                     <source_relation>lido:classification/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:classification/lido:conceptID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -134,14 +134,14 @@
                 <path>
                     <source_relation>lido:titleSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P1_is_identified_by</property>
+                        <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:titleSet/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E41_Appellation</class>
+                            <type>crm:E41_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -151,14 +151,14 @@
                 <path>
                     <source_relation>lido:titleSet/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>crm:P1_is_identified_by</property>
+                        <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:titleSet/lido:sourceAppellation</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E41_Appellation</class>
+                            <type>crm:E41_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -168,14 +168,14 @@
                 <path>
                     <source_relation>lido:inscriptions</source_relation>
                     <target_relation>
-                        <property>crm:P65_shows_visual_item</property>
+                        <relationship>crm:P65_shows_visual_item</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:inscriptions</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E36_Visual_Item</class>
+                            <type>crm:E36_Visual_Item</type>
                             <value_generator name="Literal"/>
                         </entity>
                     </target_node>
@@ -185,9 +185,9 @@
                 <path>
                     <source_relation>lido:repositoryName/lido:legalBodyID</source_relation>
                     <target_relation>
-                        <property>crm:P50_has_current_keeper</property>
+                        <relationship>crm:P50_has_current_keeper</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="Actors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
@@ -195,14 +195,14 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryName/lido:legalBodyID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -212,9 +212,9 @@
                 <path>
                     <source_relation>lido:repositoryName/lido:legalBodyName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P50_has_current_keeper</property>
+                        <relationship>crm:P50_has_current_keeper</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">//lido:lido/nothing</arg>
                                 <arg name="identifier">../lido:legalBodyID/text()</arg>
@@ -222,14 +222,14 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P131_is_identified_by</property>
+                        <relationship>crm:P131_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryName/lido:legalBodyName/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E82_Actor_Appellation</class>
+                            <type>crm:E82_Actor_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -239,9 +239,9 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:placeID</source_relation>
                     <target_relation>
-                        <property>crm:P55_has_current_location</property>
+                        <relationship>crm:P55_has_current_location</relationship>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">@lido:source</arg>
@@ -250,14 +250,14 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryLocation/lido:placeID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -267,9 +267,9 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P55_has_current_location</property>
+                        <relationship>crm:P55_has_current_location</relationship>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">text()</arg>
                                 <arg name="authority">../../lido:placeID/@lido:source</arg>
@@ -278,14 +278,14 @@
                                 <arg name="spaces">../../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P87_is_identified_by</property>
+                        <relationship>crm:P87_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E44_Place_Appellation</class>
+                            <type>crm:E44_Place_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -295,14 +295,14 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -312,14 +312,14 @@
                 <path>
                     <source_relation>lido:displayState</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayState</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -329,14 +329,14 @@
                 <path>
                     <source_relation>lido:displayEdition</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayEdition</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -346,14 +346,14 @@
                 <path>
                     <source_relation>lido:sourceStateEdition</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:sourceStateEdition</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -363,14 +363,14 @@
                 <path>
                     <source_relation>lido:objectDescriptionSet/lido:descriptiveNoteValue</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:objectDescriptionSet/lido:descriptiveNoteValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -380,14 +380,14 @@
                 <path>
                     <source_relation>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -397,14 +397,14 @@
                 <path>
                     <source_relation>lido:displayObjectMeasurements</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayObjectMeasurements</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -414,14 +414,14 @@
                 <path>
                     <source_relation>lido:measurementsSet</source_relation>
                     <target_relation>
-                        <property>crm:P43_has_dimension</property>
+                        <relationship>crm:P43_has_dimension</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:measurementsSet</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E54_Dimension</class>
+                            <type>crm:E54_Dimension</type>
                             <value_generator name="dimensionURI">
                                 <arg>@lido:value</arg>
                             </value_generator>
@@ -433,14 +433,14 @@
                 <path>
                     <source_relation>lido:extentMeasurements</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:extentMeasurements</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -450,14 +450,14 @@
                 <path>
                     <source_relation>lido:qualifierMeasurements</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:qualifierMeasurements</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -467,14 +467,14 @@
                 <path>
                     <source_relation>lido:displayEvent</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayEvent</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -484,22 +484,22 @@
                 <path>
                     <source_relation>lido:eventID</source_relation>
                     <target_relation>
-                        <property>crm:P12i_was_present_at</property>
+                        <relationship>crm:P12i_was_present_at</relationship>
                         <entity>
-                            <class>crm:E5_Event</class>
+                            <type>crm:E5_Event</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -509,22 +509,22 @@
                 <path>
                     <source_relation>lido:eventType/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P12i_was_present_at</property>
+                        <relationship>crm:P12i_was_present_at</relationship>
                         <entity>
-                            <class>crm:E5_Event</class>
+                            <type>crm:E5_Event</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventType/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -539,14 +539,14 @@
                         <if>
                             <equals value="produced_by">../../lido:roleInEvent/lido:term/text()</equals>
                         </if>
-                        <property>crm:P108_was_produced_by</property>
+                        <relationship>crm:P108_was_produced_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventType/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E12_Production</class>
+                            <type>crm:E12_Production</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
@@ -562,14 +562,14 @@
                         <if>
                             <equals value="created_by">../../lido:roleInEvent/lido:term/text()</equals>
                         </if>
-                        <property>crm:P94i_was_created_by</property>
+                        <relationship>crm:P94i_was_created_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventType/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E65_Creation</class>
+                            <type>crm:E65_Creation</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
@@ -585,14 +585,14 @@
                         <if>
                             <equals value="used_for">../../lido:roleInEvent/lido:term/text()</equals>
                         </if>
-                        <property>crm:P16i_was_used_for</property>
+                        <relationship>crm:P16i_was_used_for</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventType/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E7_Activity</class>
+                            <type>crm:E7_Activity</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
@@ -605,7 +605,7 @@
                 <path>
                     <source_relation>lido:eventType/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P12i_was_present_at</property>
+                        <relationship>crm:P12i_was_present_at</relationship>
                     </target_relation>
                 </path>
                 <range>
@@ -615,7 +615,7 @@
                             <equals value="Herstellung">text()</equals>
                         </if>
                         <entity>
-                            <class>crm:E12_Production</class>
+                            <type>crm:E12_Production</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">../../lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../../lido:eventID/text()</arg>
@@ -628,14 +628,14 @@
                 <path>
                     <source_relation>lido:displaySubject</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displaySubject</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -645,14 +645,14 @@
                 <path>
                     <source_relation>lido:extentSubject</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:extentSubject</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -662,14 +662,14 @@
                 <path>
                     <source_relation>lido:subjectConcept/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectConcept/lido:conceptID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -679,14 +679,14 @@
                 <path>
                     <source_relation>lido:subjectConcept/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectConcept/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -696,19 +696,19 @@
                 <path>
                     <source_relation>lido:subjectActor/lido:displayActor</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>crm:P129_is_about</property>
+                        <relationship>crm:P129_is_about</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectActor/lido:displayActor</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">../lido:actor/lido:actorID/@lido:source</arg>
                                 <arg name="identifier">../lido:actor/lido:actorID/text()</arg>
@@ -723,19 +723,19 @@
                 <path>
                     <source_relation>lido:subjectDate/lido:displayDate</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>crm:P129_is_about</property>
+                        <relationship>crm:P129_is_about</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectDate/lido:displayDate</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E50_Date</class>
+                            <type>crm:E50_Date</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -745,19 +745,19 @@
                 <path>
                     <source_relation>lido:subjectEvent/lido:displayEvent</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>crm:P129_is_about</property>
+                        <relationship>crm:P129_is_about</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectEvent/lido:displayEvent</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E5_Event</class>
+                            <type>crm:E5_Event</type>
                             <value_generator name="uriEvents">
                                 <arg name="authority">../lido:event/lido:eventID/@lido:source</arg>
                                 <arg name="identifier">../lido:event/lido:eventID/text()</arg>
@@ -770,19 +770,19 @@
                 <path>
                     <source_relation>lido:subjectPlace/lido:displayPlace</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>crm:P129_is_about</property>
+                        <relationship>crm:P129_is_about</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectPlace/lido:displayPlace</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">text()</arg>
                                 <arg name="authority">..//lido:placeID/@lido:source</arg>
@@ -798,14 +798,14 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:displayObject</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectObject/lido:displayObject</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -815,19 +815,19 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:object/lido:objectWebResource</source_relation>
                     <target_relation>
-                        <property>crm:P67i_is_referred_to_by</property>
+                        <relationship>crm:P67i_is_referred_to_by</relationship>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectObject/lido:object/lido:objectWebResource</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -837,21 +837,21 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:object/lido:objectID</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E18_Physical_Thing</class>
+                            <type>crm:E18_Physical_Thing</type>
                             <value_generator name="uriPhysThing">
                                 <arg>/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectObject/lido:object/lido:objectID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -861,19 +861,19 @@
                 <path>
                     <source_relation>lido:relatedWorkRelType</source_relation>
                     <target_relation>
-                        <property>crm:P46i_forms_part_of</property>
+                        <relationship>crm:P46i_forms_part_of</relationship>
                         <entity>
-                            <class>crm:E18_Physical_Thing</class>
+                            <type>crm:E18_Physical_Thing</type>
                             <value_generator name="uriPhysThing"/>
                         </entity>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:relatedWorkRelType</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -883,19 +883,19 @@
                 <path>
                     <source_relation>lido:rightsType</source_relation>
                     <target_relation>
-                        <property>crm:P104_is_subject_to</property>
+                        <relationship>crm:P104_is_subject_to</relationship>
                         <entity>
-                            <class>crm:E30_Right</class>
+                            <type>crm:E30_Right</type>
                             <value_generator name="uriConceptual"/>
                         </entity>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsType</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -907,19 +907,19 @@
                 <path>
                     <source_relation>lido:recordID</source_relation>
                     <target_relation>
-                        <property>crm:P70_is_documented_in</property>
+                        <relationship>crm:P70_is_documented_in</relationship>
                         <entity>
-                            <class>crm:E31_Document</class>
+                            <type>crm:E31_Document</type>
                             <value_generator name="uriPhysThing"/>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:recordID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -931,7 +931,7 @@
                 <source_node>//lido:lido/lido:repositoryName/lido:legalBodyName</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E39_Actor</class>
+                        <type>crm:E39_Actor</type>
                         <value_generator name="uriForActors">
                             <arg name="authority">../lido:legalBodyID/@lido:source</arg>
                             <arg name="identifier">../lido:legalBodyID/text()</arg>
@@ -945,19 +945,19 @@
                 <path>
                     <source_relation>lido:repositoryName/lido:legalBodyWeblink</source_relation>
                     <target_relation>
-                        <property>crm:P129i_is_subject_of</property>
+                        <relationship>crm:P129i_is_subject_of</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryName/lido:legalBodyWeblink</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                             <additional>
-                                <property>crm:P2_has_type</property>
+                                <relationship>crm:P2_has_type</relationship>
                                 <entity>
-                                    <class>crm:E55_Type</class>
+                                    <type>crm:E55_Type</type>
                                     <value_generator name="Type">
                                         <arg>text()</arg>
                                     </value_generator>
@@ -973,7 +973,7 @@
                 <source_node>//lido:repositoryLocation</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E53_Place</class>
+                        <type>crm:E53_Place</type>
                         <value_generator name="Place">
                             <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
                             <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
@@ -988,9 +988,9 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source_relation>
                     <target_relation>
-                        <property>crm:P88_consists_of</property>
+                        <relationship>crm:P88_consists_of</relationship>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">../../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">../../lido:placeID/@lido:source</arg>
@@ -999,14 +999,14 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1016,14 +1016,14 @@
                 <path>
                     <source_relation>lido:repositoryLocation/lido:placeClassification/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:repositoryLocation/lido:placeClassification/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1037,7 +1037,7 @@
                 <source_node>//lido/measurementsSet</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E54_Dimension</class>
+                        <type>crm:E54_Dimension</type>
                         <value_generator name="dimensionURI">
                             <arg>@lido:value</arg>
                         </value_generator>
@@ -1048,21 +1048,21 @@
                 <path>
                     <source_relation>lido:formatMeasurements</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:formatMeasurements</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
                             <additional>
-                                <property>crm:P2_has_type</property>
+                                <relationship>crm:P2_has_type</relationship>
                                 <entity>
-                                    <class>crm:E55_Type</class>
+                                    <type>crm:E55_Type</type>
                                     <value_generator name="Type">
                                         <arg>@lido:type</arg>
                                     </value_generator>
@@ -1076,21 +1076,21 @@
                 <path>
                     <source_relation>lido:shapeMeasurements</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:shapeMeasurements</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
                             <additional>
-                                <property>crm:P2_has_type</property>
+                                <relationship>crm:P2_has_type</relationship>
                                 <entity>
-                                    <class>crm:E55_Type</class>
+                                    <type>crm:E55_Type</type>
                                     <value_generator name="Type">
                                         <arg>text()</arg>
                                     </value_generator>
@@ -1104,21 +1104,21 @@
                 <path>
                     <source_relation>lido:scaleMeasurements</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:scaleMeasurements</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
                             <additional>
-                                <property>crm:P2_has_type</property>
+                                <relationship>crm:P2_has_type</relationship>
                                 <entity>
-                                    <class>crm:E55_Type</class>
+                                    <type>crm:E55_Type</type>
                                     <value_generator name="Type">
                                         <arg>text()</arg>
                                     </value_generator>
@@ -1134,7 +1134,7 @@
                 <source_node>lido/event</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:HmmNotSure</class>
+                        <type>crm:HmmNotSure</type>
                     </entity>
                 </target_node>
             </domain>
@@ -1142,14 +1142,14 @@
                 <path>
                     <source_relation>lido:roleInEvent/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:roleInEvent/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1159,14 +1159,14 @@
                 <path>
                     <source_relation>lido:roleInEvent/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:roleInEvent/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1176,14 +1176,14 @@
                 <path>
                     <source_relation>lido:eventName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P1_is_identified_by</property>
+                        <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventName/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E41_Appellation</class>
+                            <type>crm:E41_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1193,14 +1193,14 @@
                 <path>
                     <source_relation>lido:eventName/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventName/lido:sourceAppellation</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1210,14 +1210,14 @@
                 <path>
                     <source_relation>lido:displayActorInRole</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayActorInRole</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1227,9 +1227,9 @@
                 <path>
                     <source_relation>lido:actorID</source_relation>
                     <target_relation>
-                        <property>crm:P11_had_participant</property>
+                        <relationship>crm:P11_had_participant</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
@@ -1237,14 +1237,14 @@
                                 <arg name="birthDate">../lido:vitalDatesActor/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:actorID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1254,9 +1254,9 @@
                 <path>
                     <source_relation>lido:nameActorSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P11_had_participant</property>
+                        <relationship>crm:P11_had_participant</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">../../lido:actorID/@lido:source</arg>
                                 <arg name="identifier">../../lido:actorID/text()</arg>
@@ -1265,14 +1265,14 @@
                                 <arg name="birthDate">../../lido:vitalDatesActor/text()</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P131_is_identified_by</property>
+                        <relationship>crm:P131_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:nameActorSet/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E82_Actor_Appellation</class>
+                            <type>crm:E82_Actor_Appellation</type>
                             <value_generator name="Appellation">
                                 <arg>../lido:appellationValue[@lido:pref = "preferred"]/text()</arg>
                             </value_generator>
@@ -1284,14 +1284,14 @@
                 <path>
                     <source_relation>lido:nameActorSet/lido:sourceAppellation</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:nameActorSet/lido:sourceAppellation</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1301,14 +1301,14 @@
                 <path>
                     <source_relation>lido:roleActor/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:roleActor/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1318,14 +1318,14 @@
                 <path>
                     <source_relation>lido:attributionQualifierActor</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:attributionQualifierActor</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1335,14 +1335,14 @@
                 <path>
                     <source_relation>lido:extentActor</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:extentActor</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1352,14 +1352,14 @@
                 <path>
                     <source_relation>lido:culture/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P10_falls_within</property>
+                        <relationship>crm:P10_falls_within</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:culture/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E4_Period</class>
+                            <type>crm:E4_Period</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1371,14 +1371,14 @@
                 <path>
                     <source_relation>lido:displayDate</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayDate</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1388,19 +1388,19 @@
                 <path>
                     <source_relation>lido:eventDate/lido:date/lido:earliestDate</source_relation>
                     <target_relation>
-                        <property>crm:P4_has_time_span</property>
+                        <relationship>crm:P4_has_time_span</relationship>
                         <entity>
-                            <class>crm:E52_Time_Span</class>
+                            <type>crm:E52_Time_Span</type>
                             <value_generator name="uriTimeSpan"/>
                         </entity>
-                        <property>crm:P79_beginning_is_qualified_by</property>
+                        <relationship>crm:P79_beginning_is_qualified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventDate/lido:date/lido:earliestDate</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1410,19 +1410,19 @@
                 <path>
                     <source_relation>lido:eventDate/lido:date/lido:latestDate</source_relation>
                     <target_relation>
-                        <property>crm:P4_has_time_span</property>
+                        <relationship>crm:P4_has_time_span</relationship>
                         <entity>
-                            <class>crm:E52_Time_Span</class>
+                            <type>crm:E52_Time_Span</type>
                             <value_generator name="uriTimeSpan"/>
                         </entity>
-                        <property>crm:P80_end_is_qualified_by</property>
+                        <relationship>crm:P80_end_is_qualified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventDate/lido:date/lido:latestDate</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1432,14 +1432,14 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:displayPlace</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventPlace/lido:displayPlace</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1449,9 +1449,9 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:placeID</source_relation>
                     <target_relation>
-                        <property>crm:P7_took_place_at</property>
+                        <relationship>crm:P7_took_place_at</relationship>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">@lido:source</arg>
@@ -1460,14 +1460,14 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventPlace/lido:place/lido:placeID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1477,9 +1477,9 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P7_took_place_at</property>
+                        <relationship>crm:P7_took_place_at</relationship>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">text()</arg>
                                 <arg name="authority">../../lido:placeID/@lido:source</arg>
@@ -1488,14 +1488,14 @@
                                 <arg name="spaces">../../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P87_is_identified_by</property>
+                        <relationship>crm:P87_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E44_Place_Appellation</class>
+                            <type>crm:E44_Place_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1505,14 +1505,14 @@
                 <path>
                     <source_relation>lido:eventMethod/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P32_used_general_technique</property>
+                        <relationship>crm:P32_used_general_technique</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventMethod/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1524,14 +1524,14 @@
                 <path>
                     <source_relation>lido:displayMaterialsTech</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:displayMaterialsTech</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1541,14 +1541,14 @@
                 <path>
                     <source_relation>lido:termMaterialsTech/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P32_used_general_technique</property>
+                        <relationship>crm:P32_used_general_technique</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:termMaterialsTech/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1560,14 +1560,14 @@
                 <path>
                     <source_relation>lido:extentMaterialsTech</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:extentMaterialsTech</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1577,14 +1577,14 @@
                 <path>
                     <source_relation>lido:eventDescriptionSet/lido:descriptiveNoteValue</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventDescriptionSet/lido:descriptiveNoteValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1594,14 +1594,14 @@
                 <path>
                     <source_relation>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1613,7 +1613,7 @@
                 <source_node>//lido/eventActor</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E39_Actor</class>
+                        <type>crm:E39_Actor</type>
                         <value_generator name="uriForActors">
                             <arg name="authority">lido:actorInRole/lido:actor/lido:actorID/@lido:source</arg>
                             <arg name="identifier">lido:actorInRole/lido:actor/lido:actorID/text()</arg>
@@ -1629,14 +1629,14 @@
                 <path>
                     <source_relation>lido:nationalityActor/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P107_is_current_or_former_member_of</property>
+                        <relationship>crm:P107_is_current_or_former_member_of</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:nationalityActor/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E74_Group</class>
+                            <type>crm:E74_Group</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">../lido:nationalityActor/lido:concept/lido:conceptID/@lido:source</arg>
                                 <arg name="identifier">../lido:nationalityActor/lido:concept/lido:conceptID/text()</arg>
@@ -1651,14 +1651,14 @@
                 <path>
                     <source_relation>lido:nationalityActor/lido:conceptID</source_relation>
                     <target_relation>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:nationalityActor/lido:conceptID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1668,14 +1668,14 @@
                 <path>
                     <source_relation>lido:vitalDatesActor</source_relation>
                     <target_relation>
-                        <property>crm:P11_participated_in</property>
+                        <relationship>crm:P11_participated_in</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:vitalDatesActor</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E52_Time_Span</class>
+                            <type>crm:E52_Time_Span</type>
                             <value_generator name="uriTimeSpan"/>
                         </entity>
                     </target_node>
@@ -1685,14 +1685,14 @@
                 <path>
                     <source_relation>lido:genderActor</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:genderActor</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1706,7 +1706,7 @@
                 <source_node>lido/periodName</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E52_Time_Span</class>
+                        <type>crm:E52_Time_Span</type>
                         <value_generator name="uriTimeSpan">
                             <arg>lido:concept/lido:term/text()</arg>
                         </value_generator>
@@ -1717,14 +1717,14 @@
                 <path>
                     <source_relation>lido:eventDate/lido:date/lido:periodName/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P4_has_time_span</property>
+                        <relationship>crm:P4_has_time_span</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventDate/lido:date/lido:periodName/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E4_Period</class>
+                            <type>crm:E4_Period</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1738,7 +1738,7 @@
                 <source_node>//lido:lido/lido:eventPlace</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E53_Place</class>
+                        <type>crm:E53_Place</type>
                         <value_generator name="Place">
                             <arg name="placeName">lido:place/lido:namePlaceSet/lido:appellationValue/text()</arg>
                             <arg name="authority">lido:place/lido:placeID/@lido:source</arg>
@@ -1753,9 +1753,9 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</source_relation>
                     <target_relation>
-                        <property>crm:P88_consists_of</property>
+                        <relationship>crm:P88_consists_of</relationship>
                         <entity>
-                            <class>crm:E53_Place</class>
+                            <type>crm:E53_Place</type>
                             <value_generator name="Place">
                                 <arg name="placeName">../lido:namePlaceSet/lido:appellationValue/text()</arg>
                                 <arg name="authority">../lido:placeID/@lido:source</arg>
@@ -1764,14 +1764,14 @@
                                 <arg name="spaces">../lido:partOfPlace</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1781,14 +1781,14 @@
                 <path>
                     <source_relation>lido:eventPlace/lido:place/lido:placeClassification/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:eventPlace/lido:place/lido:placeClassification/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="Type">
                                 <arg>text()</arg>
                             </value_generator>
@@ -1802,7 +1802,7 @@
                 <source_node>//lido:lido/lido:termMaterialsTech</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E55_Type</class>
+                        <type>crm:E55_Type</type>
                         <value_generator name="Type">
                             <arg>text()</arg>
                         </value_generator>
@@ -1813,14 +1813,14 @@
                 <path>
                     <source_relation>lido:sourceMaterialsTech</source_relation>
                     <target_relation>
-                        <property>crm:P71i_is_listed_in</property>
+                        <relationship>crm:P71i_is_listed_in</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:sourceMaterialsTech</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E32_Authority_Document</class>
+                            <type>crm:E32_Authority_Document</type>
                             <value_generator name="uriPhysThing"/>
                         </entity>
                     </target_node>
@@ -1832,7 +1832,7 @@
                 <source_node>//lido:lido/lido:object</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E18_Physical_Thing</class>
+                        <type>crm:E18_Physical_Thing</type>
                         <value_generator name="uriPhysThing"/>
                     </entity>
                 </target_node>
@@ -1841,14 +1841,14 @@
                 <path>
                     <source_relation>lido:subjectObject/lido:object/lido:objectNote</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:subjectObject/lido:object/lido:objectNote</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1860,7 +1860,7 @@
                 <source_node>lido:lido/lido:rights</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E30_Right</class>
+                        <type>crm:E30_Right</type>
                         <value_generator name="uriConceptual">
                             <arg>lido:rightsType/text()</arg>
                         </value_generator>
@@ -1871,14 +1871,14 @@
                 <path>
                     <source_relation>lido:rightsDate/lido:earliestDate</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsDate/lido:earliestDate</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1888,14 +1888,14 @@
                 <path>
                     <source_relation>lido:rightsDate/lido:latestDate</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsDate/lido:latestDate</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1905,14 +1905,14 @@
                 <path>
                     <source_relation>lido:rightsDate/lido:periodName/lido:term</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsDate/lido:periodName/lido:term</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1922,9 +1922,9 @@
                 <path>
                     <source_relation>lido:rightsHolder/lido:legalBodyID</source_relation>
                     <target_relation>
-                        <property>crm:P75i_is_possessed_by</property>
+                        <relationship>crm:P75i_is_possessed_by</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="">@lido:source</arg>
                                 <arg name="">text()</arg>
@@ -1932,14 +1932,14 @@
                                 <arg name="">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsHolder/lido:legalBodyID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1949,9 +1949,9 @@
                 <path>
                     <source_relation>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P75i_is_possessed_by</property>
+                        <relationship>crm:P75i_is_possessed_by</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
                                 <arg name="identifier">../../lido:legalBodyID/text()</arg>
@@ -1959,14 +1959,14 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P131_is_identified_by</property>
+                        <relationship>crm:P131_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E82_Actor_Appellation</class>
+                            <type>crm:E82_Actor_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -1976,14 +1976,14 @@
                 <path>
                     <source_relation>lido:creditLine</source_relation>
                     <target_relation>
-                        <property>crm:P3_has_note</property>
+                        <relationship>crm:P3_has_note</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:creditLine</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E62_String</class>
+                            <type>crm:E62_String</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -1995,7 +1995,7 @@
                 <source_node>//lido:lido/lido:rightsHolder</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E39_Actor</class>
+                        <type>crm:E39_Actor</type>
                         <value_generator name="uriForActors">
                             <arg name="authority">lido:legalBodyID/@lido:source</arg>
                             <arg name="identifier">lido:legalBodyID/text()</arg>
@@ -2009,19 +2009,19 @@
                 <path>
                     <source_relation>lido:rightsHolder/lido:legalBodyWeblink</source_relation>
                     <target_relation>
-                        <property>crm:P129i_is_subject_of</property>
+                        <relationship>crm:P129i_is_subject_of</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:rightsHolder/lido:legalBodyWeblink</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                             <additional>
-                                <property>crm:P2_has_type</property>
+                                <relationship>crm:P2_has_type</relationship>
                                 <entity>
-                                    <class>crm:E55_Type</class>
+                                    <type>crm:E55_Type</type>
                                     <value_generator name="Type">
                                         <arg>@lido:formatResource</arg>
                                     </value_generator>
@@ -2037,7 +2037,7 @@
                 <source_node>//lido:lido/lido:recordWrap</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E31_Document</class>
+                        <type>crm:E31_Document</type>
                         <value_generator name="uriPhysThing">
                             <arg>lido:recordID/text()</arg>
                         </value_generator>
@@ -2048,14 +2048,14 @@
                 <path>
                     <source_relation>lido:recordType</source_relation>
                     <target_relation>
-                        <property>crm:P2_has_type</property>
+                        <relationship>crm:P2_has_type</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:recordType</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E55_Type</class>
+                            <type>crm:E55_Type</type>
                             <value_generator name="createLiteral"/>
                         </entity>
                     </target_node>
@@ -2065,9 +2065,9 @@
                 <path>
                     <source_relation>lido:recordSource/lido:legalBodyID</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">@lido:source</arg>
                                 <arg name="identifier">text()</arg>
@@ -2075,14 +2075,14 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P48_has_preferred_identifier</property>
+                        <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:recordSource/lido:legalBodyID</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E42_Identifier</class>
+                            <type>crm:E42_Identifier</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -2092,9 +2092,9 @@
                 <path>
                     <source_relation>lido:recordSource/lido:legalBodyName/lido:appellationValue</source_relation>
                     <target_relation>
-                        <property>crm:P67_refers_to</property>
+                        <relationship>crm:P67_refers_to</relationship>
                         <entity>
-                            <class>crm:E39_Actor</class>
+                            <type>crm:E39_Actor</type>
                             <value_generator name="uriForActors">
                                 <arg name="authority">../../lido:legalBodyID/@lido:source</arg>
                                 <arg name="identifier">../../lido:legalBodyID/text()</arg>
@@ -2102,14 +2102,14 @@
                                 <arg name="birthDate">//lido:lido/nothing</arg>
                             </value_generator>
                         </entity>
-                        <property>crm:P131_is_identified_by</property>
+                        <relationship>crm:P131_is_identified_by</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:recordSource/lido:legalBodyName/lido:appellationValue</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E82_Actor_Appellation</class>
+                            <type>crm:E82_Actor_Appellation</type>
                             <value_generator name="Appellation"/>
                         </entity>
                     </target_node>
@@ -2121,7 +2121,7 @@
                 <source_node>lido:lido/lido:recordSource</source_node>
                 <target_node>
                     <entity>
-                        <class>crm:E39_Actor</class>
+                        <type>crm:E39_Actor</type>
                         <value_generator name="uriForActors">
                             <arg name="authority">lido:legalBodyID/@lido:source</arg>
                             <arg name="identifier">lido:legalBodyID/text()</arg>
@@ -2135,19 +2135,19 @@
                 <path>
                     <source_relation>lido:recordSource/lido:legalBodyWeblink</source_relation>
                     <target_relation>
-                        <property>crm:P129i_is_subject_of</property>
+                        <relationship>crm:P129i_is_subject_of</relationship>
                     </target_relation>
                 </path>
                 <range>
                     <source_node>lido:recordSource/lido:legalBodyWeblink</source_node>
                     <target_node>
                         <entity>
-                            <class>crm:E73_Information_Object</class>
+                            <type>crm:E73_Information_Object</type>
                             <value_generator name="uriConceptual"/>
                             <additional>
-                                <property>crm:P2_has_type</property>
+                                <relationship>crm:P2_has_type</relationship>
                                 <entity>
-                                    <class>crm:E55_Type</class>
+                                    <type>crm:E55_Type</type>
                                     <value_generator name="Type">
                                         <arg>@lido:formatResource</arg>
                                     </value_generator>

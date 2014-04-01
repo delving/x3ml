@@ -1,4 +1,19 @@
-package eu.delving.x3ml;
+//===========================================================================
+//    Copyright 2014 Delving B.V.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+//===========================================================================
+package eu.delving.x3ml.engine;
 
 import com.hp.hpl.jena.ontology.ConversionException;
 import com.thoughtworks.xstream.XStream;
@@ -17,9 +32,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static eu.delving.x3ml.X3MLContext.ValueContext;
+import static eu.delving.x3ml.X3MLEngine.exception;
 
 /**
+ * This interface defines the XML interpretation of the engine using the XStream library.
+ *
+ * There is also a helper class for encapsulating related functions.
+ *
+ * The XSD definition is to be found in /src/main/resources.
+ *
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
@@ -30,7 +51,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("x3ml")
-    public static class Root extends Visible {
+    public static class RootElement extends Visible {
 
         @XStreamAsAttribute
         public String version;
@@ -46,7 +67,7 @@ public interface X3ML {
 
         public List<Mapping> mappings;
 
-        public void apply(X3MLContext context) {
+        public void apply(Root context) {
             for (Mapping mapping : mappings) {
                 mapping.apply(context);
             }
@@ -59,15 +80,15 @@ public interface X3ML {
     @XStreamAlias("mapping")
     public static class Mapping extends Visible {
 
-        public Domain domain;
+        public DomainElement domain;
 
         @XStreamImplicit
         public List<Link> links;
 
-        public void apply(X3MLContext context) {
-            for (X3MLContext.DomainContext domainContext : context.createDomainContexts(domain)) {
+        public void apply(Root context) {
+            for (Domain domain : context.createDomainContexts(this.domain)) {
                 for (Link link : links) {
-                    link.apply(domainContext);
+                    link.apply(domain);
                 }
             }
         }
@@ -76,14 +97,14 @@ public interface X3ML {
     @XStreamAlias("link")
     public static class Link extends Visible {
 
-        public Path path;
+        public PathElement path;
 
-        public Range range;
+        public RangeElement range;
 
-        public void apply(X3MLContext.DomainContext context) {
-            for (X3MLContext.PathContext pathContext : context.createPathContexts(path)) {
-                for (X3MLContext.RangeContext rangeContext : pathContext.createRangeContexts(range)) {
-                    rangeContext.link();
+        public void apply(Domain context) {
+            for (Path path : context.createPathContexts(this.path)) {
+                for (Range range : path.createRangeContexts(this.range)) {
+                    range.link();
                 }
             }
         }
@@ -103,7 +124,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("domain")
-    public static class Domain extends Visible {
+    public static class DomainElement extends Visible {
 
         public Source source_node;
 
@@ -191,7 +212,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("path")
-    public static class Path extends Visible {
+    public static class PathElement extends Visible {
 
         public Source source_relation;
 
@@ -201,7 +222,7 @@ public interface X3ML {
     }
 
     @XStreamAlias("range")
-    public static class Range extends Visible {
+    public static class RangeElement extends Visible {
 
         public Source source_node;
 
@@ -230,10 +251,10 @@ public interface X3ML {
         public NotCondition not;
 
         private static class Outcome {
-            final ValueContext context;
+            final GeneratorContext context;
             boolean failure;
 
-            private Outcome(ValueContext context) {
+            private Outcome(GeneratorContext context) {
                 this.context = context;
             }
 
@@ -245,7 +266,7 @@ public interface X3ML {
             }
         }
 
-        public boolean failure(ValueContext context) {
+        public boolean failure(GeneratorContext context) {
             return new Outcome(context)
                     .evaluate(narrower)
                     .evaluate(exists)
@@ -258,7 +279,7 @@ public interface X3ML {
     }
 
     interface YesOrNo {
-        boolean yes(ValueContext context);
+        boolean yes(GeneratorContext context);
     }
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
@@ -268,7 +289,7 @@ public interface X3ML {
         public String expression;
 
         @Override
-        public boolean yes(ValueContext context) {
+        public boolean yes(GeneratorContext context) {
             return context.evaluate(expression).length() > 0;
         }
     }
@@ -283,7 +304,7 @@ public interface X3ML {
         public String expression;
 
         @Override
-        public boolean yes(ValueContext context) {
+        public boolean yes(GeneratorContext context) {
             return value.equals(context.evaluate(expression));
         }
     }
@@ -298,7 +319,7 @@ public interface X3ML {
         public String expression;
 
         @Override
-        public boolean yes(ValueContext context) {
+        public boolean yes(GeneratorContext context) {
             return true;
         }
     }
@@ -310,7 +331,7 @@ public interface X3ML {
         List<Condition> list;
 
         @Override
-        public boolean yes(ValueContext context) {
+        public boolean yes(GeneratorContext context) {
             boolean result = true;
             for (Condition condition : list) {
                 if (condition.failure(context)) result = false;
@@ -326,7 +347,7 @@ public interface X3ML {
         List<Condition> list;
 
         @Override
-        public boolean yes(ValueContext context) {
+        public boolean yes(GeneratorContext context) {
             boolean result = false;
             for (Condition condition : list) {
                 if (!condition.failure(context)) result = true;
@@ -342,7 +363,7 @@ public interface X3ML {
         Condition condition;
 
         @Override
-        public boolean yes(ValueContext context) {
+        public boolean yes(GeneratorContext context) {
             return condition.failure(context);
         }
     }
@@ -367,7 +388,7 @@ public interface X3ML {
         public String getPrefix() {
             int colon = tag.indexOf(':');
             if (colon < 0) {
-                throw new X3MLException("Unqualified tag " + tag);
+                throw exception("Unqualified tag " + tag);
             }
             return tag.substring(0, colon);
         }
@@ -375,7 +396,7 @@ public interface X3ML {
         public String getLocalName() {
             int colon = tag.indexOf(':');
             if (colon < 0) {
-                throw new X3MLException("Unqualified tag " + tag);
+                throw exception("Unqualified tag " + tag);
             }
             return tag.substring(colon + 1);
         }
@@ -401,7 +422,7 @@ public interface X3ML {
         @XStreamImplicit
         public List<Additional> additionals;
 
-        public List<ValueEntry> getValues(ValueContext context) {
+        public List<ValueEntry> getValues(GeneratorContext context) {
             List<ValueEntry> values = new ArrayList<ValueEntry>();
             if (typeElements != null) {
                 for (TypeElement typeElement : typeElements) {
@@ -445,7 +466,7 @@ public interface X3ML {
         public String getPrefix() {
             int colon = tag.indexOf(':');
             if (colon < 0) {
-                throw new X3MLException("Unqualified tag " + tag);
+                throw exception("Unqualified tag " + tag);
             }
             return tag.substring(0, colon);
         }
@@ -453,7 +474,7 @@ public interface X3ML {
         public String getLocalName() {
             int colon = tag.indexOf(':');
             if (colon < 0) {
-                throw new X3MLException("Unqualified tag " + tag);
+                throw exception("Unqualified tag " + tag);
             }
             return tag.substring(colon + 1);
         }
@@ -497,9 +518,10 @@ public interface X3ML {
 
     @XStreamAlias("generator_policy")
     public static class GeneratorPolicy extends Visible {
-        List<MappingNamespace> namespaces;
+        public List<MappingNamespace> namespaces;
 
         @XStreamImplicit
+        public
         List<GeneratorSpec> generators;
     }
 
@@ -569,10 +591,6 @@ public interface X3ML {
         }
     }
 
-    public interface ValuePolicy {
-        Value generateValue(String name, ArgValues arguments);
-    }
-
     static class Visible {
         public String toString() {
             return Helper.toString(this);
@@ -584,17 +602,17 @@ public interface X3ML {
             return "\n" + x3mlStream().toXML(thing);
         }
 
-        static XStream generatorStream() {
+        public static XStream generatorStream() {
             XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
             xstream.setMode(XStream.NO_REFERENCES);
             xstream.processAnnotations(GeneratorPolicy.class);
             return xstream;
         }
 
-        static XStream x3mlStream() {
+        public static XStream x3mlStream() {
             XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDriver(new NoNameCoder()));
             xstream.setMode(XStream.NO_REFERENCES);
-            xstream.processAnnotations(Root.class);
+            xstream.processAnnotations(RootElement.class);
             return xstream;
         }
 
@@ -610,7 +628,7 @@ public interface X3ML {
                 value = typeElement.namespaceUri;
             }
             if (value == null) {
-                throw new X3MLException("Expected 'localName', 'prefix', or 'namespaceUri', got " + name);
+                throw exception("Expected 'localName', 'prefix', or 'namespaceUri', got " + name);
             }
             return new ArgValue(typeElement, value);
         }

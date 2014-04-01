@@ -1,5 +1,21 @@
+//===========================================================================
+//    Copyright 2014 Delving B.V.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+//===========================================================================
 package eu.delving.x3ml;
 
+import eu.delving.x3ml.engine.Generator;
 import org.apache.commons.cli.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,11 +28,15 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.List;
 
+import static eu.delving.x3ml.X3MLEngine.exception;
+
 /**
+ * Using commons-cli to make the engine usable on the command line.
+ *
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class Command {
+public class X3MLCommandLine {
     static final CommandLineParser PARSER = new PosixParser();
     static final HelpFormatter HELP = new HelpFormatter();
     static Options options = new Options();
@@ -101,7 +121,7 @@ public class Command {
             return document.getDocumentElement();
         }
         catch (Exception e) {
-            throw new X3MLException("Unable to parse " + file.getName());
+            throw exception("Unable to parse " + file.getName());
         }
     }
 
@@ -114,7 +134,7 @@ public class Command {
         }
     }
 
-    static X3ML.ValuePolicy getValuePolicy(String policy) {
+    static Generator getValuePolicy(String policy) {
         FileInputStream stream = null;
         if (policy != null) {
             stream = getStream(file(policy));
@@ -150,7 +170,7 @@ public class Command {
             }
         }
         X3MLEngine engine = X3MLEngine.load(getStream(file(x3ml)));
-        X3MLContext context = engine.execute(xmlElement, getValuePolicy(policy));
-        context.write(rdf(rdf), rdfFormat);
+        X3MLEngine.Output output = engine.execute(xmlElement, getValuePolicy(policy));
+        output.write(rdf(rdf), rdfFormat);
     }
 }

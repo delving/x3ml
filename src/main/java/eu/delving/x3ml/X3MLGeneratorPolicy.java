@@ -1,8 +1,24 @@
+//===========================================================================
+//    Copyright 2014 Delving B.V.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+//===========================================================================
 package eu.delving.x3ml;
 
 import com.damnhandy.uri.template.MalformedUriTemplateException;
 import com.damnhandy.uri.template.UriTemplate;
 import com.damnhandy.uri.template.VariableExpansionException;
+import eu.delving.x3ml.engine.Generator;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -12,15 +28,16 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static eu.delving.x3ml.X3ML.*;
-import static eu.delving.x3ml.X3ML.ArgType.*;
-import static eu.delving.x3ml.X3ML.Helper.*;
+import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.*;
+import static eu.delving.x3ml.engine.X3ML.ArgType.*;
+import static eu.delving.x3ml.engine.X3ML.Helper.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class X3MLGeneratorPolicy implements ValuePolicy {
+public class X3MLGeneratorPolicy implements Generator {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, GeneratorSpec> generatorMap = new TreeMap<String, GeneratorSpec>();
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
@@ -45,7 +62,7 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
     @Override
     public Value generateValue(String name, ArgValues args) {
         if (name == null) {
-            throw new X3MLException("Value function name missing");
+            throw exception("Value function name missing");
         }
         if ("UUID".equals(name)) {
             return uriValue(createUUID());
@@ -53,22 +70,22 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
         if ("Literal".equals(name)) {
             ArgValue literalXPath = args.getArgValue(null, XPATH);
             if (literalXPath == null) {
-                throw new X3MLException("Argument failure: need one argument");
+                throw exception("Argument failure: need one argument");
             }
             if (literalXPath.string == null || literalXPath.string.isEmpty()) {
-                throw new X3MLException("Argument failure: empty argument");
+                throw exception("Argument failure: empty argument");
             }
             return literalValue(literalXPath.string);
         }
         if ("Constant".equals(name)) {
             ArgValue constant = args.getArgValue(null, CONSTANT);
             if (constant == null) {
-                throw new X3MLException("Argument failure: need one argument");
+                throw exception("Argument failure: need one argument");
             }
             return literalValue(constant.string);
         }
         GeneratorSpec generator = generatorMap.get(name);
-        if (generator == null) throw new X3MLException("No generator for " + name);
+        if (generator == null) throw exception("No generator for " + name);
         String namespaceUri = generator.prefix == null ? null : namespaceMap.get(generator.prefix);
         if (namespaceUri != null) { // use URI template
             return generateFromURITemplate(generator, namespaceUri, args);
@@ -84,7 +101,7 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
             for (TypedArgument argument : getTypedVariables(generator.pattern)) {
                 ArgValue argValue = argValues.getArgValue(argument.name, argument.argType);
                 if (argValue == null || argValue.string == null) {
-                    throw new X3MLException(String.format(
+                    throw exception(String.format(
                             "Argument failure in generator %s: %s",
                             generator, argument
                     ));
@@ -94,10 +111,10 @@ public class X3MLGeneratorPolicy implements ValuePolicy {
             return uriValue(namespaceUri + uriTemplate.expand());
         }
         catch (MalformedUriTemplateException e) {
-            throw new X3MLException("Malformed", e);
+            throw exception("Malformed", e);
         }
         catch (VariableExpansionException e) {
-            throw new X3MLException("Variable", e);
+            throw exception("Variable", e);
         }
     }
 

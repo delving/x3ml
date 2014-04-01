@@ -13,22 +13,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 //===========================================================================
-package eu.delving.x3ml;
-
-import org.junit.Test;
-
-import static eu.delving.x3ml.AllTests.*;
+package eu.delving.x3ml.engine;
 
 /**
+ * This is what a generator looks like to the internal code.
+ *
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class TestBM {
-
-    @Test
-    public void testFirstSteps() {
-        X3MLEngine engine = engine("/bm/BM20.x3ml");
-        X3MLEngine.Output output = engine.execute(document("/bm/BM20.xml"), policy("/bm/BM20-gen-policy.xml"));
-        output.writeXML(System.out);
-    }
+public interface Generator {
+    X3ML.Value generateValue(String name, X3ML.ArgValues arguments);
 }

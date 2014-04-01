@@ -1,7 +1,23 @@
+//===========================================================================
+//    Copyright 2014 Delving B.V.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+//===========================================================================
 package eu.delving.x3ml;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import eu.delving.x3ml.engine.Generator;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.w3c.dom.Element;
@@ -23,6 +39,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import static eu.delving.x3ml.X3MLEngine.exception;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -42,7 +59,7 @@ public class AllTests {
     private static XMLEventFactory eventFactory = XMLEventFactory.newInstance();
     private static List<String> indentStrings = new ArrayList<String>();
 
-    public static X3MLEngine engine(String path) throws X3MLException {
+    public static X3MLEngine engine(String path) {
         List<String> errors = X3MLEngine.validate(resource(path));
         assertTrue("Invalid: " + errors, errors.isEmpty());
         return X3MLEngine.load(resource(path));
@@ -56,16 +73,16 @@ public class AllTests {
 //        return X3MLContext.create(document(contextPath), policy);
 //    }
 //
-    public static X3ML.ValuePolicy policy(String path) {
+    public static Generator policy(String path) {
         return X3MLGeneratorPolicy.load(resource(path));
     }
 
-    public static Element document(String path) throws X3MLException {
+    public static Element document(String path) {
         try {
             return documentBuilderFactory().newDocumentBuilder().parse(resource(path)).getDocumentElement();
         }
         catch (Exception e) {
-            throw new X3MLException("Unable to parse " + path);
+            throw exception("Unable to parse " + path);
         }
     }
 

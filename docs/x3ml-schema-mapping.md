@@ -121,16 +121,14 @@ First, the source of the *domain* is used as a kind of "anchor" and then the *li
 	<source_node>...</source_node>
 	<source_relation>...</source_relation>
 
-The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.  The two are typically identical, but they represent a statement about the semantic origin of the resulting property and entity.  When they are not identical, the range/source extends the path/source
+The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.  The two are typically identical, but they represent a statement about the semantic origin of the resulting relationship and entity.  When they are not identical, the range/source extends the path/source
 
 ## Target
 
 The domain and range contain *target* blocks, which can either contain/generate URIs or represent literals:
 
 	<target>
-	    <property>
-			<class>...</class>
-		</property>
+	    <relationship>...</relationship>
 	</target>
 
 	<target>
@@ -168,15 +166,15 @@ This is formulated using the *intermediate* element:
 	<path>
 		<source_relation/>
 		<target_relation>
-			<property/>
+			<relationshihp/>
 			<entity/>
-			<property/>
+			<relationship/>
 		</target>
 	</path>
 
 ## Additional Nodes
 
-When additional properties and entities need to be added to a target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the property which will describe the link.
+When additional properties and entities need to be added to a target entity, the *additional* element can be used.  It contains the entity which will be attached to the target entity, and the relationship describing the link.
 
 	<range>
 		<source_node/>
@@ -184,7 +182,7 @@ When additional properties and entities need to be added to a target entity, the
 			<entity>
 				...
 				<additional>
-					<property/>
+					<relationship/>
 					<entity/>
 				</additional>
 				<additional/>

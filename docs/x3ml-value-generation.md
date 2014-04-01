@@ -1,9 +1,7 @@
 # Value Generation
 ---
 
-When transforming source XML records into RDF triples, the nested structure of the XML contains information that must be translated into URIs for the purpose of making subjects and objects of RDF statements.  Also labels must be created from pieces of information in the source.
-
-## Generator Functions
+When transforming source XML records into RDF triples, the nested structure of the XML contains information that must be gathered to build URIs and labels.
 
 To make this a separate process in the workflow, there are calls made from within the **[X3ML](x3ml-schema-mapping.md)** to value generators, defined separately.
 
@@ -15,22 +13,7 @@ To make this a separate process in the workflow, there are calls made from withi
 
 The only contract that X3ML has with respect to the value generators is that they have names and arguments.  The types of arguments are determined by the generators themselves, and validity must be checked.
 
-XPATH arguments fetch data values from the source XML DOM, and QNAME arguments have access to the *qname* associated with the surrounding property or entity;
-
-Since it is possible to generate URIs which are not correct according to various specifications, the URI generating mechanism must take into account that the results will be validated and that failures can result.  Not only will the character string be evaluated, but in some cases there is also a need to check for uniqueness within a dataset.
-
-## Simple UUID & Label
-
-A simple strategy has been used as a starting point which depends only on UUIDs and labels.
-
-There are two value functions available to the X3ML Engine.
-
-* **UUID** - generate a UUID
-* **UUID_Label** generate a UUID, and add a label using arguments:
-	* **labelQName** - qualified name of the label element
-	* **labelXPath** - contents of the label fetched from the source
-
-Currently this is only implemented in a test scenario.
+**NOTE: There is still some flux in this definition, because the design is under discussion**
 
 ## Templates
 
@@ -38,24 +21,44 @@ When URIs are to be generated on the basis of source record content, it is wise 
 
 For template-based URI generation there is [RFC 6570](http://tools.ietf.org/html/rfc6570) and we have an implementation and have experimented with setting up a URI function on the basis of a configuration file like this:
 
-	<value-policy>
-	    <generator name="PhysicalObject">
-	        <pattern>{localName}/{nameOfMuseum,entry}</pattern>
+	<generator_policy>
+	    <namespaces>
+	        <namespace prefix="pre" uri="http://somenamespace/#"/>
+	    </namespaces>
+	    <generator name="PhysicalObject" prefix="pre">
+	        <pattern>/{constant:nameOfMuseum,xpath:entry}</pattern>
 	    </generator>
-	    <generator name="Type">
-	        <pattern>{localName}/{entry}</pattern>
+	    <generator name="PlaceName" prefix="pre">
+	        <pattern>/{xpath:entry}</pattern>
 	    </generator>
-	</value-policy>
-	
-* **NOTE: this xml definition will probably be generalized for value generators**
+	</generator_policy>
 
-The *pattern* element here contains a URI template according to the RFC, and the parameters are fetched from the source like this:
+The policy begins with a description of all the namespaces which the templates will use, so that they have the associated base URL when they use the *prefix* attribute.
+	
+The *pattern* element here contains a URI template according to the RFC, with the modification that each substitution (between braces) is **prefixed** with a type.
+
+The types of arguments can be one of the following:
+
+* **xpath** - interpret an XPath expression in context
+* **qname** - interpret the prefix:localName as a qualified name
+* **constant** - take the content verbatim
+
+The parameters are fetched from the source like this:
 
 	<value_generator name="PhysicalObject">
-		<arg name="nameOfMuseum">museum/text()</arg>
+		<arg name="nameOfMuseum">Museum Name</arg>
 		<arg name="entry">identifier/text()</arg>
 	</value_generator>
+	
+The *nameOfMuseum* argument type takes the contents of the *arg* element as-is into the template, which is of course URL encoded.  The *entry* argument is of type xpath so it uses the contents of *arg* as an XPath expression.
 
+## Default Generators
+
+A few default generators are provided in order to create some basic forms of URIs.
+
+* **UUID** - use the operating system's UUID function to create a string as URI
+* **Literal** - use XPath to fetch content for a literal value
+* **Constant** - take the content verbatim for a literal value
 
 ---
 

@@ -22,10 +22,7 @@ import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
@@ -57,12 +54,12 @@ public class X3MLCommandLine {
     public static void main(String[] args) {
         Option xml = new Option(
                 "xml", true,
-                "XML input records: -xml input.xml"
+                "XML input records: -xml input.xml (@ = stdin)"
         );
         xml.setRequired(true);
         Option x3ml = new Option(
                 "x3ml", true,
-                "X3ML mapping definition: -x3ml mapping.x3ml"
+                "X3ML mapping definition: -x3ml mapping.x3ml (@ = stdin)"
         );
         x3ml.setRequired(true);
         Option rdf = new Option(
@@ -113,16 +110,19 @@ public class X3MLCommandLine {
         return factory;
     }
 
-    static Element xml(File file) {
+    static Element xml(InputStream inputStream) {
         try {
             DocumentBuilder builder = documentBuilderFactory().newDocumentBuilder();
-            FileInputStream inputStream = getStream(file);
             Document document = builder.parse(inputStream);
             return document.getDocumentElement();
         }
         catch (Exception e) {
-            throw exception("Unable to parse " + file.getName());
+            throw exception("Unable to parse XML input");
         }
+    }
+
+    static Element xml(File file) {
+        return xml(getStream(file));
     }
 
     static FileInputStream getStream(File file) {
@@ -158,18 +158,34 @@ public class X3MLCommandLine {
     }
 
     static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat, boolean validate) {
-        Element xmlElement = xml(file(xml));
-        if (validate) {
-            List<String> errors = X3MLEngine.validate(getStream(file(x3ml)));
-            if (!errors.isEmpty()) {
-                System.out.println("Validation:");
-                for (String error : errors) {
-                    System.out.println(error);
-                }
-                return;
-            }
+        Element xmlElement;
+        if ("@".equals(xml)) {
+            xmlElement = xml(System.in);
         }
-        X3MLEngine engine = X3MLEngine.load(getStream(file(x3ml)));
+        else {
+            xmlElement = xml(file(xml));
+        }
+        InputStream x3mlStream;
+        if ("@".equals(x3ml)) {
+            if (validate) {
+                throw exception("Cannot validate when X3ML is piped");
+            }
+            x3mlStream = System.in;
+        }
+        else {
+            if (validate) {
+                List<String> errors = X3MLEngine.validate(getStream(file(x3ml)));
+                if (!errors.isEmpty()) {
+                    System.out.println("Validation:");
+                    for (String error : errors) {
+                        System.out.println(error);
+                    }
+                    return;
+                }
+            }
+            x3mlStream = getStream(file(x3ml));
+        }
+        X3MLEngine engine = X3MLEngine.load(x3mlStream);
         X3MLEngine.Output output = engine.execute(xmlElement, getValuePolicy(policy));
         output.write(rdf(rdf), rdfFormat);
     }

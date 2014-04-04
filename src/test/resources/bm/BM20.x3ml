@@ -11,7 +11,7 @@
                     <entity>
                         <type>crm:E19_Physical_Object</type>
                         <value_generator name="PhysicalObject">
-                            <arg name="nameOfMuseum">British Museum</arg>
+                            <arg name="nameOfMuseum" type="CONSTANT">British Museum</arg>
                             <arg name="entry">bm_object_id/text()</arg>
                         </value_generator>
                     </entity>

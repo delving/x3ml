@@ -59,8 +59,8 @@ public abstract class GeneratorContext {
         }
         X3ML.Value value = context.policy().generateValue(generator.name, new X3ML.ArgValues() {
             @Override
-            public X3ML.ArgValue getArgValue(String name, X3ML.ArgType type) {
-                return context.input().evaluateArgument(node, generator, name, type, typeElement);
+            public X3ML.ArgValue getArgValue(String name, X3ML.SourceType sourceType) {
+                return context.input().evaluateArgument(node, generator, name, sourceType, typeElement);
             }
         });
         if (value == null) {

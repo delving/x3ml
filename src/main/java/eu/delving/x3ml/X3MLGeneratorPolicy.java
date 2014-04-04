@@ -21,17 +21,14 @@ import com.damnhandy.uri.template.VariableExpansionException;
 import eu.delving.x3ml.engine.Generator;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.*;
-import static eu.delving.x3ml.engine.X3ML.ArgType.*;
 import static eu.delving.x3ml.engine.X3ML.Helper.*;
+import static eu.delving.x3ml.engine.X3ML.SourceType.*;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -42,6 +39,7 @@ public class X3MLGeneratorPolicy implements Generator {
     private Map<String, GeneratorSpec> generatorMap = new TreeMap<String, GeneratorSpec>();
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
     private char uuidLetter = 'A';
+    private SourceType defaultSourceType = UNDEFINED;
 
     public static X3MLGeneratorPolicy load(InputStream inputStream) {
         return new X3MLGeneratorPolicy(inputStream);
@@ -57,6 +55,11 @@ public class X3MLGeneratorPolicy implements Generator {
                 generatorMap.put(generator.name, generator);
             }
         }
+    }
+
+    @Override
+    public void setDefaultArgType(SourceType sourceType) {
+        this.defaultSourceType = sourceType;
     }
 
     @Override
@@ -97,16 +100,16 @@ public class X3MLGeneratorPolicy implements Generator {
 
     private Value generateFromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
         try {
-            UriTemplate uriTemplate = UriTemplate.fromTemplate(stripTypes(generator.pattern));
-            for (TypedArgument argument : getTypedVariables(generator.pattern)) {
-                ArgValue argValue = argValues.getArgValue(argument.name, argument.argType);
+            UriTemplate uriTemplate = UriTemplate.fromTemplate(generator.pattern);
+            for (String argument : getVariables(generator.pattern)) {
+                ArgValue argValue = argValues.getArgValue(argument, defaultSourceType);
                 if (argValue == null || argValue.string == null) {
                     throw exception(String.format(
                             "Argument failure in generator %s: %s",
                             generator, argument
                     ));
                 }
-                uriTemplate.set(argument.name, argValue.string);
+                uriTemplate.set(argument, argValue.string);
             }
             return uriValue(namespaceUri + uriTemplate.expand());
         }
@@ -128,44 +131,13 @@ public class X3MLGeneratorPolicy implements Generator {
         return "uuid:" + (uuidLetter++);
     }
 
-    private static class TypedArgument {
-        public final ArgType argType;
-        public final String name;
-
-        private TypedArgument(ArgType argType, String name) {
-            this.argType = argType;
-            this.name = name;
-        }
-
-        public String toString() {
-            return argType + ":" + name;
-        }
-    }
-
-    private static List<TypedArgument> getTypedVariables(String pattern) {
+    private static List<String> getVariables(String pattern) {
         Matcher braces = BRACES.matcher(pattern);
-        List<TypedArgument> typedArguments = new ArrayList<TypedArgument>();
+        List<String> arguments = new ArrayList<String>();
         while (braces.find()) {
-            for (String argString : braces.group(1).split(",")) {
-                ArgType argType = CONSTANT;
-                String argName = argString;
-                int colon = argString.indexOf(':');
-                if (colon > 0) {
-                    String typeString = argString.substring(0, colon).toUpperCase();
-                    argType = valueOf(typeString);
-                    argName = argString.substring(colon + 1);
-                }
-                typedArguments.add(new TypedArgument(argType, argName));
-            }
+            Collections.addAll(arguments, braces.group(1).split(","));
         }
-        return typedArguments;
-    }
-
-    private static String stripTypes(String pattern) {
-        return pattern
-                .replaceAll("xpath:", "")
-                .replaceAll("qname:", "")
-                .replaceAll("constant:", "");
+        return arguments;
     }
 
 }

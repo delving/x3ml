@@ -26,6 +26,7 @@ import java.util.List;
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.Helper.argQName;
 import static eu.delving.x3ml.engine.X3ML.Helper.argVal;
+import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
  * The source data is accessed using xpath to fetch nodes from a DOM tree.
@@ -43,17 +44,20 @@ public class XPathInput {
         this.namespaceContext = namespaceContext;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, X3ML.GeneratorElement function, String argName, X3ML.ArgType type, X3ML.TypeElement typeElement) {
+    public X3ML.ArgValue evaluateArgument(Node contextNode, X3ML.GeneratorElement function, String argName, SourceType defaultType, X3ML.TypeElement typeElement) {
         X3ML.GeneratorArg foundArg = null;
+        SourceType type = defaultType;
         if (function.args != null) {
             if (function.args.size() == 1 && function.args.get(0).name == null) {
                 foundArg = function.args.get(0);
                 foundArg.name = argName;
+                type = sourceType(function.args.get(0).type, defaultType);
             }
             else {
                 for (X3ML.GeneratorArg arg : function.args) {
                     if (arg.name.equals(argName)) {
                         foundArg = arg;
+                        type = sourceType(function.args.get(0).type, defaultType);
                     }
                 }
             }
@@ -121,6 +125,15 @@ public class XPathInput {
         }
         catch (XPathExpressionException e) {
             throw new RuntimeException("XPath Problem: " + expression, e);
+        }
+    }
+
+    private SourceType sourceType(String value, SourceType defaultType) {
+        if (value == null) {
+            return defaultType;
+        }
+        else {
+            return SourceType.valueOf(value);
         }
     }
 

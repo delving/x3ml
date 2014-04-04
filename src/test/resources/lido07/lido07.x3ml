@@ -34,7 +34,9 @@
                     <target_node>
                         <entity>
                             <type>crm:E31_Document</type>
-                            <value_generator name="PhysicalThing"/>
+                            <value_generator name="PhysicalThing">
+                                <arg type="QNAME"/>
+                            </value_generator>
                         </entity>
                     </target_node>
                 </range>

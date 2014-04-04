@@ -103,6 +103,7 @@
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
 											<xs:attribute name="name"/>
+											<xs:attribute name="type"/>
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>

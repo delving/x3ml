@@ -47,7 +47,10 @@ import static eu.delving.x3ml.X3MLEngine.exception;
 public interface X3ML {
 
     public enum SourceType {
-        XPATH
+        UNDEFINED,
+        XPATH,
+        CONSTANT,
+        QNAME
     }
 
     @XStreamAlias("x3ml")
@@ -512,6 +515,9 @@ public interface X3ML {
         @XStreamAsAttribute
         public String name;
 
+        @XStreamAsAttribute
+        public String type;
+
         public String value;
     }
 
@@ -540,12 +546,6 @@ public interface X3ML {
         }
     }
 
-    public enum ArgType {
-        XPATH,
-        CONSTANT,
-        QNAME
-    }
-
     public static class ArgValue {
         public final TypeElement typeElement;
         public final String string;
@@ -569,7 +569,7 @@ public interface X3ML {
     }
 
     public interface ArgValues {
-        ArgValue getArgValue(String name, ArgType argType);
+        ArgValue getArgValue(String name, SourceType sourceType);
     }
 
     public enum ValueType {

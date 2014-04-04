@@ -4,12 +4,12 @@
         <namespace prefix="xxx" uri="http://xxx.eu/#"/>
     </namespaces>
     <generator name="PhysicalObject" prefix="xxx">
-        <pattern>/{xpath:nameOfMuseum,xpath:entry}</pattern>
+        <pattern>/{nameOfMuseum,entry}</pattern>
     </generator>
     <generator name="Type" prefix="xxx">
-        <pattern>/{xpath:entry}</pattern>
+        <pattern>/{entry}</pattern>
     </generator>
     <generator name="PhysicalThing" prefix="xxx">
-        <pattern>/{qname:localName}</pattern>
+        <pattern>/{localName}</pattern>
     </generator>
 </generator_policy>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF xml:lang="en" 
+	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xml:base="http://www.cidoc-crm.org/cidoc-crm/">
+	
+<crm:E40_Legal_Body rdf:about="uuid:02261a30-ba48-11e3-a5e2-0800200c9a66">
+	<crm:P48_has_preferred_identifier>
+		<crm:E42_Identifier rdf:about="uuid:2b33e600-ba48-11e3-a5e2-0800200c9a66">
+			<rdfs:label>244</rdfs:label>
+		</crm:E42_Identifier>
+	</crm:P48_has_preferred_identifier>
+	<crm:P1_is_identified_by>
+		<rdf:Description rdf:about="uuid:7a790510-ba48-11e3-a5e2-0800200c9a66">
+			<rdf:type rdf:resource="E41_Appellation"/>
+			<rdf:type rdf:resource="E33_Linguistic_Object"/>
+			<rdfs:label>Rom (Rep.)</rdfs:label>
+			<crm:P72_has_language>
+				<crm:E56_Language rdf:about="http://www.oeaw.ac.at/languages/german">
+					<rdfs:label>german</rdfs:label>
+				</crm:E56_Language>
+			</crm:P72_has_language>
+		</rdf:Description>
+	</crm:P1_is_identified_by>
+	<crm:P1_is_identified_by>
+		<rdf:Description rdf:about="uuid:e708c490-ba48-11e3-a5e2-0800200c9a66">
+			<rdf:type rdf:resource="E41_Appellation"/>
+			<rdf:type rdf:resource="E33_Linguistic_Object"/>
+			<rdfs:label>Rome</rdfs:label>
+			<crm:P72_has_language>
+				<crm:E56_Language rdf:about="http://www.oeaw.ac.at/languages/english">
+					<rdfs:label>english</rdfs:label>
+				</crm:E56_Language>
+			</crm:P72_has_language>
+		</rdf:Description>
+	</crm:P1_is_identified_by>
+	
+</crm:E40_Legal_Body>			
+</rdf:RDF>

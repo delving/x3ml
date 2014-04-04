@@ -1,0 +1,4390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adlibXML>
+<!--<adlibXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.adlibsoft.com/adlibXML.xsd">-->
+	<recordList>
+
+		<record>
+			<priref>5216</priref>
+			<content.classification.code>45(+26)</content.classification.code>
+			<content.classification.code>45C1</content.classification.code>
+			<content.classification.code>48C7341</content.classification.code>
+			<content.classification.code>31D11222</content.classification.code>
+			<content.classification.code>45D12</content.classification.code>
+			<content.classification.code>34B11</content.classification.code>
+			<image.Mediabin>SK-C-5</image.Mediabin>
+			<afbeelding.overige_Mediabin>SK-C-5</afbeelding.overige_Mediabin>
+
+			<administration.name option="Schilderijen" value="Schilderijen">
+				<text language="0">Fine and Decorative Arts</text>
+				<text language="1">Schilderijen</text>
+			</administration.name>
+
+
+			<dimension>
+				<dimension.notes/>
+				<dimension.unit option="CM" value="CM">
+					<text language="0">cm</text>
+					<text language="1">cm</text>
+				</dimension.unit>
+				<dimension.literature.nl/>
+				<dimension.part/>
+				<dimension.precision option="" value="">
+					<text language="0">ca.</text>
+					<text language="1">ca.</text>
+				</dimension.precision>
+				<dimension.type linkref="21" linkfield="term" linkreffield="lr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>hoogte</term>
+					<term.gb>height</term.gb>
+				</dimension.type>
+				<dimension.type.gb>height</dimension.type.gb>
+				<dimension.value>379,5</dimension.value>
+				<dimension.literature.gb/>
+				<dimension.part.gb/>
+			</dimension>
+
+
+
+			<dimension>
+				<dimension.notes/>
+				<dimension.unit option="CM" value="CM">
+					<text language="0">cm</text>
+					<text language="1">cm</text>
+				</dimension.unit>
+				<dimension.literature.nl/>
+				<dimension.part/>
+				<dimension.precision option="" value="">
+					<text language="0">ca.</text>
+					<text language="1">ca.</text>
+				</dimension.precision>
+				<dimension.type linkref="22" linkfield="term" linkreffield="lr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>breedte</term>
+					<term.gb>width</term.gb>
+				</dimension.type>
+				<dimension.type.gb>width</dimension.type.gb>
+				<dimension.value>453,5</dimension.value>
+				<dimension.literature.gb/>
+				<dimension.part.gb/>
+			</dimension>
+
+			<dimension>
+				<dimension.notes>gewicht met lijst</dimension.notes>
+				<dimension.unit option="KG" value="KG">
+					<text language="0">kg</text>
+					<text language="1">kg</text>
+				</dimension.unit>
+				<dimension.literature.nl/>
+				<dimension.part/>
+				<dimension.precision option="" value="">
+					<text language="0">ca.</text>
+					<text language="1">ca.</text>
+				</dimension.precision>
+				<dimension.type linkref="424" linkfield="term" linkreffield="lr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>gewicht</term>
+					<term.gb>weight</term.gb>
+				</dimension.type>
+
+				<dimension.type.gb>weight</dimension.type.gb>
+				<dimension.value>337</dimension.value>
+				<dimension.literature.gb/>
+				<dimension.part.gb/>
+			</dimension>
+
+			<dimension>
+				<dimension.notes>gewicht zonder lijst</dimension.notes>
+				<dimension.unit option="KG" value="KG">
+					<text language="0">kg</text>
+					<text language="1">kg</text>
+				</dimension.unit>
+				<dimension.literature.nl/>
+				<dimension.part/>
+				<dimension.precision option="" value="">
+					<text language="0">ca.</text>
+					<text language="1">ca.</text>
+				</dimension.precision>
+				<dimension.type linkref="424" linkfield="term" linkreffield="lr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>gewicht</term>
+					<term.gb>weight</term.gb>
+				</dimension.type>
+				<dimension.type.gb>weight</dimension.type.gb>
+				<dimension.value>170</dimension.value>
+				<dimension.literature.gb/>
+				<dimension.part.gb/>
+			</dimension>
+
+			<dimension.frame.info>buitenmaat hoogte 400 cm
+buitenmaat breedte 475.5 cm
+buitenmaat diepte 12.5 cm</dimension.frame.info>
+
+			<treatment>
+				<treatment linkref="64561" linkfield="term" linkreffield="lq" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>lijmen</term>
+				</treatment>
+				<treatment.notes>dunnen linnen vezels gelijmd aan het linnen om de messneden te kunnen hechten</treatment.notes>
+				<treatment.date.late/>
+				<treatment.date.early>1975</treatment.date.early>
+				<treatment.name linkref="95067" linkfield="name" linkreffield="lt" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+					<name>Kuiper, Luitsen</name>
+				</treatment.name>
+				<treatment.name2 linkref="0" linkfield="name" linkreffield="lT" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				</treatment.name2>
+				<treatment.reference/>
+				<treatment.status/>
+				<treatment.notes.gb/>
+			</treatment>
+
+
+
+
+			<treatment>
+				<treatment linkref="31558" linkfield="term" linkreffield="lq" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>doubleren</term>
+				</treatment>
+				<treatment.notes>n.a.v. messteek beschadigingen</treatment.notes>
+				<treatment.date.late/>
+				<treatment.date.early>1975</treatment.date.early>
+				<treatment.name linkref="95067" linkfield="name" linkreffield="lt" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+					<name>Kuiper, Luitsen</name>
+				</treatment.name>
+				<treatment.name2 linkref="0" linkfield="name" linkreffield="lT" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				</treatment.name2>
+				<treatment.reference/>
+				<treatment.status/>
+				<treatment.notes.gb/>
+			</treatment>
+
+
+			<treatment>
+				<treatment linkref="63908" linkfield="term" linkreffield="lq" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>schoonmaken</term>
+				</treatment>
+
+				<treatment.notes/>
+				<treatment.date.late/>
+				<treatment.date.early>1975</treatment.date.early>
+				<treatment.name linkref="95067" linkfield="name" linkreffield="lt" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+					<name>Kuiper, Luitsen</name>
+				</treatment.name>
+				<treatment.name2 linkref="0" linkfield="name" linkreffield="lT" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				</treatment.name2>
+				<treatment.reference/>
+				<treatment.status/>
+				<treatment.notes.gb/>
+			</treatment>
+
+			<treatment>
+				<treatment linkref="56270" linkfield="term" linkreffield="lq" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>retoucheren</term>
+				</treatment>
+				<treatment.notes>en behandelen van de beschadigde delen van de verflaag</treatment.notes>
+				<treatment.date.late/>
+				<treatment.date.early>1975</treatment.date.early>
+				<treatment.name linkref="95067" linkfield="name" linkreffield="lt" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+					<name>Kuiper, Luitsen</name>
+				</treatment.name>
+				<treatment.name2 linkref="0" linkfield="name" linkreffield="lT" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				</treatment.name2>
+				<treatment.reference/>
+				<treatment.status/>
+				<treatment.notes.gb/>
+			</treatment>
+
+			<treatment>
+				<treatment linkref="65041" linkfield="term" linkreffield="lq" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>vernissen</term>
+				</treatment>
+				<treatment.notes/>
+				<treatment.date.late/>
+				<treatment.date.early>1981</treatment.date.early>
+				<treatment.name linkref="0" linkfield="name" linkreffield="lt" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				</treatment.name>
+				<treatment.name2 linkref="0" linkfield="name" linkreffield="lT" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				</treatment.name2>
+				<treatment.reference/>
+				<treatment.status/>
+				<treatment.notes.gb/>
+			</treatment>
+
+			<holder>Rijksmuseum Amsterdam</holder>
+
+			<description>
+				<describer>Horst, Daniel</describer>
+				<description>Het korporaalschap van kapitein Frans Banninck Cocq en luitenant Willem van Ruytenburch, bekend als de &apos;Nachtwacht&apos;. Schutters van de kloveniersdoelen uit een poort naar buiten tredend. Op een schild aangebracht naast de poort staan de namen van de afgebeelde personen: Frans Banninck Cocq, heer van purmerlant en Ilpendam, Capiteijn Willem van Ruijtenburch van Vlaerdingen, heer van Vlaerdingen, Lu[ij]tenant, Jan Visscher Cornelisen Vaendrich, Rombout Kemp Sergeant, Reijnier Engelen Sergeant, Barent Harmansen, Jan Adriaensen Keyser, Elbert Willemsen, Jan Clasen Leydeckers, Jan Ockersen, Jan Pietersen bronchorst, Harman Iacobsen wormskerck, Jacob Dircksen de Roy, Jan vander heede, Walich Schellingwou, Jan brugman, Claes van Cruysbergen, Paulus Schoonhoven. De schutters zijn gewapend met lansen, musketten en hellebaarden. Rechts de tamboer met een grote trommel. Tussen de soldaten links staat een meisje met een dode kip om haar middel, rechts een blaffende hond. Linksboven de vaandrig met de uitgestoken vaandel.</description>
+				<description.date>2001-03-08</description.date>
+			</description>
+			<collection linkref="15" linkfield="term" linkreffield="lv" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+				<term>schilderijen</term>
+			</collection>
+
+			<date.source>Gedateerd.</date.source>
+			<dating>
+				<date.late>1642</date.late>
+				<date.late.precision option="" value="">
+					<text language="0">c.</text>
+					<text language="1">ca.</text>
+				</date.late.precision>
+				<date.early>1642</date.early>
+				<date.early.precision option="" value="">
+					<text language="0">c.</text>
+					<text language="1">ca.</text>
+				</date.early.precision>
+			</dating>
+			<date.period linkref="30473" linkfield="term" linkreffield="ll" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+				<term>tweede kwart 17e eeuw</term>
+			</date.period>
+			<parts>1</parts>
+
+
+
+
+
+
+
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Sitt, Martina</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2010/1502</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>192481</documentation.koha_id>
+				<documentation.pagination.catalogue>afb. p. 60</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>[S.l.] :</documentation.place.tinlib>
+				<documentation.title linkref="153580" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>c2010</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>The Golden Age reloaded : die Faszination niederländischer Malerei des 17. Jahrhunderts : Sammlungen der Villa Vauban und des Rijksmuseums Amsterdam</title>
+					<source_title/>
+					<author.tinlib>Sitt, Martina</author.tinlib>
+					<publisher.tinlib>Wienand,</publisher.tinlib>
+					<place.tinlib>[S.l.] :</place.tinlib>
+					<copy.number>2010/1502</copy.number>
+					<koha_id>192481</koha_id>
+				</documentation.title>
+				<documentation.publication.year>c2010</documentation.publication.year>
+				<documentation.publisher.tinlib>Wienand,</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib/>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2011/3695</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>202294</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>München :</documentation.place.tinlib>
+				<documentation.title linkref="154257" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2011</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Kiefer Rembrandt Kiefer</title>
+					<source_title/>
+					<author.tinlib/>
+					<publisher.tinlib>Hirmer,</publisher.tinlib>
+					<place.tinlib>München :</place.tinlib>
+					<copy.number>2011/3695</copy.number>
+					<koha_id>202294</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2011</documentation.publication.year>
+				<documentation.publisher.tinlib>Hirmer,</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Schwartz, Gary</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2009/3405</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>105745</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 62, afb. 52</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>[Amsterdam]</documentation.place.tinlib>
+				<documentation.title linkref="153359" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2009</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Ontmoet Rembrandt : leven en werk van de meesterschilder</title>
+					<source_title/>
+					<author.tinlib>Schwartz, Gary</author.tinlib>
+					<publisher.tinlib>Rijksmuseum</publisher.tinlib>
+					<place.tinlib>[Amsterdam]</place.tinlib>
+					<copy.number>2009/3405</copy.number>
+					<koha_id>105745</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2009</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Wetering, Ernst van de</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2009/0989</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120478</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 179, afb. 245, 196-203, 257</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="152994" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2009</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>: the painter at work</title>
+					<source_title/>
+					<author.tinlib>Wetering, Ernst van de</author.tinlib>
+					<publisher.tinlib>Amsterdam U.P.</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>2009/0989</copy.number>
+					<koha_id>120478</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2009</documentation.publication.year>
+				<documentation.publisher.tinlib>Amsterdam U.P.</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Jackson, Beverley</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2009/0448</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>146195</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 227, afb. 92</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="152626" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2008</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>The visible world : Samuel van Hoogstraten&apos;s art theory and the legitimation of painting in the Dutch Golden Age</title>
+					<source_title/>
+					<author.tinlib>Jackson, Beverley</author.tinlib>
+					<publisher.tinlib>Amsterdam U.P.</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>2009/0448</copy.number>
+					<koha_id>146195</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2008</documentation.publication.year>
+				<documentation.publisher.tinlib>Amsterdam U.P.</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Posada Kubissa, Teresa</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2008/3591</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120421</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 39, afb. 16</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Madrid</documentation.place.tinlib>
+				<documentation.title linkref="152521" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2008</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : pintor de historias</title>
+					<source_title/>
+					<author.tinlib>Posada Kubissa, Teresa</author.tinlib>
+					<publisher.tinlib>Museo Nacional del Prado</publisher.tinlib>
+					<place.tinlib>Madrid</place.tinlib>
+					<copy.number>2008/3591</copy.number>
+					<koha_id>120421</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2008</documentation.publication.year>
+				<documentation.publisher.tinlib>Museo Nacional del Prado</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Gent, Judith van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2008/2285</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>107690</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 242</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Bussum</documentation.place.tinlib>
+				<documentation.title linkref="152013" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2008</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>De oude Meesters van de stad Amsterdam : schilderijen tot 1800</title>
+					<source_title/>
+					<author.tinlib>Gent, Judith van</author.tinlib>
+					<publisher.tinlib>Thoth</publisher.tinlib>
+					<place.tinlib>Bussum</place.tinlib>
+					<copy.number>2008/2285</copy.number>
+					<koha_id>107690</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2008</documentation.publication.year>
+				<documentation.publisher.tinlib>Thoth</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Buvelot, Quentin</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2007/2106</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>39183</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 31 + afb. 22</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>The Hague</documentation.place.tinlib>
+				<documentation.title linkref="149171" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2007</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Dutch portraits : the age of Rembrandt and Frans Hals</title>
+					<source_title/>
+					<author.tinlib>Buvelot, Quentin</author.tinlib>
+					<publisher.tinlib>Royal Picture Gallery Mauritshuis</publisher.tinlib>
+					<place.tinlib>The Hague</place.tinlib>
+					<copy.number>2007/2106</copy.number>
+					<koha_id>39183</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2007</documentation.publication.year>
+				<documentation.publisher.tinlib>Royal Picture Gallery Mauritshuis</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Buvelot, Quentin</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2007/3354</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>66353</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 32, 33, afb. 22</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Den Haag</documentation.place.tinlib>
+				<documentation.title linkref="152002" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2007</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Hollanders in beeld : portretten uit de Gouden Eeuw</title>
+					<source_title/>
+					<author.tinlib>Buvelot, Quentin</author.tinlib>
+					<publisher.tinlib>Koninklijk Kabinet van Schilderijen Mauritshuis</publisher.tinlib>
+					<place.tinlib>Den Haag</place.tinlib>
+					<copy.number>2007/3354</copy.number>
+					<koha_id>66353</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2007</documentation.publication.year>
+				<documentation.publisher.tinlib>Koninklijk Kabinet van Schilderijen Mauritshuis</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Boogert, Bob van den</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2006/0983</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120495</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 48</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Zwolle</documentation.place.tinlib>
+				<documentation.title linkref="145190" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2006</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : zoektocht van een genie</title>
+					<source_title/>
+					<author.tinlib>Boogert, Bob van den</author.tinlib>
+					<publisher.tinlib>Waanders</publisher.tinlib>
+					<place.tinlib>Zwolle</place.tinlib>
+					<copy.number>2006/0983</copy.number>
+					<koha_id>120495</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2006</documentation.publication.year>
+				<documentation.publisher.tinlib>Waanders</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Schwartz, Gary</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2006/2852</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120592</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 172, 175</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Brussel</documentation.place.tinlib>
+				<documentation.title linkref="145227" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2006</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Het Rembrandt boek [ : 1 2006]</title>
+					<source_title/>
+					<author.tinlib>Schwartz, Gary</author.tinlib>
+					<publisher.tinlib>Mercatorfonds</publisher.tinlib>
+					<place.tinlib>Brussel</place.tinlib>
+					<copy.number>2006/2852</copy.number>
+					<koha_id>120592</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2006</documentation.publication.year>
+				<documentation.publisher.tinlib>Mercatorfonds</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Vels Heijn, Annemarie A.E.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2003/2508</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>143803</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 246-247</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="121839" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2003</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Verborgen verhalen : betekenissen van Vlaamse en Nederlandse schilderijen 15e - 18e eeuw</title>
+					<source_title/>
+					<author.tinlib>Vels Heijn, Annemarie A.E.</author.tinlib>
+					<publisher.tinlib>Ludion</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>2003/2508</copy.number>
+					<koha_id>143803</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2003</documentation.publication.year>
+				<documentation.publisher.tinlib>Ludion</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Noordervliet, Nelleke</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2004/0120</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>100494</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 152-185, p. 167 (afbeelding)</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Zwolle</documentation.place.tinlib>
+				<documentation.title linkref="85616" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2003</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Nederland in de Gouden Eeuw</title>
+					<source_title/>
+					<author.tinlib>Noordervliet, Nelleke</author.tinlib>
+					<publisher.tinlib>Rijksmuseum</publisher.tinlib>
+					<place.tinlib>Zwolle</place.tinlib>
+					<copy.number>2004/0120</copy.number>
+					<koha_id>100494</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2003</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Schwartz, Gary</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>2003/0114</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>99505</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Zwolle</documentation.place.tinlib>
+				<documentation.title linkref="84772" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2002</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>De Nachtwacht</title>
+					<source_title/>
+					<author.tinlib>Schwartz, Gary</author.tinlib>
+					<publisher.tinlib>Waanders</publisher.tinlib>
+					<place.tinlib>Zwolle</place.tinlib>
+					<copy.number>2003/0114</copy.number>
+					<koha_id>99505</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2002</documentation.publication.year>
+				<documentation.publisher.tinlib>Waanders</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Baarsen, Reinier J.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number>44</documentation.catalogue_number>
+				<documentation.copy_number>2001/2370</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>100934</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="40" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2001</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Nederlandse kunst in het Rijksmuseum 1600-1700</title>
+					<source_title/>
+					<author.tinlib>Baarsen, Reinier J.</author.tinlib>
+					<publisher.tinlib>Rijksmuseum</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>2001/2370</copy.number>
+					<koha_id>100934</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2001</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Filedt Kok, Jan Piet</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number>65</documentation.catalogue_number>
+				<documentation.copy_number>2000/0789</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>57626</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 107 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Zwolle</documentation.place.tinlib>
+				<documentation.title linkref="195" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>2000</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>De glorie van de Gouden Eeuw : Nederlandse kunst uit de 17de eeuw : schilderijen, beeldhouwkunst en kunstnijverheid</title>
+					<source_title/>
+					<author.tinlib>Filedt Kok, Jan Piet</author.tinlib>
+					<publisher.tinlib>Rijksmuseum</publisher.tinlib>
+					<place.tinlib>Zwolle</place.tinlib>
+					<copy.number>2000/0789</copy.number>
+					<koha_id>57626</koha_id>
+				</documentation.title>
+				<documentation.publication.year>2000</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Boogert, Bob van den</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1999/1906</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120988</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 74-75</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Zwolle</documentation.place.tinlib>
+				<documentation.title linkref="153195" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1999</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandts schatkamer</title>
+					<source_title/>
+					<author.tinlib>Boogert, Bob van den</author.tinlib>
+					<publisher.tinlib>Museum het Rembrandthuis</publisher.tinlib>
+					<place.tinlib>Zwolle</place.tinlib>
+					<copy.number>1999/1906</copy.number>
+					<koha_id>120988</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1999</documentation.publication.year>
+				<documentation.publisher.tinlib>Museum het Rembrandthuis</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Buijsen, Edwin</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1999/1052</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120595</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 32, 33 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>London</documentation.place.tinlib>
+				<documentation.title linkref="102381" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1999</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt by himself [ : 1 1999]</title>
+					<source_title/>
+					<author.tinlib>Buijsen, Edwin</author.tinlib>
+					<publisher.tinlib>National Gallery Publ.</publisher.tinlib>
+					<place.tinlib>London</place.tinlib>
+					<copy.number>1999/1052</copy.number>
+					<koha_id>120595</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1999</documentation.publication.year>
+				<documentation.publisher.tinlib>National Gallery Publ.</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Middelkoop, Norbert E.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1997/2497</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>57975</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 19, 20 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Perth</documentation.place.tinlib>
+				<documentation.title linkref="83" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1997</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>The Golden Age of Dutch art : seventeenth century paintings from the Rijksmuseum and Australian collections</title>
+					<source_title/>
+					<author.tinlib>Middelkoop, Norbert E.</author.tinlib>
+					<publisher.tinlib>Art Gallery of Western Australia</publisher.tinlib>
+					<place.tinlib>Perth</place.tinlib>
+					<copy.number>1997/2497</copy.number>
+					<koha_id>57975</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1997</documentation.publication.year>
+				<documentation.publisher.tinlib>Art Gallery of Western Australia</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Wetering, Ernst van de</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1998/0105</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120477</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 32, 96, 125, 133, 179, 181-188, 195-201, 203, 216</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="102293" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1997</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : the painter at work</title>
+					<source_title/>
+					<author.tinlib>Wetering, Ernst van de</author.tinlib>
+					<publisher.tinlib>Amsterdam U.P.</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1998/0105</copy.number>
+					<koha_id>120477</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1997</documentation.publication.year>
+				<documentation.publisher.tinlib>Amsterdam U.P.</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Blankert, Albert</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1997/2400</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120292</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 26 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Melbourne</documentation.place.tinlib>
+				<documentation.title linkref="43" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1997</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : a genius and his impact</title>
+					<source_title/>
+					<author.tinlib>Blankert, Albert</author.tinlib>
+					<publisher.tinlib>Art Exhibitions Australia</publisher.tinlib>
+					<place.tinlib>Melbourne</place.tinlib>
+					<copy.number>1997/2400</copy.number>
+					<koha_id>120292</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1997</documentation.publication.year>
+				<documentation.publisher.tinlib>Art Exhibitions Australia</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Westermann, Mariët</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1998/1151</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>11323</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 145, 148, 149 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>London</documentation.place.tinlib>
+				<documentation.title linkref="9920" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1996</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>The art of the Dutch Republic 1585-1718</title>
+					<source_title/>
+					<author.tinlib>Westermann, Mariët</author.tinlib>
+					<publisher.tinlib>George Weidenfeld and Nicholson</publisher.tinlib>
+					<place.tinlib>London</place.tinlib>
+					<copy.number>1998/1151</copy.number>
+					<koha_id>11323</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1996</documentation.publication.year>
+				<documentation.publisher.tinlib>George Weidenfeld and Nicholson</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Mount, Harry</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1997/0166</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>76680</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 91 + noot 455 + afb. 50</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Cambridge</documentation.place.tinlib>
+				<documentation.title linkref="65418" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1996</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>A journey to Flanders and Holland</title>
+					<source_title/>
+					<author.tinlib>Mount, Harry</author.tinlib>
+					<publisher.tinlib>Cambridge U.P.</publisher.tinlib>
+					<place.tinlib>Cambridge</place.tinlib>
+					<copy.number>1997/0166</copy.number>
+					<koha_id>76680</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1996</documentation.publication.year>
+				<documentation.publisher.tinlib>Cambridge U.P.</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Brusati, Celeste</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1995/2800</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>11947</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 246-247 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Chicago</documentation.place.tinlib>
+				<documentation.title linkref="10427" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1995</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Artifice and illusion : the art and writing of Samuel van Hoogstraten</title>
+					<source_title/>
+					<author.tinlib>Brusati, Celeste</author.tinlib>
+					<publisher.tinlib>University of Chicago Press</publisher.tinlib>
+					<place.tinlib>Chicago</place.tinlib>
+					<copy.number>1995/2800</copy.number>
+					<koha_id>11947</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1995</documentation.publication.year>
+				<documentation.publisher.tinlib>University of Chicago Press</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Rosenberg, Jakob</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1995/2563</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>39155</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 72-74 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>New Haven</documentation.place.tinlib>
+				<documentation.title linkref="33647" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1995</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Dutch painting 1600-1800</title>
+					<source_title/>
+					<author.tinlib>Rosenberg, Jakob</author.tinlib>
+					<publisher.tinlib>Yale U.P.</publisher.tinlib>
+					<place.tinlib>New Haven</place.tinlib>
+					<copy.number>1995/2563</copy.number>
+					<koha_id>39155</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1995</documentation.publication.year>
+				<documentation.publisher.tinlib>Yale U.P.</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Bos, Johan</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1995/0820</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>21881</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="18773" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1994</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Capitaele stucken : lotgevallen van zeven belangrijke stukken uit het Amsterdamse schilderijenbezit vanaf 1683 tot en met 1808</title>
+					<source_title/>
+					<author.tinlib>Bos, Johan</author.tinlib>
+					<publisher.tinlib>Johan Bos</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1995/0820</copy.number>
+					<koha_id>21881</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1994</documentation.publication.year>
+				<documentation.publisher.tinlib>Johan Bos</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Boer, Marjolein de</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1994/1951a-b</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>46565</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 15</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Den Haag</documentation.place.tinlib>
+				<documentation.title linkref="40013" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1994</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Faces of the Golden Age : seventeenth century Dutch portraits</title>
+					<source_title/>
+					<author.tinlib>Boer, Marjolein de</author.tinlib>
+					<publisher.tinlib>Rijksdienst Beeldende Kunst</publisher.tinlib>
+					<place.tinlib>Den Haag</place.tinlib>
+					<copy.number>1994/1951a-b</copy.number>
+					<koha_id>46565</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1994</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksdienst Beeldende Kunst</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Knevel, Paul</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1995/0298</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>21192</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 10, 13, 120, 122, 135, 137, 313, 317</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Hilversum</documentation.place.tinlib>
+				<documentation.title linkref="18203" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1994</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Burgers in het geweer : de schutterijen in Holland, 1550-1700</title>
+					<source_title/>
+					<author.tinlib>Knevel, Paul</author.tinlib>
+					<publisher.tinlib>Historische Vereniging Holland</publisher.tinlib>
+					<place.tinlib>Hilversum</place.tinlib>
+					<copy.number>1995/0298</copy.number>
+					<koha_id>21192</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1994</documentation.publication.year>
+				<documentation.publisher.tinlib>Historische Vereniging Holland</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Tümpel, Astrid</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1994/0747</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120296</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 218, 219-225, 235, 263</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Antwerpen</documentation.place.tinlib>
+				<documentation.title linkref="102143" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1993</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : all paintings in colour</title>
+					<source_title/>
+					<author.tinlib>Tümpel, Astrid</author.tinlib>
+					<publisher.tinlib>Fonds Mercator</publisher.tinlib>
+					<place.tinlib>Antwerpen</place.tinlib>
+					<copy.number>1994/0747</copy.number>
+					<koha_id>120296</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1993</documentation.publication.year>
+				<documentation.publisher.tinlib>Fonds Mercator</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Broos, Ben P.J.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1994/0248</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>86047</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 16-17, afb. 8</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Den Haag</documentation.place.tinlib>
+				<documentation.title linkref="73393" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1993</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Liefde, list en lijden : historiestukken in het Mauritshuis</title>
+					<source_title/>
+					<author.tinlib>Broos, Ben P.J.</author.tinlib>
+					<publisher.tinlib>Mauritshuis</publisher.tinlib>
+					<place.tinlib>Den Haag</place.tinlib>
+					<copy.number>1994/0248</copy.number>
+					<koha_id>86047</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1993</documentation.publication.year>
+				<documentation.publisher.tinlib>Mauritshuis</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Brown, Christopher</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1991/1729</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120321</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 32-35</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="19" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1991</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : de meester en zijn werkplaats : schilderijen</title>
+					<source_title/>
+					<author.tinlib>Brown, Christopher</author.tinlib>
+					<publisher.tinlib>Rijksmuseum</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1991/1729</copy.number>
+					<koha_id>120321</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1991</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Bergh-Hoogterp, Louise E. van den</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1988/0745</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>127570</documentation.koha_id>
+				<documentation.pagination.catalogue>afb. 67, 71</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Zwolle</documentation.place.tinlib>
+				<documentation.title linkref="108261" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1988</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Schutters in Holland : kracht en zenuwen van de stad</title>
+					<source_title/>
+					<author.tinlib>Bergh-Hoogterp, Louise E. van den</author.tinlib>
+					<publisher.tinlib>Frans Halsmuseum</publisher.tinlib>
+					<place.tinlib>Zwolle</place.tinlib>
+					<copy.number>1988/0745</copy.number>
+					<koha_id>127570</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1988</documentation.publication.year>
+				<documentation.publisher.tinlib>Frans Halsmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Dudok van Heel, S.A.C.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1987/1502</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>37764</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 48-51</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="32488" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1987</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Dossier Rembrandt : documenten, tekeningen en prenten</title>
+					<source_title/>
+					<author.tinlib>Dudok van Heel, S.A.C.</author.tinlib>
+					<publisher.tinlib>Museum het Rembrandthuis</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1987/1502</copy.number>
+					<koha_id>37764</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1987</documentation.publication.year>
+				<documentation.publisher.tinlib>Museum het Rembrandthuis</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Haak, Bob</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1984/1329</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>66480</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 107, afb. 191</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="56949" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1984</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Hollandse schilders in de Gouden Eeuw</title>
+					<source_title/>
+					<author.tinlib>Haak, Bob</author.tinlib>
+					<publisher.tinlib>Meulenhoff/Landshoff</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1984/1329</copy.number>
+					<koha_id>66480</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1984</documentation.publication.year>
+				<documentation.publisher.tinlib>Meulenhoff/Landshoff</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Schwartz, Gary</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>C/RM0138.ASC/335 * 1</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120493</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 209-224, 228, 231, 259, afb. 230</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Maarssen</documentation.place.tinlib>
+				<documentation.title linkref="102304" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1984</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : zijn leven, zijn schilderijen : een nieuwe biografie met alle beschikbare schilderijen in kleur afgebeeld</title>
+					<source_title/>
+					<author.tinlib>Schwartz, Gary</author.tinlib>
+					<publisher.tinlib>Schwartz</publisher.tinlib>
+					<place.tinlib>Maarssen</place.tinlib>
+					<copy.number>C/RM0138.ASC/335 * 1</copy.number>
+					<koha_id>120493</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1984</documentation.publication.year>
+				<documentation.publisher.tinlib>Schwartz</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Bruyn Kops, Cornelius Joannes de</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>C/RM0156.ASC/218 * 1</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>116753</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 20, 51 (noot 5), 165</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="105" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1984</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Prijst de lijst : de Hollandse schilderijlijst in de zeventiende eeuw</title>
+					<source_title/>
+					<author.tinlib>Bruyn Kops, Cornelius Joannes de</author.tinlib>
+					<publisher.tinlib>Rijksmuseum</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>C/RM0156.ASC/218 * 1</copy.number>
+					<koha_id>116753</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1984</documentation.publication.year>
+				<documentation.publisher.tinlib>Rijksmuseum</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Eeghen, Isabella Henriette van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>C/RM0160.ASC/34 * 1</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>140340</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 214-215, 259, afb. 168</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="118985" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1983</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Het Trippenhuis te Amsterdam</title>
+					<source_title/>
+					<author.tinlib>Eeghen, Isabella Henriette van</author.tinlib>
+					<publisher.tinlib>Koninklijke Nederlandse Akademie van Wetenschappen</publisher.tinlib>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>C/RM0160.ASC/34 * 1</copy.number>
+					<koha_id>140340</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1983</documentation.publication.year>
+				<documentation.publisher.tinlib>Koninklijke Nederlandse Akademie van Wetenschappen</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Bruyn, Josua</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number>A146</documentation.catalogue_number>
+				<documentation.copy_number>1982/1920a-d</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>31147</documentation.koha_id>
+				<documentation.pagination.catalogue>dl. 3</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>The Hague</documentation.place.tinlib>
+				<documentation.title linkref="86" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1982-</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>A corpus of Rembrandt paintings</title>
+					<source_title/>
+					<author.tinlib>Bruyn, Josua</author.tinlib>
+					<publisher.tinlib>Martinus Nijhoff</publisher.tinlib>
+					<place.tinlib>The Hague</place.tinlib>
+					<copy.number>1982/1920a-d</copy.number>
+					<koha_id>31147</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1982-</documentation.publication.year>
+				<documentation.publisher.tinlib>Martinus Nijhoff</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Haak, Bob</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1981/1768a-b</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>59919</documentation.koha_id>
+				<documentation.pagination.catalogue>dl. 1, p. 18, afb. 17</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="51369" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1981-86</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Groepsportretten in het Amsterdams Historisch Museum</title>
+					<source_title/>
+					<author.tinlib>Haak, Bob</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1981/1768a-b</copy.number>
+					<koha_id>59919</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1981-86</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Brown, Christopher</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1981/1256</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>22140</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 25, afb. 24-26</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Oxford</documentation.place.tinlib>
+				<documentation.title linkref="18966" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1981</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Carel Fabritius : complete edition with a catalogue raisonné</title>
+					<source_title/>
+					<author.tinlib>Brown, Christopher</author.tinlib>
+					<publisher.tinlib>Phaidon</publisher.tinlib>
+					<place.tinlib>Oxford</place.tinlib>
+					<copy.number>1981/1256</copy.number>
+					<koha_id>22140</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1981</documentation.publication.year>
+				<documentation.publisher.tinlib>Phaidon</documentation.publisher.tinlib>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Boschma, Cornelis</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number>F</documentation.catalogue_number>
+				<documentation.copy_number>1978/1259</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>150290</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Leeuwarden</documentation.place.tinlib>
+				<documentation.title linkref="127233" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1978</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Willem Bartel van der Kooi (1768-1836) en het tekenonderwijs in Friesland [ : 1 1978]</title>
+					<source_title/>
+					<author.tinlib>Boschma, Cornelis</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>Leeuwarden</place.tinlib>
+					<copy.number>1978/1259</copy.number>
+					<koha_id>150290</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1978</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Bredius, Abraham</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number>410</documentation.catalogue_number>
+				<documentation.copy_number>1969/1376</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120468</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>London</documentation.place.tinlib>
+				<documentation.title linkref="102285" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1969</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt : the complete edition of the paintings</title>
+					<source_title/>
+					<author.tinlib>Bredius, Abraham</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>London</place.tinlib>
+					<copy.number>1969/1376</copy.number>
+					<koha_id>120468</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1969</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Clark, Kenneth</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1966/0850</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120567</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 70, 85, 86, 88, 160, 172, 214, afb. 77</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>London</documentation.place.tinlib>
+				<documentation.title linkref="102358" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1966</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt and the Italian Renaissance</title>
+					<source_title/>
+					<author.tinlib>Clark, Kenneth</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>London</place.tinlib>
+					<copy.number>1966/0850</copy.number>
+					<koha_id>120567</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1966</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Rosenberg, Jakob</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>C/RM0128.ASC/105 * 1</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120759</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 138-143 + afb.</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>London</documentation.place.tinlib>
+				<documentation.title linkref="102503" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1964</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt life and work</title>
+					<source_title/>
+					<author.tinlib>Rosenberg, Jakob</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>London</place.tinlib>
+					<copy.number>C/RM0128.ASC/105 * 1</copy.number>
+					<koha_id>120759</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1964</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Hellinga, Wytze Gerbens</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>1956/0476</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>120694</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="102455" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1956</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>Rembrandt fecit 1642 : de Nachtwacht, Gysbrect van Aemstel</title>
+					<source_title/>
+					<author.tinlib>Hellinga, Wytze Gerbens</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>1956/0476</copy.number>
+					<koha_id>120694</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1956</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Eekhoff, Wopke (archivaris)</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title/>
+				<documentation.catalogue_number/>
+				<documentation.copy_number>C/RM0022.ASC/199 * 1</documentation.copy_number>
+				<documentation.year/>
+				<documentation.volume/>
+				<documentation.koha_id>147840</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 44-45</documentation.pagination.catalogue>
+				<documentation.page_reference/>
+				<documentation.place.tinlib>Amsterdam</documentation.place.tinlib>
+				<documentation.title linkref="125238" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume/>
+					<year/>
+					<year_of_publication>1862</year_of_publication>
+					<number/>
+					<page_reference/>
+					<title>De vrouw van Rembrand : bijzonderheden omtrent het huwelijk van den schilder ... met Saske Ulenburgh, van Leeuwarden</title>
+					<source_title/>
+					<author.tinlib>Eekhoff, Wopke (archivaris)</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib>Amsterdam</place.tinlib>
+					<copy.number>C/RM0022.ASC/199 * 1</copy.number>
+					<koha_id>147840</koha_id>
+				</documentation.title>
+				<documentation.publication.year>1862</documentation.publication.year>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Dudok van Heel, S.A.C.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>The Rijksmuseum Bulletin</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>2009</documentation.year>
+				<documentation.volume>57</documentation.volume>
+				<documentation.koha_id>154146</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>P. 4-41</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200001297" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>57</volume>
+					<year>2009</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>P. 4-41</page_reference>
+					<title>The Night Watch and the Entry of Marie de&apos;Medici : a new interpretation of the original place and significance of the painting</title>
+					<source_title>The Rijksmuseum Bulletin</source_title>
+					<author.tinlib>Dudok van Heel, S.A.C.</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154146</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Dudok van Heel, S.A.C.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>The Rijksmuseum Bulletin</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>2009</documentation.year>
+				<documentation.volume>57</documentation.volume>
+				<documentation.koha_id>154146</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>P. 4-41</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200001297" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>57</volume>
+					<year>2009</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>P. 4-41</page_reference>
+					<title>The Night Watch and the Entry of Marie de&apos;Medici : a new interpretation of the original place and significance of the painting</title>
+					<source_title>The Rijksmuseum Bulletin</source_title>
+					<author.tinlib>Dudok van Heel, S.A.C.</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154146</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Dudok van Heel, S.A.C.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>The Rijksmuseum Bulletin</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>2009</documentation.year>
+				<documentation.volume>57</documentation.volume>
+				<documentation.koha_id>153764</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>P. 43-87</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200001298" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>57</volume>
+					<year>2009</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>P. 43-87</page_reference>
+					<title>Frans Banninck Cocq&apos;s Troop in Rembrandt&apos;s Night Watch : the identification of the guardsmen</title>
+					<source_title>The Rijksmuseum Bulletin</source_title>
+					<author.tinlib>Dudok van Heel, S.A.C.</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>153764</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Thiel, Pieter J.J. van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1991</documentation.year>
+				<documentation.volume>39</documentation.volume>
+				<documentation.koha_id>154399</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 103-112</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000875" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>39</volume>
+					<year>1991</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 103-112</page_reference>
+					<title>Schmidt-Degener en de Nachtwacht van Huib Luns</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Thiel, Pieter J.J. van</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154399</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Heijbroek, Jan Frederik</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>2003</documentation.year>
+				<documentation.volume>51</documentation.volume>
+				<documentation.koha_id>154102</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 274-283</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000606" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>51</volume>
+					<year>2003</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 274-283</page_reference>
+					<title>De Nachtwacht op reis : een beeldverslag</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Heijbroek, Jan Frederik</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154102</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Thiel, Pieter J.J. van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1976</documentation.year>
+				<documentation.volume>24</documentation.volume>
+				<documentation.koha_id>153557</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 4-13</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000121" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>24</volume>
+					<year>1976</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 4-13</page_reference>
+					<title>Beschadiging en herstel van Rembrandts Nachtwacht</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Thiel, Pieter J.J. van</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>153557</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib/>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1976</documentation.year>
+				<documentation.volume>24</documentation.volume>
+				<documentation.koha_id>153927</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 99-119</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000448" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>24</volume>
+					<year>1976</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 99-119</page_reference>
+					<title>De inlijsting van Rembrandts Nachtwacht in het verleden en de nieuwe lijst</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib/>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>153927</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Van de Voorde, Guido</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1976</documentation.year>
+				<documentation.volume>24</documentation.volume>
+				<documentation.koha_id>154304</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 52-67</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000789" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>24</volume>
+					<year>1976</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 52-67</page_reference>
+					<title>De radiografie van Rembrandts Nachtwacht</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Van de Voorde, Guido</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154304</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib/>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1976</documentation.year>
+				<documentation.volume>24</documentation.volume>
+				<documentation.koha_id>153927</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 99-119</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000448" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>24</volume>
+					<year>1976</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 99-119</page_reference>
+					<title>De inlijsting van Rembrandts Nachtwacht in het verleden en de nieuwe lijst</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib/>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>153927</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Hesterman, W.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1976</documentation.year>
+				<documentation.volume>24</documentation.volume>
+				<documentation.koha_id>154339</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 14-51</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000820" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>24</volume>
+					<year>1976</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 14-51</page_reference>
+					<title>Restauratieverslag van Rembrandts Nachtwacht</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Hesterman, W.</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154339</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Thiel, Pieter J.J. van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1991</documentation.year>
+				<documentation.volume>39</documentation.volume>
+				<documentation.koha_id>154399</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 103-112, afb. 4-5</documentation.pagination.catalogue>
+				<documentation.page_reference>p. 103-112</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000875" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>39</volume>
+					<year>1991</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 103-112</page_reference>
+					<title>Schmidt-Degener en de Nachtwacht van Huib Luns</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Thiel, Pieter J.J. van</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154399</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Heijbroek, Jan Frederik</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1991</documentation.year>
+				<documentation.volume>39</documentation.volume>
+				<documentation.koha_id>154354</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 169-170, afb. 6</documentation.pagination.catalogue>
+				<documentation.page_reference>p. 163-249</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000833" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>39</volume>
+					<year>1991</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 163-249</page_reference>
+					<title>Het Rijksmuseum voor Moderne Kunst van Willem Steenhoff. Werkelijkheid of utopie?</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Heijbroek, Jan Frederik</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154354</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Heijbroek, Jan Frederik</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>2003</documentation.year>
+				<documentation.volume>51</documentation.volume>
+				<documentation.koha_id>154102</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 274-283</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000606" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>51</volume>
+					<year>2003</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 274-283</page_reference>
+					<title>De Nachtwacht op reis : een beeldverslag</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Heijbroek, Jan Frederik</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154102</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Thiel, Pieter J.J. van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1983</documentation.year>
+				<documentation.volume>31</documentation.volume>
+				<documentation.koha_id>154350</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 116-123</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000829" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>31</volume>
+					<year>1983</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 116-123</page_reference>
+					<title>Het Rijksmuseum in het Trippenhuis, 1814-1885 (V) : conservering en restauratie</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Thiel, Pieter J.J. van</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154350</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Thiel, Pieter J.J. van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1982</documentation.year>
+				<documentation.volume>30</documentation.volume>
+				<documentation.koha_id>154349</documentation.koha_id>
+				<documentation.pagination.catalogue>p. 72, 75-77, 80, 83, afb. 10-14, 16</documentation.pagination.catalogue>
+				<documentation.page_reference>p. 63-86</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000828" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>30</volume>
+					<year>1982</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 63-86</page_reference>
+					<title>Het Rijksmuseum in het Trippenhuis, 1814-1885 (IV) : kopiisten en fotografen</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Thiel, Pieter J.J. van</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154349</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Groen, C.M.</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1976</documentation.year>
+				<documentation.volume>24</documentation.volume>
+				<documentation.koha_id>153551</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 68-98</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000115" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>24</volume>
+					<year>1976</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 68-98</page_reference>
+					<title>Beknopt verslag van de resultaten van het technisch onderzoek van Rembrandts Nachtwacht</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Groen, C.M.</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>153551</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation>
+				<documentation.issue/>
+				<documentation.author.tinlib>Thiel, Pieter J.J. van</documentation.author.tinlib>
+				<documentation.notes/>
+				<documentation.source.title>Bulletin van het Rijksmuseum</documentation.source.title>
+				<documentation.catalogue_number/>
+				<documentation.copy_number/>
+				<documentation.year>1991</documentation.year>
+				<documentation.volume>39</documentation.volume>
+				<documentation.koha_id>154399</documentation.koha_id>
+				<documentation.pagination.catalogue/>
+				<documentation.page_reference>p. 103-112</documentation.page_reference>
+				<documentation.place.tinlib/>
+				<documentation.title linkref="200000875" linkfield="title" linkreffield="dr" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+document">
+					<volume>39</volume>
+					<year>1991</year>
+					<year_of_publication/>
+					<number/>
+					<page_reference>p. 103-112</page_reference>
+					<title>Schmidt-Degener en de Nachtwacht van Huib Luns</title>
+					<source_title>Bulletin van het Rijksmuseum</source_title>
+					<author.tinlib>Thiel, Pieter J.J. van</author.tinlib>
+					<publisher.tinlib/>
+					<place.tinlib/>
+					<copy.number/>
+					<koha_id>154399</koha_id>
+				</documentation.title>
+				<documentation.publication.year/>
+				<documentation.publisher.tinlib/>
+			</documentation>
+			<documentation.link_cataloguelist>http://library.rijksmuseum.nl/cgi-bin/koha/opac-basket.pl?bib_list=192481/202294/105745/120478/146195/120421/107690/39183/66353/120495/120592/143803/100494/99505/100934/57626/120988/120595/57975/120477/120292/11323/76680/11947/39155/21881/46565/21192/120296/86047/120321/127570/37764/66480/120493/116753/140340/31147/59919/22140/150290/120468/120567/120759/120694/147840/154146/154146/153764/154399/154102/153557/153927/154304/153927/154339/154399/154354/154102/154350/154349/153551/154399/</documentation.link_cataloguelist>
+			<documentation.free>Inzoomer object op zaal, 2013 (Nederlands/English).</documentation.free>
+			<documentation.free>A. Jensen Adams, Public Faces and Private Identities in Seventeenth-Century Holland, Portraiture and the Production of Community, New York 2009, p. 211-217, fig. 60.</documentation.free>
+			<documentation.free>M. Rayssac, &apos;l&apos;Exode des Musées, Histoire des oeuvres d&apos;art sous l&apos;Occupation&apos;, Parijs 2007.</documentation.free>
+			<documentation.free>K.M. Groen, &apos;Earth Matters, The origin of the material used for the preparation of the Nightwatch and many other canvases in Rembrandt&apos;s workshop after 1640&apos;, Art Matters, volume 3, p. 138.</documentation.free>
+			<documentation.free>E. Runia. A. van Suchtelen, Rembrandt, Den Haag 2006, p. 14.</documentation.free>
+			<documentation.free>Y. van Veelen, &apos;Work in progress. De strijd om de Nachtwacht&apos;, Kunstbeeld nr. 12/1 (dec. 2004/jan. 2005), p. 44-47.</documentation.free>
+			<documentation.free>&apos;Omtrents Rembrandts Nachtwacht&apos;, Kunstkrant Rijksmuseum Amsterdam nr. 1 (1998), p. 14-20.</documentation.free>
+			<documentation.free>H. van Os, in: Bulletin van het Rijksmuseum nr. 4 (1996), p. 309-320 + afb.</documentation.free>
+			<documentation.free>J. Boomgaard, &apos;De Verloren Zoon. Rembrandt en de Nederlandse Kunstgeschiedenisbeschrijving&apos;, Kunstreeks (1995).</documentation.free>
+			<documentation.free>P. Taylor, &apos;Darkness at Noon. Rembrandts Nachtwacht&apos;, Kunstschrift 6 (1994), p. 22-27 + afb.</documentation.free>
+			<documentation.free>O. Pacht, &apos;Rembrandt&apos;, Munchen 1991, p. 19-30 + ill.</documentation.free>
+			<documentation.free>A.K. Wheelock, &apos;The Age of Rembrandt&apos;, Studies in seventeenth Century Dutch Painting (The Pennsylvania State University, 1988), p. 215, 223 (afb.).</documentation.free>
+			<documentation.free>J.B. Bedaux, &apos;Een achttiende eeuwse kunsttheoretische discussie&apos;, Kunstlicht 15 (1985), p. 25-28.</documentation.free>
+			<documentation.free>C. Grimm, &apos;Handschrift, schildertechniek en beeldstructuur. Bijdrage tot het onderzoek naar toeschrijving, I: de helmen van Rembrandt&apos;, Tableau (1982/83), p. 246-248, afb. 5.</documentation.free>
+			<documentation.free>E. van de Wetering, &apos;Ontrouw aan Rembrandt&apos;, Kunstschrift (Openbaar Kunstbezit) (1982), p. 166-167, 171, afb. 24-26.</documentation.free>
+			<documentation.free>K. Clark, &apos;What is a masterpiece?&apos;, Portfolio. The Magazine of the Visual Arts, 2 (1980), p. 51 + afb.</documentation.free>
+			<documentation.free>H. Günther, &apos;Damals oder heute unverstanden. Zum Problem von Rembrandts Nachtwache&apos;, Welkunst 50 (1980), p. 1848-1850 + afb.</documentation.free>
+			<documentation.free>U. Schumacher, &apos;Gruppenporträt und Genrebild. Zur Deutung der Photographie fur die franzosische Malerei des 19. Jahrhunderts, Giessener Beiträge zur Kunstgeschichte 4 (1979), p. 29, afb. 11.</documentation.free>
+			<documentation.free>E. van de Wetering, &apos;De jonge Rembrandt aan het werk. Materiaalgebruik en schildertechniek in het begin van zijn Leidse periode, Oud Holland 91 (1977), p. 55, 58.</documentation.free>
+			<documentation.free>E.K.J. Reznicek, &apos;Opmerkingen bij Rembrandt&apos;, Oud Holland 91 (1977), p. 99-103, afb. 22.</documentation.free>
+			<documentation.free>M.M. Toth-Ubbens, &apos;De barbier van Amsterdam. Aantekeningen over de relaties tussen het Waaggebouw en de Schouwburg in de zeventiende eeuw&apos;, Antiek 10 (1975), p. 388, afb. 12.</documentation.free>
+			<documentation.free>H. Gerson, &apos;De Nachtwacht&apos;, Openbaar Kunstbezit, 10e jaargang, januari (1966).</documentation.free>
+			<documentation.free>Chr. White, &apos;Rembrandt&apos;, Den Haag 1964, p. 65, 66 + afb.</documentation.free>
+			<documentation.free>A.J. Moes-Veth, &apos;Rembrandt&apos;s Claudius Civilis en de Nachtwacht van terzijde beschouwd, Oud Holland LXXV (1960), p. 143.</documentation.free>
+			<documentation.free>A.J. Moes-Veth, &apos;De Nachtwacht en haar oude copieen&apos;, Oud Holland LXII (1947), p. 188.</documentation.free>
+			<owner linkref="967" linkfield="name" linkreffield="frefBB" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Gemeente Amsterdam</name>
+			</owner>
+			<label>
+				<label.notes/>
+				<label.notes.gb.encat/>
+				<label.date>2013-05-22</label.date>
+				<label.purpose option="" value="">
+					<text language="0">room text</text>
+					<text language="1">zaaltekst</text>
+				</label.purpose>
+				<label.text/>
+				<label.txt.gb.encat/>
+				<label.title>Schutters van wijk II onder leiding van kapitein Frans Banninck Cocq, bekend als de ‘Nachtwacht’</label.title>
+				<label.manufacture>Rembrandt Harmensz van Rijn (1606–1669), olieverf op doek, 1642</label.manufacture>
+			</label>
+			<label>
+				<label.notes/>
+				<label.notes.gb.encat/>
+				<label.date>2007-01-25</label.date>
+				<label.purpose option="" value="">
+					<text language="0">room text</text>
+					<text language="1">zaaltekst</text>
+				</label.purpose>
+				<label.text>Rembrandts beroemdste en grootste doek werd gemaakt voor de Kloveniersdoelen. Dit was een van de verenigingsgebouwen van de Amsterdamse schutterij, de burgerwacht van de stad. Alle mannen hadden dienstplicht, maar omdat ieder voor zijn eigen portret moest betalen, zijn alleen de rijkste burgers afgebeeld. 
+Rembrandt was de eerste die op een groepsportret de figuren in actie weergaf. De kapitein, in het zwart, geeft zijn luitenant opdracht dat de compagnie moet gaan marcheren. De schutters stellen zich op. Met behulp van licht vestigde Rembrandt de aandacht op belangrijke details, zoals het handgebaar van de kapitein en het kleine meisje op de achtergrond. Zij is de mascotte van de schutters.</label.text>
+				<label.txt.gb.encat/>
+				<label.title/>
+				<label.manufacture/>
+			</label>
+			<labelgb>
+				<label.notes.gb/>
+				<label.date.gb>2013-05-22</label.date.gb>
+				<label.purpose.gb option="" value="">
+					<text language="0">room text</text>
+					<text language="1">room text</text>
+				</label.purpose.gb>
+				<label.text.gb/>
+				<label.title.gb>Militia Company of District II under the Command of Captain Frans Banninck Cocq, Known as de ‘Night Watch’</label.title.gb>
+				<label.manufacture.gb>Rembrandt Harmensz van Rijn (1606–1669), oil on canvas, 1642</label.manufacture.gb>
+			</labelgb>
+			<fysic>
+				<physical.medium>olieverf op doek</physical.medium>
+				<support.medium.gb/>
+			</fysic>
+			<related_object>
+				<related.ref.type option="CURRENTFRAME" value="CURRENTFRAME">
+					<text language="0">painting / current frame</text>
+					<text language="1">schilderij / huidige lijst</text>
+				</related.ref.type>
+				<related.ref linkfield="object.number" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+collect" linkdata="SK-L-4027">
+					<title>Schilderijlijst</title>
+					<title.gb/>
+				</related.ref>
+				<related.institution/>
+				<related.place/>
+				<related.title>Schilderijlijst</related.title>
+				<related.title.gb/>
+			</related_object>
+			<related_object>
+				<related.ref.type option="" value="">
+					<text language="0">painting / current frame</text>
+					<text language="1">schilderij / huidige lijst</text>
+				</related.ref.type>
+				<related.ref linkfield="object.number" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+collect" linkdata="SK-L-1847-I">
+					<title>Schilderijlijst</title>
+					<title.gb/>
+				</related.ref>
+				<related.institution/>
+				<related.place/>
+				<related.title>Schilderijlijst</related.title>
+				<related.title.gb/>
+			</related_object>
+			<related_object>
+				<related.ref.type option="" value="">
+					<text language="0">painting / current frame</text>
+					<text language="1">schilderij / huidige lijst</text>
+				</related.ref.type>
+				<related.ref linkfield="object.number" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+collect" linkdata="SK-L-1847-II">
+					<title>Schilderijlijst</title>
+					<title.gb/>
+				</related.ref>
+				<related.institution/>
+				<related.place/>
+				<related.title>Schilderijlijst</related.title>
+				<related.title.gb/>
+			</related_object>
+			<related_object>
+				<related.ref.type option="" value="">
+					<text language="0">painting / current frame</text>
+					<text language="1">schilderij / huidige lijst</text>
+				</related.ref.type>
+				<related.ref linkfield="object.number" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+collect" linkdata="SK-L-1847-III">
+					<title>Schilderijlijst</title>
+					<title.gb/>
+				</related.ref>
+				<related.institution/>
+				<related.place/>
+				<related.title>Schilderijlijst</related.title>
+				<related.title.gb/>
+			</related_object>
+			<related_object>
+				<related.ref.type option="" value="">
+					<text language="0">painting / current frame</text>
+					<text language="1">schilderij / huidige lijst</text>
+				</related.ref.type>
+				<related.ref linkfield="object.number" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+collect" linkdata="SK-L-1847-IV">
+					<title>Schilderijlijst</title>
+					<title.gb/>
+				</related.ref>
+				<related.institution/>
+				<related.place/>
+				<related.title>Schilderijlijst</related.title>
+				<related.title.gb/>
+			</related_object>
+
+
+
+			<inscription>
+				<inscription.description/>
+				<inscription.notes/>
+				<inscription.content>Rembrandt f 1642</inscription.content>
+				<inscription.method/>
+				<inscription.position>linksonder</inscription.position>
+				<inscription.interpretation/>
+
+
+				<inscription.reference.type option="" value="">
+					<text language="0">Lugt</text>
+					<text language="1">Lugt</text>
+				</inscription.reference.type>
+
+
+				<inscription.status option="" value="">
+					<text language="0">false</text>
+					<text language="1">vals</text>
+				</inscription.status>
+
+				<inscription.language option="" value="">
+					<text language="0">Arabic</text>
+					<text language="1">Arabisch</text>
+				</inscription.language>
+				<inscription.type linkref="54121" linkfield="term" linkreffield="lJ" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>signatuur en datum</term>
+					<term.gb>Signed and dated</term.gb>
+				</inscription.type>
+				<inscription.type.gb>Signed and dated</inscription.type.gb>
+				<inscription.translation/>
+				<inscription.description.gb/>
+				<inscription.label.gb/>
+				<inscription.position.gb/>
+			</inscription>
+
+
+			<inscription>
+				<inscription.description/>
+				<inscription.notes>
+				</inscription.notes>
+				<inscription.content>Frans Banning Cocq, heer van purmerlant en Ilpendam, Capiteijn Willem van Ruijtenburch van Vlaerdingen, heer van Vlaerdingen, Lu[ij]tenant, Jan Visscher Cornelisen Vaendrich, Rombout Kemp Sergeant, Reijnier Engelen Sergeant, Barent Harmansen, Jan Adriaensen Keyser, Elbert Willemsen, Jan Clasen Leydeckers, Jan Ockersen, Jan Pietersen bronchorst, Harman Iacobsen wormskerck, Jacob Dircksen de Roy, Jan vander heede, Walich Schellingwou, Jan brugman, Claes van Cruysbergen, Paulus Schoonhoven</inscription.content>
+				<inscription.method/>
+				<inscription.position>middenboven op het schild</inscription.position>
+				<inscription.interpretation/>
+				<inscription.reference.type option="" value="">
+					<text language="0">Lugt</text>
+					<text language="1">Lugt</text>
+				</inscription.reference.type>
+				<inscription.status option="" value="">
+					<text language="0">false</text>
+					<text language="1">vals</text>
+				</inscription.status>
+				<inscription.language option="" value="">
+					<text language="0">Arabic</text>
+					<text language="1">Arabisch</text>
+				</inscription.language>
+				<inscription.type linkref="66190" linkfield="term" linkreffield="lJ" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>inscriptie</term>
+					<term.gb>Inscribed</term.gb>
+				</inscription.type>
+				<inscription.type.gb>Inscribed</inscription.type.gb>
+				<inscription.translation/>
+				<inscription.description.gb/>
+				<inscription.label.gb/>
+				<inscription.position.gb/>
+			</inscription>
+
+
+
+
+
+			<institution.number>333</institution.number>
+			<material>
+				<material linkref="19" linkfield="term" linkreffield="l6" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>doek</term>
+				</material>
+				<material.notes/>
+				<material.part/>
+			</material>
+			<material>
+				<material linkref="18" linkfield="term" linkreffield="l6" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>olieverf</term>
+				</material>
+				<material.notes/>
+				<material.part/>
+			</material>
+			<object_name>
+				<object.name linkref="16" linkfield="term" linkreffield="l3" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>schilderij</term>
+					<broader_term/>
+				</object.name>
+			</object_name>
+			<object.name.broader/>
+			<object.number>SK-C-5</object.number>
+			<Alternative_number>
+				<object.number.alternative>SA 7392</object.number.alternative>
+				<object.number.alternative.inst>Amsterdams Historisch Museum</object.number.alternative.inst>
+				<object.number.alternative.type option="EXTN" value="EXTN">
+					<text language="0">external objectnumber</text>
+					<text language="1">extern objectnummer</text>
+				</object.number.alternative.type>
+				<object.number.alternative.remarks/>
+			</Alternative_number>
+			<Alternative_number>
+				<object.number.alternative>2016</object.number.alternative>
+				<object.number.alternative.inst>Rijksmuseum Amsterdam</object.number.alternative.inst>
+				<object.number.alternative.type option="CATNUM" value="CATNUM">
+					<text language="0">catalogue number</text>
+					<text language="1">catalogusnummer</text>
+				</object.number.alternative.type>
+				<object.number.alternative.remarks>Schilderijencatalogus voor 1976.</object.number.alternative.remarks>
+			</Alternative_number>
+			<objectsupply.development option="RMA" value="RMA">
+				<text language="0">RMA</text>
+				<text language="1">RMA</text>
+			</objectsupply.development>
+			<objectsupply.arrangement option="monteren" value="monteren">
+				<text language="0">monteren</text>
+				<text language="1">monteren</text>
+			</objectsupply.arrangement>
+			<objectsupply.base.visible option="nee" value="nee">
+				<text language="0">nee</text>
+				<text language="1">nee</text>
+			</objectsupply.base.visible>
+			<subject.name linkref="94640" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Banning Cocq, Frans</name>
+			</subject.name>
+			<subject.name linkref="118877" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Ruytenburch, Willem van</name>
+			</subject.name>
+			<subject.name linkref="121226" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Visscher Cornelisen, Jan</name>
+			</subject.name>
+			<subject.name linkref="105457" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Kemp, Rombout</name>
+			</subject.name>
+			<subject.name linkref="121227" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Engelen, Reijnier Janszn</name>
+			</subject.name>
+			<subject.name linkref="121228" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Bolhamer, Barent Harmansen</name>
+			</subject.name>
+			<subject.name linkref="121229" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Keijser, Jan Adriaensen</name>
+			</subject.name>
+			<subject.name linkref="121230" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Willemsen, Elbert</name>
+			</subject.name>
+			<subject.name linkref="121231" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Leijdeckers, Jan Claesen</name>
+			</subject.name>
+			<subject.name linkref="121232" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Ockersen, Jan</name>
+			</subject.name>
+			<subject.name linkref="121233" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Bronchorst, Jan Pietersen</name>
+			</subject.name>
+			<subject.name linkref="121234" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Wormskerck, Harman Jacobsen</name>
+			</subject.name>
+			<subject.name linkref="121235" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Roy, Jacob Dircksen de</name>
+			</subject.name>
+			<subject.name linkref="121236" linkfield="name" linkreffield="sn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+				<name>Heede, Jan van der</name>
+			</subject.name>
+			<subject.location linkref="41" linkfield="term" linkreffield="sl" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+Thesau">
+				<term>Amsterdam</term>
+			</subject.location>
+			<veldgesloten>
+				<notes.private>Glorie van de Gouden Eeuw, 2000, nr. 65; DAM</notes.private>
+				<notes.private.source>[bijzonderheden OP]</notes.private.source>
+				<notes.private.date>2012-11-10</notes.private.date>
+			</veldgesloten>
+			<PersistentIdentifier>RM0001.COLLECT.5216</PersistentIdentifier>
+			<project.label option="TOKEN" value="TOKEN">
+				<text language="0">TOKEN</text>
+				<text language="1">TOKEN</text>
+			</project.label>
+			<project.label option="BS2" value="BS2">
+				<text language="0">BS2</text>
+				<text language="1">BS2</text>
+			</project.label>
+			<pedigree>Groote Zaal van den Kloveniersdoelen; in 1715 overgebracht naar de Kleine Krijgsraadkamer van het Oude Stadhuis; In 1815 overgebracht naar het Trippenhuis; in bruikleen van Amsterdam, 15 aug. 1808</pedigree>
+			<publication.api option="PUBL" value="Publiceren API">
+				<text language="0">Publish API</text>
+				<text language="1">Publiceren API</text>
+			</publication.api>
+			<publication.api option="XL" value="XL">
+				<text language="0">RijksXL</text>
+				<text language="1">RijksXL</text>
+			</publication.api>
+			<publication.api option="XL100" value="XL100">
+				<text language="0">Top 100</text>
+				<text language="1">Top 100</text>
+			</publication.api>
+			<publication.api option="XL1000" value="XL1000">
+				<text language="0">Top 1000</text>
+				<text language="1">Top 1000</text>
+			</publication.api>
+			<publish.website option="1" value="gebruik door derden">
+				<text language="0">used by third parties</text>
+				<text language="1">gebruik door derden</text>
+			</publish.website>
+			<rights.freeofrights option="YES" value="ja">
+				<text language="0">yes</text>
+				<text language="1">ja</text>
+				<text language="2">oui</text>
+			</rights.freeofrights>
+			<record.type option="INDEP" value="zelfstandig object">
+				<text language="0">independent object</text>
+				<text language="1">zelfstandig object</text>
+			</record.type>
+			<priref>5216</priref>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-12-07</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="108857" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-69</reproduction_reference>
+					<date.early>2006-12-07</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106304" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-20</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106306" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-22</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106300" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-16</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106302" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-18</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106308" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-24</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail sjerp Kapitein Frans Banning Cocq</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106314" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-30</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail sjerp Kapitein Frans Banning Cocq</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106316" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-32</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106310" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-26</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106312" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-28</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="51644" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-01</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="4854" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>SK6258 18x24</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>fotonegatief</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>fotonegatief</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="51646" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-03</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="52601" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-00</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding van grootbeelddia</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding van grootbeelddia</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>met lijst</reproduction.notes>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="89801" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>BK12450 18x24</reproduction_reference>
+					<date.early/>
+					<notes>met lijst</notes>
+					<reproduction_type>fotonegatief</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>fotonegatief</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Frans Banning Cocq</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106296" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-12</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail Frans Banning Cocq</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Frans Banning Cocq</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106298" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-14</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail Frans Banning Cocq</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="67143" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-04</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>detail: Banning Cocq en Van Ruytenburgh ten voeten uit</reproduction.notes>
+				<reproduction.date>1980-08</reproduction.date>
+				<reproduction.date.end>1980-08</reproduction.date.end>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="59035" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>F2205-2</reproduction_reference>
+					<date.early>1980-08</date.early>
+					<notes>detail: Banning Cocq en Van Ruytenburgh ten voeten uit</notes>
+					<reproduction_type>fotonegatief</reproduction_type>
+					<date.late>1980-08</date.late>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>fotonegatief</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Jacob Dircksen de Roy (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106318" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-34</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Jacob Dircksen de Roy (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106342" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-58</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Vaandeldrager Jan Cornelisz. Visscher</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106344" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-60</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Vaandeldrager Jan Cornelisz. Visscher</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106338" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-54</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106340" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-56</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Het hoofd van Rembrandt (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106346" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-62</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Het hoofd van Rembrandt (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106352" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-68</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2007-12-27</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="120010" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-70</reproduction_reference>
+					<date.early>2007-12-27</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106348" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-64</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106350" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-66</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Aanvoerder van de piekeniers, lakenkoopman, deken van de gereformeerde kerk en regent van het armenhuis, Rombout Kemp</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106324" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-40</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Aanvoerder van de piekeniers, lakenkoopman, deken van de gereformeerde kerk en regent van het armenhuis, Rombout Kemp</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106326" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-42</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Figurant</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106320" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-36</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Figurant</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Rombout Kemp</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106322" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-38</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail Rombout Kemp</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Tamboer Jacob Jorisz (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106328" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-44</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Tamboer Jacob Jorisz (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Sergeant en lakenkoopman Reijer Engelen</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106334" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-50</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Sergeant en lakenkoopman Reijer Engelen</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Herman Wormskerck</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106336" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-52</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail Herman Wormskerck</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106330" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-46</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Sergeant en lakenkoopman Reijer Engelen</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106332" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-48</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Sergeant en lakenkoopman Reijer Engelen</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Tamboer Jacob Jorisz (?)</reproduction.notes>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="51645" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-02</reproduction_reference>
+					<date.early/>
+					<notes>Tamboer Jacob Jorisz (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Frans Banning Cocq</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106295" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-11</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail Frans Banning Cocq</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Aanvoerder van de piekeniers, lakenkoopman, deken van de gereformeerde kerk en regent van het armenhuis, Rombout Kemp</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106323" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-39</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Aanvoerder van de piekeniers, lakenkoopman, deken van de gereformeerde kerk en regent van het armenhuis, Rombout Kemp</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106303" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-19</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-02-10</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="104923" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-10</reproduction_reference>
+					<date.early>2006-02-10</date.early>
+					<notes>Detail Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106331" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-47</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Tamboer Jacob Jorisz (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106327" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-43</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Tamboer Jacob Jorisz (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106301" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-17</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Sergeant en lakenkoopman Reijer Engelen</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106333" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-49</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Sergeant en lakenkoopman Reijer Engelen</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Figurant</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106321" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-37</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Figurant</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail laars Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106305" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-21</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail laars Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="85210" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-05</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Willem van Ruytenburch</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106299" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-15</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Willem van Ruytenburch</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106335" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-51</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106313" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-29</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106341" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-57</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Frans Banning Cocq</reproduction.notes>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106297" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-13</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes>Detail Frans Banning Cocq</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2005-11-21</reproduction.date>
+				<reproduction.date.end>2005-11-21</reproduction.date.end>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="100745" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-08</reproduction_reference>
+					<date.early>2005-11-21</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late>2005-11-21</date.late>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106325" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-41</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106343" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-59</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Jacob Dircksen de Roy (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106317" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-33</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Jacob Dircksen de Roy (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-02-10</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="104768" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-09</reproduction_reference>
+					<date.early>2006-02-10</date.early>
+					<notes>Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-05-15</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106319" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-35</reproduction_reference>
+					<date.early>2006-05-15</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106309" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-25</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Vaandeldrager Jan Cornelisz. Visscher</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106345" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-61</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Vaandeldrager Jan Cornelisz. Visscher</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106307" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-23</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="85212" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-07</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="54534" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>T895 t/m 900</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type/>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type/>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106315" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-31</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106347" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-63</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Lakenhandelaar Herman Wormskerck</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106337" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-53</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Lakenhandelaar Herman Wormskerck</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail Saskia (?)</reproduction.notes>
+				<reproduction.date>2006-04-19</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106311" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-27</reproduction_reference>
+					<date.early>2006-04-19</date.early>
+					<notes>Detail Saskia (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>Detail tamboer Jacob Jorisz (?)</reproduction.notes>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106329" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-45</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes>Detail tamboer Jacob Jorisz (?)</notes>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106351" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-67</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106339" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-55</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes>detail lijst</reproduction.notes>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="89802" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>F2954-4</reproduction_reference>
+					<date.early/>
+					<notes>detail lijst</notes>
+					<reproduction_type>fotonegatief</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>fotonegatief</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date/>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="85211" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-06</reproduction_reference>
+					<date.early/>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2006-04-11</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="106349" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-65</reproduction_reference>
+					<date.early>2006-04-11</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<reproduct>
+				<reproduction.notes/>
+				<reproduction.date>2007-12-27</reproduction.date>
+				<reproduction.date.end/>
+				<reproduction.use/>
+				<reproduction.location/>
+				<reproduction.reference linkref="120011" linkfield="reproduction_reference" linkreffield="fn" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+photo">
+					<reproduction_reference>M-SK-C-5-71</reproduction_reference>
+					<date.early>2007-12-27</date.early>
+					<notes/>
+					<reproduction_type>digitale afbeelding</reproduction_type>
+					<date.late/>
+				</reproduction.reference>
+				<reproduction.restoration_state/>
+				<reproduction.type>digitale afbeelding</reproduction.type>
+			</reproduct>
+			<location>HG-2.31</location>
+			<location>PH-012</location>
+			<location>RM-M229</location>
+			<location>RM-M224</location>
+			<location.notes>M.opde.Laak/T.bos/B.Nederveen</location.notes>
+			<location.date>2013-04-02</location.date>
+			<location.date>2003-12-17</location.date>
+			<location.date>2001-02-19</location.date>
+			<location.changed.name>d.bos</location.changed.name>
+			<location.changed.name>elival</location.changed.name>
+			<location.changed.name>wimhoe</location.changed.name>
+
+			<title>
+
+
+				<title>Officieren en andere schutters van wijk II in Amsterdam onder leiding van kapitein Frans Banninck Cocq en luitenant Willem van Ruytenburch, bekend als de ‘Nachtwacht’</title>
+				<title.type/>
+				<title.preferred/>
+
+				<title.gb>Officers and other civic guardsmen of District II of Amsterdam, under the command of Captain Frans Banninck Cocq and Lieutenant Willem van Ruytenburch, known as the ‘Night Watch’</title.gb>
+			</title>
+
+			<title>
+
+				<title>Het korporaalschap van kapitein Frans Banninck Cocq en luitenant Willem van Ruytenburch, bekend als de &apos;Nachtwacht&apos;</title>
+				<title.type>voormalige titel</title.type>
+				<title.preferred/>
+
+				<title.gb>The company of Captain Frans Banning Cocq and Lieutenant Willem van Ruytenburch, known as &apos;The nightwatch&apos;</title.gb>
+			</title>
+
+
+			<maker>
+				<maker linkref="5706" linkfield="name" linkreffield="l1" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+					<frefn3>2064</frefn3>
+					<frefn5>41</frefn5>
+					<born_at_unknown option="" value="">
+						<text language="0">?</text>
+						<text language="1">?</text>
+					</born_at_unknown>
+					<died_at_unknown option="" value="">
+						<text language="0">?</text>
+						<text language="1">?</text>
+					</died_at_unknown>
+					<biography.nl>Rembrandt Harmensz. van Rijn (1606-1669) is ongetwijfeld de bekendste Nederlandse schilder uit de 17de eeuw. Hij werd geboren in Leiden. Hij ging daar in de leer bij Jacob van Swanenburch. Bij Pieter Lastman in Amsterdam maakte hij vervolgens kennis met de sterke licht-donkercontrasten in het werk van Caravaggio. Terug in Leiden vestigde hij zich met Jan Lievens als zelfstandig schilder. Gerard Dou was zijn eerste leerling. In 1631 verhuisde hij naar Amsterdam. Hij kreeg steeds meer opdrachten voor portretten en had talloze leerlingen onder wie Ferdinand Bol en Govert Flinck. [Rijkscanon 2007]</biography.nl>
+					<name>Rembrandt Harmensz. van Rijn</name>
+					<name.gb/>
+					<biography.gb/>
+					<literature.biography/>
+					<birth.date.end>1606-07-15</birth.date.end>
+					<death.date.end>1669-10-08</death.date.end>
+					<born_at>Leiden</born_at>
+					<birth_on>1606-07-15</birth_on>
+					<died_at>Amsterdam</died_at>
+					<died_on>1669-10-08</died_on>
+					<died_on_precision option="" value="">
+						<text language="0">c.</text>
+						<text language="1">ca.</text>
+					</died_on_precision>
+					<birth_on_precision option="" value="">
+						<text language="0">c.</text>
+						<text language="1">ca.</text>
+					</birth_on_precision>
+					<active.end/>
+					<active_period.place.lref/>
+					<active.begin/>
+				</maker>
+				<maker.active.start/>
+				<maker.active.end/>
+				<maker.active.place.gb linkref="0" linkfield="term.gb" linkreffield="lN" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+Thesau">
+					<term.gb/>
+				</maker.active.place.gb>
+				<maker.biography>Rembrandt Harmensz. van Rijn (1606-1669) is ongetwijfeld de bekendste Nederlandse schilder uit de 17de eeuw. Hij werd geboren in Leiden. Hij ging daar in de leer bij Jacob van Swanenburch. Bij Pieter Lastman in Amsterdam maakte hij vervolgens kennis met de sterke licht-donkercontrasten in het werk van Caravaggio. Terug in Leiden vestigde hij zich met Jan Lievens als zelfstandig schilder. Gerard Dou was zijn eerste leerling. In 1631 verhuisde hij naar Amsterdam. Hij kreeg steeds meer opdrachten voor portretten en had talloze leerlingen onder wie Ferdinand Bol en Govert Flinck. [Rijkscanon 2007]</maker.biography>
+				<maker.biography.literature/>
+				<maker.biography.gb/>
+				<maker.gb/>
+				<maker.birth.date>1606-07-15</maker.birth.date>
+				<maker.birth.date.end>1606-07-15</maker.birth.date.end>
+				<maker.birth.date.precision option="" value="">
+					<text language="0">c.</text>
+					<text language="1">ca.</text>
+				</maker.birth.date.precision>
+				<maker.birth.place>Leiden</maker.birth.place>
+				<maker.birth.place.gb linkref="2064" linkfield="term.gb" linkreffield="3N" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term.gb>Leiden</term.gb>
+				</maker.birth.place.gb>
+				<maker.birth.place.unknown option="" value="">
+					<text language="0">?</text>
+					<text language="1">?</text>
+				</maker.birth.place.unknown>
+				<maker.qualifier option="" value="">
+					<text language="0">workshop of</text>
+					<text language="1">atelier van</text>
+				</maker.qualifier>
+				<maker.relation option="" value="">
+					<text language="0">or</text>
+					<text language="1">of</text>
+				</maker.relation>
+				<maker.role linkref="7135" linkfield="term" linkreffield="lR" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term>schilder</term>
+				</maker.role>
+				<maker.death.date>1669-10-08</maker.death.date>
+				<maker.death.date.end>1669-10-08</maker.death.date.end>
+				<maker.death.date.precision option="" value="">
+					<text language="0">c.</text>
+					<text language="1">ca.</text>
+				</maker.death.date.precision>
+				<maker.death.place>Amsterdam</maker.death.place>
+				<maker.death.place.gb linkref="41" linkfield="term.gb" linkreffield="5N" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+					<term.gb>Amsterdam</term.gb>
+				</maker.death.place.gb>
+				<maker.death.place.unknown option="" value="">
+					<text language="0">?</text>
+					<text language="1">?</text>
+				</maker.death.place.unknown>
+				<maker.rejected/>
+				<production.source/>
+				<production.place linkref="0" linkfield="term" linkreffield="l5" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+				</production.place>
+				<production.place.unknown option="" value="">
+					<text language="0">?</text>
+					<text language="1">?</text>
+				</production.place.unknown>
+			</maker>
+			<acquisition.creditline>Bruikleen van de gemeente Amsterdam</acquisition.creditline>
+			<acquisition.creditline.gb>On loan from the City of Amsterdam</acquisition.creditline.gb>
+			<acquisition.date>1808</acquisition.date>
+			<acquisition.method linkref="257" linkfield="term" linkreffield="ls" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+thesau">
+				<term>bruikleen</term>
+			</acquisition.method>
+			<acquisition>
+				<acquisition.name linkref="967" linkfield="name" linkreffield="l9" linkdb="\\s-adl-1.rijksmuseum.intra\Adlib$\cms\data+people">
+
+
+
+
+
+
+
+
+					<name>Gemeente Amsterdam</name>
+				</acquisition.name>
+				<acquision.name.do.not.present option="" value="">
+					<text language="0">naam niet tonen</text>
+					<text language="1">naam niet tonen</text>
+				</acquision.name.do.not.present>
+			</acquisition>
+			<acquisition.status option="langdurig bruikleen" value="langdurig bruikleen">
+				<text language="0">long term loan</text>
+				<text language="1">langdurig bruikleen</text>
+			</acquisition.status>
+			<acquisition.conditions>Op dit object zijn de standaard museale voorwaarden van toepassing.</acquisition.conditions>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-08-30</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-08-29</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-06-22</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-05-22</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-04-02</edit.date>
+				<edit.name>d.bos</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-04-02</edit.date>
+				<edit.name>d.bos</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-03-07</edit.date>
+				<edit.name>m.houben</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-03-06</edit.date>
+				<edit.name>m.houben</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-02-20</edit.date>
+				<edit.name>m.houben</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-02-14</edit.date>
+				<edit.name>m.houben</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2013-01-15</edit.date>
+				<edit.name>d.riabokon</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-12-06</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-11-07</edit.date>
+				<edit.name>D.riabokon</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-10-08</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-10-04</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-08-09</edit.date>
+				<edit.name>t.bos</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-08-09</edit.date>
+				<edit.name>a.swart</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-07-18</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-06-13</edit.date>
+				<edit.name>m.houben</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-06-04</edit.date>
+				<edit.name>r.jelles</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-06-04</edit.date>
+				<edit.name>r.jelles</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-05-22</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-29</edit.date>
+				<edit.name>GA Adlib Rol Collectieregistratie &amp; Documentatie</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-21</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-21</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-12</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-09</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-06</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-05</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-05</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-05</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-03-05</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-02-10</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-02-10</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-02-10</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-02-10</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-02-02</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-01-23</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2012-01-09</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-12-05</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-12-02</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-11-30</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-11-03</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-10-20</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-08-03</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-07-11</edit.date>
+				<edit.name>e.doornbusch</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-07-01</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-07-01</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-07-01</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-07-01</edit.date>
+				<edit.name>l.jongma</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-06-28</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2011-01-04</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-12-07</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-11-09</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-10-06</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-08-25</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-08-25</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-08-04</edit.date>
+				<edit.name>R.blekman</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-08-03</edit.date>
+				<edit.name>i.giesbers</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-05-03</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-03-25</edit.date>
+				<edit.name>E.Hermans</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-03-19</edit.date>
+				<edit.name>a.schrier</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2010-02-18</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-12-02</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-12-02</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-12-02</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-06-25</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-06-25</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-06-24</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-04-21</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-04-21</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-04-20</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-02-20</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-02-20</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-02-20</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-02-19</edit.date>
+				<edit.name>t.zeedijk</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2009-01-27</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2008-12-19</edit.date>
+				<edit.name>s.van.gelderen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2008-08-20</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2008-08-12</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2008-08-05</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2008-04-29</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-10-12</edit.date>
+				<edit.name>a.schrier</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-10-11</edit.date>
+				<edit.name>a.schrier</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-08-16</edit.date>
+				<edit.name>b.nederveen</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-07-30</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-04-11</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-04-11</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-04-11</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-04-11</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<edit>
+				<edit.notes/>
+				<edit.date>2007-04-11</edit.date>
+				<edit.name>c.wittop.koning</edit.name>
+			</edit>
+			<room.showcase>wand zuid</room.showcase>
+		</record>
+	</recordList>
+	<diagnostic>
+		<xmltype>GROUPED</xmltype>
+		<hits>1</hits>
+		<search/>
+		<sort/>
+		<limit>0</limit>
+		<hits_on_display>1</hits_on_display>
+		<first_item>0</first_item>
+		<backward>0</backward>
+		<forward>0</forward>
+		<databasepath>\\s-adl-1.rijksmuseum.intra\adlib$\cms\data</databasepath>
+		<dbname>collect</dbname>
+		<dsname>object</dsname>
+		<language>1</language>
+		<epoch>1380014230</epoch>
+		<error>
+		</error>
+	</diagnostic>
+</adlibXML>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <namespaces>
+        
+    
+        <namespace prefix="owl" uri="http://www.w3.org/2002/07/owl#"/>
+        
+    
+        <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        
+    
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+        
+    
+        <namespace prefix="crm" uri="http://erlangen-crm.org/current/"/>
+        
+    
+        <namespace prefix="rmo" uri="http://collection.rijksmuseum.nl/id/ontology/"/>
+        
+	
+        <namespace prefix="bmo" uri="http://collection.britishmuseum.org/id/ontology/"/>
+        
+    
+        <namespace prefix="id" uri="http://collection.rijksmuseum.nl/id/"/>
+        
+	
+        <namespace prefix="idPersonInstitution" uri="http://collection.rijksmuseum.nl/id/person-institution/"/>
+        
+    
+        <namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+        
+  
+    </namespaces>
+    
+
+  
+    <generator name="E22_Man-Made_Object" prefix="id">
+        <pattern>object/{priref}</pattern>
+    </generator>
+</generator_policy>
+

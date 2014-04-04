@@ -52,7 +52,8 @@ import static org.junit.Assert.assertTrue;
         TestBase.class,
         TestCoin.class,
         TestLido07.class,
-        TestBM.class
+        TestBM.class,
+        TestRijks.class
 })
 public class AllTests {
     private static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();

@@ -68,12 +68,17 @@ public class EntityResolver {
             switch (valueEntry.value.valueType) {
                 case URI:
                     resource = modelOutput.createTypedResource(valueEntry.value.text, valueEntry.typeElement);
-                    labelNodes = createLabelNodes(entityElement.labelGenerators, generatorContext);
-                    additionalNodes = createAdditionalNodes(entityElement.additionals, generatorContext);
+                    labelNodes = createLabelNodes(entityElement.labelGenerators);
+                    additionalNodes = createAdditionalNodes(entityElement.additionals);
+                    if (!additionalNodes.isEmpty()) {
+                        System.out.println("additionals present" + entityElement);
+                    }
                     break;
                 case LITERAL:
                     literal = modelOutput.createLiteral(valueEntry.value.text, generatorContext.getLanguage());
                     break;
+                default:
+                    throw exception("Value type "+ valueEntry.value.valueType);
             }
         }
         return hasResource() || hasLiteral();
@@ -98,11 +103,11 @@ public class EntityResolver {
         }
     }
 
-    private List<AdditionalNode> createAdditionalNodes(List<X3ML.Additional> additionalList, GeneratorContext generatorContext) {
+    private List<AdditionalNode> createAdditionalNodes(List<X3ML.Additional> additionalList) {
         List<AdditionalNode> additionalNodes = new ArrayList<AdditionalNode>();
         if (additionalList != null) {
             for (X3ML.Additional additional : additionalList) {
-                AdditionalNode additionalNode = new AdditionalNode(additional, generatorContext);
+                AdditionalNode additionalNode = new AdditionalNode(modelOutput, additional, generatorContext);
                 if (additionalNode.resolve()) {
                     additionalNodes.add(additionalNode);
                 }
@@ -111,42 +116,33 @@ public class EntityResolver {
         return additionalNodes;
     }
 
-    private class AdditionalNode {
+    private static class AdditionalNode {
+        public final ModelOutput modelOutput;
         public final X3ML.Additional additional;
         public final GeneratorContext generatorContext;
         public Property property;
-        public Resource resource;
-        public Literal literal;
+        public EntityResolver additionalEntityResolver;
 
-        private AdditionalNode(X3ML.Additional additional, GeneratorContext generatorContext) {
+        private AdditionalNode(ModelOutput modelOutput, X3ML.Additional additional, GeneratorContext generatorContext) {
+            this.modelOutput = modelOutput;
             this.additional = additional;
             this.generatorContext = generatorContext;
         }
 
         public boolean resolve() {
             property = modelOutput.createProperty(additional.relationship);
+            additionalEntityResolver = new EntityResolver(modelOutput, additional.entityElement, generatorContext);
             if (property == null) return false;
-            List<X3ML.ValueEntry> values = additional.entityElement.getValues(generatorContext);
-            if (values.isEmpty()) return false;
-            for (X3ML.ValueEntry valueEntry : values) { // todo: this will fail for multiple value entries
-                switch (valueEntry.value.valueType) {
-                    case URI:
-                        resource = modelOutput.createTypedResource(valueEntry.value.text, valueEntry.typeElement);
-                        break;
-                    case LITERAL:
-                        literal = modelOutput.createLiteral(valueEntry.value.text, generatorContext.getLanguage());
-                        break;
-                }
-            }
-            return true;
+            return additionalEntityResolver.resolve();
         }
 
         public void linkFrom(Resource fromResource) {
-            if (resource != null) {
-                fromResource.addProperty(property, resource);
+            additionalEntityResolver.link();
+            if (additionalEntityResolver.hasResource()) {
+                fromResource.addProperty(property, additionalEntityResolver.resource);
             }
-            else if (literal != null) {
-                fromResource.addLiteral(property, literal);
+            else if (additionalEntityResolver.hasLiteral()) {
+                fromResource.addLiteral(property, additionalEntityResolver.literal);
             }
             else {
                 throw exception("Cannot link without property or literal");
@@ -154,11 +150,11 @@ public class EntityResolver {
         }
     }
 
-    private List<LabelNode> createLabelNodes(List<X3ML.GeneratorElement> generatorList, GeneratorContext generatorContext) {
+    private List<LabelNode> createLabelNodes(List<X3ML.GeneratorElement> generatorList) {
         List<LabelNode> labelNodes = new ArrayList<LabelNode>();
         if (generatorList != null) {
             for (X3ML.GeneratorElement generator : generatorList) {
-                LabelNode labelNode = new LabelNode(generator, generatorContext);
+                LabelNode labelNode = new LabelNode(generator);
                 if (labelNode.resolve()) {
                     labelNodes.add(labelNode);
                 }
@@ -169,13 +165,11 @@ public class EntityResolver {
 
     private class LabelNode {
         public final X3ML.GeneratorElement generator;
-        public final GeneratorContext generatorContext;
         public Property property;
         public Literal literal;
 
-        private LabelNode(X3ML.GeneratorElement generator, GeneratorContext generatorContext) {
+        private LabelNode(X3ML.GeneratorElement generator) {
             this.generator = generator;
-            this.generatorContext = generatorContext;
         }
 
         public boolean resolve() {

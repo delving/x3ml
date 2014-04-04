@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <namespaces>
+        <namespace prefix="adw" uri="http://www.oeaw.ac.at/"/>
+    </namespaces>
+    <generator name="SimpleLabel">
+        <pattern>{label}</pattern>
+    </generator>
+    <generator name="LocalTermURI" prefix="adw">
+        <pattern>{hierarchy}/{term}</pattern>
+    </generator>
+</generator_policy>

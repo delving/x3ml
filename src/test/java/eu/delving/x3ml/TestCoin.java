@@ -45,22 +45,32 @@ public class TestCoin {
 
     @Test
     public void testJoinExample() {
-        X3MLEngine engine = engine("/join/join1.x3ml");
+        X3MLEngine engine = engine("/coin/join1.x3ml");
         X3MLEngine.Output output = engine.execute(document("/coin/coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = output.toStringArray();
-        String[] expectedResult = xmlToNTriples("/join/join1-rdf.xml");
+        String[] expectedResult = xmlToNTriples("/coin/join1-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 
     @Test
     public void testJoinVariableExample() {
-        X3MLEngine engine = engine("/join/join2.x3ml");
+        X3MLEngine engine = engine("/coin/join2.x3ml");
         X3MLEngine.Output output = engine.execute(document("/coin/coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = output.toStringArray();
-        String[] expectedResult = xmlToNTriples("/join/join2-rdf.xml");
+        String[] expectedResult = xmlToNTriples("/coin/join2-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
         System.out.println(StringUtils.join(diff, "\n"));
+    }
+
+    @Test
+    public void testAppellation() {
+        X3MLEngine engine = engine("/coin/appellation.x3ml");
+        X3MLEngine.Output output = engine.execute(document("/coin/coin-input.xml"), policy("/coin/appellation-policy.xml"));
+        String[] mappingResult = output.toStringArray();
+        String[] expectedResult = xmlToNTriples("/coin/appellation-rdf.xml");
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 }

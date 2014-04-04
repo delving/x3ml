@@ -94,7 +94,7 @@ public class X3MLGeneratorPolicy implements Generator {
             return generateFromURITemplate(generator, namespaceUri, args);
         }
         else { // use simple substitution
-            return generateFromSimpleTemplate(generator.pattern);
+            return generateFromSimpleTemplate(generator, args);
         }
     }
 
@@ -121,8 +121,19 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Value generateFromSimpleTemplate(String pattern) {
-        throw new RuntimeException("Not implemented");
+    private Value generateFromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
+        String result = generator.pattern;
+        for (String argument : getVariables(generator.pattern)) {
+            ArgValue argValue = argValues.getArgValue(argument, defaultSourceType);
+            if (argValue == null || argValue.string == null) {
+                throw exception(String.format(
+                        "Argument failure in simple template %s: %s",
+                        generator, argument
+                ));
+            }
+            result = result.replace(String.format("{%s}", argument), argValue.string);
+        }
+        return literalValue(result);
     }
 
     // == the rest is for the XML form

@@ -415,7 +415,7 @@ public interface X3ML {
         @XStreamImplicit
         public List<TypeElement> typeElements;
 
-        public String constant;
+        public String constant; // documentation purposes only
 
         @XStreamAlias("value_generator")
         public GeneratorElement valueGenerator;

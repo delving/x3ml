@@ -417,8 +417,8 @@ public interface X3ML {
 
         public String constant; // documentation purposes only
 
-        @XStreamAlias("value_generator")
-        public GeneratorElement valueGenerator;
+        @XStreamAlias("instance_generator")
+        public GeneratorElement instanceGenerator;
 
         @XStreamImplicit
         public List<GeneratorElement> labelGenerators;
@@ -426,13 +426,13 @@ public interface X3ML {
         @XStreamImplicit
         public List<Additional> additionals;
 
-        public List<ValueEntry> getValues(GeneratorContext context) {
-            List<ValueEntry> values = new ArrayList<ValueEntry>();
+        public List<InstanceEntry> getInstances(GeneratorContext context) {
+            List<InstanceEntry> values = new ArrayList<InstanceEntry>();
             if (typeElements != null) {
                 for (TypeElement typeElement : typeElements) {
-                   values.add(new ValueEntry(
+                   values.add(new InstanceEntry(
                            typeElement,
-                           context.generateValue(valueGenerator, typeElement)
+                           context.getInstance(instanceGenerator, typeElement)
                    ));
                 }
             }
@@ -440,13 +440,13 @@ public interface X3ML {
         }
     }
 
-    public static class ValueEntry {
+    public static class InstanceEntry {
         public final TypeElement typeElement;
-        public final Value value;
+        public final Instance instance;
 
-        public ValueEntry(TypeElement typeElement, Value value) {
+        public InstanceEntry(TypeElement typeElement, Instance instance) {
             this.typeElement = typeElement;
-            this.value = value;
+            this.instance = instance;
         }
     }
 
@@ -573,22 +573,22 @@ public interface X3ML {
         ArgValue getArgValue(String name, SourceType sourceType);
     }
 
-    public enum ValueType {
+    public enum InstanceType {
         URI,
         LITERAL
     }
 
-    public static class Value {
-        public final ValueType valueType;
+    public static class Instance {
+        public final InstanceType type;
         public final String text;
 
-        public Value(ValueType valueType, String text) {
-            this.valueType = valueType;
+        public Instance(InstanceType type, String text) {
+            this.type = type;
             this.text = text;
         }
 
         public String toString() {
-            return valueType + ":" + text;
+            return type + ":" + text;
         }
     }
 
@@ -638,12 +638,12 @@ public interface X3ML {
             return new ArgValue(null, string);
         }
 
-        public static Value uriValue(String uri) {
-            return new Value(ValueType.URI, uri);
+        public static Instance uriValue(String uri) {
+            return new Instance(InstanceType.URI, uri);
         }
 
-        public static Value literalValue(String uri) {
-            return new Value(ValueType.LITERAL, uri);
+        public static Instance literalValue(String uri) {
+            return new Instance(InstanceType.LITERAL, uri);
         }
     }
 }

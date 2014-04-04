@@ -12,7 +12,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E40_Legal_Body</type>
-                        <value_generator name="UUID"/>
+                        <instance_generator name="UUID"/>
                     </entity>
                 </target_node>
             </domain>
@@ -28,7 +28,7 @@
                     <target_node>
                         <entity>
                             <type>crm:E42_Identifier</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="SimpleLabel">
                                 <arg name="label">text()</arg>
                             </label_generator>
@@ -48,7 +48,7 @@
                     <target_node>
                         <entity>
                             <type>crm:E41_Appellation</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="SimpleLabel">
                                 <arg name="label">text()</arg>
                             </label_generator>
@@ -57,10 +57,10 @@
                                 <entity>
                                     <type>crm:E55_Type</type>
                                     <constant>german</constant>
-                                    <value_generator name="LocalTermURI">
+                                    <instance_generator name="LocalTermURI">
                                         <arg name="hierarchy" type="CONSTANT">languages</arg>
                                         <arg name="term" type="CONSTANT">german</arg>
-                                    </value_generator>
+                                    </instance_generator>
                                     <label_generator name="SimpleLabel">
                                         <arg name="label" type="CONSTANT">german</arg>
                                     </label_generator>
@@ -82,7 +82,7 @@
                     <target_node>
                         <entity>
                             <type>crm:E41_Appellation</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="SimpleLabel">
                                 <arg name="label">text()</arg>
                             </label_generator>
@@ -91,10 +91,10 @@
                                 <entity>
                                     <type>crm:E55_Type</type>
                                     <constant>english</constant>
-                                    <value_generator name="LocalTermURI">
+                                    <instance_generator name="LocalTermURI">
                                         <arg name="hierarchy" type="CONSTANT">languages</arg>
                                         <arg name="term" type="CONSTANT">english</arg>
-                                    </value_generator>
+                                    </instance_generator>
                                     <label_generator name="SimpleLabel">
                                         <arg name="label" type="CONSTANT">english</arg>
                                     </label_generator>

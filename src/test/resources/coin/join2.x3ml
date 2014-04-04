@@ -12,7 +12,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E22_Man-Made_Object</type>
-                        <value_generator name="UUID"/>
+                        <instance_generator name="UUID"/>
                     </entity>
                 </target_node>
             </domain>
@@ -28,7 +28,7 @@
                     <target_node>
                         <entity>
                             <type>crm:E41_Appellation</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>text()</arg>
                             </label_generator>
@@ -43,7 +43,7 @@
                         <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity variable="tc1">
                             <type>crm:E10_Transfer_of_Custody</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
@@ -56,7 +56,7 @@
                     <target_node>
                         <entity>
                             <type>crm:E53_Place</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>FS_NAME/text()</arg>
                             </label_generator>
@@ -71,7 +71,7 @@
                         <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity variable="tc1">
                             <type>crm:E10_Transfer_of_Custody</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
@@ -79,7 +79,7 @@
                         <relationship>crm:P4_has_time-span</relationship>
                         <entity variable="ts1">
                             <type>crm:E52_Time-Span</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg>find event date</arg>
                             </label_generator>
@@ -92,9 +92,9 @@
                     <target_node>
                         <entity>
                             <type>rdf:Literal</type>
-                            <value_generator name="Literal">
+                            <instance_generator name="Literal">
                                 <arg>text()</arg>
-                            </value_generator>
+                            </instance_generator>
                         </entity>
                     </target_node>
                 </range>

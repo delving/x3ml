@@ -10,10 +10,10 @@
                 <target_node>
                     <entity>
                         <type>crm:E19_Physical_Object</type>
-                        <value_generator name="PhysicalObject">
+                        <instance_generator name="PhysicalObject">
                             <arg name="nameOfMuseum" type="CONSTANT">British Museum</arg>
                             <arg name="entry">bm_object_id/text()</arg>
-                        </value_generator>
+                        </instance_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -29,9 +29,9 @@
                     <target_node>
                         <entity>
                             <type>crm:E48_Place_Name</type>
-                            <value_generator name="PlaceName">
+                            <instance_generator name="PlaceName">
                                 <arg name="entry">bm_loc/text()</arg>
-                            </value_generator>
+                            </instance_generator>
                         </entity>
                     </target_node>
                 </range>

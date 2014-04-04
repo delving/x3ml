@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.*;
 
 /**
  * The entity resolver creates the related model elements by calling generator functions.
@@ -62,12 +63,12 @@ public class EntityResolver {
     }
 
     private boolean resolveResource() {
-        List<X3ML.ValueEntry> values = entityElement.getValues(generatorContext);
+        List<InstanceEntry> values = entityElement.getInstances(generatorContext);
         if (values.isEmpty()) return false;
-        for (X3ML.ValueEntry valueEntry : values) { // todo: this will fail for multiple value entries
-            switch (valueEntry.value.valueType) {
+        for (InstanceEntry instanceEntry : values) { // todo: this will fail for multiple value entries
+            switch (instanceEntry.instance.type) {
                 case URI:
-                    resource = modelOutput.createTypedResource(valueEntry.value.text, valueEntry.typeElement);
+                    resource = modelOutput.createTypedResource(instanceEntry.instance.text, instanceEntry.typeElement);
                     labelNodes = createLabelNodes(entityElement.labelGenerators);
                     additionalNodes = createAdditionalNodes(entityElement.additionals);
                     if (!additionalNodes.isEmpty()) {
@@ -75,10 +76,10 @@ public class EntityResolver {
                     }
                     break;
                 case LITERAL:
-                    literal = modelOutput.createLiteral(valueEntry.value.text, generatorContext.getLanguage());
+                    literal = modelOutput.createLiteral(instanceEntry.instance.text, generatorContext.getLanguage());
                     break;
                 default:
-                    throw exception("Value type "+ valueEntry.value.valueType);
+                    throw exception("Value type "+ instanceEntry.instance.type);
             }
         }
         return hasResource() || hasLiteral();
@@ -103,10 +104,10 @@ public class EntityResolver {
         }
     }
 
-    private List<AdditionalNode> createAdditionalNodes(List<X3ML.Additional> additionalList) {
+    private List<AdditionalNode> createAdditionalNodes(List<Additional> additionalList) {
         List<AdditionalNode> additionalNodes = new ArrayList<AdditionalNode>();
         if (additionalList != null) {
-            for (X3ML.Additional additional : additionalList) {
+            for (Additional additional : additionalList) {
                 AdditionalNode additionalNode = new AdditionalNode(modelOutput, additional, generatorContext);
                 if (additionalNode.resolve()) {
                     additionalNodes.add(additionalNode);
@@ -118,12 +119,12 @@ public class EntityResolver {
 
     private static class AdditionalNode {
         public final ModelOutput modelOutput;
-        public final X3ML.Additional additional;
+        public final Additional additional;
         public final GeneratorContext generatorContext;
         public Property property;
         public EntityResolver additionalEntityResolver;
 
-        private AdditionalNode(ModelOutput modelOutput, X3ML.Additional additional, GeneratorContext generatorContext) {
+        private AdditionalNode(ModelOutput modelOutput, Additional additional, GeneratorContext generatorContext) {
             this.modelOutput = modelOutput;
             this.additional = additional;
             this.generatorContext = generatorContext;
@@ -150,10 +151,10 @@ public class EntityResolver {
         }
     }
 
-    private List<LabelNode> createLabelNodes(List<X3ML.GeneratorElement> generatorList) {
+    private List<LabelNode> createLabelNodes(List<GeneratorElement> generatorList) {
         List<LabelNode> labelNodes = new ArrayList<LabelNode>();
         if (generatorList != null) {
-            for (X3ML.GeneratorElement generator : generatorList) {
+            for (GeneratorElement generator : generatorList) {
                 LabelNode labelNode = new LabelNode(generator);
                 if (labelNode.resolve()) {
                     labelNodes.add(labelNode);
@@ -164,23 +165,23 @@ public class EntityResolver {
     }
 
     private class LabelNode {
-        public final X3ML.GeneratorElement generator;
+        public final GeneratorElement generator;
         public Property property;
         public Literal literal;
 
-        private LabelNode(X3ML.GeneratorElement generator) {
+        private LabelNode(GeneratorElement generator) {
             this.generator = generator;
         }
 
         public boolean resolve() {
-            property = modelOutput.createProperty(new X3ML.TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
-            X3ML.Value value = generatorContext.generateValue(generator, null);
-            if (value == null) return false;
-            switch (value.valueType) {
+            property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
+            X3ML.Instance instance = generatorContext.getInstance(generator, null);
+            if (instance == null) return false;
+            switch (instance.type) {
                 case URI:
                     throw exception("Label node must produce a literal");
                 case LITERAL:
-                    literal = modelOutput.createLiteral(value.text, generatorContext.getLanguage());
+                    literal = modelOutput.createLiteral(instance.text, generatorContext.getLanguage());
                     return true;
             }
             return false;

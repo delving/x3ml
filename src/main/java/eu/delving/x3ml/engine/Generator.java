@@ -23,5 +23,5 @@ package eu.delving.x3ml.engine;
 
 public interface Generator {
     void setDefaultArgType(X3ML.SourceType sourceType);
-    X3ML.Value generateValue(String name, X3ML.ArgValues arguments);
+    X3ML.Instance generate(String name, X3ML.ArgValues arguments);
 }

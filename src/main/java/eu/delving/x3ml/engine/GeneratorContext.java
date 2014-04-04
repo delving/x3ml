@@ -53,20 +53,20 @@ public abstract class GeneratorContext {
         return context.input().valueAt(node, expression);
     }
 
-    public X3ML.Value generateValue(final X3ML.GeneratorElement generator, final X3ML.TypeElement typeElement) {
+    public X3ML.Instance getInstance(final X3ML.GeneratorElement generator, final X3ML.TypeElement typeElement) {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        X3ML.Value value = context.policy().generateValue(generator.name, new X3ML.ArgValues() {
+        X3ML.Instance instance = context.policy().generate(generator.name, new X3ML.ArgValues() {
             @Override
             public X3ML.ArgValue getArgValue(String name, X3ML.SourceType sourceType) {
                 return context.input().evaluateArgument(node, generator, name, sourceType, typeElement);
             }
         });
-        if (value == null) {
+        if (instance == null) {
             throw exception("Empty value produced");
         }
-        return value;
+        return instance;
     }
 
     public String getLanguage() {

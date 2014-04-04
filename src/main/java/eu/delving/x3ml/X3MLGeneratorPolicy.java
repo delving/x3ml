@@ -63,7 +63,7 @@ public class X3MLGeneratorPolicy implements Generator {
     }
 
     @Override
-    public Value generateValue(String name, ArgValues args) {
+    public Instance generate(String name, ArgValues args) {
         if (name == null) {
             throw exception("Value function name missing");
         }
@@ -91,14 +91,14 @@ public class X3MLGeneratorPolicy implements Generator {
         if (generator == null) throw exception("No generator for " + name);
         String namespaceUri = generator.prefix == null ? null : namespaceMap.get(generator.prefix);
         if (namespaceUri != null) { // use URI template
-            return generateFromURITemplate(generator, namespaceUri, args);
+            return fromURITemplate(generator, namespaceUri, args);
         }
         else { // use simple substitution
-            return generateFromSimpleTemplate(generator, args);
+            return fromSimpleTemplate(generator, args);
         }
     }
 
-    private Value generateFromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
+    private Instance fromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(generator.pattern);
             for (String argument : getVariables(generator.pattern)) {
@@ -121,7 +121,7 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Value generateFromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
+    private Instance fromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
         String result = generator.pattern;
         for (String argument : getVariables(generator.pattern)) {
             ArgValue argValue = argValues.getArgValue(argument, defaultSourceType);

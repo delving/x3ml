@@ -95,7 +95,7 @@
 			<xs:sequence>
 				<xs:element ref="type" maxOccurs="unbounded"/>
 				<xs:element name="constant" minOccurs="0"/>
-				<xs:element name="value_generator" minOccurs="0">
+				<xs:element name="instance_generator" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="arg" minOccurs="0" maxOccurs="unbounded">

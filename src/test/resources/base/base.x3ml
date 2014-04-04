@@ -38,10 +38,10 @@
                 <target_node>
                     <entity>
                         <type>pre:Thing</type>
-                        <value_generator name="Pair">
+                        <instance_generator name="Pair">
                             <arg name="title">title/text()</arg>
                             <arg name="identifier">identifier/text()</arg>
-                        </value_generator>
+                        </instance_generator>
                     </entity>
                 </target_node>
             </domain>
@@ -52,7 +52,7 @@
                         <relationship>pre:Relation1</relationship>
                         <entity>
                             <type>pre:IntermediateEntity</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>pre:Relation2</relationship>
                     </target_relation>
@@ -63,9 +63,9 @@
                         <entity variable="boo">
                             <type>pre:OtherThing</type>
                             <constant>This is something the engine does not use</constant>
-                            <value_generator name="Single">
+                            <instance_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>
-                            </value_generator>
+                            </instance_generator>
                             <label_generator name="Literal">
                                 <arg>inner_title/text()</arg>
                             </label_generator>

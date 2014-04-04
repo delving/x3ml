@@ -12,7 +12,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E22_Man-Made_Object</type>
-                        <value_generator name="UUID"/>
+                        <instance_generator name="UUID"/>
                     </entity>
                 </target_node>
             </domain>
@@ -28,7 +28,7 @@
                     <target_node>
                         <entity>
                             <type>crm:E41_Appellation</type>
-                            <value_generator name="UUID"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>text()</arg>
                             </label_generator>

@@ -97,7 +97,7 @@ public class Path extends GeneratorContext {
         String pathExtension = getPathExtension(range);
         List<Node> rangeNodes = context.input().nodeList(node, pathExtension);
         List<Range> ranges = new ArrayList<Range>();
-        int index = 0;
+        int index = 1;
         for (Node rangeNode : rangeNodes) {
             Range rangeContext = new Range(context, this, rangeNode, index++, range);
             if (rangeContext.resolve()) {

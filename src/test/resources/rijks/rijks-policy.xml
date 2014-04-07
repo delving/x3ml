@@ -34,56 +34,56 @@
     
 
   
+    <generator name="E12_Production" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
+    </generator>
+    <generator name="E12_Production\2" prefix="id">
+        <pattern>object/{priref}/production</pattern>
+    </generator>
+    <generator name="E52_Time-Span\1" prefix="id">
+        <pattern>object/{priref}/treatment/{counter_treatmentCounter}/date</pattern>
+    </generator>
     <generator name="E22_Man-Made_Object" prefix="id">
         <pattern>object/{priref}</pattern>
     </generator>
-    <generator name="E35_Title" prefix="id">
-        <pattern>object/{priref}/title/{counter_titleCounter}</pattern>
+    <generator name="E12_Production\4" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
+    </generator>
+    <generator name="E12_Production\3" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
+    </generator>
+    <generator name="E54_Dimension" prefix="id">
+        <pattern>object/{priref}/dimension/{counter_dimensionCounter}</pattern>
+    </generator>
+    <generator name="E38_Image" prefix="id">
+        <pattern>object/{priref}/image/{counter_imageCounter}</pattern>
+    </generator>
+    <generator name="EX_Association" prefix="id">
+        <pattern>object/{priref}/dimension/{counter_dimensionCounter}/association</pattern>
     </generator>
     <generator name="E31_Document" prefix="id">
         <pattern>object/{priref}/description/{counter_descriptionCount}</pattern>
     </generator>
-    <generator name="E12_Production" prefix="id">
-        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
+    <generator name="E22_Man-Made_Object\1" prefix="id">
+        <pattern>object/{priref}/frame/{counter_frameCounter}</pattern>
     </generator>
-    <generator name="E12_Production" prefix="id">
+    <generator name="E12_Production\1" prefix="id">
         <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
     </generator>
     <generator name="E52_Time-Span" prefix="id">
         <pattern>object/{priref}/production/{counter_productionCounter}/date</pattern>
     </generator>
-    <generator name="E12_Production" prefix="id">
-        <pattern>object/{priref}/production</pattern>
-    </generator>
-    <generator name="E12_Production" prefix="id">
-        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
-    </generator>
-    <generator name="E12_Production" prefix="id">
-        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
-    </generator>
-    <generator name="E38_Image" prefix="id">
-        <pattern>object/{priref}/image/{counter_imageCounter}</pattern>
-    </generator>
-    <generator name="E38_Image" prefix="id">
-        <pattern>object/{priref}/image/{counter_imageCounter}</pattern>
-    </generator>
-    <generator name="E54_Dimension" prefix="id">
-        <pattern>object/{priref}/dimension/{counter_dimensionCounter}</pattern>
-    </generator>
-    <generator name="EX_Association" prefix="id">
-        <pattern>object/{priref}/dimension/{counter_dimensionCounter}/association</pattern>
-    </generator>
-    <generator name="E22_Man-Made_Object" prefix="id">
-        <pattern>object/{priref}/frame/{counter_frameCounter}</pattern>
-    </generator>
     <generator name="E11_Modification" prefix="id">
         <pattern>object/{priref}/treatment/{counter_treatmentCounter}</pattern>
     </generator>
-    <generator name="E52_Time-Span" prefix="id">
-        <pattern>object/{priref}/treatment/{counter_treatmentCounter}/date</pattern>
+    <generator name="E38_Image\1" prefix="id">
+        <pattern>object/{priref}/image/{counter_imageCounter}</pattern>
     </generator>
     <generator name="E43_Inscription" prefix="id">
         <pattern>object/{priref}/inscription/{counter_inscriptionCounter}</pattern>
+    </generator>
+    <generator name="E35_Title" prefix="id">
+        <pattern>object/{priref}/title/{counter_titleCounter}</pattern>
     </generator>
 </generator_policy>
 

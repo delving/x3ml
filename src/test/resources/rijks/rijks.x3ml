@@ -83,7 +83,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E12_Production</type>
-                        <instance_generator name="E12_Production">
+                        <instance_generator name="E12_Production\1">
                             <arg name="priref">../priref[1]/text()</arg>
                             <arg name="counter_productionCounter" type="position"/>
                         </instance_generator>
@@ -111,7 +111,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E12_Production</type>
-                        <instance_generator name="E12_Production">
+                        <instance_generator name="E12_Production\2">
                             <arg name="priref">../priref[1]/text()</arg>
                         </instance_generator>
                     </entity>
@@ -124,7 +124,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E12_Production</type>
-                        <instance_generator name="E12_Production">
+                        <instance_generator name="E12_Production\3">
                             <arg name="priref">../priref[1]/text()</arg>
                             <arg name="counter_productionCounter" type="position"/>
                         </instance_generator>
@@ -138,7 +138,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E12_Production</type>
-                        <instance_generator name="E12_Production">
+                        <instance_generator name="E12_Production\4">
                             <arg name="priref">../priref[1]/text()</arg>
                             <arg name="counter_productionCounter" type="position"/>
                         </instance_generator>
@@ -166,7 +166,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E38_Image</type>
-                        <instance_generator name="E38_Image">
+                        <instance_generator name="E38_Image\1">
                             <arg name="priref">../priref[1]/text()</arg>
                             <arg name="counter_imageCounter" type="position"/>
                         </instance_generator>
@@ -208,7 +208,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E22_Man-Made_Object</type>
-                        <instance_generator name="E22_Man-Made_Object">
+                        <instance_generator name="E22_Man-Made_Object\1">
                             <arg name="priref">../priref[1]/text()</arg>
                             <arg name="counter_frameCounter" type="position"/>
                         </instance_generator>
@@ -236,7 +236,7 @@
                 <target_node>
                     <entity>
                         <type>crm:E52_Time-Span</type>
-                        <instance_generator name="E52_Time-Span">
+                        <instance_generator name="E52_Time-Span\1">
                             <arg name="priref">../priref[1]/text()</arg>
                             <arg name="counter_treatmentCounter" type="position"/>
                         </instance_generator>

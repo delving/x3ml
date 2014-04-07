@@ -61,7 +61,7 @@ public class Domain extends GeneratorContext {
     public List<Path> createPathContexts(X3ML.PathElement path) {
         if (path.source_relation == null) throw exception("Path source absent");
         List<Path> paths = new ArrayList<Path>();
-        int index = 0;
+        int index = 1;
         for (Node pathNode : context.input().nodeList(node, path.source_relation)) {
             Path pathContext = new Path(context, this, pathNode, index++, path);
             if (pathContext.resolve()) {

@@ -125,7 +125,7 @@ public class TestConditions implements X3ML {
         Map<String, String> known = new TreeMap<String, String>();
 
         Case(String... conditionLines) {
-            super(null, null, null);
+            super(null, null, null, 0);
             String conditionString = TestConditions.toString(conditionLines);
             this.condition = (Condition) stream().fromXML(conditionString);
             String check = stream().toXML(condition);

@@ -37,6 +37,229 @@
     <mappings>
         <mapping>
             <domain>
+                <source_node>/adlibXML/recordList/record/title</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E35_Title</type>
+                        <instance_generator name="E35_Title">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_titleCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/description</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E31_Document</type>
+                        <instance_generator name="E31_Document">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_descriptionCount" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/date.period</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dating</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dating</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E52_Time-Span</type>
+                        <instance_generator name="E52_Time-Span">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/maker</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/maker</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/maker</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/subject.name</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E38_Image</type>
+                        <instance_generator name="E38_Image">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_imageCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/subject.location</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E38_Image</type>
+                        <instance_generator name="E38_Image">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_imageCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dimension</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E54_Dimension</type>
+                        <instance_generator name="E54_Dimension">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_dimensionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dimension</source_node>
+                <target_node>
+                    <entity>
+                        <type>bmo:EX_Association</type>
+                        <instance_generator name="EX_Association">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_dimensionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dimension.frame.info</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E22_Man-Made_Object</type>
+                        <instance_generator name="E22_Man-Made_Object">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_frameCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/treatment</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E11_Modification</type>
+                        <instance_generator name="E11_Modification">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_treatmentCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/treatment</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E52_Time-Span</type>
+                        <instance_generator name="E52_Time-Span">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_treatmentCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/inscription</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E43_Inscription</type>
+                        <instance_generator name="E43_Inscription">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_inscriptionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
                 <source_node>/adlibXML/recordList/record</source_node>
                 <target_node>
                     <entity>

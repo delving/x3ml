@@ -19,7 +19,8 @@
 * Multiple *type* possible within entity, variables hold lists now
 * X3ML root tag now has *language*, which becomes default instance generator language
 * Labels generator arguments now have optional *language*
-* Argument types and source_type now lowercase *xpath* or *constant*
+* Argument types and source_type now lowercase
+* Argument type *position* introduced, giving the index of the node in its node list
 
 ---
 

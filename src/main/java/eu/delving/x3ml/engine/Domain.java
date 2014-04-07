@@ -37,8 +37,8 @@ public class Domain extends GeneratorContext {
     public EntityResolver entityResolver;
     private Map<String, List<Resource>> variables = new TreeMap<String, List<Resource>>();
 
-    public Domain(Root.Context context, X3ML.DomainElement domain, Node node) {
-        super(context, null, node);
+    public Domain(Root.Context context, X3ML.DomainElement domain, Node node, int index) {
+        super(context, null, node, index);
         this.domain = domain;
     }
 
@@ -61,8 +61,9 @@ public class Domain extends GeneratorContext {
     public List<Path> createPathContexts(X3ML.PathElement path) {
         if (path.source_relation == null) throw exception("Path source absent");
         List<Path> paths = new ArrayList<Path>();
+        int index = 0;
         for (Node pathNode : context.input().nodeList(node, path.source_relation)) {
-            Path pathContext = new Path(context, this, pathNode, path);
+            Path pathContext = new Path(context, this, pathNode, index++, path);
             if (pathContext.resolve()) {
                 paths.add(pathContext);
             }

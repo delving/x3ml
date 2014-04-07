@@ -46,7 +46,7 @@ public class XPathInput {
         this.defaultLanguage = defaultLanguage;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, X3ML.GeneratorElement function, String argName, SourceType defaultType) {
+    public X3ML.ArgValue evaluateArgument(Node contextNode, int index, X3ML.GeneratorElement function, String argName, SourceType defaultType) {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
         if (function.args != null) {
@@ -79,6 +79,9 @@ public class XPathInput {
             case constant:
                 if (foundArg == null) return null;
                 value = argVal(foundArg.value, defaultLanguage);
+                break;
+            case position:
+                value = argVal(String.valueOf(index), null);
                 break;
             default:
                 throw new RuntimeException("Not implemented");

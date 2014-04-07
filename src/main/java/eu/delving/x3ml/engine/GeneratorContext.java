@@ -34,11 +34,13 @@ public abstract class GeneratorContext {
     public final Root.Context context;
     public final GeneratorContext parent;
     public final Node node;
+    public final int index;
 
-    public GeneratorContext(Root.Context context, GeneratorContext parent, Node node) {
+    protected GeneratorContext(Root.Context context, GeneratorContext parent, Node node, int index) {
         this.context = context;
         this.parent = parent;
         this.node = node;
+        this.index = index;
     }
 
     public List<Resource> get(String variable) {
@@ -62,7 +64,7 @@ public abstract class GeneratorContext {
         Instance instance = context.policy().generate(generator.name, new ArgValues() {
             @Override
             public ArgValue getArgValue(String name, SourceType sourceType) {
-                return context.input().evaluateArgument(node, generator, name, sourceType);
+                return context.input().evaluateArgument(node, index, generator, name, sourceType);
             }
         });
         if (instance == null) {

@@ -48,7 +48,8 @@ public interface X3ML {
 
     public enum SourceType {
         xpath,
-        constant
+        constant,
+        position
     }
 
     @XStreamAlias("x3ml")

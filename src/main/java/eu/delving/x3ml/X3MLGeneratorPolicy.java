@@ -54,6 +54,9 @@ public class X3MLGeneratorPolicy implements Generator {
                 namespaceMap.put(namespace.prefix, namespace.uri);
             }
             for (GeneratorSpec generator : policy.generators) {
+                if (generatorMap.containsKey(generator.name)) {
+                    throw exception("Duplicate generator name: " + generator.name);
+                }
                 generatorMap.put(generator.name, generator);
             }
         }

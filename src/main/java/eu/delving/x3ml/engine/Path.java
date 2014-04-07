@@ -24,6 +24,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.PathElement;
+import static eu.delving.x3ml.engine.X3ML.Relationship;
 
 /**
  * The path relationship handled here.  Intermediate nodes possible.
@@ -35,15 +37,15 @@ import static eu.delving.x3ml.X3MLEngine.exception;
 
 public class Path extends GeneratorContext {
     public final Domain domain;
-    public final X3ML.PathElement path;
-    public X3ML.Relationship relationship;
+    public final PathElement path;
+    public Relationship relationship;
     public Property property;
     public List<IntermediateNode> intermediateNodes;
     public List<Resource> lastResources;
     public Property lastProperty;
 
-    public Path(Root.Context context, Domain domain, Node node, X3ML.PathElement path) {
-        super(context, domain, node);
+    public Path(Root.Context context, Domain domain, Node node, int index, PathElement path) { // todo: make index last arg
+        super(context, domain, node, index);
         this.domain = domain;
         this.path = path;
     }
@@ -95,8 +97,9 @@ public class Path extends GeneratorContext {
         String pathExtension = getPathExtension(range);
         List<Node> rangeNodes = context.input().nodeList(node, pathExtension);
         List<Range> ranges = new ArrayList<Range>();
+        int index = 0;
         for (Node rangeNode : rangeNodes) {
-            Range rangeContext = new Range(context, this, rangeNode, range);
+            Range rangeContext = new Range(context, this, rangeNode, index++, range);
             if (rangeContext.resolve()) {
                 ranges.add(rangeContext);
             }
@@ -129,10 +132,10 @@ public class Path extends GeneratorContext {
         return pathExtension;
     }
 
-    private List<IntermediateNode> createIntermediateNodes(List<X3ML.EntityElement> entityList, List<X3ML.Relationship> propertyList, GeneratorContext generatorContext) {
+    private List<IntermediateNode> createIntermediateNodes(List<X3ML.EntityElement> entityList, List<Relationship> propertyList, GeneratorContext generatorContext) {
         List<IntermediateNode> intermediateNodes = new ArrayList<IntermediateNode>();
         if (entityList != null) {
-            Iterator<X3ML.Relationship> walkProperty = propertyList.iterator();
+            Iterator<Relationship> walkProperty = propertyList.iterator();
             walkProperty.next(); // ignore
             for (X3ML.EntityElement entityElement : entityList) {
                 IntermediateNode intermediateNode = new IntermediateNode(entityElement, walkProperty.next(), generatorContext);
@@ -146,12 +149,12 @@ public class Path extends GeneratorContext {
 
     private class IntermediateNode {
         public final X3ML.EntityElement entityElement;
-        public final X3ML.Relationship relationship;
+        public final Relationship relationship;
         public final GeneratorContext generatorContext;
         public EntityResolver entityResolver;
         public Property property;
 
-        private IntermediateNode(X3ML.EntityElement entityElement, X3ML.Relationship relationship, GeneratorContext generatorContext) {
+        private IntermediateNode(X3ML.EntityElement entityElement, Relationship relationship, GeneratorContext generatorContext) {
             this.entityElement = entityElement;
             this.relationship = relationship;
             this.generatorContext = generatorContext;

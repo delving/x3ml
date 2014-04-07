@@ -29,8 +29,8 @@ public class Range extends GeneratorContext {
     public final X3ML.RangeElement range;
     public EntityResolver rangeResolver;
 
-    public Range(Root.Context context, Path path, Node node, X3ML.RangeElement range) {
-        super(context, path, node);
+    public Range(Root.Context context, Path path, Node node, int index, X3ML.RangeElement range) { // todo: make index last arg
+        super(context, path, node, index);
         this.path = path;
         this.range = range;
     }

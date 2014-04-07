@@ -15,6 +15,8 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
+import static eu.delving.x3ml.engine.X3ML.*;
+
 /**
  * This is what a generator looks like to the internal code.
  *
@@ -22,6 +24,8 @@ package eu.delving.x3ml.engine;
  */
 
 public interface Generator {
-    void setDefaultArgType(X3ML.SourceType sourceType);
-    X3ML.Instance generate(String name, X3ML.ArgValues arguments);
+    void setDefaultArgType(SourceType sourceType);
+    void setDefaultLanguage(String language);
+    String getDefaultLanguage();
+    Instance generate(String name, ArgValues arguments);
 }

@@ -33,20 +33,18 @@ import java.util.List;
 
 public class Root {
     private final Element documentRoot;
-    private final Generator generator;
     private final ModelOutput modelOutput;
     private final XPathInput xpathInput;
     private final Context context;
 
     public Root(Element documentRoot, final Generator generator, NamespaceContext namespaceContext, List<String> prefixes) {
         this.documentRoot = documentRoot;
-        this.generator = generator;
         Model model = ModelFactory.createDefaultModel();
         for (String prefix : prefixes) {
             model.setNsPrefix(prefix, namespaceContext.getNamespaceURI(prefix));
         }
         this.modelOutput = new ModelOutput(model, namespaceContext);
-        this.xpathInput = new XPathInput(namespaceContext);
+        this.xpathInput = new XPathInput(namespaceContext, generator.getDefaultLanguage());
         this.context = new Context() {
 
             @Override

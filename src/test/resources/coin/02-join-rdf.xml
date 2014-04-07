@@ -14,7 +14,7 @@
 	</crm:P1_is_identified_by>
 	<crm:P30i_custody_transferred_through>
 		<crm:E10_Transfer_of_Custody rdf:about="uuid:C">
-			<rdfs:label>find event</rdfs:label>
+			<rdfs:label xml:lang="en">find event</rdfs:label>
 			<crm:P7_took_place_at>
 				<crm:E53_Place rdf:about="uuid:D">
 					<rdfs:label>Mautern</rdfs:label>

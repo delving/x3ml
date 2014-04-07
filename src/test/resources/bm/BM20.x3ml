@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x3ml version="0.1" source_type="XPATH">
+<x3ml version="0.1" source_type="xpath">
     <namespaces>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
     </namespaces>
@@ -11,7 +11,7 @@
                     <entity>
                         <type>crm:E19_Physical_Object</type>
                         <instance_generator name="PhysicalObject">
-                            <arg name="nameOfMuseum" type="CONSTANT">British Museum</arg>
+                            <arg name="nameOfMuseum" type="constant">British Museum</arg>
                             <arg name="entry">bm_object_id/text()</arg>
                         </instance_generator>
                     </entity>

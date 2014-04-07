@@ -15,6 +15,7 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
+import com.hp.hpl.jena.rdf.model.Resource;
 import org.w3c.dom.Node;
 
 /**
@@ -42,12 +43,18 @@ public class Range extends GeneratorContext {
 
     public void link() {
         path.link();
-        if (rangeResolver.hasResource()) {
+        if (rangeResolver.hasResources()) {
             rangeResolver.link();
-            path.lastResource.addProperty(path.lastProperty, rangeResolver.resource);
+            for (Resource lastResource : path.lastResources) {
+                for (Resource resolvedResource : rangeResolver.resources) {
+                    lastResource.addProperty(path.lastProperty, resolvedResource);
+                }
+            }
         }
         else if (rangeResolver.hasLiteral()) {
-            path.lastResource.addLiteral(path.lastProperty, rangeResolver.literal);
+            for (Resource lastResource : path.lastResources) {
+                lastResource.addLiteral(path.lastProperty, rangeResolver.literal);
+            }
         }
     }
 }

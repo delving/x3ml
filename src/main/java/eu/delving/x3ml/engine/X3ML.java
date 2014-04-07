@@ -47,10 +47,8 @@ import static eu.delving.x3ml.X3MLEngine.exception;
 public interface X3ML {
 
     public enum SourceType {
-        UNDEFINED,
-        XPATH,
-        CONSTANT,
-        QNAME
+        xpath,
+        constant
     }
 
     @XStreamAlias("x3ml")
@@ -62,6 +60,9 @@ public interface X3ML {
         @XStreamAsAttribute
         @XStreamAlias("source_type")
         public SourceType sourceType;
+
+        @XStreamAsAttribute
+        public String language;
 
         @XStreamOmitField
         public String info;
@@ -378,17 +379,6 @@ public interface X3ML {
 
         public String tag;
 
-        @XStreamOmitField
-        public String namespaceUri;
-
-        public Relationship() {
-        }
-
-        public Relationship(String tag, String namespaceUri) {
-            this.tag = tag;
-            this.namespaceUri = namespaceUri;
-        }
-
         public String getPrefix() {
             int colon = tag.indexOf(':');
             if (colon < 0) {
@@ -426,27 +416,8 @@ public interface X3ML {
         @XStreamImplicit
         public List<Additional> additionals;
 
-        public List<InstanceEntry> getInstances(GeneratorContext context) {
-            List<InstanceEntry> values = new ArrayList<InstanceEntry>();
-            if (typeElements != null) {
-                for (TypeElement typeElement : typeElements) {
-                   values.add(new InstanceEntry(
-                           typeElement,
-                           context.getInstance(instanceGenerator, typeElement)
-                   ));
-                }
-            }
-            return values;
-        }
-    }
-
-    public static class InstanceEntry {
-        public final TypeElement typeElement;
-        public final Instance instance;
-
-        public InstanceEntry(TypeElement typeElement, Instance instance) {
-            this.typeElement = typeElement;
-            this.instance = instance;
+        public Instance getInstance(GeneratorContext context) {
+            return context.getInstance(instanceGenerator);
         }
     }
 
@@ -519,6 +490,9 @@ public interface X3ML {
         @XStreamAsAttribute
         public String type;
 
+        @XStreamAsAttribute
+        public String language;
+
         public String value;
     }
 
@@ -548,20 +522,17 @@ public interface X3ML {
     }
 
     public static class ArgValue {
-        public final TypeElement typeElement;
         public final String string;
+        public final String language;
 
-        public ArgValue(TypeElement typeElement, String string) {
-            this.typeElement = typeElement;
+        public ArgValue(String string, String language) {
             this.string = string;
+            this.language = language;
         }
 
         public String toString() {
             if (string != null) {
                 return "ArgValue(" + string + ")";
-            }
-            else if (typeElement != null) {
-                return "ArgValue(" + typeElement + ")";
             }
             else {
                 return "ArgValue?";
@@ -581,10 +552,12 @@ public interface X3ML {
     public static class Instance {
         public final InstanceType type;
         public final String text;
+        public final String language;
 
-        public Instance(InstanceType type, String text) {
+        public Instance(InstanceType type, String text, String language) {
             this.type = type;
             this.text = text;
+            this.language = language;
         }
 
         public String toString() {
@@ -617,33 +590,16 @@ public interface X3ML {
             return xstream;
         }
 
-        public static ArgValue argQName(TypeElement typeElement, String name) {
-            String value = null;
-            if ("localName".equals(name)) {
-                value = typeElement.getLocalName();
-            }
-            else if ("prefix".equals(name)) {
-                value = typeElement.getPrefix();
-            }
-            else if ("namespaceUri".equals(name)) {
-                value = typeElement.namespaceUri;
-            }
-            if (value == null) {
-                throw exception("Expected 'localName', 'prefix', or 'namespaceUri', got " + name);
-            }
-            return new ArgValue(typeElement, value);
-        }
-
-        public static ArgValue argVal(String string) {
-            return new ArgValue(null, string);
+        public static ArgValue argVal(String string, String language) {
+            return new ArgValue(string, language);
         }
 
         public static Instance uriValue(String uri) {
-            return new Instance(InstanceType.URI, uri);
+            return new Instance(InstanceType.URI, uri, null);
         }
 
-        public static Instance literalValue(String uri) {
-            return new Instance(InstanceType.LITERAL, uri);
+        public static Instance literalValue(String literal, String language) {
+            return new Instance(InstanceType.LITERAL, literal, language);
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x3ml version="1.0" source_type="XPATH">
+<x3ml version="0.1" source_type="xpath">
     <namespaces>
         <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
         <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -31,6 +31,34 @@
                             <instance_generator name="UUID"/>
                             <label_generator name="Literal">
                                 <arg>text()</arg>
+                            </label_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_relation>
+                    <target_relation>
+                        <relationship>crm:P30i_custody_transferred_through</relationship>
+                        <entity>
+                            <type>crm:E10_Transfer_of_Custody</type>
+                            <instance_generator name="UUID"/>
+                            <label_generator name="Constant">
+                                <arg>find event</arg>
+                            </label_generator>
+                        </entity>
+                        <relationship>crm:P7_took_place_at</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:E53_Place</type>
+                            <instance_generator name="UUID"/>
+                            <label_generator name="Literal">
+                                <arg>FS_NAME/text()</arg>
                             </label_generator>
                         </entity>
                     </target_node>

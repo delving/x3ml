@@ -15,6 +15,7 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -24,13 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
-import static eu.delving.x3ml.engine.X3ML.Helper.argQName;
 import static eu.delving.x3ml.engine.X3ML.Helper.argVal;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
  * The source data is accessed using xpath to fetch nodes from a DOM tree.
- *
+ * <p/>
  * Here we have tools for evaluating xpaths in various contexts.
  *
  * @author Gerald de Jong <gerald@delving.eu>
@@ -39,12 +39,14 @@ import static eu.delving.x3ml.engine.X3ML.SourceType;
 public class XPathInput {
     private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private final NamespaceContext namespaceContext;
+    private final String defaultLanguage;
 
-    public XPathInput(NamespaceContext namespaceContext) {
+    public XPathInput(NamespaceContext namespaceContext, String defaultLanguage) {
         this.namespaceContext = namespaceContext;
+        this.defaultLanguage = defaultLanguage;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, X3ML.GeneratorElement function, String argName, SourceType defaultType, X3ML.TypeElement typeElement) {
+    public X3ML.ArgValue evaluateArgument(Node contextNode, X3ML.GeneratorElement function, String argName, SourceType defaultType) {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
         if (function.args != null) {
@@ -57,30 +59,26 @@ public class XPathInput {
                 for (X3ML.GeneratorArg arg : function.args) {
                     if (arg.name.equals(argName)) {
                         foundArg = arg;
-                        type = sourceType(function.args.get(0).type, defaultType);
+                        type = sourceType(arg.type, defaultType);
                     }
                 }
             }
         }
         X3ML.ArgValue value;
         switch (type) {
-            case XPATH:
-                if (foundArg == null) {
-                    return null;
-                }
-                value = argVal(valueAt(contextNode, foundArg.value));
+            case xpath:
+                if (foundArg == null) return null;
+                value = argVal(
+                        valueAt(contextNode,foundArg.value),
+                        foundArg.language == null ? getLanguage(contextNode, defaultLanguage): foundArg.language
+                );
                 if (value.string.isEmpty()) {
                     throw exception("Empty result");
                 }
                 break;
-            case QNAME:
-                value = argQName(typeElement, argName);
-                break;
-            case CONSTANT:
-                if (foundArg == null) {
-                    return null;
-                }
-                value = argVal(foundArg.value);
+            case constant:
+                if (foundArg == null) return null;
+                value = argVal(foundArg.value, defaultLanguage);
                 break;
             default:
                 throw new RuntimeException("Not implemented");
@@ -126,6 +124,21 @@ public class XPathInput {
         catch (XPathExpressionException e) {
             throw new RuntimeException("XPath Problem: " + expression, e);
         }
+    }
+
+    public String getLanguage(Node node, String defaultLanguage) {
+        Node walkNode = node;
+        while (walkNode != null) {
+            NamedNodeMap attributes = walkNode.getAttributes();
+            if (attributes != null) {
+                Node lang = attributes.getNamedItemNS("http://www.w3.org/XML/1998/namespace", "lang");
+                if (lang != null) {
+                    return lang.getNodeValue();
+                }
+            }
+            walkNode = walkNode.getParentNode();
+        }
+        return defaultLanguage;
     }
 
     private SourceType sourceType(String value, SourceType defaultType) {

@@ -16,10 +16,12 @@
 package eu.delving.x3ml.engine;
 
 import com.hp.hpl.jena.rdf.model.Resource;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import java.util.List;
+
 import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.*;
 
 /**
  * This abstract class is above Domain, Path, and Range and carries most of their
@@ -39,28 +41,28 @@ public abstract class GeneratorContext {
         this.node = node;
     }
 
-    public Resource get(String variable) {
+    public List<Resource> get(String variable) {
         if (parent == null) throw exception("Parent context missing");
         return parent.get(variable);
     }
 
-    public void put(String variable, Resource resource) {
+    public void put(String variable, List<Resource> resources) {
         if (parent == null) throw exception("Parent context missing");
-        parent.put(variable, resource);
+        parent.put(variable, resources);
     }
 
     public String evaluate(String expression) {
         return context.input().valueAt(node, expression);
     }
 
-    public X3ML.Instance getInstance(final X3ML.GeneratorElement generator, final X3ML.TypeElement typeElement) {
+    public Instance getInstance(final GeneratorElement generator) {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        X3ML.Instance instance = context.policy().generate(generator.name, new X3ML.ArgValues() {
+        Instance instance = context.policy().generate(generator.name, new ArgValues() {
             @Override
-            public X3ML.ArgValue getArgValue(String name, X3ML.SourceType sourceType) {
-                return context.input().evaluateArgument(node, generator, name, sourceType, typeElement);
+            public ArgValue getArgValue(String name, SourceType sourceType) {
+                return context.input().evaluateArgument(node, generator, name, sourceType);
             }
         });
         if (instance == null) {
@@ -69,22 +71,7 @@ public abstract class GeneratorContext {
         return instance;
     }
 
-    public String getLanguage() {
-        Node walkNode = node;
-        while (walkNode != null) {
-            NamedNodeMap attributes = walkNode.getAttributes();
-            if (attributes != null) {
-                Node lang = attributes.getNamedItemNS("http://www.w3.org/XML/1998/namespace", "lang");
-                if (lang != null) {
-                    return lang.getNodeValue();
-                }
-            }
-            walkNode = walkNode.getParentNode();
-        }
-        throw exception("Missing language");
-    }
-
-    public boolean conditionFails(X3ML.Condition condition, GeneratorContext context) {
+    public boolean conditionFails(Condition condition, GeneratorContext context) {
         return condition != null && condition.failure(context);
     }
 

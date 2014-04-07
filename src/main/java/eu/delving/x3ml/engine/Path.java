@@ -39,7 +39,7 @@ public class Path extends GeneratorContext {
     public X3ML.Relationship relationship;
     public Property property;
     public List<IntermediateNode> intermediateNodes;
-    public Resource lastResource;
+    public List<Resource> lastResources;
     public Property lastProperty;
 
     public Path(Root.Context context, Domain domain, Node node, X3ML.PathElement path) {
@@ -70,18 +70,22 @@ public class Path extends GeneratorContext {
 
     public void link() {
         domain.link();
-        if (!domain.entityResolver.hasResource()) {
+        if (!domain.entityResolver.hasResources()) {
             throw exception("Domain node has no resource");
         }
-        lastResource = domain.entityResolver.resource;
+        lastResources = domain.entityResolver.resources;
         lastProperty = property;
         for (IntermediateNode intermediateNode : intermediateNodes) {
             intermediateNode.entityResolver.link();
-            if (!intermediateNode.entityResolver.hasResource()) {
-                throw exception("Intermediate node has no resource");
+            if (!intermediateNode.entityResolver.hasResources()) {
+                throw exception("Intermediate node has no resources");
             }
-            lastResource.addProperty(lastProperty, intermediateNode.entityResolver.resource);
-            lastResource = intermediateNode.entityResolver.resource;
+            for (Resource lastResource : lastResources) {
+                for (Resource resolvedResource : intermediateNode.entityResolver.resources) {
+                    lastResource.addProperty(lastProperty, resolvedResource);
+                }
+            }
+            lastResources = intermediateNode.entityResolver.resources;
             lastProperty = intermediateNode.property;
         }
     }

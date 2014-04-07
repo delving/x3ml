@@ -84,6 +84,7 @@ public class X3MLEngine {
     public Output execute(Element sourceRoot, Generator generator) throws X3MLException {
         Root rootContext = new Root(sourceRoot, generator, namespaceContext, prefixes);
         generator.setDefaultArgType(rootElement.sourceType);
+        generator.setDefaultLanguage(rootElement.language);
         rootElement.apply(rootContext);
         return rootContext.getModelOutput();
     }

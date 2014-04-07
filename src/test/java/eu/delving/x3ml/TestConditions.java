@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -150,12 +151,12 @@ public class TestConditions implements X3ML {
         }
 
         @Override
-        public Resource get(String variable) {
+        public List<Resource> get(String variable) {
             return null;
         }
 
         @Override
-        public void put(String variable, Resource resource) {
+        public void put(String variable, List<Resource> resources) {
         }
 
         @Override
@@ -165,13 +166,8 @@ public class TestConditions implements X3ML {
         }
 
         @Override
-        public Instance getInstance(GeneratorElement generator, TypeElement typeElement) {
+        public Instance getInstance(GeneratorElement generator) {
             throw new RuntimeException("Didn't expect this to be called");
-        }
-
-        @Override
-        public String getLanguage() {
-            return null;
         }
     }
 

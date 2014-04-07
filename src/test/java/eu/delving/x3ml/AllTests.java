@@ -56,6 +56,9 @@ import static org.junit.Assert.assertTrue;
         TestRijks.class
 })
 public class AllTests {
+    public static final String MISSING = "!missing:     ";
+    public static final String CORRECT = "correct ";
+    public static final String ERROR = "!error  ";
     private static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
     private static XMLEventFactory eventFactory = XMLEventFactory.newInstance();
     private static List<String> indentStrings = new ArrayList<String>();
@@ -159,13 +162,14 @@ public class AllTests {
         Set<String> expectedSet = new TreeSet<String>(Arrays.asList(expected));
         List<String> errors = new ArrayList<String>();
         for (String actualOne : actualSet) {
-            errors.add((expectedSet.contains(actualOne) ? "correct " : "!error  ") + ":     " + filterTriple(actualOne));
+            errors.add((expectedSet.contains(actualOne) ? CORRECT : ERROR) + ":     " + filterTriple(actualOne));
         }
         for (String expectedOne : expectedSet) {
             if (!actualSet.contains(expectedOne)) {
-                errors.add("!missing:     " + filterTriple(expectedOne));
+                errors.add(MISSING + filterTriple(expectedOne));
             }
         }
+        Collections.sort(errors);
         return errors;
     }
 

@@ -35,7 +35,7 @@ import static eu.delving.x3ml.X3MLEngine.exception;
 public class Domain extends GeneratorContext {
     public final X3ML.DomainElement domain;
     public EntityResolver entityResolver;
-    private Map<String, Resource> variables = new TreeMap<String, Resource>();
+    private Map<String, List<Resource>> variables = new TreeMap<String, List<Resource>>();
 
     public Domain(Root.Context context, X3ML.DomainElement domain, Node node) {
         super(context, null, node);
@@ -43,15 +43,13 @@ public class Domain extends GeneratorContext {
     }
 
     @Override
-    public Resource get(String variable) {
-//            System.out.println("GET " + variable);
+    public List<Resource> get(String variable) {
         return variables.get(variable);
     }
 
     @Override
-    public void put(String variable, Resource resource) {
-//            System.out.println("PUT " + variable + " = " + resource);
-        variables.put(variable, resource);
+    public void put(String variable, List<Resource> resources) {
+        variables.put(variable, resources);
     }
 
     public boolean resolve() {

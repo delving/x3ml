@@ -28,7 +28,8 @@ import java.util.regex.Pattern;
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.*;
 import static eu.delving.x3ml.engine.X3ML.Helper.*;
-import static eu.delving.x3ml.engine.X3ML.SourceType.*;
+import static eu.delving.x3ml.engine.X3ML.SourceType.constant;
+import static eu.delving.x3ml.engine.X3ML.SourceType.xpath;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -39,7 +40,8 @@ public class X3MLGeneratorPolicy implements Generator {
     private Map<String, GeneratorSpec> generatorMap = new TreeMap<String, GeneratorSpec>();
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
     private char uuidLetter = 'A';
-    private SourceType defaultSourceType = UNDEFINED;
+    private SourceType defaultSourceType;
+    private String language = "en";
 
     public static X3MLGeneratorPolicy load(InputStream inputStream) {
         return new X3MLGeneratorPolicy(inputStream);
@@ -63,6 +65,18 @@ public class X3MLGeneratorPolicy implements Generator {
     }
 
     @Override
+    public void setDefaultLanguage(String language) {
+        if (language != null) {
+            this.language = language;
+        }
+    }
+
+    @Override
+    public String getDefaultLanguage() {
+        return language;
+    }
+
+    @Override
     public Instance generate(String name, ArgValues args) {
         if (name == null) {
             throw exception("Value function name missing");
@@ -71,21 +85,21 @@ public class X3MLGeneratorPolicy implements Generator {
             return uriValue(createUUID());
         }
         if ("Literal".equals(name)) {
-            ArgValue literalXPath = args.getArgValue(null, XPATH);
+            ArgValue literalXPath = args.getArgValue(null, xpath);
             if (literalXPath == null) {
                 throw exception("Argument failure: need one argument");
             }
             if (literalXPath.string == null || literalXPath.string.isEmpty()) {
                 throw exception("Argument failure: empty argument");
             }
-            return literalValue(literalXPath.string);
+            return literalValue(literalXPath.string, literalXPath.language);
         }
         if ("Constant".equals(name)) {
-            ArgValue constant = args.getArgValue(null, CONSTANT);
-            if (constant == null) {
+            ArgValue constantValue = args.getArgValue(null, constant);
+            if (constantValue == null) {
                 throw exception("Argument failure: need one argument");
             }
-            return literalValue(constant.string);
+            return literalValue(constantValue.string, language);
         }
         GeneratorSpec generator = generatorMap.get(name);
         if (generator == null) throw exception("No generator for " + name);
@@ -123,6 +137,7 @@ public class X3MLGeneratorPolicy implements Generator {
 
     private Instance fromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
         String result = generator.pattern;
+        String instanceLanguage = null;
         for (String argument : getVariables(generator.pattern)) {
             ArgValue argValue = argValues.getArgValue(argument, defaultSourceType);
             if (argValue == null || argValue.string == null) {
@@ -132,8 +147,14 @@ public class X3MLGeneratorPolicy implements Generator {
                 ));
             }
             result = result.replace(String.format("{%s}", argument), argValue.string);
+            if (instanceLanguage == null) {
+                instanceLanguage = argValue.language;
+            }
+            else if (!instanceLanguage.equals(argValue.language)) {
+                throw exception("Multiple languages make up instance: " + generator);
+            }
         }
-        return literalValue(result);
+        return literalValue(result, instanceLanguage == null ? language : instanceLanguage);
     }
 
     // == the rest is for the XML form

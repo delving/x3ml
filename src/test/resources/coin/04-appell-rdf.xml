@@ -17,17 +17,17 @@
                 <rdfs:label>Rom (Rep.)</rdfs:label>
                 <crm:P2_has_type>
                     <crm:E55_Type rdf:about="http://www.oeaw.ac.at/languages/german">
-                        <rdfs:label>german</rdfs:label>
+                        <rdfs:label xml:lang="en">german</rdfs:label>
                     </crm:E55_Type>
                 </crm:P2_has_type>
             </crm:E41_Appellation>
         </crm:P1_is_identified_by>
         <crm:P1_is_identified_by>
             <crm:E41_Appellation rdf:about="uuid:D">
-                <rdfs:label>Rome</rdfs:label>
+                <rdfs:label xml:lang="en">Rome</rdfs:label>
                 <crm:P2_has_type>
                     <crm:E55_Type rdf:about="http://www.oeaw.ac.at/languages/english">
-                        <rdfs:label>english</rdfs:label>
+                        <rdfs:label xml:lang="en">english</rdfs:label>
                     </crm:E55_Type>
                 </crm:P2_has_type>
             </crm:E41_Appellation>

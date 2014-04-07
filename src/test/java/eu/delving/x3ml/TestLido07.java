@@ -49,7 +49,7 @@ public class TestLido07 {
         );
         output.writeXML(System.out);
 //        String [] mappingResult = context.toStringArray();
-//        String [] expectedResult = AllTests.xmlToNTriples("/coin/coin1-rdf.xml");
+//        String [] expectedResult = AllTests.xmlToNTriples("/coin/01-coin-simple-rdf.xml");
 //        log("result", mappingResult);
 //        log("expected", expectedResult);
 //        assertArrayEquals("Does not match expected", expectedResult, mappingResult);

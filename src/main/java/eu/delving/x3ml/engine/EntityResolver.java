@@ -39,7 +39,7 @@ public class EntityResolver {
     public final GeneratorContext generatorContext;
     public List<LabelNode> labelNodes;
     public List<AdditionalNode> additionalNodes;
-    public Resource resource;
+    public List<Resource> resources;
     public Literal literal;
 
     EntityResolver(ModelOutput modelOutput, X3ML.EntityElement entityElement, GeneratorContext generatorContext) {
@@ -55,38 +55,39 @@ public class EntityResolver {
         if (entityElement.variable == null) {
             return resolveResource();
         }
-        resource = generatorContext.get(entityElement.variable);
-        if (resource != null) return true;
-        if (!resolveResource()) return false;
-        generatorContext.put(entityElement.variable, resource);
+        resources = generatorContext.get(entityElement.variable);
+        if (resources == null) {
+            if (!resolveResource()) return false;
+            generatorContext.put(entityElement.variable, resources);
+        }
         return true;
     }
 
     private boolean resolveResource() {
-        List<InstanceEntry> values = entityElement.getInstances(generatorContext);
-        if (values.isEmpty()) return false;
-        for (InstanceEntry instanceEntry : values) { // todo: this will fail for multiple value entries
-            switch (instanceEntry.instance.type) {
+        Instance instance = entityElement.getInstance(generatorContext);
+        if (instance == null) return false;
+            switch (instance.type) {
                 case URI:
-                    resource = modelOutput.createTypedResource(instanceEntry.instance.text, instanceEntry.typeElement);
+                    if (resources == null) {
+                        resources = new ArrayList<Resource>();
+                        for (TypeElement typeElement : entityElement.typeElements) {
+                            resources.add(modelOutput.createTypedResource(instance.text, typeElement));
+                        }
+                    }
                     labelNodes = createLabelNodes(entityElement.labelGenerators);
                     additionalNodes = createAdditionalNodes(entityElement.additionals);
-                    if (!additionalNodes.isEmpty()) {
-                        System.out.println("additionals present" + entityElement);
-                    }
                     break;
                 case LITERAL:
-                    literal = modelOutput.createLiteral(instanceEntry.instance.text, generatorContext.getLanguage());
+                    literal = modelOutput.createLiteral(instance.text, instance.language);
                     break;
                 default:
-                    throw exception("Value type "+ instanceEntry.instance.type);
-            }
+                    throw exception("Value type "+ instance.type);
         }
-        return hasResource() || hasLiteral();
+        return hasResources() || hasLiteral();
     }
 
-    boolean hasResource() {
-        return resource != null;
+    boolean hasResources() {
+        return resources != null && !resources.isEmpty();
     }
 
     boolean hasLiteral() {
@@ -94,12 +95,16 @@ public class EntityResolver {
     }
 
     void link() {
-        if (resource != null && labelNodes != null) {
-            for (LabelNode labelNode : labelNodes) {
-                labelNode.linkFrom(resource);
+        for (Resource resource : resources) {
+            if (labelNodes != null) {
+                for (LabelNode labelNode : labelNodes) {
+                    labelNode.linkFrom(resource);
+                }
             }
-            for (AdditionalNode additionalNode : additionalNodes) {
-                additionalNode.linkFrom(resource);
+            if (additionalNodes != null) {
+                for (AdditionalNode additionalNode : additionalNodes) {
+                    additionalNode.linkFrom(resource);
+                }
             }
         }
     }
@@ -139,8 +144,10 @@ public class EntityResolver {
 
         public void linkFrom(Resource fromResource) {
             additionalEntityResolver.link();
-            if (additionalEntityResolver.hasResource()) {
-                fromResource.addProperty(property, additionalEntityResolver.resource);
+            if (additionalEntityResolver.hasResources()) {
+                for (Resource resource : additionalEntityResolver.resources) {
+                    fromResource.addProperty(property, resource);
+                }
             }
             else if (additionalEntityResolver.hasLiteral()) {
                 fromResource.addLiteral(property, additionalEntityResolver.literal);
@@ -175,13 +182,13 @@ public class EntityResolver {
 
         public boolean resolve() {
             property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
-            X3ML.Instance instance = generatorContext.getInstance(generator, null);
+            Instance instance = generatorContext.getInstance(generator);
             if (instance == null) return false;
             switch (instance.type) {
                 case URI:
                     throw exception("Label node must produce a literal");
                 case LITERAL:
-                    literal = modelOutput.createLiteral(instance.text, generatorContext.getLanguage());
+                    literal = modelOutput.createLiteral(instance.text, instance.language);
                     return true;
             }
             return false;

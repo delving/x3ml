@@ -18,6 +18,8 @@ package eu.delving.x3ml.engine;
 import com.hp.hpl.jena.rdf.model.Resource;
 import org.w3c.dom.Node;
 
+import static eu.delving.x3ml.engine.X3ML.RangeElement;
+
 /**
  * The range entity handled here.  Resolution delegated.
  *
@@ -26,10 +28,10 @@ import org.w3c.dom.Node;
 
 public class Range extends GeneratorContext {
     public final Path path;
-    public final X3ML.RangeElement range;
+    public final RangeElement range;
     public EntityResolver rangeResolver;
 
-    public Range(Root.Context context, Path path, Node node, int index, X3ML.RangeElement range) { // todo: make index last arg
+    public Range(Root.Context context, Path path, RangeElement range, Node node, int index) {
         super(context, path, node, index);
         this.path = path;
         this.range = range;

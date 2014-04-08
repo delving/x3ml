@@ -478,6 +478,9 @@ public interface X3ML {
         @XStreamAsAttribute
         public String name;
 
+        @XStreamAsAttribute
+        public String language;
+
         @XStreamImplicit
         public List<GeneratorArg> args;
     }
@@ -491,12 +494,8 @@ public interface X3ML {
         @XStreamAsAttribute
         public String type;
 
-        @XStreamAsAttribute
-        public String language;
-
         public String value;
     }
-
 
     @XStreamAlias("generator_policy")
     public static class GeneratorPolicy extends Visible {

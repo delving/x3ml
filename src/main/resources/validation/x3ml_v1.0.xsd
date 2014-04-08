@@ -126,13 +126,13 @@
                                         <xs:extension base="xs:string">
                                             <xs:attribute name="name"/>
                                             <xs:attribute name="type"/>
-                                            <xs:attribute name="language"/>
                                         </xs:extension>
                                     </xs:simpleContent>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute name="name" use="required"/>
+                        <xs:attribute name="language"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element ref="additional" minOccurs="0" maxOccurs="unbounded"/>

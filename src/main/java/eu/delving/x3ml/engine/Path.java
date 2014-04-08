@@ -24,8 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
-import static eu.delving.x3ml.engine.X3ML.PathElement;
-import static eu.delving.x3ml.engine.X3ML.Relationship;
+import static eu.delving.x3ml.engine.X3ML.*;
 
 /**
  * The path relationship handled here.  Intermediate nodes possible.
@@ -44,7 +43,7 @@ public class Path extends GeneratorContext {
     public List<Resource> lastResources;
     public Property lastProperty;
 
-    public Path(Root.Context context, Domain domain, Node node, int index, PathElement path) { // todo: make index last arg
+    public Path(Root.Context context, Domain domain, PathElement path, Node node, int index) {
         super(context, domain, node, index);
         this.domain = domain;
         this.path = path;
@@ -92,14 +91,14 @@ public class Path extends GeneratorContext {
         }
     }
 
-    public List<Range> createRangeContexts(X3ML.RangeElement range) {
+    public List<Range> createRangeContexts(RangeElement range) {
         if (range.source_node == null) throw exception("Range source absent: " + range);
         String pathExtension = getPathExtension(range);
         List<Node> rangeNodes = context.input().nodeList(node, pathExtension);
         List<Range> ranges = new ArrayList<Range>();
         int index = 1;
         for (Node rangeNode : rangeNodes) {
-            Range rangeContext = new Range(context, this, rangeNode, index++, range);
+            Range rangeContext = new Range(context, this, range, rangeNode, index++);
             if (rangeContext.resolve()) {
                 ranges.add(rangeContext);
             }
@@ -107,7 +106,7 @@ public class Path extends GeneratorContext {
         return ranges;
     }
 
-    private String getPathExtension(X3ML.RangeElement range) {
+    private String getPathExtension(RangeElement range) {
         String rangeSource = range.source_node.expression;
         String pathSource = path.source_relation.expression;
         if (pathSource.length() > rangeSource.length()) {

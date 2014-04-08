@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.DomainElement;
+import static eu.delving.x3ml.engine.X3ML.PathElement;
 
 /**
  * The domain entity handled here.  Resolution delegated.
@@ -33,11 +35,11 @@ import static eu.delving.x3ml.X3MLEngine.exception;
  */
 
 public class Domain extends GeneratorContext {
-    public final X3ML.DomainElement domain;
+    public final DomainElement domain;
     public EntityResolver entityResolver;
     private Map<String, List<Resource>> variables = new TreeMap<String, List<Resource>>();
 
-    public Domain(Root.Context context, X3ML.DomainElement domain, Node node, int index) {
+    public Domain(Root.Context context, DomainElement domain, Node node, int index) {
         super(context, null, node, index);
         this.domain = domain;
     }
@@ -58,12 +60,12 @@ public class Domain extends GeneratorContext {
         return entityResolver.resolve();
     }
 
-    public List<Path> createPathContexts(X3ML.PathElement path) {
+    public List<Path> createPathContexts(PathElement path) {
         if (path.source_relation == null) throw exception("Path source absent");
         List<Path> paths = new ArrayList<Path>();
         int index = 1;
         for (Node pathNode : context.input().nodeList(node, path.source_relation)) {
-            Path pathContext = new Path(context, this, pathNode, index++, path);
+            Path pathContext = new Path(context, this, path, pathNode, index++);
             if (pathContext.resolve()) {
                 paths.add(pathContext);
             }

@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
 import static eu.delving.x3ml.engine.X3ML.Helper.argVal;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
 
@@ -46,17 +47,17 @@ public class XPathInput {
         this.defaultLanguage = defaultLanguage;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, int index, X3ML.GeneratorElement function, String argName, SourceType defaultType) {
+    public X3ML.ArgValue evaluateArgument(Node contextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
-        if (function.args != null) {
-            if (function.args.size() == 1 && function.args.get(0).name == null) {
-                foundArg = function.args.get(0);
+        if (generatorElement.args != null) {
+            if (generatorElement.args.size() == 1 && generatorElement.args.get(0).name == null) {
+                foundArg = generatorElement.args.get(0);
                 foundArg.name = argName;
-                type = sourceType(function.args.get(0).type, defaultType);
+                type = sourceType(generatorElement.args.get(0).type, defaultType);
             }
             else {
-                for (X3ML.GeneratorArg arg : function.args) {
+                for (X3ML.GeneratorArg arg : generatorElement.args) {
                     if (arg.name.equals(argName)) {
                         foundArg = arg;
                         type = sourceType(arg.type, defaultType);
@@ -68,10 +69,10 @@ public class XPathInput {
         switch (type) {
             case xpath:
                 if (foundArg == null) return null;
-                value = argVal(
-                        valueAt(contextNode,foundArg.value),
-                        foundArg.language == null ? getLanguage(contextNode, defaultLanguage): foundArg.language
-                );
+                String lang = generatorElement.language;
+                if (lang == null) lang = getLanguage(contextNode);
+                if (lang == null) lang = defaultLanguage;
+                value = argVal(valueAt(contextNode,foundArg.value), lang);
                 if (value.string.isEmpty()) {
                     throw exception("Empty result");
                 }
@@ -129,7 +130,7 @@ public class XPathInput {
         }
     }
 
-    public String getLanguage(Node node, String defaultLanguage) {
+    private static String getLanguage(Node node) {
         Node walkNode = node;
         while (walkNode != null) {
             NamedNodeMap attributes = walkNode.getAttributes();
@@ -141,7 +142,7 @@ public class XPathInput {
             }
             walkNode = walkNode.getParentNode();
         }
-        return defaultLanguage;
+        return null;
     }
 
     private SourceType sourceType(String value, SourceType defaultType) {

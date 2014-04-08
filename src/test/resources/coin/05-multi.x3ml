@@ -84,8 +84,8 @@
                             <type>crm:E41_Appellation</type>
                             <type>crm:E33_Linguistic_Object</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="SimpleLabel">
-                                <arg name="label" language="en">text()</arg>
+                            <label_generator name="SimpleLabel" language="en">
+                                <arg name="label">text()</arg>
                             </label_generator>
                             <additional>
                                 <relationship>crm:P72_has_language</relationship>

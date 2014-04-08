@@ -4,7 +4,6 @@
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xml:base="http://www.cidoc-crm.org/cidoc-crm/">
-    <!--todo:  xml:lang="en"-->
 
     <crm:E22_Man-Made_Object rdf:about="uuid:A">
         <crm:P1_is_identified_by>

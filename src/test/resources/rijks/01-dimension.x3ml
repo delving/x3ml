@@ -34,12 +34,13 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>/adlibXML/recordList/record/dimension.value</source_node>
+                    <source_node>/adlibXML/recordList/record/dimension/dimension.value</source_node>
                     <target_node>
                         <entity>
-                            <label_generator name="Literal">
-                                <arg>/adlibXML/recordList/record/dimension.value</arg>
-                            </label_generator>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
                         </entity>
                     </target_node>
                 </range>

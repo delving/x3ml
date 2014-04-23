@@ -1,0 +1,10 @@
+@prefix crm: <http://erlangen-crm.org/current/>.
+
+<http://collection.rijksmuseum.nl/id/object/5216/dimension/1> a crm:E54_Dimension; 
+                                                              crm:P90_has_value "379,5".
+<http://collection.rijksmuseum.nl/id/object/5216/dimension/2> a crm:E54_Dimension; 
+                                                              crm:P90_has_value "453,5".
+<http://collection.rijksmuseum.nl/id/object/5216/dimension/3> a crm:E54_Dimension; 
+                                                              crm:P90_has_value "337".
+
+

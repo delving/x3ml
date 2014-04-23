@@ -28,13 +28,13 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/dimension</source_relation>
+                    <source_relation>dimension.value</source_relation>
                     <target_relation>
                         <relationship>crm:P90_has_value</relationship>
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>/adlibXML/recordList/record/dimension/dimension.value</source_node>
+                    <source_node>dimension.value</source_node>
                     <target_node>
                         <entity>
                             <type>rdf:PlainLiteral</type>

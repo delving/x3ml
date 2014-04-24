@@ -36,9 +36,9 @@ import static eu.delving.x3ml.X3MLEngine.exception;
 
 /**
  * This interface defines the XML interpretation of the engine using the XStream library.
- *
+ * <p/>
  * There is also a helper class for encapsulating related functions.
- *
+ * <p/>
  * The XSD definition is to be found in /src/main/resources.
  *
  * @author Gerald de Jong <gerald@delving.eu>
@@ -560,6 +560,10 @@ public interface X3ML {
             this.language = language;
         }
 
+        public Instance(InstanceType type, String text) {
+            this(type, text, null);
+        }
+
         public String toString() {
             return type + ":" + text;
         }
@@ -600,6 +604,10 @@ public interface X3ML {
 
         public static Instance literalValue(String literal, String language) {
             return new Instance(InstanceType.LITERAL, literal, language);
+        }
+
+        public static Instance literalValue(String literal) {
+            return literalValue(literal, null);
         }
     }
 }

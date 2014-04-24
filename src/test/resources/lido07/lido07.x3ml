@@ -35,7 +35,7 @@
                         <entity>
                             <type>crm:E31_Document</type>
                             <instance_generator name="PhysicalThing">
-                                <arg type="constant">E31_Document</arg>
+                                <arg name="localName" type="constant">E31_Document</arg>
                             </instance_generator>
                         </entity>
                     </target_node>

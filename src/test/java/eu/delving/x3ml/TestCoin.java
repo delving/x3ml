@@ -39,6 +39,7 @@ public class TestCoin {
         X3MLEngine.Output output = engine.execute(document("/coin/00-coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin/01-coin-simple-rdf.xml");
+//        System.out.println(StringUtils.join(expectedResult, "\n"));
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }

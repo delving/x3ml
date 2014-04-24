@@ -7,7 +7,7 @@
         <pattern>/{nameOfMuseum,entry}</pattern>
     </generator>
     <generator name="Type" prefix="xxx">
-        <pattern>/{entry}</pattern>
+        <pattern>/{text}</pattern>
     </generator>
     <generator name="PhysicalThing" prefix="xxx">
         <pattern>/{localName}</pattern>

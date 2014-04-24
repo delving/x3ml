@@ -51,17 +51,14 @@ public class XPathInput {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
         if (generatorElement.args != null) {
-            if (generatorElement.args.size() == 1 && generatorElement.args.get(0).name == null) {
-                foundArg = generatorElement.args.get(0);
-                foundArg.name = argName;
-                type = sourceType(generatorElement.args.get(0).type, defaultType);
-            }
-            else {
-                for (X3ML.GeneratorArg arg : generatorElement.args) {
-                    if (arg.name.equals(argName)) {
-                        foundArg = arg;
-                        type = sourceType(arg.type, defaultType);
-                    }
+            for (X3ML.GeneratorArg arg : generatorElement.args) {
+                if (arg.name == null) {
+//                    throw exception("Argument needs a name in generator "+generatorElement.name);
+                    arg.name = "text";
+                }
+                if (arg.name.equals(argName)) {
+                    foundArg = arg;
+                    type = sourceType(arg.type, defaultType);
                 }
             }
         }

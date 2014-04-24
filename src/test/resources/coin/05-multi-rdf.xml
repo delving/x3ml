@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<rdf:RDF xml:lang="de"
+<rdf:RDF
 	xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" 
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -16,7 +16,7 @@
 		<rdf:Description rdf:about="uuid:C">
 			<rdf:type rdf:resource="E41_Appellation"/>
 			<rdf:type rdf:resource="E33_Linguistic_Object"/>
-			<rdfs:label>Rom (Rep.)</rdfs:label>
+			<rdfs:label xml:lang="de">Rom (Rep.)</rdfs:label>
 			<crm:P72_has_language>
 				<crm:E56_Language rdf:about="http://www.oeaw.ac.at/languages/german">
 					<rdfs:label xml:lang="en">german</rdfs:label>

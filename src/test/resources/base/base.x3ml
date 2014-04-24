@@ -67,7 +67,7 @@
                                 <arg name="entry">inner_identifier/text()</arg>
                             </instance_generator>
                             <label_generator name="Literal">
-                                <arg>inner_title/text()</arg>
+                                <arg name="text">inner_title/text()</arg>
                             </label_generator>
                         </entity>
                     </target_node>

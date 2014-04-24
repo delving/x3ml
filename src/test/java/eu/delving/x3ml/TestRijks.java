@@ -15,9 +15,13 @@
 //===========================================================================
 package eu.delving.x3ml;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.util.List;
+
 import static eu.delving.x3ml.AllTests.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -26,9 +30,19 @@ import static eu.delving.x3ml.AllTests.*;
 public class TestRijks {
 
     @Test
-    public void testFirstSteps() {
+    public void testRough() {
         X3MLEngine engine = engine("/rijks/rijks.x3ml");
         X3MLEngine.Output output = engine.execute(document("/rijks/rijks.xml"), policy("/rijks/rijks-policy.xml"));
         output.writeXML(System.out);
+    }
+
+    @Test
+    public void testDimension() {
+        X3MLEngine engine = engine("/rijks/01-dimension.x3ml");
+        X3MLEngine.Output output = engine.execute(document("/rijks/rijks.xml"), policy("/rijks/01-dimension-policy.xml"));
+        String[] mappingResult = output.toStringArray();
+        String[] expectedResult = xmlToNTriples("/rijks/01-dimension-rdf.xml");
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 }

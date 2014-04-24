@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:crm="http://erlangen-crm.org/current/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <crm:E54_Dimension rdf:about="http://collection.rijksmuseum.nl/id/object/5216/dimension/1">
+    <crm:P90_has_value>379,5</crm:P90_has_value>
+  </crm:E54_Dimension>
+  <crm:E54_Dimension rdf:about="http://collection.rijksmuseum.nl/id/object/5216/dimension/2">
+    <crm:P90_has_value>453,5</crm:P90_has_value>
+  </crm:E54_Dimension>
+  <crm:E54_Dimension rdf:about="http://collection.rijksmuseum.nl/id/object/5216/dimension/3">
+    <crm:P90_has_value>337</crm:P90_has_value>
+  </crm:E54_Dimension>
+  <crm:E54_Dimension rdf:about="http://collection.rijksmuseum.nl/id/object/5216/dimension/4">
+    <crm:P90_has_value>170</crm:P90_has_value>
+  </crm:E54_Dimension>
+</rdf:RDF>

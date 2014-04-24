@@ -29,8 +29,8 @@
                         <entity>
                             <type>crm:E41_Appellation</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="Literal">
-                                <arg>text()</arg>
+                            <label_generator name="PlainLiteral">
+                                <arg name="text">text()</arg>
                             </label_generator>
                         </entity>
                     </target_node>
@@ -45,7 +45,7 @@
                             <type>crm:E10_Transfer_of_Custody</type>
                             <instance_generator name="UUID"/>
                             <label_generator name="Constant">
-                                <arg>find event</arg>
+                                <arg name="text">find event</arg>
                             </label_generator>
                         </entity>
                         <relationship>crm:P7_took_place_at</relationship>
@@ -58,7 +58,8 @@
                             <type>crm:E53_Place</type>
                             <instance_generator name="UUID"/>
                             <label_generator name="Literal">
-                                <arg>FS_NAME/text()</arg>
+                                <arg name="text">FS_NAME/text()</arg>
+                                <arg name="language">de</arg>
                             </label_generator>
                         </entity>
                     </target_node>

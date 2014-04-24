@@ -24,6 +24,10 @@ import static eu.delving.x3ml.engine.X3ML.*;
  */
 
 public interface Generator {
+    interface UUIDSource {
+        String generateUUID();
+    }
+
     void setDefaultArgType(SourceType sourceType);
     void setDefaultLanguage(String language);
     String getDefaultLanguage();

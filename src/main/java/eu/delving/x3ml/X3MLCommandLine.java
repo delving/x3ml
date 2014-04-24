@@ -43,7 +43,7 @@ public class X3MLCommandLine {
         HELP.setLeftPadding(5);
         HELP.printHelp(
                 200,
-                "x3ml -xml <input records> -x3ml <mapping file>",
+                "x3ml -xml <input records> -x3ml <mapping file> hello",
                 "Options",
                 options,
                 message
@@ -78,7 +78,12 @@ public class X3MLCommandLine {
                 "validate", false,
                 "Validate X3ML v1.0 using XSD"
         );
-        options.addOption(rdfFormat).addOption(rdf).addOption(x3ml).addOption(xml).addOption(policy).addOption(validate);
+        Option testUUID = new Option(
+                "testUUID", false,
+                "Use test UUID generator. Default is from operating system"
+        );
+        options.addOption(rdfFormat).addOption(rdf).addOption(x3ml).addOption(xml).addOption(policy)
+                .addOption(validate).addOption(testUUID);
         try {
             CommandLine cli = PARSER.parse(options, args);
             go(
@@ -87,7 +92,8 @@ public class X3MLCommandLine {
                     cli.getOptionValue("policy"),
                     cli.getOptionValue("rdf"),
                     cli.getOptionValue("format"),
-                    cli.hasOption("validate")
+                    cli.hasOption("validate"),
+                    cli.hasOption("testUUID")
             );
         }
         catch (ParseException e) {
@@ -134,12 +140,12 @@ public class X3MLCommandLine {
         }
     }
 
-    static Generator getValuePolicy(String policy) {
+    static Generator getValuePolicy(String policy, X3MLGeneratorPolicy.UUIDSource uuidSource) {
         FileInputStream stream = null;
         if (policy != null) {
             stream = getStream(file(policy));
         }
-        return X3MLGeneratorPolicy.load(stream);
+        return X3MLGeneratorPolicy.load(stream, uuidSource);
     }
 
     static PrintStream rdf(String file) {
@@ -157,7 +163,7 @@ public class X3MLCommandLine {
         }
     }
 
-    static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat, boolean validate) {
+    static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat, boolean validate, boolean testUUID) {
         Element xmlElement;
         if ("@".equals(xml)) {
             xmlElement = xml(System.in);
@@ -186,7 +192,7 @@ public class X3MLCommandLine {
             x3mlStream = getStream(file(x3ml));
         }
         X3MLEngine engine = X3MLEngine.load(x3mlStream);
-        X3MLEngine.Output output = engine.execute(xmlElement, getValuePolicy(policy));
+        X3MLEngine.Output output = engine.execute(xmlElement, getValuePolicy(policy, X3MLGeneratorPolicy.createUUIDSource(testUUID)));
         output.write(rdf(rdf), rdfFormat);
     }
 }

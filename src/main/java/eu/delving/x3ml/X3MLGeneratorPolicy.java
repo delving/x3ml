@@ -39,15 +39,19 @@ public class X3MLGeneratorPolicy implements Generator {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, GeneratorSpec> generatorMap = new TreeMap<String, GeneratorSpec>();
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
-    private char uuidLetter = 'A';
+    private UUIDSource uuidSource;
     private SourceType defaultSourceType;
     private String defaultLanguage;
 
-    public static X3MLGeneratorPolicy load(InputStream inputStream) {
-        return new X3MLGeneratorPolicy(inputStream);
+    public static X3MLGeneratorPolicy load(InputStream inputStream, UUIDSource uuidSource) {
+        return new X3MLGeneratorPolicy(inputStream, uuidSource);
     }
 
-    private X3MLGeneratorPolicy(InputStream inputStream) {
+    public static UUIDSource createUUIDSource(boolean testUUID) {
+        return testUUID ? new TestUUIDSource() : new RealUUIDSource();
+    }
+
+    private X3MLGeneratorPolicy(InputStream inputStream, UUIDSource uuidSource) {
         if (inputStream != null) {
             GeneratorPolicy policy = (GeneratorPolicy) generatorStream().fromXML(inputStream);
             for (MappingNamespace namespace : policy.namespaces) {
@@ -60,6 +64,7 @@ public class X3MLGeneratorPolicy implements Generator {
                 generatorMap.put(generator.name, generator);
             }
         }
+        if ((this.uuidSource = uuidSource) == null) throw exception("UUID Source needed");
     }
 
     @Override
@@ -85,7 +90,7 @@ public class X3MLGeneratorPolicy implements Generator {
             throw exception("Value function name missing");
         }
         if ("UUID".equals(name)) {
-            return uriValue(createUUID());
+            return uriValue(uuidSource.generateUUID());
         }
         if ("Literal".equals(name) || "PlainLiteral".equals(name)) {
             ArgValue value = args.getArgValue("text", xpath);
@@ -167,8 +172,28 @@ public class X3MLGeneratorPolicy implements Generator {
 
     // == the rest is for the XML form
 
-    private String createUUID() {
-        return "uuid:" + (uuidLetter++);
+    private static class TestUUIDSource implements UUIDSource {
+        private int count = 0;
+
+        @Override
+        public String generateUUID() {
+            int highLetter = count / 26;
+            int lowLetter = count % 26;
+            count++;
+            if (highLetter > 0) {
+                return String.format("uuid:%c%c",(char)(highLetter + 'A' - 1), (char)(lowLetter + 'A'));
+            }
+            else {
+                return String.format("uuid:%c",(char)(lowLetter + 'A'));
+            }
+        }
+    }
+
+    private static class RealUUIDSource implements X3MLGeneratorPolicy.UUIDSource {
+        @Override
+        public String generateUUID() {
+            return "urn:uuid:" + UUID.randomUUID();
+        }
     }
 
     private static List<String> getVariables(String pattern) {
@@ -179,5 +204,4 @@ public class X3MLGeneratorPolicy implements Generator {
         }
         return arguments;
     }
-
 }

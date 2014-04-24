@@ -31,7 +31,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TestCoin {
     private final Logger log = Logger.getLogger(getClass());
-    private final Generator VALUE_POLICY = X3MLGeneratorPolicy.load(null);
+    private final Generator VALUE_POLICY = X3MLGeneratorPolicy.load(null, X3MLGeneratorPolicy.createUUIDSource(true));
 
     @Test
     public void testSimpleCoinExample() {

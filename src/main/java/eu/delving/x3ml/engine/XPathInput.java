@@ -69,9 +69,9 @@ public class XPathInput {
                 String lang = generatorElement.language;
                 if (lang == null) lang = getLanguage(contextNode);
                 if (lang == null) lang = defaultLanguage;
-                value = argVal(valueAt(contextNode,foundArg.value), lang);
+                value = argVal(valueAt(contextNode, foundArg.value), lang);
                 if (value.string.isEmpty()) {
-                    throw exception("Empty result");
+                    throw exception("Empty result for arg " + foundArg.name + " in generator " + generatorElement.name);
                 }
                 break;
             case constant:

@@ -163,7 +163,7 @@
                         <entity>
                             <type>crm:P10_falls_within</type>
                             <instance_generator name="P10_falls_within">
-                                <arg name="linkref">@linkref/text()</arg>
+                                <arg name="linkref">.</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -329,7 +329,7 @@
                         <entity>
                             <type>crm:P14_carried_out_by</type>
                             <instance_generator name="P14_carried_out_by">
-                                <arg name="maker">maker/@linkref/text()</arg>
+                                <arg name="maker">.</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -362,7 +362,7 @@
                         <entity>
                             <type>crm:P138_represents</type>
                             <instance_generator name="P138_represents">
-                                <arg name="linkref">@linkref/text()</arg>
+                                <arg name="linkref">.</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -395,7 +395,7 @@
                         <entity>
                             <type>crm:P138_represents</type>
                             <instance_generator name="P138_represents\2">
-                                <arg name="linkref">@linkref/text()</arg>
+                                <arg name="linkref">.</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -447,7 +447,7 @@
                         <entity>
                             <type>crm:P2_has_type</type>
                             <instance_generator name="P2_has_type\2">
-                                <arg name="dimension">dimension.type/@linkref/text()</arg>
+                                <arg name="dimension">.</arg>
                             </instance_generator>
                         </entity>
                     </target_node>

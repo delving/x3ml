@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <namespaces>
+        
+    
+        <namespace prefix="owl" uri="http://www.w3.org/2002/07/owl#"/>
+        
+    
+        <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        
+    
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+        
+    
+        <namespace prefix="crm" uri="http://erlangen-crm.org/current/"/>
+        
+    
+        <namespace prefix="rmo" uri="http://collection.rijksmuseum.nl/id/ontology/"/>
+        
+	
+        <namespace prefix="bmo" uri="http://collection.britishmuseum.org/id/ontology/"/>
+        
+    
+        <namespace prefix="id" uri="http://collection.rijksmuseum.nl/id/"/>
+        
+	
+        <namespace prefix="idPersonInstitution" uri="http://collection.rijksmuseum.nl/id/person-institution/"/>
+        
+    
+        <namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+        
+  
+    </namespaces>
+    
+
+  
+    <generator name="P126_employed" prefix="id">
+        <pattern>thesauri/material/{treatment}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E43_Inscription" prefix="id">
+        <pattern>object/{priref}/inscription/{counter_inscriptionCounter}</pattern>
+    </generator>
+    <generator name="P138_represents" prefix="idPersonInstitution">
+        <pattern>{linkref}</pattern>
+    </generator>
+    <generator name="P4_has_time-span" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}/date</pattern>
+    </generator>
+    <generator name="P72_has_language" prefix="id">
+        <pattern>thesauri/language/{inscription}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E38_Image" prefix="id">
+        <pattern>object/{priref}/image/{counter_imageCounter}</pattern>
+    </generator>
+    <generator name="P14_carried_out_by" prefix="idPersonInstitution">
+        <pattern>{maker}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E11_Modification" prefix="id">
+        <pattern>object/{priref}/treatment/{counter_treatmentCounter}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E35_Title" prefix="id">
+        <pattern>object/{priref}/title/{counter_titleCounter}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E52_Time-Span" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}/date</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E12_Production" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
+    </generator>
+    <generator name="P14_was_carried_out_by" prefix="idPersonInstitution">
+        <pattern>{treatment}</pattern>
+    </generator>
+    <generator name="P9_consists_of" prefix="id">
+        <pattern>object/{priref}/production/{counter_productionCounter}</pattern>
+    </generator>
+    <generator name="P50_has_current_keeper" prefix="id">
+        <pattern>rijksmuseum</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E54_Dimension" prefix="id">
+        <pattern>object/{priref}/dimension/{counter_dimensionCounter}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E22_Man-Made_Object\2" prefix="id">
+        <pattern>object/{priref}/frame/{counter_frameCounter}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E31_Document" prefix="id">
+        <pattern>object/{priref}/description/{counter_descriptionCount}</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E52_Time-Span\2" prefix="id">
+        <pattern>object/{priref}/treatment/{counter_treatmentCounter}/date</pattern>
+    </generator>
+    <generator name="P2_has_type" prefix="id">
+        <pattern>thesauri/descriptionType/physical-description</pattern>
+    </generator>
+    <generator name="P4_has_time-span\2" prefix="id">
+        <pattern>object/{priref}/treatment/{counter_treatmentCounter}/date</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E12_Production\2" prefix="id">
+        <pattern>object/{priref}/production</pattern>
+    </generator>
+    <generator name="http://erlangen-crm.org/current/E22_Man-Made_Object" prefix="id">
+        <pattern>object/{priref}</pattern>
+    </generator>
+    <generator name="P10_falls_within" prefix="id">
+        <pattern>thesauri/culture/{linkref}</pattern>
+    </generator>
+    <generator name="P141_assigned" prefix="id">
+        <pattern>object/{priref}/dimension/{counter_dimensionCounter}</pattern>
+    </generator>
+    <generator name="http://collection.britishmuseum.org/id/ontology/EX_Association" prefix="id">
+        <pattern>object/{priref}/dimension/{counter_dimensionCounter}/association</pattern>
+    </generator>
+    <generator name="P140_assigned_attribute_to" prefix="id">
+        <pattern>object/{priref}</pattern>
+    </generator>
+    <generator name="P2_has_type\4" prefix="id">
+        <pattern>thesauri/inscription/{inscription}</pattern>
+    </generator>
+    <generator name="P2_has_type\3" prefix="id">
+        <pattern>thesauri/precision/{dimension}</pattern>
+    </generator>
+    <generator name="P2_has_type\2" prefix="id">
+        <pattern>thesauri/dimensionType/{dimension}</pattern>
+    </generator>
+    <generator name="P138_represents\2" prefix="id">
+        <pattern>place/{linkref}</pattern>
+    </generator>
+    <generator name="PX_property" prefix="crm">
+        <pattern>P43_has_dimension</pattern>
+    </generator>
+</generator_policy>
+

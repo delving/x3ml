@@ -219,42 +219,6 @@
             </domain>
             <link>
                 <path>
-                    <source_relation/>
-                    <target_relation>
-                        <relationship>rdfs:label</relationship>
-                    </target_relation>
-                </path>
-                <range>
-                    <source_node>dummy</source_node>
-                    <target_node>
-                        <entity>
-                            <instance_generator name="Dummy">
-                                <arg name="Dummy">{date.early.precision/text[@language='0']}{date.early} - {date.late.precision/text[@language='0']}{date.late}</arg>
-                            </instance_generator>
-                        </entity>
-                    </target_node>
-                </range>
-            </link>
-            <link>
-                <path>
-                    <source_relation/>
-                    <target_relation>
-                        <relationship>rdfs:label</relationship>
-                    </target_relation>
-                </path>
-                <range>
-                    <source_node>dummy</source_node>
-                    <target_node>
-                        <entity>
-                            <instance_generator name="Dummy">
-                                <arg name="Dummy">{date.early.precision/text[@language='1']}{date.early} - {date.late.precision/text[@language='1']}{date.late}</arg>
-                            </instance_generator>
-                        </entity>
-                    </target_node>
-                </range>
-            </link>
-            <link>
-                <path>
                     <source_relation>date.early</source_relation>
                     <target_relation>
                         <relationship>crm:P82a_begin_of_the_begin</relationship>
@@ -870,24 +834,6 @@
                         <entity>
                             <type>crm:P50_has_current_keeper</type>
                             <instance_generator name="P50_has_current_keeper"/>
-                        </entity>
-                    </target_node>
-                </range>
-            </link>
-            <link>
-                <path>
-                    <source_relation/>
-                    <target_relation>
-                        <relationship>bmo:PX_display_wrap</relationship>
-                    </target_relation>
-                </path>
-                <range>
-                    <source_node>dummy</source_node>
-                    <target_node>
-                        <entity>
-                            <instance_generator name="Dummy">
-                                <arg name="Dummy">Keeper :: The Rijksmuseum ::</arg>
-                            </instance_generator>
                         </entity>
                     </target_node>
                 </range>

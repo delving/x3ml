@@ -100,19 +100,9 @@
             <version>4.0.9</version>
         </dependency>
         <dependency>
-            <groupId>org.apache</groupId>
-            <artifactId>xml-apis</artifactId>
-            <version>2.11.0-xsd1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache</groupId>
-            <artifactId>xercesImpl</artifactId>
-            <version>2.11.0-xsd1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache</groupId>
-            <artifactId>xerces-resolver</artifactId>
-            <version>2.11.0</version>
+            <groupId>com.rackspace.apache</groupId>
+            <artifactId>xerces2-xsd11</artifactId>
+            <version>2.11.2</version>
         </dependency>
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>

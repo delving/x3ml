@@ -39,15 +39,19 @@ public class X3MLGeneratorPolicy implements Generator {
     private static final Pattern BRACES = Pattern.compile("\\{[?;+#]?([^}]+)\\}");
     private Map<String, GeneratorSpec> generatorMap = new TreeMap<String, GeneratorSpec>();
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
-    private char uuidLetter = 'A';
+    private UUIDSource uuidSource;
     private SourceType defaultSourceType;
-    private String defaultLanguage = null; // todo: make sure it can handle this
+    private String defaultLanguage;
 
-    public static X3MLGeneratorPolicy load(InputStream inputStream) {
-        return new X3MLGeneratorPolicy(inputStream);
+    public static X3MLGeneratorPolicy load(InputStream inputStream, UUIDSource uuidSource) {
+        return new X3MLGeneratorPolicy(inputStream, uuidSource);
     }
 
-    private X3MLGeneratorPolicy(InputStream inputStream) {
+    public static UUIDSource createUUIDSource(boolean testUUID) {
+        return testUUID ? new TestUUIDSource() : new RealUUIDSource();
+    }
+
+    private X3MLGeneratorPolicy(InputStream inputStream, UUIDSource uuidSource) {
         if (inputStream != null) {
             GeneratorPolicy policy = (GeneratorPolicy) generatorStream().fromXML(inputStream);
             for (MappingNamespace namespace : policy.namespaces) {
@@ -60,6 +64,7 @@ public class X3MLGeneratorPolicy implements Generator {
                 generatorMap.put(generator.name, generator);
             }
         }
+        if ((this.uuidSource = uuidSource) == null) throw exception("UUID Source needed");
     }
 
     @Override
@@ -85,32 +90,24 @@ public class X3MLGeneratorPolicy implements Generator {
             throw exception("Value function name missing");
         }
         if ("UUID".equals(name)) {
-            return uriValue(createUUID());
+            return uriValue(uuidSource.generateUUID());
         }
         if ("Literal".equals(name) || "PlainLiteral".equals(name)) {
-            ArgValue literalXPath = args.getArgValue("text", xpath);
-            if (literalXPath == null) {
+            ArgValue value = args.getArgValue("text", xpath);
+            if (value == null) {
                 throw exception("Argument failure: need one argument");
             }
-            if (literalXPath.string == null || literalXPath.string.isEmpty()) {
+            if (value.string == null || value.string.isEmpty()) {
                 throw exception("Argument failure: empty argument");
             }
-            String language = literalXPath.language;
-            ArgValue languageArg = args.getArgValue("language", constant);
-            if (languageArg != null) language = languageArg.string;
-            if (name.startsWith("Plain")) language = null;
-            return literalValue(literalXPath.string, language);
+            return literalValue(value.string, getLanguage(value, args, name.startsWith("Plain")));
         }
         if ("Constant".equals(name) || "PlainConstant".equals(name)) {
-            ArgValue constantValue = args.getArgValue("text", constant);
-            if (constantValue == null) {
+            ArgValue value = args.getArgValue("text", constant);
+            if (value == null) {
                 throw exception("Argument failure: need one argument");
             }
-            String language = constantValue.language;
-            ArgValue languageArg = args.getArgValue("language", constant);
-            if (languageArg != null) language = languageArg.string;
-            if (name.startsWith("Plain")) language = null;
-            return literalValue(constantValue.string, language);
+            return literalValue(value.string, getLanguage(value, args, name.startsWith("Plain")));
         }
         GeneratorSpec generator = generatorMap.get(name);
         if (generator == null) throw exception("No generator for " + name);
@@ -121,6 +118,14 @@ public class X3MLGeneratorPolicy implements Generator {
         else { // use simple substitution
             return fromSimpleTemplate(generator, args);
         }
+    }
+
+    private String getLanguage(ArgValue argValue, ArgValues argValues, boolean stripLanguage) {
+        if (stripLanguage) return null;
+        String language = argValue.language;
+        ArgValue languageArg = argValues.getArgValue("language", constant);
+        if (languageArg != null) language = languageArg.string;
+        return language;
     }
 
     private Instance fromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
@@ -167,8 +172,28 @@ public class X3MLGeneratorPolicy implements Generator {
 
     // == the rest is for the XML form
 
-    private String createUUID() {
-        return "uuid:" + (uuidLetter++);
+    private static class TestUUIDSource implements UUIDSource {
+        private int count = 0;
+
+        @Override
+        public String generateUUID() {
+            int highLetter = count / 26;
+            int lowLetter = count % 26;
+            count++;
+            if (highLetter > 0) {
+                return String.format("uuid:%c%c",(char)(highLetter + 'A' - 1), (char)(lowLetter + 'A'));
+            }
+            else {
+                return String.format("uuid:%c",(char)(lowLetter + 'A'));
+            }
+        }
+    }
+
+    private static class RealUUIDSource implements X3MLGeneratorPolicy.UUIDSource {
+        @Override
+        public String generateUUID() {
+            return "urn:uuid:" + UUID.randomUUID();
+        }
     }
 
     private static List<String> getVariables(String pattern) {
@@ -179,5 +204,4 @@ public class X3MLGeneratorPolicy implements Generator {
         }
         return arguments;
     }
-
 }

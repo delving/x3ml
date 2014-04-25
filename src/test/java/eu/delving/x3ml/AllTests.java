@@ -78,7 +78,7 @@ public class AllTests {
 //    }
 //
     public static Generator policy(String path) {
-        return X3MLGeneratorPolicy.load(resource(path));
+        return X3MLGeneratorPolicy.load(resource(path), X3MLGeneratorPolicy.createUUIDSource(true));
     }
 
     public static Element document(String path) {

@@ -83,13 +83,13 @@ public class ModelOutput implements Output {
     }
 
     public void write(PrintStream out, String format) {
-        if ("application/n-triples".equalsIgnoreCase(format) || "N-TRIPLE".equalsIgnoreCase(format)) {
+        if ("application/n-triples".equalsIgnoreCase(format)) {
             writeNTRIPLE(out);
         }
-        else if ("text/turtle".equalsIgnoreCase(format) || "TURTLE".equalsIgnoreCase(format)) {
+        else if ("text/turtle".equalsIgnoreCase(format)) {
             writeTURTLE(out);
         }
-        else if ("application/rdf+xml".equalsIgnoreCase(format) || "XML".equalsIgnoreCase(format)) {
+        else if ("application/rdf+xml".equalsIgnoreCase(format)) {
             writeXML(out);
         }
         else {

@@ -72,7 +72,7 @@ public class X3MLCommandLine {
         );
         Option rdfFormat = new Option(
                 "format", true,
-                "Output format: -format N-TRIPLE, application/n-triples, TURTLE, text/turtle, application/rdf+xml (default)"
+                "Output format: -format application/n-triples, text/turtle, application/rdf+xml (default)"
         );
         Option validate = new Option(
                 "validate", false,

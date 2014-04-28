@@ -502,8 +502,7 @@ public interface X3ML {
         public List<MappingNamespace> namespaces;
 
         @XStreamImplicit
-        public
-        List<GeneratorSpec> generators;
+        public List<GeneratorSpec> generators;
     }
 
     @XStreamAlias("generator")

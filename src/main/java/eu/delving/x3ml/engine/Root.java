@@ -44,7 +44,7 @@ public class Root {
             model.setNsPrefix(prefix, namespaceContext.getNamespaceURI(prefix));
         }
         this.modelOutput = new ModelOutput(model, namespaceContext);
-        this.xpathInput = new XPathInput(namespaceContext, generator.getDefaultLanguage());
+        this.xpathInput = new XPathInput(namespaceContext, generator.getLanguageFromMapping());
         this.context = new Context() {
 
             @Override

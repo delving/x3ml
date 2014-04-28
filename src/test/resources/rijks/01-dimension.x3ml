@@ -38,7 +38,7 @@
                     <target_node>
                         <entity>
                             <type>rdf:PlainLiteral</type>
-                            <instance_generator name="PlainLiteral">
+                            <instance_generator name="Literal" language="">
                                 <arg name="text">text()</arg>
                             </instance_generator>
                         </entity>

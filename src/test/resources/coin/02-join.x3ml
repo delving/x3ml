@@ -29,7 +29,7 @@
                         <entity>
                             <type>crm:E41_Appellation</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="PlainLiteral">
+                            <label_generator name="Literal" language="">
                                 <arg name="text">text()</arg>
                             </label_generator>
                         </entity>
@@ -57,9 +57,8 @@
                         <entity>
                             <type>crm:E53_Place</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="Literal">
+                            <label_generator name="Literal" language="de">
                                 <arg name="text">FS_NAME/text()</arg>
-                                <arg name="language">de</arg>
                             </label_generator>
                         </entity>
                     </target_node>

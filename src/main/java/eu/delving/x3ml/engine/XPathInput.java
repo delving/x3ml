@@ -40,11 +40,11 @@ import static eu.delving.x3ml.engine.X3ML.SourceType;
 public class XPathInput {
     private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private final NamespaceContext namespaceContext;
-    private final String defaultLanguage;
+    private final String languageFromMapping;
 
-    public XPathInput(NamespaceContext namespaceContext, String defaultLanguage) {
+    public XPathInput(NamespaceContext namespaceContext, String languageFromMapping) {
         this.namespaceContext = namespaceContext;
-        this.defaultLanguage = defaultLanguage;
+        this.languageFromMapping = languageFromMapping;
     }
 
     public X3ML.ArgValue evaluateArgument(Node contextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
@@ -63,12 +63,13 @@ public class XPathInput {
             }
         }
         X3ML.ArgValue value;
+        String lang;
         switch (type) {
             case xpath:
                 if (foundArg == null) return null;
-                String lang = generatorElement.language;
-                if (lang == null) lang = getLanguage(contextNode);
-                if (lang == null) lang = defaultLanguage;
+                lang = generatorElement.language;
+                if (lang == null) lang = getLanguageFromSource(contextNode);
+                if (lang == null) lang = languageFromMapping;
                 value = argVal(valueAt(contextNode, foundArg.value), lang);
                 if (value.string.isEmpty()) {
                     throw exception("Empty result for arg " + foundArg.name + " in generator " + generatorElement.name);
@@ -76,7 +77,9 @@ public class XPathInput {
                 break;
             case constant:
                 if (foundArg == null) return null;
-                value = argVal(foundArg.value, defaultLanguage);
+                lang = generatorElement.language;
+                if (lang == null) lang = languageFromMapping;
+                value = argVal(foundArg.value, lang);
                 break;
             case position:
                 value = argVal(String.valueOf(index), null);
@@ -127,7 +130,7 @@ public class XPathInput {
         }
     }
 
-    private static String getLanguage(Node node) {
+    private static String getLanguageFromSource(Node node) {
         Node walkNode = node;
         while (walkNode != null) {
             NamedNodeMap attributes = walkNode.getAttributes();

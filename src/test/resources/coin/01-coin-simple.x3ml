@@ -29,7 +29,7 @@
                         <entity>
                             <type>crm:E41_Appellation</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="PlainLiteral">
+                            <label_generator name="Literal" language="">
                                 <arg name="text">text()</arg>
                             </label_generator>
                         </entity>

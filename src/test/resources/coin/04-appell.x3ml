@@ -60,9 +60,8 @@
                                         <arg name="hierarchy" type="constant">languages</arg>
                                         <arg name="term" type="constant">german</arg>
                                     </instance_generator>
-                                    <label_generator name="SimpleLabel">
+                                    <label_generator name="SimpleLabel" language="en">
                                         <arg name="label" type="constant">german</arg>
-                                        <arg name="language">en</arg>
                                     </label_generator>
                                 </entity>
                             </additional>
@@ -95,9 +94,8 @@
                                         <arg name="hierarchy" type="constant">languages</arg>
                                         <arg name="term" type="constant">english</arg>
                                     </instance_generator>
-                                    <label_generator name="SimpleLabel">
+                                    <label_generator name="SimpleLabel" language="en">
                                         <arg name="label" type="constant">english</arg>
-                                        <arg name="language">en</arg>
                                     </label_generator>
                                 </entity>
                             </additional>

@@ -41,7 +41,7 @@ public class X3MLGeneratorPolicy implements Generator {
     private Map<String, String> namespaceMap = new TreeMap<String, String>();
     private UUIDSource uuidSource;
     private SourceType defaultSourceType;
-    private String defaultLanguage;
+    private String languageFromMapping;
 
     public static X3MLGeneratorPolicy load(InputStream inputStream, UUIDSource uuidSource) {
         return new X3MLGeneratorPolicy(inputStream, uuidSource);
@@ -73,26 +73,26 @@ public class X3MLGeneratorPolicy implements Generator {
     }
 
     @Override
-    public void setDefaultLanguage(String language) {
+    public void setLanguageFromMapping(String language) {
         if (language != null) {
-            this.defaultLanguage = language;
+            this.languageFromMapping = language;
         }
     }
 
     @Override
-    public String getDefaultLanguage() {
-        return defaultLanguage;
+    public String getLanguageFromMapping() {
+        return languageFromMapping;
     }
 
     @Override
-    public Instance generate(String name, ArgValues args) {
+    public Instance generate(String name, String language, ArgValues args) {
         if (name == null) {
             throw exception("Value function name missing");
         }
         if ("UUID".equals(name)) {
             return uriValue(uuidSource.generateUUID());
         }
-        if ("Literal".equals(name) || "PlainLiteral".equals(name)) {
+        if ("Literal".equals(name)) {
             ArgValue value = args.getArgValue("text", xpath);
             if (value == null) {
                 throw exception("Argument failure: need one argument");
@@ -100,14 +100,14 @@ public class X3MLGeneratorPolicy implements Generator {
             if (value.string == null || value.string.isEmpty()) {
                 throw exception("Argument failure: empty argument");
             }
-            return literalValue(value.string, getLanguage(value, args, name.startsWith("Plain")));
+            return literalValue(value.string, getLanguage(value, language));
         }
-        if ("Constant".equals(name) || "PlainConstant".equals(name)) {
+        if ("Constant".equals(name)) {
             ArgValue value = args.getArgValue("text", constant);
             if (value == null) {
                 throw exception("Argument failure: need one argument");
             }
-            return literalValue(value.string, getLanguage(value, args, name.startsWith("Plain")));
+            return literalValue(value.string, getLanguage(value, language));
         }
         GeneratorSpec generator = generatorMap.get(name);
         if (generator == null) throw exception("No generator for " + name);
@@ -116,15 +116,14 @@ public class X3MLGeneratorPolicy implements Generator {
             return fromURITemplate(generator, namespaceUri, args);
         }
         else { // use simple substitution
-            return fromSimpleTemplate(generator, args);
+            return fromSimpleTemplate(generator, language, args);
         }
     }
 
-    private String getLanguage(ArgValue argValue, ArgValues argValues, boolean stripLanguage) {
-        if (stripLanguage) return null;
+    private String getLanguage(ArgValue argValue, String generatorLanguage) {
         String language = argValue.language;
-        ArgValue languageArg = argValues.getArgValue("language", constant);
-        if (languageArg != null) language = languageArg.string;
+        if (language == null) language = generatorLanguage;
+        if (generatorLanguage != null && generatorLanguage.isEmpty()) language = null;
         return language;
     }
 
@@ -151,11 +150,8 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Instance fromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
+    private Instance fromSimpleTemplate(GeneratorSpec generator, String language, ArgValues argValues) {
         String result = generator.pattern;
-        String instanceLanguage = null;
-        ArgValue language = argValues.getArgValue("language", constant);
-        if (language != null) instanceLanguage = language.string;
         for (String argument : getVariables(generator.pattern)) {
             ArgValue argValue = argValues.getArgValue(argument, defaultSourceType);
             if (argValue == null || argValue.string == null) {
@@ -165,9 +161,9 @@ public class X3MLGeneratorPolicy implements Generator {
                 ));
             }
             result = result.replace(String.format("{%s}", argument), argValue.string);
-            if (instanceLanguage == null) instanceLanguage = argValue.language;
+            if (language == null) language = argValue.language;
         }
-        return literalValue(result, instanceLanguage == null ? defaultLanguage : instanceLanguage);
+        return literalValue(result, language == null ? languageFromMapping : language);
     }
 
     // == the rest is for the XML form

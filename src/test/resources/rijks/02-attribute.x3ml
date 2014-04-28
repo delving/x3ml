@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3ml source_type="xpath" version="0.1">
+    <namespaces>
+        
+    
+        <namespace prefix="owl" uri="http://www.w3.org/2002/07/owl#"/>
+        
+    
+        <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        
+    
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+        
+    
+        <namespace prefix="crm" uri="http://erlangen-crm.org/current/"/>
+        
+    
+        <namespace prefix="rmo" uri="http://collection.rijksmuseum.nl/id/ontology/"/>
+        
+	
+        <namespace prefix="bmo" uri="http://collection.britishmuseum.org/id/ontology/"/>
+        
+    
+        <namespace prefix="id" uri="http://collection.rijksmuseum.nl/id/"/>
+        
+	
+        <namespace prefix="idPersonInstitution" uri="http://collection.rijksmuseum.nl/id/person-institution/"/>
+        
+    
+        <namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+        
+  
+    </namespaces>
+    
+
+  
+    <mappings>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/title</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E35_Title</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E35_Title">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_titleCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>title</source_relation>
+                    <target_relation>
+                        <relationship>rdfs:label</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>title</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>title.gb</source_relation>
+                    <target_relation>
+                        <relationship>rdfs:label</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>title.gb</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/description</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E31_Document</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E31_Document">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_descriptionCount" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/description</source_relation>
+                    <target_relation>
+                        <relationship>crm:P2_has_type</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/description</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P2_has_type</type>
+                            <instance_generator name="P2_has_type"/>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>description</source_relation>
+                    <target_relation>
+                        <relationship>crm:P3_has_note</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>description</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/date.period</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P10_falls_within</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P10_falls_within</type>
+                            <instance_generator name="P10_falls_within">
+                                <arg name="linkref">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dating</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/dating</source_relation>
+                    <target_relation>
+                        <relationship>crm:P4_has_time-span</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/dating</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P4_has_time-span</type>
+                            <instance_generator name="P4_has_time-span">
+                                <arg name="priref">../priref[1]/text()</arg>
+                                <arg name="counter_productionCounter" type="position"/>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dating</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E52_Time-Span</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E52_Time-Span">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>date.early</source_relation>
+                    <target_relation>
+                        <relationship>crm:P82a_begin_of_the_begin</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>date.early</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>date.late</source_relation>
+                    <target_relation>
+                        <relationship>crm:P82b_end_of_the_end</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>date.late</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/maker</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E12_Production\2">
+                            <arg name="priref">../priref[1]/text()</arg>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/maker</source_relation>
+                    <target_relation>
+                        <relationship>crm:P9_consists_of</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/maker</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P9_consists_of</type>
+                            <instance_generator name="P9_consists_of">
+                                <arg name="priref">../priref[1]/text()</arg>
+                                <arg name="counter_productionCounter" type="position"/>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/maker</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/maker</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E12_Production</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E12_Production">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_productionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>maker/@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P14_carried_out_by</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>maker/@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P14_carried_out_by</type>
+                            <instance_generator name="P14_carried_out_by">
+                                <arg name="maker">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/subject.name</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E38_Image</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E38_Image">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_imageCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P138_represents</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P138_represents</type>
+                            <instance_generator name="P138_represents">
+                                <arg name="linkref">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/subject.location</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E38_Image</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E38_Image">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_imageCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P138_represents</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P138_represents</type>
+                            <instance_generator name="P138_represents\2">
+                                <arg name="linkref">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dimension</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E54_Dimension</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E54_Dimension">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_dimensionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>dimension.value</source_relation>
+                    <target_relation>
+                        <relationship>crm:P90_has_value</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>dimension.value</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>dimension.type/@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P2_has_type</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>dimension.type/@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P2_has_type</type>
+                            <instance_generator name="P2_has_type\2">
+                                <arg name="dimension">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dimension</source_node>
+                <target_node>
+                    <entity>
+                        <type>bmo:EX_Association</type>
+                        <instance_generator name="http://collection.britishmuseum.org/id/ontology/EX_Association">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_dimensionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/dimension</source_relation>
+                    <target_relation>
+                        <relationship>bmo:PX_property</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/dimension</source_node>
+                    <target_node>
+                        <entity>
+                            <type>bmo:PX_property</type>
+                            <instance_generator name="PX_property"/>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>../priref[1]</source_relation>
+                    <target_relation>
+                        <relationship>crm:P140_assigned_attribute_to</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>../priref[1]</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P140_assigned_attribute_to</type>
+                            <instance_generator name="P140_assigned_attribute_to">
+                                <arg name="priref">../priref[1]/text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/dimension</source_relation>
+                    <target_relation>
+                        <relationship>crm:P141_assigned</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/dimension</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P141_assigned</type>
+                            <instance_generator name="P141_assigned">
+                                <arg name="priref">../priref[1]/text()</arg>
+                                <arg name="counter_dimensionCounter" type="position"/>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>dimension.precision/text[@language='0']</source_relation>
+                    <target_relation>
+                        <relationship>crm:P2_has_type</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>dimension.precision/text[@language='0']</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P2_has_type</type>
+                            <instance_generator name="P2_has_type\3">
+                                <arg name="dimension">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/dimension.frame.info</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E22_Man-Made_Object</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E22_Man-Made_Object\2">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_frameCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>.</source_relation>
+                    <target_relation>
+                        <relationship>crm:P3_has_note</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>.</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/treatment</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E11_Modification</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E11_Modification">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_treatmentCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>treatment/@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P126_employed</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>treatment/@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P126_employed</type>
+                            <instance_generator name="P126_employed">
+                                <arg name="treatment">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/treatment</source_relation>
+                    <target_relation>
+                        <relationship>crm:P4_has_time-span</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/treatment</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P4_has_time-span</type>
+                            <instance_generator name="P4_has_time-span\2">
+                                <arg name="priref">../priref[1]/text()</arg>
+                                <arg name="counter_treatmentCounter" type="position"/>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>treatment.name/@linkref</source_relation>
+                    <target_relation>
+                        <relationship>crm:P14_was_carried_out_by</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>treatment.name/@linkref</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P14_was_carried_out_by</type>
+                            <instance_generator name="P14_was_carried_out_by">
+                                <arg name="treatment">.</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/treatment</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E52_Time-Span</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E52_Time-Span\2">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_treatmentCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>treatment.date.early</source_relation>
+                    <target_relation>
+                        <relationship>crm:P82a_begin_of_the_begin</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>treatment.date.early</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>treatment.date.early</source_relation>
+                    <target_relation>
+                        <relationship>crm:P82b_end_of_the_end</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>treatment.date.early</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>treatment.date.early</source_relation>
+                    <target_relation>
+                        <relationship>crm:P82_at_some_time_within</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>treatment.date.early</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record/inscription</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E43_Inscription</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E43_Inscription">
+                            <arg name="priref">../priref[1]/text()</arg>
+                            <arg name="counter_inscriptionCounter" type="position"/>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record/inscription</source_relation>
+                    <target_relation>
+                        <relationship>crm:P2_has_type</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record/inscription</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P2_has_type</type>
+                            <instance_generator name="P2_has_type\4">
+                                <arg name="inscription">inscription.type/@linkref</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>inscription.content</source_relation>
+                    <target_relation>
+                        <relationship>rdfs:label</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>inscription.content</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>inscription.position</source_relation>
+                    <target_relation>
+                        <relationship>bmo:PX_inscription_position</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>inscription.position</source_node>
+                    <target_node>
+                        <entity>
+                            <type>rdf:PlainLiteral</type>
+                            <instance_generator name="Literal">
+                                <arg>text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>inscription.language/text[@language='0']</source_relation>
+                    <target_relation>
+                        <relationship>crm:P72_has_language</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>inscription.language/text[@language='0']</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P72_has_language</type>
+                            <instance_generator name="P72_has_language">
+                                <arg name="inscription">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+        <mapping>
+            <domain>
+                <source_node>/adlibXML/recordList/record</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E22_Man-Made_Object</type>
+                        <instance_generator name="http://erlangen-crm.org/current/E22_Man-Made_Object">
+                            <arg name="priref">priref[1]/text()</arg>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>/adlibXML/recordList/record</source_relation>
+                    <target_relation>
+                        <relationship>crm:P50_has_current_keeper</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>/adlibXML/recordList/record</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:P50_has_current_keeper</type>
+                            <instance_generator name="P50_has_current_keeper"/>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+    </mappings>
+</x3ml>
+

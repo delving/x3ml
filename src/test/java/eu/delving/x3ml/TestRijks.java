@@ -37,6 +37,13 @@ public class TestRijks {
     }
 
     @Test
+    public void testAttribute() {
+        X3MLEngine engine = engine("/rijks/02-attribute.x3ml");
+        X3MLEngine.Output output = engine.execute(document("/rijks/rijks.xml"), policy("/rijks/02-attribute-policy.xml"));
+        output.writeXML(System.out);
+    }
+
+    @Test
     public void testDimension() {
         X3MLEngine engine = engine("/rijks/01-dimension.x3ml");
         X3MLEngine.Output output = engine.execute(document("/rijks/rijks.xml"), policy("/rijks/01-dimension-policy.xml"));

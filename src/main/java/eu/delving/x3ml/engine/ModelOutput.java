@@ -19,12 +19,12 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
-import eu.delving.x3ml.X3MLEngine;
 
 import javax.xml.namespace.NamespaceContext;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static eu.delving.x3ml.X3MLEngine.Output;
 import static eu.delving.x3ml.X3MLEngine.exception;
 
 /**
@@ -33,7 +33,7 @@ import static eu.delving.x3ml.X3MLEngine.exception;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class ModelOutput implements X3MLEngine.Output {
+public class ModelOutput implements Output {
     private final Model model;
     private final NamespaceContext namespaceContext;
 
@@ -83,11 +83,14 @@ public class ModelOutput implements X3MLEngine.Output {
     }
 
     public void write(PrintStream out, String format) {
-        if ("N-TRIPLE".equalsIgnoreCase(format)) {
+        if ("application/n-triples".equalsIgnoreCase(format) || "N-TRIPLE".equalsIgnoreCase(format)) {
             writeNTRIPLE(out);
         }
-        else if ("TURTLE".equalsIgnoreCase(format)) {
+        else if ("text/turtle".equalsIgnoreCase(format) || "TURTLE".equalsIgnoreCase(format)) {
             writeTURTLE(out);
+        }
+        else if ("application/rdf+xml".equalsIgnoreCase(format) || "XML".equalsIgnoreCase(format)) {
+            writeXML(out);
         }
         else {
             writeXML(out);

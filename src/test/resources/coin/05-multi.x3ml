@@ -49,8 +49,9 @@
                             <type>crm:E41_Appellation</type>
                             <type>crm:E33_Linguistic_Object</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="SimpleLabel" language="de">
+                            <label_generator name="SimpleLabel">
                                 <arg name="label">text()</arg>
+                                <arg name="language" type="constant">de</arg>
                             </label_generator>
                             <additional>
                                 <relationship>crm:P72_has_language</relationship>
@@ -61,8 +62,9 @@
                                         <arg name="hierarchy" type="constant">languages</arg>
                                         <arg name="term" type="constant">german</arg>
                                     </instance_generator>
-                                    <label_generator name="SimpleLabel" language="en">
+                                    <label_generator name="SimpleLabel">
                                         <arg name="label" type="constant">german</arg>
+                                        <arg name="language" type="constant">en</arg>
                                     </label_generator>
                                 </entity>
                             </additional>
@@ -84,8 +86,9 @@
                             <type>crm:E41_Appellation</type>
                             <type>crm:E33_Linguistic_Object</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="SimpleLabel" language="en">
+                            <label_generator name="SimpleLabel">
                                 <arg name="label">text()</arg>
+                                <arg name="language" type="constant">en</arg>
                             </label_generator>
                             <additional>
                                 <relationship>crm:P72_has_language</relationship>
@@ -96,8 +99,9 @@
                                         <arg name="hierarchy" type="constant">languages</arg>
                                         <arg name="term" type="constant">english</arg>
                                     </instance_generator>
-                                    <label_generator name="SimpleLabel" language="en">
+                                    <label_generator name="SimpleLabel">
                                         <arg name="label" type="constant">english</arg>
+                                        <arg name="language" type="constant">en</arg>
                                     </label_generator>
                                 </entity>
                             </additional>

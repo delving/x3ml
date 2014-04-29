@@ -62,24 +62,22 @@ public class XPathInput {
                 }
             }
         }
-        X3ML.ArgValue value;
-        String lang;
+        X3ML.ArgValue value = null;
         switch (type) {
             case xpath:
                 if (foundArg == null) return null;
-                lang = generatorElement.language;
-                if (lang == null) lang = getLanguageFromSource(contextNode);
+                String lang = getLanguageFromSource(contextNode);
                 if (lang == null) lang = languageFromMapping;
-                value = argVal(valueAt(contextNode, foundArg.value), lang);
-                if (value.string.isEmpty()) {
-                    throw exception("Empty result for arg " + foundArg.name + " in generator " + generatorElement.name);
+                if (!foundArg.value.isEmpty()) {
+                    value = argVal(valueAt(contextNode, foundArg.value), lang);
+                    if (value.string.isEmpty()) {
+                        throw exception("Empty result for arg " + foundArg.name + " in generator " + generatorElement.name);
+                    }
                 }
                 break;
             case constant:
                 if (foundArg == null) return null;
-                lang = generatorElement.language;
-                if (lang == null) lang = languageFromMapping;
-                value = argVal(foundArg.value, lang);
+                value = argVal(foundArg.value, languageFromMapping);
                 break;
             case position:
                 value = argVal(String.valueOf(index), null);

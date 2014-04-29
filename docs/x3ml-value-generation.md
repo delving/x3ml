@@ -5,13 +5,14 @@ When transforming source XML records into RDF triples, the output needs to have 
 
 To make this a separate process in the workflow, there are calls made from within the **[X3ML](x3ml-schema-mapping.md)** to value generators which defined separately.  The calls look something like this:
 
-	<instance_generator name="..." language="..">
+	<instance_generator name="...">
 	    <arg name="..." type="...">...</arg>
 	    ...
 	</instance_generator>
 	
-	<label_generator name="..." language="..">
+	<label_generator name="...">
 	    <arg name="..." type="">...</arg>
+	    <arg name="language" type="constant">nl</arg>
 	    ...
 	</label_generator>
 
@@ -21,7 +22,7 @@ The only contract that X3ML has with respect to the value generators is that the
 
 The argument type allows for choosing between *xpath* and *constant* and there is a special argument type called *position* which gives the value generator access to the index position of the source node within its context.
 
-The *language* attribute is used if it is present, and if its value is present but empty the implication is that the label or instance will be generated with no language determination (number literals, for example)
+The *language* argument is used if it is present, and if its value is present but empty the implication is that the label or instance will be generated with no language determination (number literals, for example)
 
 
 ## Templates

@@ -57,8 +57,9 @@
                         <entity>
                             <type>crm:E53_Place</type>
                             <instance_generator name="UUID"/>
-                            <label_generator name="Literal" language="de">
+                            <label_generator name="Literal">
                                 <arg name="text">FS_NAME/text()</arg>
+                                <arg name="language" type="constant">de</arg>
                             </label_generator>
                         </entity>
                     </target_node>
@@ -92,8 +93,9 @@
                     <target_node>
                         <entity>
                             <type>rdf:Literal</type>
-                            <instance_generator name="Literal" language="de">
+                            <instance_generator name="Literal">
                                 <arg name="text">text()</arg>
+                                <arg name="language" type="constant">de</arg>
                             </instance_generator>
                         </entity>
                     </target_node>

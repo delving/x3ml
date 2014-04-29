@@ -29,7 +29,10 @@ public interface Generator {
     }
 
     void setDefaultArgType(SourceType sourceType);
+
     void setLanguageFromMapping(String language);
+
     String getLanguageFromMapping();
-    Instance generate(String name, String language, ArgValues arguments);
+
+    Instance generate(String name, ArgValues arguments);
 }

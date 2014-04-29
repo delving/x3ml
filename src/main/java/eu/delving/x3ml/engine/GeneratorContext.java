@@ -61,7 +61,7 @@ public abstract class GeneratorContext {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        Instance instance = context.policy().generate(generator.name, generator.language, new ArgValues() {
+        Instance instance = context.policy().generate(generator.name, new ArgValues() {
             @Override
             public ArgValue getArgValue(String name, SourceType sourceType) {
                 return context.input().evaluateArgument(node, index, generator, name, sourceType);

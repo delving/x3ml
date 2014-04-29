@@ -478,9 +478,6 @@ public interface X3ML {
         @XStreamAsAttribute
         public String name;
 
-        @XStreamAsAttribute
-        public String language;
-
         @XStreamImplicit
         public List<GeneratorArg> args;
     }

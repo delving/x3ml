@@ -21,7 +21,6 @@
 * Argument type *position* introduced, giving the index of the node in its node list
 * Language handling
 	* An XPath argument tries to find language from xml:lang in source
-	* If no xml:lang found, the *language* attribute from the X3ML root tag is used
 	* Generators can override using *language* attribute, language="" for none at all
 * Command line formats now "application/rdf+xml", "text/turtle" and "application/n-triples"
 

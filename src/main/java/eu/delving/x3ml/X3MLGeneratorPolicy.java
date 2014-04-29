@@ -85,7 +85,7 @@ public class X3MLGeneratorPolicy implements Generator {
     }
 
     @Override
-    public Instance generate(String name, String language, ArgValues args) {
+    public Instance generate(String name, ArgValues argValues) {
         if (name == null) {
             throw exception("Value function name missing");
         }
@@ -93,38 +93,31 @@ public class X3MLGeneratorPolicy implements Generator {
             return uriValue(uuidSource.generateUUID());
         }
         if ("Literal".equals(name)) {
-            ArgValue value = args.getArgValue("text", xpath);
+            ArgValue value = argValues.getArgValue("text", xpath);
             if (value == null) {
                 throw exception("Argument failure: need one argument");
             }
             if (value.string == null || value.string.isEmpty()) {
                 throw exception("Argument failure: empty argument");
             }
-            return literalValue(value.string, getLanguage(value, language));
+            return literalValue(value.string, getLanguage(value.language, argValues));
         }
         if ("Constant".equals(name)) {
-            ArgValue value = args.getArgValue("text", constant);
+            ArgValue value = argValues.getArgValue("text", constant);
             if (value == null) {
                 throw exception("Argument failure: need one argument");
             }
-            return literalValue(value.string, getLanguage(value, language));
+            return literalValue(value.string, getLanguage(value.language, argValues));
         }
         GeneratorSpec generator = generatorMap.get(name);
         if (generator == null) throw exception("No generator for " + name);
         String namespaceUri = generator.prefix == null ? null : namespaceMap.get(generator.prefix);
         if (namespaceUri != null) { // use URI template
-            return fromURITemplate(generator, namespaceUri, args);
+            return fromURITemplate(generator, namespaceUri, argValues);
         }
         else { // use simple substitution
-            return fromSimpleTemplate(generator, language, args);
+            return fromSimpleTemplate(generator, argValues);
         }
-    }
-
-    private String getLanguage(ArgValue argValue, String generatorLanguage) {
-        String language = argValue.language;
-        if (language == null) language = generatorLanguage;
-        if (generatorLanguage != null && generatorLanguage.isEmpty()) language = null;
-        return language;
     }
 
     private Instance fromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
@@ -150,8 +143,9 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Instance fromSimpleTemplate(GeneratorSpec generator, String language, ArgValues argValues) {
+    private Instance fromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
         String result = generator.pattern;
+        String language = null;
         for (String argument : getVariables(generator.pattern)) {
             ArgValue argValue = argValues.getArgValue(argument, defaultSourceType);
             if (argValue == null || argValue.string == null) {
@@ -163,7 +157,8 @@ public class X3MLGeneratorPolicy implements Generator {
             result = result.replace(String.format("{%s}", argument), argValue.string);
             if (language == null) language = argValue.language;
         }
-        return literalValue(result, language == null ? languageFromMapping : language);
+        language = getLanguage(language, argValues); // perhaps override
+        return literalValue(result, language != null ? language : languageFromMapping);
     }
 
     // == the rest is for the XML form
@@ -199,5 +194,14 @@ public class X3MLGeneratorPolicy implements Generator {
             Collections.addAll(arguments, braces.group(1).split(","));
         }
         return arguments;
+    }
+
+    private String getLanguage(String language, ArgValues argValues) {
+        ArgValue languageArg = argValues.getArgValue("language", defaultSourceType);
+        if (languageArg != null) {
+            language = languageArg.string;
+            if (language.isEmpty()) language = null; // to strip language
+        }
+        return language;
     }
 }

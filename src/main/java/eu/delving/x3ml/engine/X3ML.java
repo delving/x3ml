@@ -15,9 +15,9 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
-import com.hp.hpl.jena.ontology.ConversionException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.*;
+import com.thoughtworks.xstream.converters.ConversionException;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

@@ -84,4 +84,14 @@ public class TestCoin {
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
+
+    @Test
+    public void testIf() {
+        X3MLEngine engine = engine("/coin/06-if.x3ml");
+        X3MLEngine.Output output = engine.execute(document("/coin/00-coin-input.xml"), policy("/coin/00-generator-policy.xml"));
+        String[] mappingResult = output.toStringArray();
+        String[] expectedResult = xmlToNTriples("/coin/06-if-rdf.xml");
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+    }
 }

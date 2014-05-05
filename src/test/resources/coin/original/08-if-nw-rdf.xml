@@ -1,0 +1,6 @@
+<rdf:RDF
+        xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        >
+  <crm:E22_Man-Made_Object rdf:about="uuid:A"/>
+</rdf:RDF>

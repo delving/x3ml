@@ -1,206 +1,218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           attributeFormDefault="unqualified">
-    <xs:include schemaLocation="comment.xsd"/>
-    <xs:include schemaLocation="info.xsd"/>
-    <xs:element name="x3ml">
-        <xs:annotation>
-            <xs:documentation>Comment describing your root element</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="info" minOccurs="0"/>
-                <xs:element name="namespaces">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="namespace" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:attribute name="prefix" use="required"/>
-                                    <xs:attribute name="uri" use="required"/>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="mappings">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="mapping" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="domain">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element ref="source_node"/>
-                                                    <xs:element ref="target_node"/>
-                                                    <xs:element name="comments" type="commentsType" minOccurs="0"/>
-                                                </xs:sequence>
-                                                <xs:attribute name="repeated"/>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="link" minOccurs="0" maxOccurs="unbounded">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="path">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="source_relation"/>
-                                                                <xs:element name="target_relation"
-                                                                            type="target_relationType"/>
-                                                                <xs:element name="comments" type="commentsType"
-                                                                            minOccurs="0"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="range">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element ref="source_node"/>
-                                                                <xs:element ref="target_node"/>
-                                                                <xs:element name="comments" type="commentsType"
-                                                                            minOccurs="0"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="comments" type="commentsType" minOccurs="0"/>
-            </xs:sequence>
-            <xs:attribute name="version" use="required"/>
-            <xs:attribute name="source_type" use="required"/>
-            <xs:attribute name="language"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:complexType name="target_nodeType">
-        <xs:sequence>
-            <xs:element ref="if" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="entity" maxOccurs="1"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="target_relationType">
-        <xs:sequence>
-            <xs:element ref="if" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="relationship"/>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="entity" maxOccurs="1"/>
-                <xs:element ref="relationship"/>
-            </xs:sequence>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:element name="entity">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="type" maxOccurs="unbounded"/>
-                <xs:element name="constant" minOccurs="0"/>
-                <xs:element name="instance_generator" minOccurs="0">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="arg" minOccurs="0" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                            <xs:attribute name="name"/>
-                                            <xs:attribute name="type"/>
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute name="name" use="required"/>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="label_generator" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="arg" minOccurs="0" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                            <xs:attribute name="name"/>
-                                            <xs:attribute name="type"/>
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute name="name" use="required"/>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element ref="additional" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-            <xs:attribute name="variable"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="relationship"/>
-    <xs:element name="type" type="xs:string"/>
-    <xs:complexType name="commentsType">
-        <xs:sequence>
-            <xs:element ref="comment" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="conditionsType">
-        <xs:choice>
-            <xs:element ref="exists"/>
-            <xs:element ref="equals"/>
-            <xs:element name="not">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element ref="if"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="and">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element ref="if" minOccurs="2" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="or">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element ref="if" minOccurs="2" maxOccurs="unbounded"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="narrower">
-                <xs:complexType>
-                    <xs:simpleContent>
-                        <xs:extension base="xs:string">
-                            <xs:attribute name="value" use="required"/>
-                        </xs:extension>
-                    </xs:simpleContent>
-                </xs:complexType>
-            </xs:element>
-        </xs:choice>
-    </xs:complexType>
-    <xs:element name="exists" type="xs:string"/>
-    <xs:element name="equals">
-        <xs:complexType>
-            <xs:simpleContent>
-                <xs:extension base="xs:string">
-                    <xs:attribute name="value" use="required"/>
-                </xs:extension>
-            </xs:simpleContent>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="if" type="conditionsType"/>
-    <xs:element name="additional">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="relationship"/>
-                <xs:element ref="entity"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="source_node"/>
-    <xs:element name="target_node" type="target_nodeType"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="comment.xsd"/>
+	<xs:include schemaLocation="info.xsd"/>
+	<xs:element name="x3ml">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="info" minOccurs="0"/>
+				<xs:element name="namespaces">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="namespace" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="prefix" use="required"/>
+									<xs:attribute name="uri" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="mappings">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="mapping" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="domain">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="source_node"/>
+													<xs:element name="target_node" type="domain_target_nodeType"/>
+													<xs:element name="comments" type="commentsType" minOccurs="0"/>
+												</xs:sequence>
+												<xs:attribute name="repeated"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="link" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="path">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="source_relation" type="xs:string"/>
+																<xs:element name="target_relation" type="target_relationType"/>
+																<xs:element name="comments" type="commentsType" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="range">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="source_node"/>
+																<xs:element name="target_node" type="range_target_nodeType"/>
+																<xs:element name="comments" type="commentsType" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="comments" type="commentsType" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="version" use="required"/>
+			<xs:attribute name="source_type" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="domain_target_nodeType">
+		<xs:sequence>
+			<xs:element ref="if" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="entity"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="range_target_nodeType">
+		<xs:sequence>
+			<xs:element ref="if" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="entity"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="target_relationType">
+		<xs:sequence>
+			<xs:element ref="if" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="relationship"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="entity" maxOccurs="1"/>
+				<xs:element ref="relationship"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="entity">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="type" maxOccurs="unbounded"/>
+				<xs:element ref="instance_info" minOccurs="0"/>
+				<xs:element ref="instance_generator" minOccurs="0"/>
+				<xs:element ref="label_generator" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="additional" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="variable"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="relationship" type="xs:string"/>
+	<xs:element name="type" type="xs:string"/>
+	<xs:complexType name="commentsType">
+		<xs:sequence>
+			<xs:element ref="comment" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="conditionsType">
+		<xs:choice>
+			<xs:element ref="exists"/>
+			<xs:element ref="equals"/>
+			<xs:element name="not">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="if"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="and">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="if" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="or">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="if" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="narrower">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="value" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="exists" type="xs:string"/>
+	<xs:element name="equals">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="value" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="if" type="conditionsType"/>
+	<xs:element name="additional">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="relationship"/>
+				<xs:element ref="entity"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="source_node" type="xs:string"/>
+	<xs:element name="target_node" type="range_target_nodeType"/>
+	<xs:element name="instance_info">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="language" type="xs:string"/>
+				<xs:element name="constant" type="xs:string"/>
+				<xs:element name="description" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="instance_generator">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="arg" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="name"/>
+                                <xs:attribute name="type"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="label_generator">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="arg" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="name"/>
+                                <xs:attribute name="type"/>
+                            </xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" use="required"/>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

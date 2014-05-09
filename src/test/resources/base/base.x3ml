@@ -62,7 +62,6 @@
                     <target_node>
                         <entity variable="boo">
                             <type>pre:OtherThing</type>
-                            <constant>This is something the engine does not use</constant>
                             <instance_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>
                             </instance_generator>

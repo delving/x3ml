@@ -57,7 +57,11 @@
                                 <relationship>crm:P72_has_language</relationship>
                                 <entity>
                                     <type>crm:E56_Language</type>
-                                    <constant>german</constant>
+                                    <instance_info>
+                                        <language>en</language>
+                                        <constant>german</constant>
+                                        <description>?</description>
+                                    </instance_info>
                                     <instance_generator name="LocalTermURI">
                                         <arg name="hierarchy" type="constant">languages</arg>
                                         <arg name="term" type="constant">german</arg>
@@ -94,7 +98,11 @@
                                 <relationship>crm:P72_has_language</relationship>
                                 <entity>
                                     <type>crm:E56_Language</type>
-                                    <constant>english</constant>
+                                    <instance_info>
+                                        <language>en</language>
+                                        <constant>english</constant>
+                                        <description>?</description>
+                                    </instance_info>
                                     <instance_generator name="LocalTermURI">
                                         <arg name="hierarchy" type="constant">languages</arg>
                                         <arg name="term" type="constant">english</arg>

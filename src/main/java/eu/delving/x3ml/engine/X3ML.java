@@ -397,6 +397,15 @@ public interface X3ML {
         }
     }
 
+    @XStreamAlias("instance_info") // documentation purposes only
+    public static class InstanceInfo extends Visible {
+
+        public String language;
+        public String constant;
+        public String description;
+
+    }
+
     @XStreamAlias("entity")
     public static class EntityElement extends Visible {
 
@@ -406,7 +415,8 @@ public interface X3ML {
         @XStreamImplicit
         public List<TypeElement> typeElements;
 
-        public String constant; // documentation purposes only
+        @XStreamAlias("instance_info")
+        public InstanceInfo instanceInfo; // documentation purposes only
 
         @XStreamAlias("instance_generator")
         public GeneratorElement instanceGenerator;

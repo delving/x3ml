@@ -175,9 +175,9 @@
 	<xs:element name="instance_info">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="language" type="xs:string"/>
-				<xs:element name="constant" type="xs:string"/>
-				<xs:element name="description" type="xs:string"/>
+				<xs:element name="language" type="xs:string" minOccurs="0"/>
+				<xs:element name="constant" type="xs:string" minOccurs="0"/>
+				<xs:element name="description" type="xs:string" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -189,7 +189,7 @@
 						<xs:simpleContent>
 							<xs:extension base="xs:string">
 								<xs:attribute name="name"/>
-                                <xs:attribute name="type"/>
+								<xs:attribute name="type"/>
 							</xs:extension>
 						</xs:simpleContent>
 					</xs:complexType>
@@ -206,8 +206,8 @@
 						<xs:simpleContent>
 							<xs:extension base="xs:string">
 								<xs:attribute name="name"/>
-                                <xs:attribute name="type"/>
-                            </xs:extension>
+								<xs:attribute name="type"/>
+							</xs:extension>
 						</xs:simpleContent>
 					</xs:complexType>
 				</xs:element>

@@ -150,7 +150,7 @@ public class AllTests {
     }
 
     public static String[] xmlToNTriples(String xmlResource) {
-        Model model = ModelFactory.createDefaultModel();
+        Model model = ModelFactory.createMemModelMaker().createModel("gumby");
         model.read(resource(xmlResource), null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         model.write(baos, "N-TRIPLE");

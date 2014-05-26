@@ -18,7 +18,6 @@ package eu.delving.x3ml;
 import eu.delving.x3ml.engine.Generator;
 import eu.delving.x3ml.engine.Root;
 import org.apache.commons.io.IOUtils;
-import org.apache.xerces.impl.Constants;
 import org.w3c.dom.Element;
 import org.w3c.dom.ls.LSInput;
 import org.w3c.dom.ls.LSResourceResolver;
@@ -26,6 +25,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import javax.xml.XMLConstants;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -176,9 +176,9 @@ public class X3MLEngine {
     }
 
     private static SchemaFactory schemaFactory() {
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(Constants.W3C_XML_SCHEMA10_NS_URI);
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try {
-            schemaFactory.setFeature(Constants.XERCES_FEATURE_PREFIX + Constants.CTA_FULL_XPATH_CHECKING_FEATURE, true);
+//            schemaFactory.setFeature(Constants.XERCES_FEATURE_PREFIX + Constants.CTA_FULL_XPATH_CHECKING_FEATURE, true);
             schemaFactory.setResourceResolver(new ResourceResolver());
         }
         catch (Exception e) {

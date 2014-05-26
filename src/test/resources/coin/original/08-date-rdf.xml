@@ -1,0 +1,26 @@
+<rdf:RDF
+    xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <crm:E22_Man-Made_Object rdf:about="uuid:A">
+    <crm:P108i_was_produced_by>
+      <crm:E12_Production rdf:about="uuid:B">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="uuid:D">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0115-01-01T00:00:00</crm:P82b_end_of_the_end>
+            <crm:P81b_begin_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0115-12-31T00:00:00</crm:P81b_begin_of_the_end>
+            <crm:P81a_end_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0116-01-01T00:00:00</crm:P81a_end_of_the_begin>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0116-12-31T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>date from</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+        <crm:P10_falls_within>
+          <crm:E4_Period rdf:about="uuid:C">
+            <rdfs:label xml:lang="de">Österreich</rdfs:label>
+          </crm:E4_Period>
+        </crm:P10_falls_within>
+        <rdfs:label>production event</rdfs:label>
+      </crm:E12_Production>
+    </crm:P108i_was_produced_by>
+  </crm:E22_Man-Made_Object>
+</rdf:RDF>

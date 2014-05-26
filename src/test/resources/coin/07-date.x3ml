@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3ml source_type="xpath" version="1.0">
+    
+    <namespaces>
+        <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+		<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+    </namespaces>
+    <mappings>
+        <mapping>
+            <domain>
+                <source_node>COIN</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E22_Man-Made_Object</type>
+						<instance_generator name="UUID"/>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>../COUNTRY[COUNTRY_ID=../COIN/COUNTRY_ID]</source_relation>
+                    <target_relation>
+                        <relationship>crm:P108i_was_produced_by</relationship>
+                        <entity variable="p1">
+                            <type>crm:E12_Production</type>
+							<instance_generator name="UUID"/>
+                            <label_generator name="Constant">
+                                <arg name="text">production event</arg>
+                            </label_generator>
+                        </entity>
+                        <relationship>crm:P10_falls_within</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>../COUNTRY[COUNTRY_ID=../COIN/COUNTRY_ID]</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:E4_Period</type>
+							<instance_generator name="UUID"/>
+                            <label_generator name="Literal">
+                                <arg name="text">COUNTRY_NAME/text()</arg>
+                                <arg name="language" type="constant">de</arg>
+                            </label_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            
+			<link>
+                <path>
+                    <source_relation>DATE_FROM</source_relation>
+                    <target_relation>
+                        <relationship>crm:P108i_was_produced_by</relationship>
+                        <entity variable="p1">
+                            <type>crm:E12_Production</type>
+                        </entity>
+                        <relationship>crm:P4_has_time-span</relationship>
+                        <entity variable="ts2">
+                            <type>crm:E52_Time-Span</type>
+							<instance_generator name="UUID"/>
+                            <label_generator name="Constant">
+                                <arg name="text">date from</arg>
+                            </label_generator>
+                        </entity>
+                        <relationship>crm:P82a_begin_of_the_begin</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>DATE_FROM</source_node>
+                    <target_node>
+                        <entity>
+                            <type>http://www.w3.org/2001/XMLSchema#dateTime</type>
+							<instance_generator name="dateTime">
+                                <arg name="lowerboundexpression" type="german_date_text">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>DATE_FROM</source_relation>
+                    <target_relation>
+                        <relationship>crm:P108i_was_produced_by</relationship>
+                        <entity variable="p1">
+                            <type>crm:E12_Production</type>
+                        </entity>
+                        <relationship>crm:P4_has_time-span</relationship>
+                        <entity variable="ts2">
+                            <type>crm:E52_Time-Span</type>
+                        </entity>
+                        <relationship>crm:P81a_end_of_the_begin</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>DATE_FROM</source_node>
+                    <target_node>
+                        <entity>
+                            <type>http://www.w3.org/2001/XMLSchema#dateTime</type>
+							<instance_generator name="dateTime">
+                                <arg name="upperboundexpression" type="german_date_text">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>DATE_TO</source_relation>
+                    <target_relation>
+                        <relationship>crm:P108i_was_produced_by</relationship>
+                        <entity variable="p1">
+                            <type>E12_Production</type>
+                        </entity>
+                        <relationship>crm:P4_has_time-span</relationship>
+                        <entity variable="ts2">
+                            <type>crm:E52_Time-Span</type>
+                        </entity>
+                        <relationship>crm:P81b_begin_of_the_end</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>DATE_TO</source_node>
+                    <target_node>
+                        <entity>
+                            <type>http://www.w3.org/2001/XMLSchema#dateTime</type>
+							<instance_generator name="dateTime">
+                                <arg name="lowerboundexpression" type="german_date_text">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>DATE_TO</source_relation>
+                    <target_relation>
+                        <relationship>crm:P108i_was_produced_by</relationship>
+                        <entity variable="p1">
+                            <type>crm:E12_Production</type>
+                        </entity>
+                        <relationship>crm:P4_has_time-span</relationship>
+                        <entity variable="ts2">
+                            <type>crm:E52_Time-Span</type>
+                        </entity>
+                        <relationship>crm:P82b_end_of_the_end</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>DATE_TO</source_node>
+                    <target_node>
+                        <entity>
+                            <type>http://www.w3.org/2001/XMLSchema#dateTime</type>
+							<instance_generator name="dateTime">
+                                <arg name="upperboundexpression" type="german_date_text">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+
+            
+        </mapping>
+    </mappings>
+    
+</x3ml>

@@ -10,4 +10,7 @@
     <generator name="LocalTermURI" prefix="adw">
         <pattern>{hierarchy}/{term}</pattern>
     </generator>
+    <generator name="dateTime">
+        <pattern>unknown</pattern>
+    </generator>
 </generator_policy>

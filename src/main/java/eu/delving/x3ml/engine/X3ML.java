@@ -16,7 +16,11 @@
 package eu.delving.x3ml.engine;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.annotations.*;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import com.thoughtworks.xstream.converters.ConversionException;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
@@ -544,10 +548,6 @@ public interface X3ML {
                 return "ArgValue?";
             }
         }
-    }
-
-    public interface ArgValues {
-        ArgValue getArgValue(String name, SourceType sourceType);
     }
 
     public enum InstanceType {

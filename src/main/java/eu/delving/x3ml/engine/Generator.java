@@ -15,7 +15,9 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
-import static eu.delving.x3ml.engine.X3ML.*;
+import static eu.delving.x3ml.engine.X3ML.ArgValue;
+import static eu.delving.x3ml.engine.X3ML.Instance;
+import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
  * This is what a generator looks like to the internal code.
@@ -24,6 +26,7 @@ import static eu.delving.x3ml.engine.X3ML.*;
  */
 
 public interface Generator {
+
     interface UUIDSource {
         String generateUUID();
     }
@@ -33,6 +36,10 @@ public interface Generator {
     void setLanguageFromMapping(String language);
 
     String getLanguageFromMapping();
+
+    public interface ArgValues {
+        ArgValue getArgValue(String name, SourceType sourceType);
+    }
 
     Instance generate(String name, ArgValues arguments);
 }

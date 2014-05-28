@@ -21,7 +21,11 @@ import org.w3c.dom.Node;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
-import static eu.delving.x3ml.engine.X3ML.*;
+import static eu.delving.x3ml.engine.X3ML.ArgValue;
+import static eu.delving.x3ml.engine.X3ML.Condition;
+import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
+import static eu.delving.x3ml.engine.X3ML.Instance;
+import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
  * This abstract class is above Domain, Path, and Range and carries most of their
@@ -61,7 +65,7 @@ public abstract class GeneratorContext {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        Instance instance = context.policy().generate(generator.name, new ArgValues() {
+        Instance instance = context.policy().generate(generator.name, new Generator.ArgValues() {
             @Override
             public ArgValue getArgValue(String name, SourceType sourceType) {
                 return context.input().evaluateArgument(node, index, generator, name, sourceType);

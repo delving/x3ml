@@ -26,6 +26,7 @@ import java.io.PrintStream;
 
 import static eu.delving.x3ml.X3MLEngine.Output;
 import static eu.delving.x3ml.X3MLEngine.exception;
+import static eu.delving.x3ml.engine.X3ML.TypeElement;
 
 /**
  * The output sent to a Jena graph model.
@@ -42,7 +43,7 @@ public class ModelOutput implements Output {
         this.namespaceContext = namespaceContext;
     }
 
-    public Resource createTypedResource(String uriString, X3ML.TypeElement typeElement) {
+    public Resource createTypedResource(String uriString, TypeElement typeElement) {
         if (typeElement == null) {
             throw exception("Missing qualified name");
         }
@@ -50,7 +51,7 @@ public class ModelOutput implements Output {
         return model.createResource(uriString, model.createResource(typeUri + typeElement.getLocalName()));
     }
 
-    public Property createProperty(X3ML.TypeElement typeElement) {
+    public Property createProperty(TypeElement typeElement) {
         if (typeElement == null) {
             throw exception("Missing qualified name");
         }
@@ -68,6 +69,12 @@ public class ModelOutput implements Output {
 
     public Literal createLiteral(String value, String language) {
         return model.createLiteral(value, language);
+    }
+
+    public Literal createTypedLiteral(String value, TypeElement typeElement) {
+        String literalNamespace = namespaceContext.getNamespaceURI(typeElement.getPrefix());
+        String typeUri = literalNamespace + typeElement.getLocalName();
+        return model.createTypedLiteral(value, typeUri);
     }
 
     public void writeXML(PrintStream out) {

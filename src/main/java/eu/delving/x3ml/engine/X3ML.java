@@ -524,11 +524,35 @@ public interface X3ML {
         @XStreamAsAttribute
         public String prefix;
 
+        public CustomGenerator custom;
+
         public String pattern;
 
         public String toString() {
-            return pattern;
+            return name;
         }
+    }
+
+    @XStreamAlias("custom")
+    public static class CustomGenerator extends Visible {
+        @XStreamAsAttribute
+        public String generatorClass;
+
+        @XStreamImplicit
+        public List<CustomArg> setArgs;
+
+        public String toString() {
+            return generatorClass;
+        }
+    }
+
+    @XStreamAlias("set-arg")
+    public static class CustomArg extends Visible {
+        @XStreamAsAttribute
+        public String name;
+
+        @XStreamAsAttribute
+        public String type;
     }
 
     public static class ArgValue {
@@ -552,7 +576,8 @@ public interface X3ML {
 
     public enum InstanceType {
         URI,
-        LITERAL
+        LITERAL,
+        TYPED_LITERAL
     }
 
     public static class Instance {
@@ -614,6 +639,10 @@ public interface X3ML {
 
         public static Instance literalValue(String literal) {
             return literalValue(literal, null);
+        }
+
+        public static Instance typedLiteralValue(String literal) {
+            return new Instance(InstanceType.TYPED_LITERAL, literal);
         }
     }
 }

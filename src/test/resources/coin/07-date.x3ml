@@ -71,8 +71,9 @@
                     <target_node>
                         <entity>
                             <type>xsd:dateTime</type>
-							<instance_generator name="dateTime">
-                                <arg name="lowerboundexpression" type="german_date_text">text()</arg>
+							<instance_generator name="GermanDateTime">
+                                <arg name="bound">Lower</arg>
+                                <arg name="text">text()</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -98,8 +99,9 @@
                     <target_node>
                         <entity>
                             <type>xsd:dateTime</type>
-							<instance_generator name="dateTime">
-                                <arg name="upperboundexpression" type="german_date_text">text()</arg>
+							<instance_generator name="GermanDateTime">
+                                <arg name="bound">Upper</arg>
+                                <arg name="text">text()</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -125,8 +127,9 @@
                     <target_node>
                         <entity>
                             <type>xsd:dateTime</type>
-							<instance_generator name="dateTime">
-                                <arg name="lowerboundexpression" type="german_date_text">text()</arg>
+                            <instance_generator name="GermanDateTime">
+                                <arg name="bound">Lower</arg>
+                                <arg name="text">text()</arg>
                             </instance_generator>
                         </entity>
                     </target_node>
@@ -152,8 +155,9 @@
                     <target_node>
                         <entity>
                             <type>xsd:dateTime</type>
-							<instance_generator name="dateTime">
-                                <arg name="upperboundexpression" type="german_date_text">text()</arg>
+							<instance_generator name="GermanDateTime">
+                                <arg name="bound">Upper</arg>
+                                <arg name="text">text()</arg>
                             </instance_generator>
                         </entity>
                     </target_node>

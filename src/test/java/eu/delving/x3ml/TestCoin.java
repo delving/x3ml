@@ -18,7 +18,6 @@ package eu.delving.x3ml;
 import eu.delving.x3ml.engine.Generator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -97,7 +96,6 @@ public class TestCoin {
     }
 
     @Test
-    @Ignore
     public void testDate() {
         X3MLEngine engine = engine("/coin/07-date.x3ml");
         X3MLEngine.Output output = engine.execute(document("/coin/01-coin-input.xml"), policy("/coin/00-generator-policy.xml"));

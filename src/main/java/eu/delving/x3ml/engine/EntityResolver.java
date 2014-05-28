@@ -18,16 +18,20 @@ package eu.delving.x3ml.engine;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import eu.delving.x3ml.X3MLEngine;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
-import static eu.delving.x3ml.engine.X3ML.*;
+import static eu.delving.x3ml.engine.X3ML.Additional;
+import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
+import static eu.delving.x3ml.engine.X3ML.Instance;
+import static eu.delving.x3ml.engine.X3ML.TypeElement;
 
 /**
  * The entity resolver creates the related model elements by calling generator functions.
- *
+ * <p/>
  * Handles label nodes and additional nodes with their properties
  *
  * @author Gerald de Jong <gerald@delving.eu>
@@ -66,22 +70,29 @@ public class EntityResolver {
     private boolean resolveResource() {
         Instance instance = entityElement.getInstance(generatorContext);
         if (instance == null) return false;
-            switch (instance.type) {
-                case URI:
-                    if (resources == null) {
-                        resources = new ArrayList<Resource>();
-                        for (TypeElement typeElement : entityElement.typeElements) {
-                            resources.add(modelOutput.createTypedResource(instance.text, typeElement));
-                        }
+        switch (instance.type) {
+            case URI:
+                if (resources == null) {
+                    resources = new ArrayList<Resource>();
+                    for (TypeElement typeElement : entityElement.typeElements) {
+                        resources.add(modelOutput.createTypedResource(instance.text, typeElement));
                     }
-                    labelNodes = createLabelNodes(entityElement.labelGenerators);
-                    additionalNodes = createAdditionalNodes(entityElement.additionals);
-                    break;
-                case LITERAL:
-                    literal = modelOutput.createLiteral(instance.text, instance.language);
-                    break;
-                default:
-                    throw exception("Value type "+ instance.type);
+                }
+                labelNodes = createLabelNodes(entityElement.labelGenerators);
+                additionalNodes = createAdditionalNodes(entityElement.additionals);
+                break;
+            case LITERAL:
+                literal = modelOutput.createLiteral(instance.text, instance.language);
+                break;
+            case TYPED_LITERAL:
+                if (entityElement.typeElements.size() != 1) {
+                    throw new X3MLEngine.X3MLException("Expected one type in\n" + entityElement);
+                }
+                TypeElement typeElement = entityElement.typeElements.get(0);
+                literal = modelOutput.createTypedLiteral(instance.text, typeElement);
+                break;
+            default:
+                throw exception("Value type " + instance.type);
         }
         return hasResources() || hasLiteral();
     }

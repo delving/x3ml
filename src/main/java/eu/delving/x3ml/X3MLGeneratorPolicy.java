@@ -21,13 +21,23 @@ import com.damnhandy.uri.template.VariableExpansionException;
 import eu.delving.x3ml.engine.Generator;
 
 import java.io.InputStream;
-import java.util.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.*;
-import static eu.delving.x3ml.engine.X3ML.Helper.*;
+import static eu.delving.x3ml.engine.X3ML.Helper.generatorStream;
+import static eu.delving.x3ml.engine.X3ML.Helper.literalValue;
+import static eu.delving.x3ml.engine.X3ML.Helper.typedLiteralValue;
+import static eu.delving.x3ml.engine.X3ML.Helper.uriValue;
 import static eu.delving.x3ml.engine.X3ML.SourceType.constant;
 import static eu.delving.x3ml.engine.X3ML.SourceType.xpath;
 
@@ -42,6 +52,17 @@ public class X3MLGeneratorPolicy implements Generator {
     private UUIDSource uuidSource;
     private SourceType defaultSourceType;
     private String languageFromMapping;
+
+    public interface CustomGenerator {
+        void setArg(String name, String value) throws CustomGeneratorException;
+        String getValue() throws CustomGeneratorException;
+    }
+
+    public static class CustomGeneratorException extends Exception {
+        public CustomGeneratorException(String message) {
+            super(message);
+        }
+    }
 
     public static X3MLGeneratorPolicy load(InputStream inputStream, UUIDSource uuidSource) {
         return new X3MLGeneratorPolicy(inputStream, uuidSource);
@@ -112,11 +133,54 @@ public class X3MLGeneratorPolicy implements Generator {
         GeneratorSpec generator = generatorMap.get(name);
         if (generator == null) throw exception("No generator for " + name);
         String namespaceUri = generator.prefix == null ? null : namespaceMap.get(generator.prefix);
-        if (namespaceUri != null) { // use URI template
+        if (generator.custom != null) {
+            return fromCustomGenerator(generator, argValues);
+        }
+        else if (namespaceUri != null) { // use URI template
             return fromURITemplate(generator, namespaceUri, argValues);
         }
         else { // use simple substitution
             return fromSimpleTemplate(generator, argValues);
+        }
+    }
+
+    private Instance fromCustomGenerator(GeneratorSpec generator, ArgValues argValues) {
+        String className = generator.custom.generatorClass;
+        try {
+            Class<?> customClass = Class.forName(className);
+            Constructor<?> constructor = customClass.getConstructor();
+            CustomGenerator instance = (CustomGenerator)constructor.newInstance();
+            for (CustomArg customArg : generator.custom.setArgs) {
+                SourceType sourceType = defaultSourceType;
+                if (customArg.type != null) {
+                    sourceType = SourceType.valueOf(customArg.type);
+                }
+                ArgValue argValue = argValues.getArgValue(customArg.name, sourceType);
+                instance.setArg(customArg.name, argValue.string);
+            }
+            String value = instance.getValue();
+            return typedLiteralValue(value);
+        }
+        catch (ClassNotFoundException e) {
+            throw new X3MLEngine.X3MLException("Custom generator class not found: "+className);
+        }
+        catch (NoSuchMethodException e) {
+            throw new X3MLEngine.X3MLException("Custom generator missing default constructor: "+className);
+        }
+        catch (InvocationTargetException e) {
+            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: "+className, e);
+        }
+        catch (InstantiationException e) {
+            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: "+className, e);
+        }
+        catch (IllegalAccessException e) {
+            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: "+className, e);
+        }
+        catch (ClassCastException e) {
+            throw new X3MLEngine.X3MLException("Custom generator must implement CustomGenerator: "+className, e);
+        }
+        catch (CustomGeneratorException e) {
+            throw new X3MLEngine.X3MLException("Custom generator failure: "+className, e);
         }
     }
 

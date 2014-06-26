@@ -31,7 +31,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TestCoin {
     private final Logger log = Logger.getLogger(getClass());
-    private final Generator VALUE_POLICY = X3MLGeneratorPolicy.load(null, X3MLGeneratorPolicy.createUUIDSource(true));
+    private final Generator VALUE_POLICY = X3MLGeneratorPolicy.load(null, X3MLGeneratorPolicy.createUUIDSource(1));
 
     @Test
     public void testSimpleCoinExample() {
@@ -88,7 +88,8 @@ public class TestCoin {
     @Test
     public void testIf() {
         X3MLEngine engine = engine("/coin/06-if.x3ml");
-        X3MLEngine.Output output = engine.execute(document("/coin/00-coin-input.xml"), policy("/coin/00-generator-policy.xml"));
+        Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(1));
+        X3MLEngine.Output output = engine.execute(document("/coin/00-coin-input.xml"), policy);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin/06-if-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
@@ -103,5 +104,15 @@ public class TestCoin {
         String[] expectedResult = xmlToNTriples("/coin/07-date-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+    }
+
+    @Test
+    public void test2() {
+        X3MLEngine engine = engine("/coin2/test.x3ml");
+        X3MLEngine.Output output = engine.execute(document("/coin2/02-coin-input.xml"), policy("/coin/00-generator-policy.xml"));
+        String[] mappingResult = output.toStringArray();
+        String[] expectedResult = xmlToNTriples("/coin2/test-rdf.xml");
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\nLINES:"+ diff.size() + "\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 }

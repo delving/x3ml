@@ -16,13 +16,22 @@
 package eu.delving.x3ml;
 
 import eu.delving.x3ml.engine.Generator;
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.PosixParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
@@ -78,12 +87,12 @@ public class X3MLCommandLine {
                 "validate", false,
                 "Validate X3ML v1.0 using XSD"
         );
-        Option testUUID = new Option(
-                "testUUID", false,
-                "Use test UUID generator. Default is from operating system"
+        Option uuidTestSize = new Option(
+                "uuidTestSize", true,
+                "Create a test UUID generator of the given size. Default is UUID from operating system"
         );
         options.addOption(rdfFormat).addOption(rdf).addOption(x3ml).addOption(xml).addOption(policy)
-                .addOption(validate).addOption(testUUID);
+                .addOption(validate).addOption(uuidTestSize);
         try {
             CommandLine cli = PARSER.parse(options, args);
             go(
@@ -93,10 +102,10 @@ public class X3MLCommandLine {
                     cli.getOptionValue("rdf"),
                     cli.getOptionValue("format"),
                     cli.hasOption("validate"),
-                    cli.hasOption("testUUID")
+                    Integer.parseInt(cli.getOptionValue("uuidTestSize"))
             );
         }
-        catch (ParseException e) {
+        catch (Exception e) {
             error(e.getMessage());
         }
 
@@ -163,7 +172,7 @@ public class X3MLCommandLine {
         }
     }
 
-    static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat, boolean validate, boolean testUUID) {
+    static void go(String xml, String x3ml, String policy, String rdf, String rdfFormat, boolean validate, int uuidTestSize) {
         Element xmlElement;
         if ("@".equals(xml)) {
             xmlElement = xml(System.in);
@@ -192,7 +201,10 @@ public class X3MLCommandLine {
             x3mlStream = getStream(file(x3ml));
         }
         X3MLEngine engine = X3MLEngine.load(x3mlStream);
-        X3MLEngine.Output output = engine.execute(xmlElement, getValuePolicy(policy, X3MLGeneratorPolicy.createUUIDSource(testUUID)));
+        X3MLEngine.Output output = engine.execute(
+                xmlElement,
+                getValuePolicy(policy, X3MLGeneratorPolicy.createUUIDSource(uuidTestSize))
+        );
         output.write(rdf(rdf), rdfFormat);
     }
 }

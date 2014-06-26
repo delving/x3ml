@@ -55,6 +55,7 @@ public class X3MLGeneratorPolicy implements Generator {
 
     public interface CustomGenerator {
         void setArg(String name, String value) throws CustomGeneratorException;
+
         String getValue() throws CustomGeneratorException;
     }
 
@@ -68,8 +69,8 @@ public class X3MLGeneratorPolicy implements Generator {
         return new X3MLGeneratorPolicy(inputStream, uuidSource);
     }
 
-    public static UUIDSource createUUIDSource(boolean testUUID) {
-        return testUUID ? new TestUUIDSource() : new RealUUIDSource();
+    public static UUIDSource createUUIDSource(int uuidSize) {
+        return uuidSize > 0 ? new TestUUIDSource(uuidSize) : new RealUUIDSource();
     }
 
     private X3MLGeneratorPolicy(InputStream inputStream, UUIDSource uuidSource) {
@@ -149,7 +150,7 @@ public class X3MLGeneratorPolicy implements Generator {
         try {
             Class<?> customClass = Class.forName(className);
             Constructor<?> constructor = customClass.getConstructor();
-            CustomGenerator instance = (CustomGenerator)constructor.newInstance();
+            CustomGenerator instance = (CustomGenerator) constructor.newInstance();
             for (CustomArg customArg : generator.custom.setArgs) {
                 SourceType sourceType = defaultSourceType;
                 if (customArg.type != null) {
@@ -162,25 +163,25 @@ public class X3MLGeneratorPolicy implements Generator {
             return typedLiteralValue(value);
         }
         catch (ClassNotFoundException e) {
-            throw new X3MLEngine.X3MLException("Custom generator class not found: "+className);
+            throw new X3MLEngine.X3MLException("Custom generator class not found: " + className);
         }
         catch (NoSuchMethodException e) {
-            throw new X3MLEngine.X3MLException("Custom generator missing default constructor: "+className);
+            throw new X3MLEngine.X3MLException("Custom generator missing default constructor: " + className);
         }
         catch (InvocationTargetException e) {
-            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: "+className, e);
+            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: " + className, e);
         }
         catch (InstantiationException e) {
-            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: "+className, e);
+            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: " + className, e);
         }
         catch (IllegalAccessException e) {
-            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: "+className, e);
+            throw new X3MLEngine.X3MLException("Custom generator unable to instantiate: " + className, e);
         }
         catch (ClassCastException e) {
-            throw new X3MLEngine.X3MLException("Custom generator must implement CustomGenerator: "+className, e);
+            throw new X3MLEngine.X3MLException("Custom generator must implement CustomGenerator: " + className, e);
         }
         catch (CustomGeneratorException e) {
-            throw new X3MLEngine.X3MLException("Custom generator failure: "+className, e);
+            throw new X3MLEngine.X3MLException("Custom generator failure: " + className, e);
         }
     }
 
@@ -228,19 +229,29 @@ public class X3MLGeneratorPolicy implements Generator {
     // == the rest is for the XML form
 
     private static class TestUUIDSource implements UUIDSource {
+        private final int size, max;
         private int count = 0;
+
+        public TestUUIDSource(int size) {
+            this.size = size;
+            int maxi = 1;
+            for (int walk = 0; walk < size; walk++) {
+                maxi *= 26;
+            }
+            this.max = maxi;
+        }
 
         @Override
         public String generateUUID() {
-            int highLetter = count / 26;
-            int lowLetter = count % 26;
-            count++;
-            if (highLetter > 0) {
-                return String.format("uuid:%c%c",(char)(highLetter + 'A' - 1), (char)(lowLetter + 'A'));
+            StringBuilder uuid = new StringBuilder();
+            if (count == max) throw new RuntimeException("Too many test UUIDs. Use a larger size.");
+            int c = count++;
+            for (int walk = 0; walk < size; walk++) {
+                uuid.insert(0, (char) ((c % 26) + 'A'));
+                c /= 26;
             }
-            else {
-                return String.format("uuid:%c",(char)(lowLetter + 'A'));
-            }
+            uuid.insert(0, "uuid:");
+            return uuid.toString();
         }
     }
 

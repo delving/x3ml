@@ -36,7 +36,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
@@ -56,7 +65,7 @@ import static org.junit.Assert.assertTrue;
         TestRijks.class
 })
 public class AllTests {
-    public static final String MISSING = "!missing:     ";
+    public static final String MISSING = "!expect :     ";
     public static final String CORRECT = "correct ";
     public static final String ERROR = "!error  ";
     private static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
@@ -78,7 +87,7 @@ public class AllTests {
 //    }
 //
     public static Generator policy(String path) {
-        return X3MLGeneratorPolicy.load(resource(path), X3MLGeneratorPolicy.createUUIDSource(true));
+        return X3MLGeneratorPolicy.load(resource(path), X3MLGeneratorPolicy.createUUIDSource(1));
     }
 
     public static Element document(String path) {
@@ -162,14 +171,24 @@ public class AllTests {
         Set<String> expectedSet = new TreeSet<String>(Arrays.asList(expected));
         List<String> errors = new ArrayList<String>();
         for (String actualOne : actualSet) {
-            errors.add((expectedSet.contains(actualOne) ? CORRECT : ERROR) + ":     " + filterTriple(actualOne));
+            if (expectedSet.contains(actualOne)) {
+                errors.add(CORRECT + ":     " + filterTriple(actualOne));
+            }
+            else {
+                errors.add(ERROR + ":     " + filterTriple(actualOne));
+            }
         }
         for (String expectedOne : expectedSet) {
             if (!actualSet.contains(expectedOne)) {
                 errors.add(MISSING + filterTriple(expectedOne));
             }
         }
-        Collections.sort(errors);
+        Collections.sort(errors, new Comparator<String>() {
+            @Override
+            public int compare(String a, String b) {
+                return getPredicate(a).compareTo(getPredicate(b));
+            }
+        });
         return errors;
     }
 
@@ -184,7 +203,15 @@ public class AllTests {
 
     // === private stuff
 
-    private static Pattern TRIPLE = Pattern.compile("^<?_?([^> ]+)>?\\s+<([^>]+)>\\s+<?([^>]+)>? \\.$");
+    private static Pattern TRIPLE = Pattern.compile("^.*<?_?([^> ]+)>?\\s+<([^>]+)>\\s+<?([^>]+)>? \\.$");
+
+    private static String getPredicate(String s) {
+        Matcher matcher = TRIPLE.matcher(s);
+        if (!matcher.matches()) {
+            throw new RuntimeException("Mismatch: [" + s + "]");
+        }
+        return matcher.group(2) + " " + matcher.group(1);
+    }
 
     private static String filterTriple(String triple) {
         return triple;

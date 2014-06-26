@@ -24,7 +24,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
-import static eu.delving.x3ml.engine.X3ML.*;
+import static eu.delving.x3ml.engine.X3ML.PathElement;
+import static eu.delving.x3ml.engine.X3ML.RangeElement;
+import static eu.delving.x3ml.engine.X3ML.Relationship;
 
 /**
  * The path relationship handled here.  Intermediate nodes possible.
@@ -94,7 +96,7 @@ public class Path extends GeneratorContext {
     public List<Range> createRangeContexts(RangeElement range) {
         if (range.source_node == null) throw exception("Range source absent: " + range);
         String pathExtension = getPathExtension(range);
-        List<Node> rangeNodes = context.input().nodeList(node, pathExtension);
+        List<Node> rangeNodes = context.input().nodeList(node, getDomainNode(), pathExtension);
         List<Range> ranges = new ArrayList<Range>();
         int index = 1;
         for (Node rangeNode : rangeNodes) {

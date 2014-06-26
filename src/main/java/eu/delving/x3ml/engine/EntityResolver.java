@@ -45,6 +45,7 @@ public class EntityResolver {
     public List<AdditionalNode> additionalNodes;
     public List<Resource> resources;
     public Literal literal;
+    private boolean failed;
 
     EntityResolver(ModelOutput modelOutput, X3ML.EntityElement entityElement, GeneratorContext generatorContext) {
         this.modelOutput = modelOutput;
@@ -56,43 +57,43 @@ public class EntityResolver {
         if (entityElement == null) {
             throw exception("Missing entity");
         }
-        if (entityElement.variable == null) {
-            return resolveResource();
+        if (failed) return false;
+        if (entityElement.variable != null) {
+            resources = generatorContext.get(entityElement.variable);
         }
-        resources = generatorContext.get(entityElement.variable);
         if (resources == null) {
-            if (!resolveResource()) return false;
-            generatorContext.put(entityElement.variable, resources);
-        }
-        return true;
-    }
-
-    private boolean resolveResource() {
-        Instance instance = entityElement.getInstance(generatorContext);
-        if (instance == null) return false;
-        switch (instance.type) {
-            case URI:
-                if (resources == null) {
-                    resources = new ArrayList<Resource>();
-                    for (TypeElement typeElement : entityElement.typeElements) {
-                        resources.add(modelOutput.createTypedResource(instance.text, typeElement));
+            Instance instance = entityElement.getInstance(generatorContext);
+            if (instance == null) {
+                failed = true;
+                return false;
+            }
+            switch (instance.type) {
+                case URI:
+                    if (resources == null) {
+                        resources = new ArrayList<Resource>();
+                        for (TypeElement typeElement : entityElement.typeElements) {
+                            resources.add(modelOutput.createTypedResource(instance.text, typeElement));
+                        }
                     }
-                }
-                labelNodes = createLabelNodes(entityElement.labelGenerators);
-                additionalNodes = createAdditionalNodes(entityElement.additionals);
-                break;
-            case LITERAL:
-                literal = modelOutput.createLiteral(instance.text, instance.language);
-                break;
-            case TYPED_LITERAL:
-                if (entityElement.typeElements.size() != 1) {
-                    throw new X3MLEngine.X3MLException("Expected one type in\n" + entityElement);
-                }
-                TypeElement typeElement = entityElement.typeElements.get(0);
-                literal = modelOutput.createTypedLiteral(instance.text, typeElement);
-                break;
-            default:
-                throw exception("Value type " + instance.type);
+                    labelNodes = createLabelNodes(entityElement.labelGenerators);
+                    additionalNodes = createAdditionalNodes(entityElement.additionals);
+                    break;
+                case LITERAL:
+                    literal = modelOutput.createLiteral(instance.text, instance.language);
+                    break;
+                case TYPED_LITERAL:
+                    if (entityElement.typeElements.size() != 1) {
+                        throw new X3MLEngine.X3MLException("Expected one type in\n" + entityElement);
+                    }
+                    TypeElement typeElement = entityElement.typeElements.get(0);
+                    literal = modelOutput.createTypedLiteral(instance.text, typeElement);
+                    break;
+                default:
+                    throw exception("Value type " + instance.type);
+            }
+            if (entityElement.variable != null) {
+                generatorContext.put(entityElement.variable, resources);
+            }
         }
         return hasResources() || hasLiteral();
     }

@@ -109,7 +109,8 @@ public class TestCoin {
     @Test
     public void test2() {
         X3MLEngine engine = engine("/coin2/test.x3ml");
-        X3MLEngine.Output output = engine.execute(document("/coin2/02-coin-input.xml"), policy("/coin/00-generator-policy.xml"));
+        Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(1));
+        X3MLEngine.Output output = engine.execute(document("/coin2/02-coin-input.xml"), policy);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin2/test-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);

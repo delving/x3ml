@@ -54,6 +54,11 @@ public class Domain extends GeneratorContext {
         variables.put(variable, resources);
     }
 
+    @Override
+    public Node getDomainNode() {
+        return node;
+    }
+
     public boolean resolve() {
         if (conditionFails(domain.target_node.condition, this)) return false;
         entityResolver = new EntityResolver(context.output(), domain.target_node.entityElement, this);
@@ -64,7 +69,7 @@ public class Domain extends GeneratorContext {
         if (path.source_relation == null) throw exception("Path source absent");
         List<Path> paths = new ArrayList<Path>();
         int index = 1;
-        for (Node pathNode : context.input().nodeList(node, path.source_relation)) {
+        for (Node pathNode : context.input().nodeList(node, node, path.source_relation)) {
             Path pathContext = new Path(context, this, path, pathNode, index++);
             if (pathContext.resolve()) {
                 paths.add(pathContext);

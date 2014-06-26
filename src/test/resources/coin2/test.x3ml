@@ -40,7 +40,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>../ISSUER[PR_ID=../COIN/ISSUER_ID]</source_relation>
+                    <source_relation>../ISSUER[PR_ID=DomainContext(ISSUER_ID)]</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">
@@ -80,7 +80,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>../ISSUER[PR_ID=../COIN/ISSUER_ID]</source_node>
+                    <source_node>../ISSUER[PR_ID=DomainContext(ISSUER_ID)]</source_node>
                     <target_node>
                         <entity>
                             <type>crm:E39_Actor</type>

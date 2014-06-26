@@ -57,8 +57,13 @@ public abstract class GeneratorContext {
         parent.put(variable, resources);
     }
 
+    public Node getDomainNode() {
+        if (parent == null) throw exception("Parent context missing");
+        return parent.getDomainNode();
+    }
+
     public String evaluate(String expression) {
-        return context.input().valueAt(node, expression);
+        return context.input().valueAt(node, getDomainNode(), expression);
     }
 
     public Instance getInstance(final GeneratorElement generator) {
@@ -68,7 +73,7 @@ public abstract class GeneratorContext {
         Instance instance = context.policy().generate(generator.name, new Generator.ArgValues() {
             @Override
             public ArgValue getArgValue(String name, SourceType sourceType) {
-                return context.input().evaluateArgument(node, index, generator, name, sourceType);
+                return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
             }
         });
         if (instance == null) {

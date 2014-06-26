@@ -244,7 +244,7 @@ public class X3MLGeneratorPolicy implements Generator {
         @Override
         public String generateUUID() {
             StringBuilder uuid = new StringBuilder();
-            if (count == max) throw new RuntimeException("Too many test UUIDs. Use a larger size.");
+            if (count == max) throw new RuntimeException("Too many test UUIDs at " + count + ". Use a larger size.");
             int c = count++;
             for (int walk = 0; walk < size; walk++) {
                 uuid.insert(0, (char) ((c % 26) + 'A'));

@@ -27,6 +27,8 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
@@ -42,6 +44,7 @@ import static eu.delving.x3ml.engine.X3ML.SourceType;
  */
 
 public class XPathInput {
+    public static final Pattern DOMAIN_PLACEHOLDER = Pattern.compile("(^.*)(DomainContext[(])([^)]*)([)])(.*$)");
     private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private final NamespaceContext namespaceContext;
     private final String languageFromMapping;
@@ -51,7 +54,7 @@ public class XPathInput {
         this.languageFromMapping = languageFromMapping;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
+    public X3ML.ArgValue evaluateArgument(Node contextNode, Node domainContextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
         if (generatorElement.args != null) {
@@ -73,7 +76,7 @@ public class XPathInput {
                 String lang = getLanguageFromSource(contextNode);
                 if (lang == null) lang = languageFromMapping;
                 if (!foundArg.value.isEmpty()) {
-                    value = argVal(valueAt(contextNode, foundArg.value), lang);
+                    value = argVal(valueAt(contextNode, domainContextNode, foundArg.value), lang);
                     if (value.string.isEmpty()) {
                         throw exception("Empty result for arg " + foundArg.name + " in generator " + generatorElement.name);
                     }
@@ -92,17 +95,17 @@ public class XPathInput {
         return value;
     }
 
-    public String valueAt(Node node, String expression) {
-        List<Node> nodes = nodeList(node, expression);
+    public String valueAt(Node node, Node domainNode, String expression) {
+        List<Node> nodes = nodeList(node, domainNode, expression);
         if (nodes.isEmpty()) return "";
         String value = nodes.get(0).getNodeValue();
         if (value == null) return "";
         return value.trim();
     }
 
-    public List<Node> nodeList(Node node, X3ML.Source source) {
+    public List<Node> nodeList(Node node, Node domainNode, X3ML.Source source) {
         if (source != null) {
-            return nodeList(node, source.expression);
+            return nodeList(node, domainNode, source.expression);
         }
         else {
             List<Node> list = new ArrayList<Node>(1);
@@ -111,13 +114,21 @@ public class XPathInput {
         }
     }
 
-    public List<Node> nodeList(Node context, String expression) {
+    public List<Node> nodeList(Node context, Node domainContext, String expression) {
         if (expression == null || expression.length() == 0) {
             List<Node> list = new ArrayList<Node>(1);
             list.add(context);
             return list;
         }
         try {
+            Matcher matcher = DOMAIN_PLACEHOLDER.matcher(expression);
+            if (matcher.find()) {
+                String domainQuery = matcher.group(3);
+                XPathExpression dxe = xpath().compile(domainQuery);
+                String domainValue = (String) dxe.evaluate(context, XPathConstants.STRING);
+                expression = matcher.group(1) + '"' + domainValue + '"' + matcher.group(5);
+//                System.out.println("Expression! "+expression);
+            }
             XPathExpression xe = xpath().compile(expression);
             NodeList nodeList = (NodeList) xe.evaluate(context, XPathConstants.NODESET);
             int nodesReturned = nodeList.getLength();

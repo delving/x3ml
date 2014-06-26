@@ -95,6 +95,11 @@ public class X3MLCommandLine {
                 .addOption(validate).addOption(uuidTestSize);
         try {
             CommandLine cli = PARSER.parse(options, args);
+            int uuidTestSizeValue = -1;
+            String uuidTestSizeString = cli.getOptionValue("uuidTestSize");
+            if (uuidTestSizeString != null) {
+                uuidTestSizeValue = Integer.parseInt(uuidTestSizeString);
+            }
             go(
                     cli.getOptionValue("xml"),
                     cli.getOptionValue("x3ml"),
@@ -102,7 +107,7 @@ public class X3MLCommandLine {
                     cli.getOptionValue("rdf"),
                     cli.getOptionValue("format"),
                     cli.hasOption("validate"),
-                    Integer.parseInt(cli.getOptionValue("uuidTestSize"))
+                    uuidTestSizeValue
             );
         }
         catch (Exception e) {

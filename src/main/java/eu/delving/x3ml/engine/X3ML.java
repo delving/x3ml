@@ -431,7 +431,7 @@ public interface X3ML {
         @XStreamImplicit
         public List<Additional> additionals;
 
-        public Instance getInstance(GeneratorContext context) {
+        public GeneratedValue getInstance(GeneratorContext context) {
             return context.getInstance(instanceGenerator);
         }
     }
@@ -510,8 +510,6 @@ public interface X3ML {
 
     @XStreamAlias("generator_policy")
     public static class GeneratorPolicy extends Visible {
-        public List<MappingNamespace> namespaces;
-
         @XStreamImplicit
         public List<GeneratorSpec> generators;
     }
@@ -574,24 +572,24 @@ public interface X3ML {
         }
     }
 
-    public enum InstanceType {
+    public enum GeneratedType {
         URI,
         LITERAL,
         TYPED_LITERAL
     }
 
-    public static class Instance {
-        public final InstanceType type;
+    public static class GeneratedValue {
+        public final GeneratedType type;
         public final String text;
         public final String language;
 
-        public Instance(InstanceType type, String text, String language) {
+        public GeneratedValue(GeneratedType type, String text, String language) {
             this.type = type;
             this.text = text;
             this.language = language;
         }
 
-        public Instance(InstanceType type, String text) {
+        public GeneratedValue(GeneratedType type, String text) {
             this(type, text, null);
         }
 
@@ -629,20 +627,20 @@ public interface X3ML {
             return new ArgValue(string, language);
         }
 
-        public static Instance uriValue(String uri) {
-            return new Instance(InstanceType.URI, uri, null);
+        public static GeneratedValue uriValue(String uri) {
+            return new GeneratedValue(GeneratedType.URI, uri, null);
         }
 
-        public static Instance literalValue(String literal, String language) {
-            return new Instance(InstanceType.LITERAL, literal, language);
+        public static GeneratedValue literalValue(String literal, String language) {
+            return new GeneratedValue(GeneratedType.LITERAL, literal, language);
         }
 
-        public static Instance literalValue(String literal) {
+        public static GeneratedValue literalValue(String literal) {
             return literalValue(literal, null);
         }
 
-        public static Instance typedLiteralValue(String literal) {
-            return new Instance(InstanceType.TYPED_LITERAL, literal);
+        public static GeneratedValue typedLiteralValue(String literal) {
+            return new GeneratedValue(GeneratedType.TYPED_LITERAL, literal);
         }
     }
 }

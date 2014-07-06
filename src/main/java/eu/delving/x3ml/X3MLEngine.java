@@ -31,8 +31,18 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static eu.delving.x3ml.engine.X3ML.Helper.x3mlStream;
 import static eu.delving.x3ml.engine.X3ML.MappingNamespace;
@@ -85,6 +95,11 @@ public class X3MLEngine {
         Root rootContext = new Root(sourceRoot, generator, namespaceContext, prefixes);
         generator.setDefaultArgType(rootElement.sourceType);
         generator.setLanguageFromMapping(rootElement.language);
+        if (rootElement.namespaces != null) {
+            for (MappingNamespace mn : rootElement.namespaces) {
+                generator.setNamespace(mn.prefix, mn.uri);
+            }
+        }
         rootElement.apply(rootContext);
         return rootContext.getModelOutput();
     }

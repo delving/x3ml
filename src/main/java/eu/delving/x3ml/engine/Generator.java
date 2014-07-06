@@ -16,7 +16,7 @@
 package eu.delving.x3ml.engine;
 
 import static eu.delving.x3ml.engine.X3ML.ArgValue;
-import static eu.delving.x3ml.engine.X3ML.Instance;
+import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
@@ -35,11 +35,13 @@ public interface Generator {
 
     void setLanguageFromMapping(String language);
 
+    void setNamespace(String prefix, String uri);
+
     String getLanguageFromMapping();
 
     public interface ArgValues {
         ArgValue getArgValue(String name, SourceType sourceType);
     }
 
-    Instance generate(String name, ArgValues arguments);
+    GeneratedValue generate(String name, ArgValues arguments);
 }

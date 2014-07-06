@@ -127,7 +127,6 @@ public class XPathInput {
                 XPathExpression dxe = xpath().compile(domainQuery);
                 String domainValue = (String) dxe.evaluate(context, XPathConstants.STRING);
                 expression = matcher.group(1) + '"' + domainValue + '"' + matcher.group(5);
-//                System.out.println("Expression! "+expression);
             }
             XPathExpression xe = xpath().compile(expression);
             NodeList nodeList = (NodeList) xe.evaluate(context, XPathConstants.NODESET);

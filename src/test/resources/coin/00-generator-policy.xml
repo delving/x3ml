@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <generator_policy>
-    <namespaces>
-        <namespace prefix="adw" uri="http://www.oeaw.ac.at/"/>
-        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
-    </namespaces>
     <generator name="SimpleLabel">
         <pattern>{label}</pattern>
     </generator>

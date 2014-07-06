@@ -4,6 +4,7 @@
         <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
         <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
         <namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
+        <namespace prefix="adw" uri="http://www.oeaw.ac.at/"/>
     </namespaces>
     <mappings>
         <mapping>

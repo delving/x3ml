@@ -4,8 +4,6 @@
 
 The X3ML language was designed on the basis of work that was done by FORTH around 2006. It was adapted primarily to be more according to the DRY principle (avoiding repetition) and to be more explicit in its contract with the URI Generating process.
 
-The requirement that X3ML mappings be built **collaboratively** and that they must be amenable to sharing via an accumulating **Mapping Memory** also has influenced its design. The languge must be explicit about any knowledge of underlying ontologies so that the engine need not access that knowledge in order to function, and so that the mapping memory can also independently exchange X3ML.
-
 For the time being, X3ML will be restricted to consuming XML records and producing RDF in various serializations.  As a result, XPath will be the source access used.
 
 ## Mappings
@@ -48,68 +46,36 @@ Whether or not the engine will continue to pursue the creation of a particular t
 
 The elements used will be *exists*, *equals*, *narrower*, *and*, *or*, and *not*, each enclosed in an **if** element.
 
-    <if>...</if>
+    <if>[condition]</if>
 
-Conditions can be situated in the three different target blocks within the mapping definition:
+Conditions can be situated in the target blocks:
 
-	<x3ml version="0.1" sourceType="XPATH">
-	    <namespaces/>
-	    <mappings>
-		    <mapping>
-		        <domain>
-		            <source_node/>
-		            <target_node>
-		            	<if/>
-		            </target_node>
-		        </domain>
-		        <link>
-		            <path>
-		                <source_relation/>
-		                <target_relation>
-							<if/>
-		                </target_relation>
-		            </path>
-		            <range>
-		                <source_node/>
-		                <target_node>
-							<if/>
-		                </target_node>
-		            </range>
-		        </link>
-		        <link/>
-		        ...
-		    </mapping>
-		    <mapping/>
-		    ...
-	    <mappings>
-	</x3ml>
+	<target_node>
+		<if/>
+	</target_node>
+	
+	<target_relation>
+		<if/>
+	</target_relation>
 
-Existence can be checked, as well as equality:
+Conditions check existence or equality, and between the tags is the XPath expression to evaluate:
 
-    <if><exists>...</exists></if>
-    <if><not><if><exists>...</exists></if></not></if>
-    <if><equals value="...">...</equals></if>
-    <if><not><if><equals value="...">...</equals></if></not></if>
+    <if><exists>[xpath]</exists></if>
+    <if><not><if><exists>[xpath]</exists></if></not></if>
+    <if><equals value="[value-for-comparison]">[xpath]</equals></if>
+    <if><not><if><equals value="[value-for-comparison]">[xpath]</equals></if></not></if>
 
 An option that will be implemented later when there is a SKOS vocabulary available for querying:
 
-    <if><narrower value="...">...</narrower></if>
+    <if><narrower value="[URI-value]">[xpath]</narrower></if>
 
 Multiple conditions can also be combined into boolean expressions:
 
     <if>
-		<and>
-			<if/>
-			<if/>
-			...
-		</and>
+		<and> <if/> <if/> [more...] </and>
     </if>
     <if>
-		<or>
-			<if/>
-			<if/>
-			...
-		</or>
+		<or> <if/> <if/> [more...] </or>
     </if>
 
 ## Source
@@ -118,36 +84,27 @@ The source element provides the engine with the information needed to navigate t
 
 First, the source of the *domain* is used as a kind of "anchor" and then the *links* are traversed such that their rules determine what RDF statements can be made about the source.
 
-	<source_node>...</source_node>
-	<source_relation>...</source_relation>
+	<source_node>[xpath]</source_node>
+	<source_relation>[xpath]</source_relation>
 
 The *source* element is also present in path and range, and these sources are evaluated within the context of the domain/source.  The two are typically identical, but they represent a statement about the semantic origin of the resulting relationship and entity.  When they are not identical, the range/source extends the path/source
 
 ## Target
 
-The domain and range contain *target* blocks, which can either contain/generate URIs or represent literals:
+The domain and range contain target blocks, which can either contain/generate URIs or represent literals.  The target blocks look like these:
 
-	<target>
-	    <relationship>...</relationship>
-	</target>
+	<target_relation>
+	    <relationship>[prefix:localName]</relationship>
+	</target_relation>
 
-	<target>
+	<target_node>
 		<entity>
-			<class>...</class>
-			<value_generator name="...">
-			    <arg name="...">...</arg>
-			    <arg/>
-			    ...
+			<type>[prefix:localName]</type>
+			<value_generator name="[generator-name]">
+			    [generator args]
 			</value_generator>
 		</entity>
-	</target>
-
-	<target>
-		<entity>
-			<class>...</class>
-			<constant>...</constant>
-		</entity>
-	</target>
+	</target_node>
 
 The arguments of the **[Value Generator](x3ml-value-generation.md)** are named and optional, since there is logic within the URI Generation to anticipate omissions.  The type of argument is determined by the value function, since the argument values are requested according to type.  The *xpath* expressions which will be evaluated in the current context (see Source below) in order to fetch information from the source record.
 
@@ -166,7 +123,7 @@ This is formulated using the *intermediate* element:
 	<path>
 		<source_relation/>
 		<target_relation>
-			<relationshihp/>
+			<relationship/>
 			<entity/>
 			<relationship/>
 		</target>
@@ -192,6 +149,16 @@ When additional properties and entities need to be added to a target entity, the
 	</range>
 
 Note that the target allows multiple additional nodes.
+
+## Variables
+
+Sometimes it is necessary to generate an instance in X3ML only once for a given input record, and re-use it in a number of locations in the mapping.  For example, in the example above for Intermediate Nodes there is a value **PRODUCTION** (a production event) introduced.  It could be that several different mappings in the same X3ML file need to re-use this single production event for attaching several things to it.  In these cases, an entity can be assigned to a variable:
+
+	<entity variable="p1">
+	    [generate the value]
+	</entity>
+
+Entity blocks with their variables set will only generate the associated values once, and then re-use it whenever the variable name (in this caes *p1*) is used again.
 
 ## Info and Comments
 

@@ -24,6 +24,19 @@
 	* Generators can override using *language* attribute, language="" for none at all
 * Command line formats now "application/rdf+xml", "text/turtle" and "application/n-triples"
 
+## 6 July 2014: V 1.2
+
+* Entity element now has *instance_info* attribute 
+* *type* attribute added to instance_generator arg
+* *ArgValues* interface moved inside *Generator* interface
+* Introduced usage of *createTypedLiteral* 
+* For specialized instance generation code, introduced *CustomGenerator* interface
+* Added *custom* element to GeneratorPolicy, with *generatorClass* which implements *CustomGenerator*
+* Better generation of test UUIDs, command line can specify size.
+* *DomainContext(path)* syntax added to XPath for non-hierarchical source
+* Removed *namespaces* from generator policy, inheriting from X3ML namespaces instead
+
+
 ---
 
 Contact: Gerald de Jong &lt;gerald@delving.eu&gt;

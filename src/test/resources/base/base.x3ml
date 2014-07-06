@@ -30,6 +30,7 @@
     <namespaces>
         <namespace prefix="pre" uri="http://base.ns/#"/>
         <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+        <namespace prefix="gen" uri="http://gen.ns/#"/>
     </namespaces>
     <mappings>
         <mapping>

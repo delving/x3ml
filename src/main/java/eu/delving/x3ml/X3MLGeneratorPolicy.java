@@ -76,9 +76,6 @@ public class X3MLGeneratorPolicy implements Generator {
     private X3MLGeneratorPolicy(InputStream inputStream, UUIDSource uuidSource) {
         if (inputStream != null) {
             GeneratorPolicy policy = (GeneratorPolicy) generatorStream().fromXML(inputStream);
-            for (MappingNamespace namespace : policy.namespaces) {
-                namespaceMap.put(namespace.prefix, namespace.uri);
-            }
             for (GeneratorSpec generator : policy.generators) {
                 if (generatorMap.containsKey(generator.name)) {
                     throw exception("Duplicate generator name: " + generator.name);
@@ -107,7 +104,12 @@ public class X3MLGeneratorPolicy implements Generator {
     }
 
     @Override
-    public Instance generate(String name, ArgValues argValues) {
+    public void setNamespace(String prefix, String uri) {
+        namespaceMap.put(prefix, uri);
+    }
+
+    @Override
+    public GeneratedValue generate(String name, ArgValues argValues) {
         if (name == null) {
             throw exception("Value function name missing");
         }
@@ -145,7 +147,7 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Instance fromCustomGenerator(GeneratorSpec generator, ArgValues argValues) {
+    private GeneratedValue fromCustomGenerator(GeneratorSpec generator, ArgValues argValues) {
         String className = generator.custom.generatorClass;
         try {
             Class<?> customClass = Class.forName(className);
@@ -185,7 +187,7 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Instance fromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
+    private GeneratedValue fromURITemplate(GeneratorSpec generator, String namespaceUri, ArgValues argValues) {
         try {
             UriTemplate uriTemplate = UriTemplate.fromTemplate(generator.pattern);
             for (String argument : getVariables(generator.pattern)) {
@@ -208,7 +210,7 @@ public class X3MLGeneratorPolicy implements Generator {
         }
     }
 
-    private Instance fromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
+    private GeneratedValue fromSimpleTemplate(GeneratorSpec generator, ArgValues argValues) {
         String result = generator.pattern;
         String language = null;
         for (String argument : getVariables(generator.pattern)) {

@@ -23,8 +23,8 @@ import java.util.List;
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.ArgValue;
 import static eu.delving.x3ml.engine.X3ML.Condition;
+import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
-import static eu.delving.x3ml.engine.X3ML.Instance;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
@@ -66,20 +66,20 @@ public abstract class GeneratorContext {
         return context.input().valueAt(node, getDomainNode(), expression);
     }
 
-    public Instance getInstance(final GeneratorElement generator) {
+    public GeneratedValue getInstance(final GeneratorElement generator) {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        Instance instance = context.policy().generate(generator.name, new Generator.ArgValues() {
+        GeneratedValue generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
             @Override
             public ArgValue getArgValue(String name, SourceType sourceType) {
                 return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
             }
         });
-        if (instance == null) {
+        if (generatedValue == null) {
             throw exception("Empty value produced");
         }
-        return instance;
+        return generatedValue;
     }
 
     public boolean conditionFails(Condition condition, GeneratorContext context) {

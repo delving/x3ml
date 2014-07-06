@@ -3,6 +3,7 @@
     <namespaces>
         <namespace prefix="lido" uri="http://www.lido-schema.org"/>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
+        <namespace prefix="xxx" uri="http://xxx.eu/#"/>
     </namespaces>
     <mappings>
         <mapping>

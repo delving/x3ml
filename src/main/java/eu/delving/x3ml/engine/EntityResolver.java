@@ -25,8 +25,8 @@ import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.Additional;
+import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
-import static eu.delving.x3ml.engine.X3ML.Instance;
 import static eu.delving.x3ml.engine.X3ML.TypeElement;
 
 /**
@@ -62,34 +62,34 @@ public class EntityResolver {
             resources = generatorContext.get(entityElement.variable);
         }
         if (resources == null) {
-            Instance instance = entityElement.getInstance(generatorContext);
-            if (instance == null) {
+            GeneratedValue generatedValue = entityElement.getInstance(generatorContext);
+            if (generatedValue == null) {
                 failed = true;
                 return false;
             }
-            switch (instance.type) {
+            switch (generatedValue.type) {
                 case URI:
                     if (resources == null) {
                         resources = new ArrayList<Resource>();
                         for (TypeElement typeElement : entityElement.typeElements) {
-                            resources.add(modelOutput.createTypedResource(instance.text, typeElement));
+                            resources.add(modelOutput.createTypedResource(generatedValue.text, typeElement));
                         }
                     }
                     labelNodes = createLabelNodes(entityElement.labelGenerators);
                     additionalNodes = createAdditionalNodes(entityElement.additionals);
                     break;
                 case LITERAL:
-                    literal = modelOutput.createLiteral(instance.text, instance.language);
+                    literal = modelOutput.createLiteral(generatedValue.text, generatedValue.language);
                     break;
                 case TYPED_LITERAL:
                     if (entityElement.typeElements.size() != 1) {
                         throw new X3MLEngine.X3MLException("Expected one type in\n" + entityElement);
                     }
                     TypeElement typeElement = entityElement.typeElements.get(0);
-                    literal = modelOutput.createTypedLiteral(instance.text, typeElement);
+                    literal = modelOutput.createTypedLiteral(generatedValue.text, typeElement);
                     break;
                 default:
-                    throw exception("Value type " + instance.type);
+                    throw exception("Value type " + generatedValue.type);
             }
             if (entityElement.variable != null) {
                 generatorContext.put(entityElement.variable, resources);
@@ -107,6 +107,10 @@ public class EntityResolver {
     }
 
     void link() {
+        if (resources == null) {
+            System.out.println("No resources!");
+            return;
+        }
         for (Resource resource : resources) {
             if (labelNodes != null) {
                 for (LabelNode labelNode : labelNodes) {
@@ -194,13 +198,13 @@ public class EntityResolver {
 
         public boolean resolve() {
             property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
-            Instance instance = generatorContext.getInstance(generator);
-            if (instance == null) return false;
-            switch (instance.type) {
+            GeneratedValue generatedValue = generatorContext.getInstance(generator);
+            if (generatedValue == null) return false;
+            switch (generatedValue.type) {
                 case URI:
                     throw exception("Label node must produce a literal");
                 case LITERAL:
-                    literal = modelOutput.createLiteral(instance.text, instance.language);
+                    literal = modelOutput.createLiteral(generatedValue.text, generatedValue.language);
                     return true;
             }
             return false;

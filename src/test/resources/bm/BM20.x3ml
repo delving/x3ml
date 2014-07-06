@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x3ml version="0.1" source_type="xpath">
     <namespaces>
+        <namespace prefix="bm" uri="http://bm.co.uk/#"/>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
     </namespaces>
     <mappings>

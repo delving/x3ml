@@ -10,7 +10,7 @@
     <artifactId>x3ml</artifactId>
     <packaging>jar</packaging>
     <name>X3ML</name>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <inceptionYear>2013</inceptionYear>
     <organization>
         <name>Delving B.V.</name>

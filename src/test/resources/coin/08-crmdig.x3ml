@@ -5,7 +5,7 @@
 		<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
 		<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
-		<namespace prefix="crmdig" uri="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs"/>
+		<namespace prefix="crmdig" uri="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/"/>
 	</namespaces>
 	<mappings>
 		<mapping>

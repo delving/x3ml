@@ -1,7 +1,7 @@
 <rdf:RDF
         xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:crmdig="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs"
+        xmlns:crmdig="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/"
         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
   <crm:E22_Man-Made_Object rdf:about="uuid:AAAA">
     <crmdig:L1i_was_digitized_by>

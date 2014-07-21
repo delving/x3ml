@@ -99,7 +99,7 @@ public class TestCoin {
     @Test
     public void testDate() {
         X3MLEngine engine = engine("/coin/07-date.x3ml");
-        X3MLEngine.Output output = engine.execute(document("/coin/01-coin-input.xml"), policy("/coin/00-generator-policy.xml"));
+        X3MLEngine.Output output = engine.execute(document("/coin/00-coin-input.xml"), policy("/coin/00-generator-policy.xml"));
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin/07-date-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
@@ -110,9 +110,20 @@ public class TestCoin {
     public void testCRMDig() {
         X3MLEngine engine = engine("/coin/08-crmdig.x3ml");
         Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(4));
-        X3MLEngine.Output output = engine.execute(document("/coin/01-coin-input.xml"), policy);
+        X3MLEngine.Output output = engine.execute(document("/coin/00-coin-input.xml"), policy);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin/08-crmdig-rdf.xml");
+        List<String> diff = compareNTriples(expectedResult, mappingResult);
+        assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
+    }
+
+    @Test
+    public void testOrder() {
+        X3MLEngine engine = engine("/coin/09-order.x3ml");
+        Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(4));
+        X3MLEngine.Output output = engine.execute(document("/coin/02-coin-input.xml"), policy);
+        String[] mappingResult = output.toStringArray();
+        String[] expectedResult = xmlToNTriples("/coin/09-order-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }

@@ -135,11 +135,14 @@ public class X3MLGeneratorPolicy implements Generator {
         }
         GeneratorSpec generator = generatorMap.get(name);
         if (generator == null) throw exception("No generator for " + name);
-        String namespaceUri = generator.prefix == null ? null : namespaceMap.get(generator.prefix);
         if (generator.custom != null) {
             return fromCustomGenerator(generator, argValues);
         }
-        else if (namespaceUri != null) { // use URI template
+        else if (generator.prefix != null) { // use URI template
+            String namespaceUri = namespaceMap.get(generator.prefix);
+            if (namespaceUri == null) {
+                throw exception("No namespace for prefix "+ generator.prefix + "in generator policy");
+            }
             return fromURITemplate(generator, namespaceUri, argValues);
         }
         else { // use simple substitution

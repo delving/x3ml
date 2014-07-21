@@ -60,6 +60,8 @@ public class EntityResolver {
         if (failed) return false;
         if (entityElement.variable != null) {
             resources = generatorContext.get(entityElement.variable);
+            labelNodes = createLabelNodes(entityElement.labelGenerators);
+            additionalNodes = createAdditionalNodes(entityElement.additionals);
         }
         if (resources == null) {
             GeneratedValue generatedValue = entityElement.getInstance(generatorContext);

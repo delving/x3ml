@@ -1,0 +1,40 @@
+<rdf:RDF
+        xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <crm:E22_Man-Made_Object rdf:about="uuid:AAAA">
+    <crm:P65_shows_visual_item>
+      <crm:E36_Visual_Item rdf:about="uuid:AAAD">
+        <crm:P138_represents>
+          <crm:E40_Legal_Body rdf:about="uuid:AAAE">
+            <rdfs:label xml:lang="de">Rom (Rep.)</rdfs:label>
+          </crm:E40_Legal_Body>
+        </crm:P138_represents>
+        <rdfs:label>mint</rdfs:label>
+      </crm:E36_Visual_Item>
+    </crm:P65_shows_visual_item>
+    <crm:P1_is_identified_by>
+      <crm:E41_Appellation rdf:about="uuid:AAAC">
+        <rdfs:label>627</rdfs:label>
+      </crm:E41_Appellation>
+    </crm:P1_is_identified_by>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="uuid:AAAB">
+    <crm:P65_shows_visual_item>
+      <crm:E36_Visual_Item rdf:about="uuid:AAAG">
+        <crm:P3_has_note>XXXXX</crm:P3_has_note>
+        <crm:P138_represents>
+          <crm:E40_Legal_Body rdf:about="uuid:AAAH">
+            <rdfs:label xml:lang="de">Rom (Rep.)</rdfs:label>
+          </crm:E40_Legal_Body>
+        </crm:P138_represents>
+        <rdfs:label>mint</rdfs:label>
+      </crm:E36_Visual_Item>
+    </crm:P65_shows_visual_item>
+    <crm:P1_is_identified_by>
+      <crm:E41_Appellation rdf:about="uuid:AAAF">
+        <rdfs:label>1627</rdfs:label>
+      </crm:E41_Appellation>
+    </crm:P1_is_identified_by>
+  </crm:E22_Man-Made_Object>
+</rdf:RDF>

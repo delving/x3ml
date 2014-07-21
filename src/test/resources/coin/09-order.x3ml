@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3ml source_type="xpath" version="1.0">
+    <namespaces>
+        <namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+        <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+        <namespace prefix="adw" uri="http://www.oeaw.ac.at/"/>
+        <namespace prefix="crmdig" uri="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/"/>
+        <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+        <namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
+    </namespaces>
+    <mappings>
+        <mapping>
+            <domain>
+                <source_node>COIN</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E22_Man-Made_Object</type>
+                        <instance_info/>
+                        <instance_generator name="UUID"/>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>ID</source_relation>
+                    <target_relation>
+                        <relationship>crm:P1_is_identified_by</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>ID</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:E41_Appellation</type>
+                            <instance_generator name="UUID"/>
+                            <label_generator name="Literal">
+                                <arg name="text">text()</arg>
+                                <arg name="language"/>
+                            </label_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>../MINT[MINT_ID=DomainContext(MINT_ID)]</source_relation>
+                    <target_relation>
+                        <relationship>crm:P65_shows_visual_item</relationship>
+                        <entity variable="vi1">
+                            <type>crm:E36_Visual_Item</type>
+                            <instance_generator name="UUID"/>
+                            <label_generator name="SimpleLabel">
+                                <arg name="label" type="constant">mint</arg>
+                            </label_generator>
+                        </entity>
+                        <relationship>crm:P138_represents</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>../MINT[MINT_ID=DomainContext(MINT_ID)]</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:E40_Legal_Body</type>
+                            <instance_info>
+                                <language>en</language>
+                                <constant>mint</constant>
+                                <description>?</description>
+                            </instance_info>
+                            <instance_generator name="UUID"/>
+                            <label_generator name="Literal">
+                                <arg name="text">MINT_NAME/text()</arg>
+                                <arg name="language" type="constant">de</arg>
+                            </label_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+            <link>
+                <path>
+                    <source_relation>MINT_MARK</source_relation>
+                    <target_relation>
+                        <relationship>crm:P65_shows_visual_item</relationship>
+                        <entity variable="vi1">
+                            <type>crm:E36_Visual_Item</type>
+                            <instance_generator name="UUID"/>
+                            <label_generator name="SimpleLabel">
+                                <arg name="label" type="constant">mint</arg>
+                            </label_generator>
+                            <additional>
+                                <relationship>crm:P2_has_type</relationship>
+                                <entity>
+                                    <type>crm:E55_Type</type>
+                                    <instance_info>
+                                        <constant>mint mark</constant>
+                                    </instance_info>
+                                    <instance_generator name="LocalTermURI">
+                                        <arg name="hierarchy" type="constant">mint mark</arg>
+                                        <arg name="term">text()</arg>
+                                    </instance_generator>
+                                    <label_generator name="SimpleLabel">
+                                        <arg name="label">text()</arg>
+                                    </label_generator>
+                                </entity>
+                            </additional>
+                        </entity>
+                        <relationship>crm:P3_has_note</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>MINT_MARK</source_node>
+                    <target_node>
+                        <entity>
+                            <type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+                            <instance_info/>
+                            <instance_generator name="Literal">
+                                <arg name="text">text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+    </mappings>
+
+</x3ml>

@@ -36,6 +36,10 @@
 * *DomainContext(path)* syntax added to XPath for non-hierarchical source
 * Removed *namespaces* from generator policy, inheriting from X3ML namespaces instead
 
+## 21 July 2014: V 1.2.1
+
+* fixed bug with variables - labels and additionals were ignored if not in the first var usage
+
 
 ---
 

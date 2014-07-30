@@ -1,4 +1,4 @@
-# X3ML Format
+# X3ML Language
 
 The X3ML language was designed on the basis of work that was done by FORTH around 2006. It was adapted primarily to be more according to the DRY principle (avoiding repetition) and to be more explicit in its contract with the URI Generating process.
 
@@ -69,7 +69,7 @@ The X3ML format intended to bridge the gap between human author and machine exec
 
 Tools for managing X3ML will make use of these note elements to record all information arising from the mapping building process which may be useful people accessing the *Mapping Memory* in the future.  
 
-The content of a note can be any arbitrary XML, and the X3ML Engine will ignore these blocks, since they are for human consumption.
+From the point of view of the Mapping Engine, the content of a note can be any arbitrary XML, and it will ignore these blocks.
 
 ## Structure of a Mapping
 
@@ -126,7 +126,7 @@ Sometimes it is necessary to generate an instance in X3ML only once for a given 
 	    [generate the value]
 	</entity>
 
-Entity blocks with their variables set will only generate the associated values once, and then re-use it whenever the variable name (in this caes *p1*) is used again.
+Entity blocks with their variables set will only generate the associated values once, and then re-use it whenever the variable name (in this caes *p1*) is used again, in the scope of the whole X3ML file.
 
 ### Conditions
 

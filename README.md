@@ -10,19 +10,13 @@ The X3ML mappings which the project currently focuses on will be those for extra
 
 This X3ML Engine implementation makes up a part of the CultureBrokers project, co-funded by the Swedish Arts Council and the British Museum.  It is being developed by Delving BV in close coordination with Martin Doerr of the Foundation for Research and Technology Hellas (FORTH) in Crete, and it is a key part of the **Mapping Reference Model** that he has proposed to the CIDOC CRM-SIG.
 
-## Details
+## Details: Language
 
 The most important aspects of this engine is its two main functions, and the careful separation between them:
 
-* **[Schema Mapping](https://github.com/delving/x3ml/blob/master/docs/x3ml-schema-mapping.md)** - the mapping language XML format
+* **[View Prezi on prezi.com](http://prezi.com/0tor__p-a0kj/?utm_campaign=share&utm_medium=copy&rc=ex0share)** - basic structures visualized
 
-* **[Value Generation](https://github.com/delving/x3ml/blob/master/docs/x3ml-value-generation.md)** - the mechanism of generating URIs and labels.
-
-## Visualized
-
-|[View Prezi on prezi.com](http://prezi.com/0tor__p-a0kj/?utm_campaign=share&utm_medium=copy&rc=ex0share)
-|
-|![Prezi](docs/X3ML-Prezi.png?raw=true =680x480)  
+* **[X3ML Language](https://github.com/delving/x3ml/blob/master/docs/x3ml-language.md)** - the mapping language
 
 ## Development
 

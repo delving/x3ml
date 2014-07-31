@@ -22,11 +22,7 @@
     <crm:E22_Man-Made_Object rdf:about="uuid:AAAB">
         <crm:P65_shows_visual_item>
             <crm:E36_Visual_Item rdf:about="uuid:AAAG">
-                <crm:P138_represents>
-                    <crm:E40_Legal_Body rdf:about="uuid:AAAH">
-                        <rdfs:label xml:lang="de">Rom (Rep.)</rdfs:label>
-                    </crm:E40_Legal_Body>
-                </crm:P138_represents>
+                <crm:P138_represents rdf:resource="uuid:AAAE"/>
                 <crm:P3_has_note>XXXXX</crm:P3_has_note>
                 <crm:P2_has_type>
                     <crm:E55_Type rdf:about="http://www.oeaw.ac.at/mint%20mark/XXXXX">

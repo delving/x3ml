@@ -78,7 +78,7 @@ public class XPathInput {
                 if (!foundArg.value.isEmpty()) {
                     value = argVal(valueAt(contextNode, domainContextNode, foundArg.value), lang);
                     if (value.string.isEmpty()) {
-                        throw exception("Empty result for arg " + foundArg.name + " in generator " + generatorElement.name);
+                        throw exception("Empty result for arg " + foundArg.name + " at node " + contextNode.getNodeName() + " in generator\n" + generatorElement);
                     }
                 }
                 break;

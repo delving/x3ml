@@ -61,7 +61,7 @@
                 <range>
                     <source_node>inner1</source_node>
                     <target_node>
-                        <entity variable="boo">
+                        <entity>
                             <type>pre:OtherThing</type>
                             <instance_generator name="Single">
                                 <arg name="entry">inner_identifier/text()</arg>

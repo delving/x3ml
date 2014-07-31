@@ -26,6 +26,7 @@ import static eu.delving.x3ml.engine.X3ML.Condition;
 import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
+import static org.joox.JOOX.$;
 
 /**
  * This abstract class is above Domain, Path, and Range and carries most of their
@@ -66,11 +67,20 @@ public abstract class GeneratorContext {
         return context.input().valueAt(node, getDomainNode(), expression);
     }
 
-    public GeneratedValue getInstance(final GeneratorElement generator) {
+    public GeneratedValue getInstance(final GeneratorElement generator, String variable) {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        GeneratedValue generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
+        String nodeName = String.format(
+                "%s-%s(%d)",
+                $(node).xpath(), generator.name, generator.index
+        );
+        GeneratedValue generatedValue = context.getGeneratedValue(nodeName);
+        if (generatedValue != null) {
+            System.out.println(nodeName + " <====== " + generatedValue);
+            return generatedValue;
+        }
+        generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
             @Override
             public ArgValue getArgValue(String name, SourceType sourceType) {
                 return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
@@ -79,6 +89,8 @@ public abstract class GeneratorContext {
         if (generatedValue == null) {
             throw exception("Empty value produced");
         }
+        System.out.println(nodeName +" := " +generatedValue);
+        context.putGeneratedValue(nodeName, generatedValue);
         return generatedValue;
     }
 
@@ -86,4 +98,7 @@ public abstract class GeneratorContext {
         return condition != null && condition.failure(context);
     }
 
+    public String toString() {
+        return $(node).xpath();
+    }
 }

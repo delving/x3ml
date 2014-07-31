@@ -62,7 +62,7 @@ public class TestCoin {
         String[] expectedResult = xmlToNTriples("/coin/03-join-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
-        System.out.println(StringUtils.join(diff, "\n"));
+//        System.out.println(StringUtils.join(diff, "\n"));
     }
 
     @Test
@@ -122,20 +122,10 @@ public class TestCoin {
         X3MLEngine engine = engine("/coin/09-order.x3ml");
         Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(4));
         X3MLEngine.Output output = engine.execute(document("/coin/02-coin-input.xml"), policy);
+        output.writeXML(System.out);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin/09-order-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
-    }
-
-    @Test
-    public void test2() {
-        X3MLEngine engine = engine("/coin2/test.x3ml");
-        Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(1));
-        X3MLEngine.Output output = engine.execute(document("/coin2/02-coin-input.xml"), policy);
-        String[] mappingResult = output.toStringArray();
-        String[] expectedResult = xmlToNTriples("/coin2/test-rdf.xml");
-        List<String> diff = compareNTriples(expectedResult, mappingResult);
-        assertTrue("\nLINES:"+ diff.size() + "\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }
 }

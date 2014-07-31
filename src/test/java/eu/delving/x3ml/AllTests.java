@@ -60,13 +60,14 @@ import static org.junit.Assert.assertTrue;
         TestConditions.class,
         TestBase.class,
         TestCoin.class,
+        TestCoinExtra.class,
         TestLido07.class,
         TestBM.class,
         TestRijks.class
 })
 public class AllTests {
     public static final String MISSING = "!expect :     ";
-    public static final String CORRECT = "correct ";
+    public static final String CORRECT = "        ";
     public static final String ERROR = "!error  ";
     private static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
     private static XMLEventFactory eventFactory = XMLEventFactory.newInstance();

@@ -22,7 +22,11 @@ import org.w3c.dom.Node;
 
 import javax.xml.namespace.NamespaceContext;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 
 /**
  * The root of the mapping is where the domain contexts are created.  They then fabricate
@@ -36,6 +40,7 @@ public class Root {
     private final ModelOutput modelOutput;
     private final XPathInput xpathInput;
     private final Context context;
+    private final Map<String, GeneratedValue> generated = new HashMap<String, GeneratedValue>();
 
     public Root(Element documentRoot, final Generator generator, NamespaceContext namespaceContext, List<String> prefixes) {
         this.documentRoot = documentRoot;
@@ -61,6 +66,24 @@ public class Root {
             public Generator policy() {
                 return generator;
             }
+
+            @Override
+            public GeneratedValue getGeneratedValue(String xpath) {
+                return generated.get(xpath);
+            }
+
+            @Override
+            public void putGeneratedValue(String xpath, GeneratedValue generatedValue) {
+                switch (generatedValue.type) {
+                    case URI:
+                        generated.put(xpath, generatedValue);
+                        break;
+                    case LITERAL:
+                        break;
+                    case TYPED_LITERAL:
+                        break;
+                }
+            }
         };
     }
 
@@ -85,5 +108,7 @@ public class Root {
         XPathInput input();
         ModelOutput output();
         Generator policy();
+        GeneratedValue getGeneratedValue(String xpath);
+        void putGeneratedValue(String xpath, GeneratedValue generatedValue);
     }
 }

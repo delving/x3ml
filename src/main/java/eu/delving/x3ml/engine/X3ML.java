@@ -84,6 +84,12 @@ public interface X3ML {
 
         @XStreamOmitField
         public String comments;
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            for (Mapping mapping : mappings) {
+                mapping.getInstanceGenerators(instanceGenerators);
+            }
+        }
     }
 
     @XStreamAlias("mapping")
@@ -102,6 +108,13 @@ public interface X3ML {
                 }
             }
         }
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            domain.getInstanceGenerators(instanceGenerators);
+            if (links != null) for (Link link : links) {
+                link.getInstanceGenerators(instanceGenerators);
+            }
+        }
     }
 
     @XStreamAlias("link")
@@ -117,6 +130,11 @@ public interface X3ML {
                     range.link();
                 }
             }
+        }
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            path.getInstanceGenerators(instanceGenerators);
+            range.getInstanceGenerators(instanceGenerators);
         }
     }
 
@@ -141,6 +159,10 @@ public interface X3ML {
         public TargetNode target_node;
 
         public Comments comments;
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            target_node.getInstanceGenerators(instanceGenerators);
+        }
     }
 
     @XStreamAlias("target_relation")
@@ -152,6 +174,12 @@ public interface X3ML {
         public List<Relationship> properties;
 
         public List<EntityElement> entities;
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            for (EntityElement entity : entities) {
+                entity.getInstanceGenerators(instanceGenerators);
+            }
+        }
     }
 
     public static class TargetRelationConverter implements Converter {
@@ -219,6 +247,10 @@ public interface X3ML {
 
         @XStreamAlias("entity")
         public EntityElement entityElement;
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            entityElement.getInstanceGenerators(instanceGenerators);
+        }
     }
 
     @XStreamAlias("path")
@@ -229,6 +261,10 @@ public interface X3ML {
         public TargetRelation target_relation;
 
         public Comments comments;
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            target_relation.getInstanceGenerators(instanceGenerators);
+        }
     }
 
     @XStreamAlias("range")
@@ -239,6 +275,10 @@ public interface X3ML {
         public TargetNode target_node;
 
         public Comments comments;
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            target_node.getInstanceGenerators(instanceGenerators);
+        }
     }
 
     @XStreamAlias("additional")
@@ -431,8 +471,18 @@ public interface X3ML {
         @XStreamImplicit
         public List<Additional> additionals;
 
-        public GeneratedValue getInstance(GeneratorContext context) {
-            return context.getInstance(instanceGenerator);
+        public GeneratedValue getInstance(GeneratorContext context, String variable) {
+            if (instanceGenerator == null && variable == null) throw new RuntimeException("No instance generator or variable\n"+ this);
+            if (instanceGenerator == null) System.out.println("no instance generator\n"+this);
+            return context.getInstance(instanceGenerator, variable);
+        }
+
+        public void getInstanceGenerators(List<GeneratorElement> instanceGenerators) {
+            if (instanceGenerator != null) instanceGenerators.add(instanceGenerator);
+            if (labelGenerators != null) instanceGenerators.addAll(labelGenerators);
+            if (additionals != null) for (Additional additional : additionals) {
+                additional.entityElement.getInstanceGenerators(instanceGenerators);
+            }
         }
     }
 
@@ -489,6 +539,9 @@ public interface X3ML {
 
     @XStreamAlias("label_generator")
     public static class GeneratorElement extends Visible {
+        @XStreamOmitField
+        public int index = 666;
+
         @XStreamAsAttribute
         public String name;
 

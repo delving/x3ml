@@ -166,7 +166,7 @@ public class TestConditions implements X3ML {
         }
 
         @Override
-        public GeneratedValue getInstance(GeneratorElement generator) {
+        public GeneratedValue getInstance(GeneratorElement generator, String variable) {
             throw new RuntimeException("Didn't expect this to be called");
         }
     }

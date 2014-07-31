@@ -58,27 +58,34 @@ public class EntityResolver {
             throw exception("Missing entity");
         }
         if (failed) return false;
-        if (entityElement.variable != null) {
-            resources = generatorContext.get(entityElement.variable);
-            labelNodes = createLabelNodes(entityElement.labelGenerators);
-            additionalNodes = createAdditionalNodes(entityElement.additionals);
-        }
         if (resources == null) {
-            GeneratedValue generatedValue = entityElement.getInstance(generatorContext);
+            GeneratedValue generatedValue = entityElement.getInstance(generatorContext, entityElement.variable);
             if (generatedValue == null) {
                 failed = true;
                 return false;
             }
             switch (generatedValue.type) {
                 case URI:
+                    if (entityElement.variable != null) {
+                        resources = generatorContext.get(entityElement.variable);
+                        if (resources != null) {
+                            System.out.println("GOT "+entityElement.variable + ": "+resources + entityElement);
+                        }
+                    }
+                    boolean resourcesCreated = false;
                     if (resources == null) {
                         resources = new ArrayList<Resource>();
                         for (TypeElement typeElement : entityElement.typeElements) {
                             resources.add(modelOutput.createTypedResource(generatedValue.text, typeElement));
                         }
+                        resourcesCreated = true;
                     }
                     labelNodes = createLabelNodes(entityElement.labelGenerators);
                     additionalNodes = createAdditionalNodes(entityElement.additionals);
+                    if (entityElement.variable != null && resourcesCreated) {
+                        System.out.println("SET "+entityElement.variable + "("+generatorContext+"): "+resources + entityElement);
+                        generatorContext.put(entityElement.variable, resources);
+                    }
                     break;
                 case LITERAL:
                     literal = modelOutput.createLiteral(generatedValue.text, generatedValue.language);
@@ -92,9 +99,6 @@ public class EntityResolver {
                     break;
                 default:
                     throw exception("Value type " + generatedValue.type);
-            }
-            if (entityElement.variable != null) {
-                generatorContext.put(entityElement.variable, resources);
             }
         }
         return hasResources() || hasLiteral();
@@ -121,6 +125,7 @@ public class EntityResolver {
             }
             if (additionalNodes != null) {
                 for (AdditionalNode additionalNode : additionalNodes) {
+                    System.out.println("Additional link " + additionalNode.additionalEntityResolver.resources + " from " + resource + additionalNode.additionalEntityResolver.entityElement);
                     additionalNode.linkFrom(resource);
                 }
             }
@@ -200,7 +205,7 @@ public class EntityResolver {
 
         public boolean resolve() {
             property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
-            GeneratedValue generatedValue = generatorContext.getInstance(generator);
+            GeneratedValue generatedValue = generatorContext.getInstance(generator, entityElement.variable);
             if (generatedValue == null) return false;
             switch (generatedValue.type) {
                 case URI:

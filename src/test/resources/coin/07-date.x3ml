@@ -113,7 +113,7 @@
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">
-                            <type>E12_Production</type>
+                            <type>crm:E12_Production</type>
                         </entity>
                         <relationship>crm:P4_has_time-span</relationship>
                         <entity variable="ts2">

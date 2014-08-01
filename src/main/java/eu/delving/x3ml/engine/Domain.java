@@ -15,7 +15,6 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
-import com.hp.hpl.jena.rdf.model.Resource;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ import java.util.TreeMap;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.DomainElement;
+import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 import static eu.delving.x3ml.engine.X3ML.PathElement;
 
 /**
@@ -37,7 +37,7 @@ import static eu.delving.x3ml.engine.X3ML.PathElement;
 public class Domain extends GeneratorContext {
     public final DomainElement domain;
     public EntityResolver entityResolver;
-    private Map<String, List<Resource>> variables = new TreeMap<String, List<Resource>>();
+    private Map<String, X3ML.GeneratedValue> variables = new TreeMap<String, X3ML.GeneratedValue>();
 
     public Domain(Root.Context context, DomainElement domain, Node node, int index) {
         super(context, null, node, index);
@@ -45,13 +45,13 @@ public class Domain extends GeneratorContext {
     }
 
     @Override
-    public List<Resource> get(String variable) {
+    public GeneratedValue get(String variable) {
         return variables.get(variable);
     }
 
     @Override
-    public void put(String variable, List<Resource> resources) {
-        variables.put(variable, resources);
+    public void put(String variable, GeneratedValue generatedValue) {
+        variables.put(variable, generatedValue);
     }
 
     @Override

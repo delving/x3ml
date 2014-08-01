@@ -29,30 +29,18 @@ import static org.junit.Assert.assertTrue;
  * @author Gerald de Jong <gerald@delving.eu>
  */
 
-public class TestCoinExtra {
+public class TestCoinB {
     private final Logger log = Logger.getLogger(getClass());
     private final Generator VALUE_POLICY = X3MLGeneratorPolicy.load(null, X3MLGeneratorPolicy.createUUIDSource(1));
 
     @Test
-    public void testDomainContext() {
-        X3MLEngine engine = engine("/coin_dc/test.x3ml");
-        Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(1));
-        X3MLEngine.Output output = engine.execute(document("/coin_dc/02-coin-input.xml"), policy);
-        output.writeXML(System.out);
-        String[] mappingResult = output.toStringArray();
-        String[] expectedResult = xmlToNTriples("/coin_dc/test-rdf.xml");
-        List<String> diff = compareNTriples(expectedResult, mappingResult);
-        assertTrue("\nLINES:"+ diff.size() + "\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
-    }
-
-    @Test
     public void testJoinSyntax() {
-        X3MLEngine engine = engine("/coin_var/10-join.x3ml");
-        Generator policy = X3MLGeneratorPolicy.load(resource("/coin/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(2));
-        X3MLEngine.Output output = engine.execute(document("/coin_var/01-coin-input-simplified.xml"), policy);
+        X3MLEngine engine = engine("/coin_b/10-join.x3ml");
+        Generator policy = X3MLGeneratorPolicy.load(resource("/coin_a/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(2));
+        X3MLEngine.Output output = engine.execute(document("/coin_b/01-coin-input-simplified.xml"), policy);
         String[] mappingResult = output.toStringArray();
 //        output.writeXML(System.out);
-        String[] expectedResult = xmlToNTriples("/coin_var/10-join-rdf.xml");
+        String[] expectedResult = xmlToNTriples("/coin_b/10-join-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
         assertTrue("\nLINES:"+ diff.size() + "\n" + StringUtils.join(diff, "\n") + "\n", errorFree(diff));
     }

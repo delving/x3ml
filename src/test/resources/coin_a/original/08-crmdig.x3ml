@@ -5,7 +5,7 @@
 		<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
 		<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
 		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
-		<namespace prefix="crmdig" uri="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs/"/>
+		<namespace prefix="crmdig" uri="http://www.ics.forth.gr/isl/CRMext/CRMdig.rdfs"/>
 	</namespaces>
 	<mappings>
 		<mapping>
@@ -62,7 +62,8 @@
 						</entity>
 						<relationship>crmdig:L4_has_preferred_label</relationship>
                     </target_relation>
-					<comments><comment type=""><rationale>This is probably a link to a filename with an image of the coin.</rationale><alternatives/><typical_mistakes/><local_habits/><link_to_cook_book/><example><example_source/><example_target/></example><comments_last_update date="" person=""/></comment></comments>
+					<comments><comment type=""><rationale>This is probably a link to a filename with an image of the
+                        coin_a.</rationale><alternatives/><typical_mistakes/><local_habits/><link_to_cook_book/><example><example_source/><example_target/></example><comments_last_update date="" person=""/></comment></comments>
                 </path>
                 <range>
                     <source_node>PH_NAME</source_node>

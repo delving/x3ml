@@ -59,33 +59,25 @@ public class EntityResolver {
         }
         if (failed) return false;
         if (resources == null) {
-            GeneratedValue generatedValue = entityElement.getInstance(generatorContext, entityElement.variable);
+            StringBuilder unique = new StringBuilder();
+            for (TypeElement typeElement : entityElement.typeElements) {
+                unique.append('-').append(typeElement.tag);
+            }
+            GeneratedValue generatedValue = entityElement.getInstance(generatorContext, unique.toString());
             if (generatedValue == null) {
                 failed = true;
                 return false;
             }
             switch (generatedValue.type) {
                 case URI:
-                    if (entityElement.variable != null) {
-                        resources = generatorContext.get(entityElement.variable);
-                        if (resources != null) {
-                            System.out.println("GOT "+entityElement.variable + ": "+resources + entityElement);
-                        }
-                    }
-                    boolean resourcesCreated = false;
                     if (resources == null) {
                         resources = new ArrayList<Resource>();
                         for (TypeElement typeElement : entityElement.typeElements) {
                             resources.add(modelOutput.createTypedResource(generatedValue.text, typeElement));
                         }
-                        resourcesCreated = true;
                     }
                     labelNodes = createLabelNodes(entityElement.labelGenerators);
                     additionalNodes = createAdditionalNodes(entityElement.additionals);
-                    if (entityElement.variable != null && resourcesCreated) {
-                        System.out.println("SET "+entityElement.variable + "("+generatorContext+"): "+resources + entityElement);
-                        generatorContext.put(entityElement.variable, resources);
-                    }
                     break;
                 case LITERAL:
                     literal = modelOutput.createLiteral(generatedValue.text, generatedValue.language);
@@ -161,8 +153,7 @@ public class EntityResolver {
         public boolean resolve() {
             property = modelOutput.createProperty(additional.relationship);
             additionalEntityResolver = new EntityResolver(modelOutput, additional.entityElement, generatorContext);
-            if (property == null) return false;
-            return additionalEntityResolver.resolve();
+            return property != null && additionalEntityResolver.resolve();
         }
 
         public void linkFrom(Resource fromResource) {
@@ -205,7 +196,7 @@ public class EntityResolver {
 
         public boolean resolve() {
             property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
-            GeneratedValue generatedValue = generatorContext.getInstance(generator, entityElement.variable);
+            GeneratedValue generatedValue = generatorContext.getInstance(generator, "-" + generator.name); //todo: are you sure?
             if (generatedValue == null) return false;
             switch (generatedValue.type) {
                 case URI:

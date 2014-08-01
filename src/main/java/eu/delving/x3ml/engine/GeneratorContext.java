@@ -15,10 +15,7 @@
 //===========================================================================
 package eu.delving.x3ml.engine;
 
-import com.hp.hpl.jena.rdf.model.Resource;
 import org.w3c.dom.Node;
-
-import java.util.List;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.ArgValue;
@@ -48,14 +45,14 @@ public abstract class GeneratorContext {
         this.index = index;
     }
 
-    public List<Resource> get(String variable) {
+    public GeneratedValue get(String variable) {
         if (parent == null) throw exception("Parent context missing");
         return parent.get(variable);
     }
 
-    public void put(String variable, List<Resource> resources) {
+    public void put(String variable, GeneratedValue generatedValue) {
         if (parent == null) throw exception("Parent context missing");
-        parent.put(variable, resources);
+        parent.put(variable, generatedValue);
     }
 
     public Node getDomainNode() {
@@ -67,30 +64,47 @@ public abstract class GeneratorContext {
         return context.input().valueAt(node, getDomainNode(), expression);
     }
 
-    public GeneratedValue getInstance(final GeneratorElement generator, String variable) {
+    public GeneratedValue getInstance(final GeneratorElement generator, String unique) {
         if (generator == null) {
             throw exception("Value generator missing");
         }
-        String nodeName = String.format(
-                "%s-%s(%d)",
-                $(node).xpath(), generator.name, generator.index
-        );
-        GeneratedValue generatedValue = context.getGeneratedValue(nodeName);
-        if (generatedValue != null) {
-            System.out.println(nodeName + " <====== " + generatedValue);
-            return generatedValue;
-        }
-        generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
-            @Override
-            public ArgValue getArgValue(String name, SourceType sourceType) {
-                return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
+        GeneratedValue generatedValue;
+        if (generator.variable != null) {
+            generatedValue = get(generator.variable);
+            if (generatedValue == null) {
+                generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
+                    @Override
+                    public ArgValue getArgValue(String name, SourceType sourceType) {
+                        return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
+                    }
+                });
+                put(generator.variable, generatedValue);
+                System.out.println(generator.variable + " ===VAR==> " + generatedValue);
             }
-        });
+            else {
+                System.out.println(generator.variable + " <==VAR=== " + generatedValue);
+            }
+        }
+        else {
+            String nodeName = $(node).xpath() + unique;
+            generatedValue = context.getGeneratedValue(nodeName);
+            if (generatedValue == null) {
+                generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
+                    @Override
+                    public ArgValue getArgValue(String name, SourceType sourceType) {
+                        return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
+                    }
+                });
+                context.putGeneratedValue(nodeName, generatedValue);
+                System.out.println(nodeName + " ===CTX==> " + generatedValue);
+            }
+            else {
+                System.out.println(nodeName + " <==CTX=== " + generatedValue);
+            }
+        }
         if (generatedValue == null) {
             throw exception("Empty value produced");
         }
-        System.out.println(nodeName +" := " +generatedValue);
-        context.putGeneratedValue(nodeName, generatedValue);
         return generatedValue;
     }
 

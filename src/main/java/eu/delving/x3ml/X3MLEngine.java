@@ -44,7 +44,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
 import static eu.delving.x3ml.engine.X3ML.Helper.x3mlStream;
 import static eu.delving.x3ml.engine.X3ML.MappingNamespace;
 import static eu.delving.x3ml.engine.X3ML.RootElement;
@@ -128,12 +127,6 @@ public class X3MLEngine {
                 ((XPathContext) namespaceContext).addNamespace(namespace.prefix, namespace.uri);
                 prefixes.add(namespace.prefix);
             }
-        }
-        List<GeneratorElement> instanceGenerators = new ArrayList<GeneratorElement>();
-        rootElement.getInstanceGenerators(instanceGenerators);
-        int generatorIndex = 0;
-        for (GeneratorElement instanceGenerator: instanceGenerators) {
-            instanceGenerator.index = generatorIndex++;
         }
     }
 

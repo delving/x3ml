@@ -41,9 +41,9 @@
                     <source_relation>../FIND_SPOT[FS_ID/text()=../COIN/FIND_SPOT_ID/text()]</source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
-                        <entity variable="tc1">
+                        <entity>
                             <type>crm:E10_Transfer_of_Custody</type>
-                            <instance_generator name="UUID"/>
+                            <instance_generator name="UUID" variable="tc1"/>
                             <label_generator name="Constant">
                                 <arg name="text">find event</arg>
                             </label_generator>
@@ -70,17 +70,17 @@
                     <source_relation>FIND_DATE</source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
-                        <entity variable="tc1">
+                        <entity>
                             <type>crm:E10_Transfer_of_Custody</type>
-                            <instance_generator name="UUID"/>
+                            <instance_generator name="UUID" variable="tc1"/>
                             <label_generator name="Constant">
                                 <arg>find event</arg>
                             </label_generator>
                         </entity>
                         <relationship>crm:P4_has_time-span</relationship>
-                        <entity variable="ts1">
+                        <entity>
                             <type>crm:E52_Time-Span</type>
-                            <instance_generator name="UUID"/>
+                            <instance_generator name="UUID" variable="ts1"/>
                             <label_generator name="Constant">
                                 <arg name="text">find event date</arg>
                             </label_generator>

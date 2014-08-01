@@ -105,7 +105,6 @@
 				<xs:element ref="label_generator" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="additional" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="variable"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="relationship" type="xs:string"/>
@@ -196,6 +195,7 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="name" use="required"/>
+            <xs:attribute name="variable"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="label_generator">

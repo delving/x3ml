@@ -120,6 +120,8 @@ The relationship URI is specified either with a prefix (defined above in *namesp
 
 ### Variables
 
+**TODO: this has changed**
+
 Sometimes it is necessary to generate an instance in X3ML only once for a given input record, and re-use it in a number of locations in the mapping.  For example, in the example above for Intermediate Nodes there is a value **PRODUCTION** (a production event) introduced.  It could be that several different mappings in the same X3ML file need to re-use this single production event for attaching several things to it.  In these cases, an entity can be assigned to a variable:
 
 	<entity variable="p1">

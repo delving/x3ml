@@ -59,8 +59,8 @@ import static org.junit.Assert.assertTrue;
 @org.junit.runners.Suite.SuiteClasses({
         TestConditions.class,
         TestBase.class,
-        TestCoin.class,
-        TestCoinExtra.class,
+        TestCoinA.class,
+        TestCoinB.class,
         TestLido07.class,
         TestBM.class,
         TestRijks.class

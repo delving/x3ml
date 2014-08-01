@@ -48,9 +48,9 @@
                     <source_relation>../FIND_SPOT[FS_ID=DomainContext(FIND_SPOT_ID)]</source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
-                        <entity variable="tc1">
+                        <entity>
                             <type>crm:E10_Transfer_of_Custody</type>
-                            <instance_generator name="UUID"/>
+                            <instance_generator name="UUID" variable="tc1"/>
                             <label_generator name="Constant">
                                 <arg name="text">find event</arg>
                             </label_generator>
@@ -61,7 +61,7 @@
                 <range>
                     <source_node>../FIND_SPOT[FS_ID=DomainContext(FIND_SPOT_ID)]</source_node>
                     <target_node>
-                        <entity variable="place">
+                        <entity>
                             <type>crm:E53_Place</type>
                             <instance_generator name="UUID"/>
                             <label_generator name="Literal">
@@ -78,7 +78,7 @@
             <domain>
                 <source_node>FIND_SPOT</source_node>
                 <target_node>
-                    <entity variable="place">
+                    <entity>
                         <type>crm:E53_Place</type>
                         <instance_generator name="UUID"/>
                         <label_generator name="Literal">

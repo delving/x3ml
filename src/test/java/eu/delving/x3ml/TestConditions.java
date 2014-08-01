@@ -15,7 +15,6 @@
 //===========================================================================
 package eu.delving.x3ml;
 
-import com.hp.hpl.jena.rdf.model.Resource;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
@@ -27,7 +26,6 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -151,12 +149,12 @@ public class TestConditions implements X3ML {
         }
 
         @Override
-        public List<Resource> get(String variable) {
+        public GeneratedValue get(String variable) {
             return null;
         }
 
         @Override
-        public void put(String variable, List<Resource> resources) {
+        public void put(String variable, GeneratedValue generatedValue) {
         }
 
         @Override
@@ -166,7 +164,7 @@ public class TestConditions implements X3ML {
         }
 
         @Override
-        public GeneratedValue getInstance(GeneratorElement generator, String variable) {
+        public GeneratedValue getInstance(GeneratorElement generator, String unique) {
             throw new RuntimeException("Didn't expect this to be called");
         }
     }

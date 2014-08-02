@@ -95,8 +95,11 @@ public class Path extends GeneratorContext {
 
     public List<Range> createRangeContexts(RangeElement range) {
         if (range.source_node == null) throw exception("Range source absent: " + range);
-        String pathExtension = getPathExtension(range);
-        List<Node> rangeNodes = context.input().nodeList(node, pathExtension);
+        String expression = path.source_relation.expression;
+        if (range.source_node.expression.equals(expression)) {
+            expression = "";
+        }
+        List<Node> rangeNodes = context.input().nodeList(node,expression);
         List<Range> ranges = new ArrayList<Range>();
         int index = 1;
         for (Node rangeNode : rangeNodes) {
@@ -106,31 +109,6 @@ public class Path extends GeneratorContext {
             }
         }
         return ranges;
-    }
-
-    private String getPathExtension(RangeElement range) {
-        String rangeSource = range.source_node.expression;
-        String pathSource = path.source_relation.expression;
-        if (pathSource.length() > rangeSource.length()) {
-            throw exception(String.format(
-                    "Path source [%s] longer than range source [%s]",
-                    pathSource, rangeSource
-            ));
-        }
-        String base = rangeSource.substring(0, pathSource.length());
-        String pathExtension = rangeSource.substring(base.length());
-        if (pathExtension.length() > 0) {
-            if (pathExtension.charAt(0) == '/') {
-                pathExtension = pathExtension.substring(1);
-            }
-        }
-        if (!base.equals(pathSource)) {
-            throw exception(String.format(
-                    "Path and Range source expressions are not compatible: %s %s",
-                    pathSource, rangeSource
-            ));
-        }
-        return pathExtension;
     }
 
     private List<IntermediateNode> createIntermediateNodes(List<X3ML.EntityElement> entityList, List<Relationship> propertyList, GeneratorContext generatorContext) {

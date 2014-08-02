@@ -53,7 +53,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>../FIND_SPOT</source_node>
+                    <source_node>//FIND_SPOT</source_node>
                     <target_node>
                         <entity>
                             <type>crm:E53_Place</type>

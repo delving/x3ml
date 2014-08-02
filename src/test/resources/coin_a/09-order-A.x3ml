@@ -57,7 +57,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>../MINT</source_node>
+                    <source_node>//MINT</source_node>
                     <target_node>
                         <entity>
                             <type>crm:E40_Legal_Body</type>

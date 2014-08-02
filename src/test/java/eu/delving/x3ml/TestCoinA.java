@@ -55,7 +55,7 @@ public class TestCoinA {
     }
 
     @Test
-    public void testJoinVariableExample() {
+    public void test03Join() {
         X3MLEngine engine = engine("/coin_a/03-join.x3ml");
         X3MLEngine.Output output = engine.execute(document("/coin_a/00-coin-input.xml"), VALUE_POLICY);
         String[] mappingResult = output.toStringArray();
@@ -97,7 +97,7 @@ public class TestCoinA {
     }
 
     @Test
-    public void testDate() {
+    public void test07Date() {
         X3MLEngine engine = engine("/coin_a/07-date.x3ml");
         X3MLEngine.Output output = engine.execute(document("/coin_a/00-coin-input.xml"), policy("/coin_a/00-generator-policy.xml"));
         String[] mappingResult = output.toStringArray();

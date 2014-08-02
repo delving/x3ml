@@ -69,11 +69,11 @@ public class Domain extends GeneratorContext {
         if (rangeSource == null) throw exception("Range source absent: " + linkElement);
         List<Link> links = new ArrayList<Link>();
         int index = 1;
-        String domainValue = context.input().valueAt(node, domainForeignKey + "/text()");
-        List<Node> rangeNodes = context.input().nodeList(
-                node,
-                domain.source_node.expression, domainValue,
-                rangeSource, rangePrimaryKey + "/text()"
+        List<Node> rangeNodes = context.input().rootNodeList(
+                domain.source_node.expression,
+                context.input().valueAt(node, domainForeignKey + "/text()"),
+                rangeSource,
+                rangePrimaryKey + "/text()"
         );
         for (Node rangeNode : rangeNodes) {
             Path path = new Path(context, this, pathElement, rangeNode, index);

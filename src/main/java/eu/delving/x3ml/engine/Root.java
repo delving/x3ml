@@ -36,20 +36,20 @@ import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
  */
 
 public class Root {
-    private final Element documentRoot;
+    private final Element rootNode;
     private final ModelOutput modelOutput;
     private final XPathInput xpathInput;
     private final Context context;
     private final Map<String, GeneratedValue> generated = new HashMap<String, GeneratedValue>();
 
-    public Root(Element documentRoot, final Generator generator, NamespaceContext namespaceContext, List<String> prefixes) {
-        this.documentRoot = documentRoot;
+    public Root(Element rootNode, final Generator generator, NamespaceContext namespaceContext, List<String> prefixes) {
+        this.rootNode = rootNode;
         Model model = ModelFactory.createDefaultModel();
         for (String prefix : prefixes) {
             model.setNsPrefix(prefix, namespaceContext.getNamespaceURI(prefix));
         }
         this.modelOutput = new ModelOutput(model, namespaceContext);
-        this.xpathInput = new XPathInput(namespaceContext, generator.getLanguageFromMapping());
+        this.xpathInput = new XPathInput(rootNode, namespaceContext, generator.getLanguageFromMapping());
         this.context = new Context() {
 
             @Override
@@ -92,7 +92,7 @@ public class Root {
     }
 
     public List<Domain> createDomainContexts(X3ML.DomainElement domain) {
-        List<Node> domainNodes = xpathInput.nodeList(documentRoot, domain.source_node);
+        List<Node> domainNodes = xpathInput.nodeList(rootNode, domain.source_node);
         List<Domain> domains = new ArrayList<Domain>();
         int index = 1;
         for (Node domainNode : domainNodes) {

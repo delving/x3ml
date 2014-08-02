@@ -48,14 +48,16 @@ public class XPathInput {
     private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private final NamespaceContext namespaceContext;
     private final String languageFromMapping;
+    private final Node rootNode;
     private Map<String, Map<String, List<Node>>> rangeMapCache = new TreeMap<String, Map<String, List<Node>>>();
 
-    public XPathInput(NamespaceContext namespaceContext, String languageFromMapping) {
+    public XPathInput(Node rootNode, NamespaceContext namespaceContext, String languageFromMapping) {
+        this.rootNode = rootNode;
         this.namespaceContext = namespaceContext;
         this.languageFromMapping = languageFromMapping;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
+    public X3ML.ArgValue evaluateArgument(Node node, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
         if (generatorElement.args != null) {
@@ -74,12 +76,12 @@ public class XPathInput {
         switch (type) {
             case xpath:
                 if (foundArg == null) return null;
-                String lang = getLanguageFromSource(contextNode);
+                String lang = getLanguageFromSource(node);
                 if (lang == null) lang = languageFromMapping;
                 if (!foundArg.value.isEmpty()) {
-                    value = argVal(valueAt(contextNode, foundArg.value), lang);
+                    value = argVal(valueAt(node, foundArg.value), lang);
                     if (value.string.isEmpty()) {
-                        throw exception("Empty result for arg " + foundArg.name + " at node " + contextNode.getNodeName() + " in generator\n" + generatorElement);
+                        throw exception("Empty result for arg " + foundArg.name + " at node " + node.getNodeName() + " in generator\n" + generatorElement);
                     }
                 }
                 break;
@@ -136,11 +138,11 @@ public class XPathInput {
         }
     }
 
-    public List<Node> nodeList(Node context, String domainExpression, String domainValue, String rangeExpression, String rangeKeyPath) {
+    public List<Node> rootNodeList(String domainExpression, String domainValue, String rangeExpression, String rangeKeyPath) {
         if (rangeExpression == null || rangeExpression.length() == 0) {
             throw exception("Range expression missing");
         }
-        Map<String, List<Node>> rangeMap = getRangeMap(context, domainExpression, rangeExpression, rangeKeyPath);
+        Map<String, List<Node>> rangeMap = getRangeMap(rootNode, domainExpression, rangeExpression, rangeKeyPath);
 //        System.out.println("!!!LOOKUP IN EXISTING MAP "+domainValue);
         return rangeMap.get(domainValue);
     }

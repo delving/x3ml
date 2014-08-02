@@ -33,7 +33,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>../COUNTRY</source_node>
+                    <source_node>//COUNTRY</source_node>
                     <target_node>
                         <entity>
                             <type>crm:E4_Period</type>

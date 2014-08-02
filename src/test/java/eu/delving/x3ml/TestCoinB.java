@@ -34,7 +34,7 @@ public class TestCoinB {
     private final Generator VALUE_POLICY = X3MLGeneratorPolicy.load(null, X3MLGeneratorPolicy.createUUIDSource(1));
 
     @Test
-    public void testJoinSyntax() {
+    public void test10Join() {
         X3MLEngine engine = engine("/coin_b/10-join.x3ml");
         Generator policy = X3MLGeneratorPolicy.load(resource("/coin_a/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(2));
         X3MLEngine.Output output = engine.execute(document("/coin_b/01-coin-input-simplified.xml"), policy);

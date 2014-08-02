@@ -92,7 +92,7 @@ public class Root {
     }
 
     public List<Domain> createDomainContexts(X3ML.DomainElement domain) {
-        List<Node> domainNodes = xpathInput.nodeList(documentRoot, null, domain.source_node);
+        List<Node> domainNodes = xpathInput.nodeList(documentRoot, domain.source_node);
         List<Domain> domains = new ArrayList<Domain>();
         int index = 1;
         for (Node domainNode : domainNodes) {

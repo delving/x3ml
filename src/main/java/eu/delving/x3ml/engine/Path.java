@@ -96,7 +96,7 @@ public class Path extends GeneratorContext {
     public List<Range> createRangeContexts(RangeElement range) {
         if (range.source_node == null) throw exception("Range source absent: " + range);
         String pathExtension = getPathExtension(range);
-        List<Node> rangeNodes = context.input().nodeList(node, getDomainNode(), pathExtension);
+        List<Node> rangeNodes = context.input().nodeList(node, pathExtension);
         List<Range> ranges = new ArrayList<Range>();
         int index = 1;
         for (Node rangeNode : rangeNodes) {

@@ -26,9 +26,10 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static eu.delving.x3ml.X3MLEngine.exception;
 import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
@@ -44,17 +45,17 @@ import static eu.delving.x3ml.engine.X3ML.SourceType;
  */
 
 public class XPathInput {
-    public static final Pattern DOMAIN_PLACEHOLDER = Pattern.compile("(^.*)(DomainContext[(])([^)]*)([)])(.*$)");
     private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private final NamespaceContext namespaceContext;
     private final String languageFromMapping;
+    private Map<String, Map<String, List<Node>>> rangeMapCache = new TreeMap<String, Map<String, List<Node>>>();
 
     public XPathInput(NamespaceContext namespaceContext, String languageFromMapping) {
         this.namespaceContext = namespaceContext;
         this.languageFromMapping = languageFromMapping;
     }
 
-    public X3ML.ArgValue evaluateArgument(Node contextNode, Node domainContextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
+    public X3ML.ArgValue evaluateArgument(Node contextNode, int index, GeneratorElement generatorElement, String argName, SourceType defaultType) {
         X3ML.GeneratorArg foundArg = null;
         SourceType type = defaultType;
         if (generatorElement.args != null) {
@@ -76,7 +77,7 @@ public class XPathInput {
                 String lang = getLanguageFromSource(contextNode);
                 if (lang == null) lang = languageFromMapping;
                 if (!foundArg.value.isEmpty()) {
-                    value = argVal(valueAt(contextNode, domainContextNode, foundArg.value), lang);
+                    value = argVal(valueAt(contextNode, foundArg.value), lang);
                     if (value.string.isEmpty()) {
                         throw exception("Empty result for arg " + foundArg.name + " at node " + contextNode.getNodeName() + " in generator\n" + generatorElement);
                     }
@@ -95,17 +96,17 @@ public class XPathInput {
         return value;
     }
 
-    public String valueAt(Node node, Node domainNode, String expression) {
-        List<Node> nodes = nodeList(node, domainNode, expression);
+    public String valueAt(Node node, String expression) {
+        List<Node> nodes = nodeList(node, expression);
         if (nodes.isEmpty()) return "";
         String value = nodes.get(0).getNodeValue();
         if (value == null) return "";
         return value.trim();
     }
 
-    public List<Node> nodeList(Node node, Node domainNode, X3ML.Source source) {
+    public List<Node> nodeList(Node node, X3ML.Source source) {
         if (source != null) {
-            return nodeList(node, domainNode, source.expression);
+            return nodeList(node, source.expression);
         }
         else {
             List<Node> list = new ArrayList<Node>(1);
@@ -114,20 +115,13 @@ public class XPathInput {
         }
     }
 
-    public List<Node> nodeList(Node context, Node domainContext, String expression) {
+    public List<Node> nodeList(Node context, String expression) {
         if (expression == null || expression.length() == 0) {
             List<Node> list = new ArrayList<Node>(1);
             list.add(context);
             return list;
         }
         try {
-            Matcher matcher = DOMAIN_PLACEHOLDER.matcher(expression);
-            if (matcher.find()) {
-                String domainQuery = matcher.group(3);
-                XPathExpression dxe = xpath().compile(domainQuery);
-                String domainValue = (String) dxe.evaluate(context, XPathConstants.STRING);
-                expression = matcher.group(1) + '"' + domainValue + '"' + matcher.group(5);
-            }
             XPathExpression xe = xpath().compile(expression);
             NodeList nodeList = (NodeList) xe.evaluate(context, XPathConstants.NODESET);
             int nodesReturned = nodeList.getLength();
@@ -140,6 +134,40 @@ public class XPathInput {
         catch (XPathExpressionException e) {
             throw new RuntimeException("XPath Problem: " + expression, e);
         }
+    }
+
+    public List<Node> nodeList(Node context, String domainExpression, String domainValue, String rangeExpression, String rangeKeyPath) {
+        if (rangeExpression == null || rangeExpression.length() == 0) {
+            throw exception("Range expression missing");
+        }
+        Map<String, List<Node>> rangeMap = getRangeMap(context, domainExpression, rangeExpression, rangeKeyPath);
+//        System.out.println("!!!LOOKUP IN EXISTING MAP "+domainValue);
+        return rangeMap.get(domainValue);
+    }
+
+    private Map<String, List<Node>> getRangeMap(Node context, String domainExpression, String rangeExpression, String rangeKeyPath) {
+        String mapName = domainExpression + "/" + rangeExpression;
+        Map<String, List<Node>> map = rangeMapCache.get(mapName);
+        if (map == null) {
+            map = new HashMap<String, List<Node>>();
+            rangeMapCache.put(mapName, map);
+            for (Node node : nodeList(context, rangeExpression)) {
+                String key = valueAt(node, rangeKeyPath);
+                List<Node> value = map.get(key);
+                if (value == null) {
+                    value = new ArrayList<Node>();
+                    map.put(key, value);
+                }
+                value.add(node);
+            }
+//            System.out.println("Built Map! " + mapName);
+//            for (Map.Entry<String, List<Node>> entry : map.entrySet()) {
+//                for (Node node : entry.getValue()) {
+//                    System.out.println(entry.getKey() + ":=" + $(node).content());
+//                }
+//            }
+        }
+        return map;
     }
 
     private static String getLanguageFromSource(Node node) {

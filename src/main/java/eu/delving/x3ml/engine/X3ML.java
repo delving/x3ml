@@ -92,29 +92,40 @@ public interface X3ML {
         public DomainElement domain;
 
         @XStreamImplicit
-        public List<Link> links;
+        public List<LinkElement> links;
 
         public void apply(Root context) {
             for (Domain domain : context.createDomainContexts(this.domain)) {
                 if (links == null) continue;
-                for (Link link : links) {
-                    link.apply(domain);
+                for (LinkElement linkElement : links) {
+                    linkElement.apply(domain);
                 }
             }
         }
     }
 
     @XStreamAlias("link")
-    public static class Link extends Visible {
+    public static class LinkElement extends Visible {
 
         public PathElement path;
 
         public RangeElement range;
 
-        public void apply(Domain context) {
-            for (Path path : context.createPathContexts(this.path)) {
-                for (Range range : path.createRangeContexts(this.range)) {
-                    range.link();
+        public void apply(Domain domain) {
+            String pathSource = this.path.source_relation.expression;
+            int equals = pathSource.indexOf("==");
+            if (equals >= 0) {
+                String domainForeignKey = pathSource.substring(0, equals).trim();
+                String rangePrimaryKey = pathSource.substring(equals + 2).trim();
+                for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey)) {
+                    link.link();
+                }
+            }
+            else {
+                for (Path path : domain.createPathContexts(this.path)) {
+                    for (Range range : path.createRangeContexts(this.range)) {
+                        range.link();
+                    }
                 }
             }
         }

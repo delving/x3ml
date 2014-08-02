@@ -55,13 +55,8 @@ public abstract class GeneratorContext {
         parent.put(variable, generatedValue);
     }
 
-    public Node getDomainNode() {
-        if (parent == null) throw exception("Parent context missing");
-        return parent.getDomainNode();
-    }
-
     public String evaluate(String expression) {
-        return context.input().valueAt(node, getDomainNode(), expression);
+        return context.input().valueAt(node, expression);
     }
 
     public GeneratedValue getInstance(final GeneratorElement generator, String unique) {
@@ -75,15 +70,15 @@ public abstract class GeneratorContext {
                 generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
                     @Override
                     public ArgValue getArgValue(String name, SourceType sourceType) {
-                        return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
+                        return context.input().evaluateArgument(node, index, generator, name, sourceType);
                     }
                 });
                 put(generator.variable, generatedValue);
-                System.out.println(generator.variable + " ===VAR==> " + generatedValue);
+//                System.out.println(generator.variable + " ===VAR==> " + generatedValue);
             }
-            else {
-                System.out.println(generator.variable + " <==VAR=== " + generatedValue);
-            }
+//            else {
+//                System.out.println(generator.variable + " <==VAR=== " + generatedValue);
+//            }
         }
         else {
             String nodeName = $(node).xpath() + unique;
@@ -92,15 +87,15 @@ public abstract class GeneratorContext {
                 generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
                     @Override
                     public ArgValue getArgValue(String name, SourceType sourceType) {
-                        return context.input().evaluateArgument(node, getDomainNode(), index, generator, name, sourceType);
+                        return context.input().evaluateArgument(node, index, generator, name, sourceType);
                     }
                 });
                 context.putGeneratedValue(nodeName, generatedValue);
-                System.out.println(nodeName + " ===CTX==> " + generatedValue);
+//                System.out.println(nodeName + " ===CTX==> " + generatedValue);
             }
-            else {
-                System.out.println(nodeName + " <==CTX=== " + generatedValue);
-            }
+//            else {
+//                System.out.println(nodeName + " <==CTX=== " + generatedValue);
+//            }
         }
         if (generatedValue == null) {
             throw exception("Empty value produced");

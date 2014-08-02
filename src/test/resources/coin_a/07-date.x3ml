@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x3ml source_type="xpath" version="1.0">
+<x3ml source_type="xpath" version="1.3">
     
     <namespaces>
         <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
@@ -19,7 +19,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>../COUNTRY[COUNTRY_ID=../COIN/COUNTRY_ID]</source_relation>
+                    <source_relation>COUNTRY_ID == COUNTRY_ID</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity>
@@ -33,7 +33,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>../COUNTRY[COUNTRY_ID=../COIN/COUNTRY_ID]</source_node>
+                    <source_node>../COUNTRY</source_node>
                     <target_node>
                         <entity>
                             <type>crm:E4_Period</type>

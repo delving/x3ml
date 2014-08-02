@@ -122,7 +122,7 @@ public class TestCoinA {
         X3MLEngine engine = engine("/coin_a/09-order-A.x3ml");
         Generator policy = X3MLGeneratorPolicy.load(resource("/coin_a/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(4));
         X3MLEngine.Output output = engine.execute(document("/coin_a/02-coin-input.xml"), policy);
-        output.writeXML(System.out);
+//        output.writeXML(System.out);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin_a/09-order-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);
@@ -134,7 +134,7 @@ public class TestCoinA {
         X3MLEngine engine = engine("/coin_a/09-order-B.x3ml");
         Generator policy = X3MLGeneratorPolicy.load(resource("/coin_a/00-generator-policy.xml"), X3MLGeneratorPolicy.createUUIDSource(4));
         X3MLEngine.Output output = engine.execute(document("/coin_a/02-coin-input.xml"), policy);
-        output.writeXML(System.out);
+//        output.writeXML(System.out);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin_a/09-order-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);

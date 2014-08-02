@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<x3ml version="0.1" source_type="xpath">
+<x3ml version="1.3" source_type="xpath">
     <namespaces>
         <namespace prefix="lido" uri="http://www.lido-schema.org"/>
         <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>

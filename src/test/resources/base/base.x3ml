@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x3ml version="0.1" source_type="xpath">
+<x3ml version="1.3" source_type="xpath">
     <info>
         <title>Base</title>
         <general_description>Simplest test</general_description>

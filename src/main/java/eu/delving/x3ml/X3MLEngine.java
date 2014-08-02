@@ -58,7 +58,7 @@ import static eu.delving.x3ml.engine.X3ML.RootElement;
  */
 
 public class X3MLEngine {
-
+    private static final String VERSION = "1.3";
     private RootElement rootElement;
     private NamespaceContext namespaceContext = new XPathContext();
     private List<String> prefixes = new ArrayList<String>();
@@ -76,7 +76,11 @@ public class X3MLEngine {
     }
 
     public static X3MLEngine load(InputStream inputStream) throws X3MLException {
-        return new X3MLEngine((RootElement) x3mlStream().fromXML(inputStream));
+        RootElement rootElement = (RootElement) x3mlStream().fromXML(inputStream);
+        if (!VERSION.equals(rootElement.version)) {
+            throw exception("Incorrect X3ML Version "+rootElement.version+ ", expected "+VERSION);
+        }
+        return new X3MLEngine(rootElement);
     }
 
     public static void save(X3MLEngine engine, OutputStream outputStream) throws X3MLException {

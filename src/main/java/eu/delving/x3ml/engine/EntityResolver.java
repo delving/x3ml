@@ -117,7 +117,7 @@ public class EntityResolver {
             }
             if (additionalNodes != null) {
                 for (AdditionalNode additionalNode : additionalNodes) {
-                    System.out.println("Additional link " + additionalNode.additionalEntityResolver.resources + " from " + resource + additionalNode.additionalEntityResolver.entityElement);
+//                    System.out.println("Additional link " + additionalNode.additionalEntityResolver.resources + " from " + resource + additionalNode.additionalEntityResolver.entityElement);
                     additionalNode.linkFrom(resource);
                 }
             }

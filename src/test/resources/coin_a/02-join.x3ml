@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x3ml version="0.1" source_type="xpath">
+<x3ml version="1.3" source_type="xpath">
     <namespaces>
         <namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
         <namespace prefix="rdf" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
@@ -39,7 +39,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>../FIND_SPOT[FS_ID/text()=DomainContext(FIND_SPOT_ID)]</source_relation>
+                    <source_relation>FIND_SPOT_ID == FS_ID</source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity>
@@ -53,7 +53,7 @@
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>../FIND_SPOT[FS_ID/text()=DomainContext(FIND_SPOT_ID)]</source_node>
+                    <source_node>../FIND_SPOT</source_node>
                     <target_node>
                         <entity>
                             <type>crm:E53_Place</type>

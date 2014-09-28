@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    <!-- from https://github.com/InformationIntegrationGroup/saam-lod/wiki/1.1-URI-Scheme -->
+    <!--<namespaces>-->
+        <!--<namespace prefix="saam" uri="http://edan.si.edu/saam/"/>-->
+    <!--</namespaces>-->
+
+    <generator name="E22_Man-Made_Object" prefix="saam">
+        <pattern>object/{ObjectNumber}</pattern>
+    </generator>
+
+    <generator name="E21_Person" prefix="saam">
+        <pattern>person-institution/{PersonId}</pattern>
+    </generator>
+
+    <generator name="E42_Identifier_A" prefix="saam">
+        <pattern>object/{ObjectID}/identifier</pattern>
+    </generator>
+
+    <generator name="E42_Identifier_B" prefix="saam">
+        <pattern>person-institution/{ConstituentID}/identifier</pattern>
+    </generator>
+
+    <generator name="E82_Actor_Appellation" prefix="saam">
+        <pattern>person-institution/{ConstituentID}/appellation</pattern>
+    </generator>
+
+    <generator name="E63_Beginning_of_Existence_People" prefix="saam">
+        <pattern>person-institution/{ConstituentID}/birth</pattern>
+    </generator>
+
+    <generator name="E63_End_of_Existence_People" prefix="saam">
+        <pattern>person-institution/{ConstituentID}/birth</pattern>
+    </generator>
+
+    <generator name="E52_Time-Span" prefix="saam">
+        <pattern>person-institution/{ConstituentID}/birth/date</pattern>
+    </generator>
+
+</generator_policy>

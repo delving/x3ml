@@ -30,10 +30,10 @@
     </generator>
 
     <generator name="E63_End_of_Existence_People" prefix="saam">
-        <pattern>person-institution/{ConstituentID}/birth</pattern>
+        <pattern>person-institution/{ConstituentID}/death</pattern>
     </generator>
 
-    <generator name="E52_Time-Span" prefix="saam">
+    <generator name="E52_Time-Span_People" prefix="saam">
         <pattern>person-institution/{ConstituentID}/birth/date</pattern>
     </generator>
 

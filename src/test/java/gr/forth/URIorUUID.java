@@ -13,75 +13,83 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 //===========================================================================
-
-package eu.delving.custom;
+package gr.forth;
 
 import static eu.delving.x3ml.X3MLGeneratorPolicy.CustomGenerator;
 import static eu.delving.x3ml.X3MLGeneratorPolicy.CustomGeneratorException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * an excample date interpreter
  */
-
-public class GermanDate implements CustomGenerator {
+public class URIorUUID implements CustomGenerator {
 
     private String text;
-    private Bounds bounds;
-
-    enum Bounds {
-        Upper, Lower
-    }
 
     @Override
     public void setArg(String name, String value) throws CustomGeneratorException {
         if ("text".equals(name)) {
             text = value;
-        }
-        else if ("bound".equals(name)) {
-            bounds = Bounds.valueOf(value);
-        }
-        else {
+        } else {
             throw new CustomGeneratorException("Unrecognized argument name: " + name);
         }
     }
-
 
     @Override
     public String getValue() throws CustomGeneratorException {
         if (text == null) {
             throw new CustomGeneratorException("Missing text argument");
         }
-        if (bounds == null) {
-            throw new CustomGeneratorException("Missing bounds argument");
-        }
-        return lookupCheat(bounds.toString(), text);
+        return text;
     }
 
+    @Override
     public String getValueType() throws CustomGeneratorException {
         if (text == null) {
             throw new CustomGeneratorException("Missing text argument");
-        }
-        if (text.startsWith("http")) {
+        }       
+        if (isValidURL(text)) {
             return "URI";
         } else {
-            return "Literal";
+            return "UUID";
         }
     }
 
+    private boolean isValidURL(String url) {
+
+        URL u = null;
+
+        try {
+            u = new URL(url);
+        } catch (MalformedURLException e) {
+            return false;
+        }
+
+        try {
+            u.toURI();
+        } catch (URISyntaxException e) {
+            return false;
+        }
+
+        return true;
+    }
     
-    private static String lookupCheat(String bounds, String value) {
-        for (String[] entry : CHEAT) {
-            if (entry[0].equals(value) && entry[1].equals(bounds)) {
-                return entry[2];
-            }
-        }
-        return String.format("Cheat needed for %s:%s", bounds, value);
-    }
+//     private boolean isValidURI(String uri) {
+//        URI u = null;
+//        try {
+//
+//            u = new URI(uri);
+//
+//           
+//        } catch (URISyntaxException e) {
+//             System.out.println("3");
+//            e.printStackTrace();
+//            return false;
+//        } 
+//        return true;
+//    }
 
-    private static String[][] CHEAT = {
-            {"-116", "Lower", "-0116-12-31T00:00:00"},
-            {"-116", "Upper", "-0116-01-01T00:00:00"},
-            {"-115", "Lower", "-0115-12-31T00:00:00"},
-            {"-115", "Upper", "-0115-01-01T00:00:00"}
-    };
 }

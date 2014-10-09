@@ -61,11 +61,9 @@ public class GermanDate implements CustomGenerator {
         if (text == null) {
             throw new CustomGeneratorException("Missing text argument");
         }
-        if (text.startsWith("http")) {
-            return "URI";
-        } else {
+       
             return "Literal";
-        }
+        
     }
 
     

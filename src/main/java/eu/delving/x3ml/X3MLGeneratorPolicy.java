@@ -57,6 +57,7 @@ public class X3MLGeneratorPolicy implements Generator {
         void setArg(String name, String value) throws CustomGeneratorException;
 
         String getValue() throws CustomGeneratorException;
+        String getValueType() throws CustomGeneratorException;
     }
 
     public static class CustomGeneratorException extends Exception {
@@ -165,7 +166,15 @@ public class X3MLGeneratorPolicy implements Generator {
                 instance.setArg(customArg.name, argValue.string);
             }
             String value = instance.getValue();
-            return typedLiteralValue(value);
+            String returnType = instance.getValueType();
+           
+            if (returnType.equals("URI")) {                              
+                return uriValue(value);
+            } else if (returnType.equals("UUID")) {
+                return uriValue(uuidSource.generateUUID());
+            } else {
+                return typedLiteralValue(value);
+            }
         }
         catch (ClassNotFoundException e) {
             throw new X3MLEngine.X3MLException("Custom generator class not found: " + className);

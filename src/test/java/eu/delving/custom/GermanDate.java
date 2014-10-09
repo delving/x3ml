@@ -57,6 +57,16 @@ public class GermanDate implements CustomGenerator {
         return lookupCheat(bounds.toString(), text);
     }
 
+    public String getValueType() throws CustomGeneratorException {
+        if (text == null) {
+            throw new CustomGeneratorException("Missing text argument");
+        }
+        
+            return "Literal";
+        
+    }
+
+    
     private static String lookupCheat(String bounds, String value) {
         for (String[] entry : CHEAT) {
             if (entry[0].equals(value) && entry[1].equals(bounds)) {

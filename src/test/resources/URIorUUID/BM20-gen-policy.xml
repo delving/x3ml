@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator_policy>
+    
+    <!--generator name="URIorUUID" prefix="crm">
+        <pattern>/{text}</pattern>
+    </generator--> 
+    
+    <!--generator name="URIorUUID" prefix="crm">
+        <pattern>{text}</pattern>
+        <custom generatorClass="eu.delving.custom.URIorUUID">
+            <set-arg name="text"/>
+        </custom>
+    </generator-->
+    <generator name="URIorUUID">
+        <custom generatorClass="gr.forth.URIorUUID">
+            <set-arg name="text"/>
+        </custom>
+    </generator>
+</generator_policy>

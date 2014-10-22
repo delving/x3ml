@@ -46,9 +46,9 @@
                     <source_relation>MINT_ID == MINT_ID</source_relation>
                     <target_relation>
                         <relationship>crm:P65_shows_visual_item</relationship>
-                        <entity>
+                        <entity variable="vi1">
                             <type>crm:E36_Visual_Item</type>
-                            <instance_generator name="UUID" variable="vi1"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="SimpleLabel">
                                 <arg name="label" type="constant">mint</arg>
                             </label_generator>
@@ -80,9 +80,9 @@
                     <source_relation>MINT_MARK</source_relation>
                     <target_relation>
                         <relationship>crm:P65_shows_visual_item</relationship>
-                        <entity>
+                        <entity variable="vi1">
                             <type>crm:E36_Visual_Item</type>
-                            <instance_generator name="UUID" variable="vi1"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="SimpleLabel">
                                 <arg name="label" type="constant">mint</arg>
                             </label_generator>

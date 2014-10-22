@@ -162,11 +162,6 @@ public class TestConditions implements X3ML {
             String evaluation = known.get(expression);
             return evaluation == null ? "" : evaluation;
         }
-
-        @Override
-        public GeneratedValue getInstance(GeneratorElement generator, String unique) {
-            throw new RuntimeException("Didn't expect this to be called");
-        }
     }
 
     private static String toString(String[] array) {

@@ -196,7 +196,7 @@ public class EntityResolver {
 
         public boolean resolve() {
             property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
-            GeneratedValue generatedValue = generatorContext.getInstance(generator, "-" + generator.name); //todo: are you sure?
+            GeneratedValue generatedValue = generatorContext.getInstance(generator, null, "-" + generator.name); //todo: are you sure?
             if (generatedValue == null) return false;
             switch (generatedValue.type) {
                 case URI:

@@ -22,9 +22,9 @@
                     <source_relation>COUNTRY_ID == COUNTRY_ID</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
-                        <entity>
+                        <entity variable="p1">
                             <type>crm:E12_Production</type>
-							<instance_generator name="UUID" variable="p1"/>
+							<instance_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg name="text">production event</arg>
                             </label_generator>
@@ -52,15 +52,15 @@
                     <source_relation>DATE_FROM</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
-                        <entity>
+                        <entity variable="p1">
                             <type>crm:E12_Production</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="p1"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P4_has_time-span</relationship>
-                        <entity>
+                        <entity variable="ts2">
                             <type>crm:E52_Time-Span</type>
-							<instance_generator name="UUID" variable="ts2"/>
+							<instance_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg name="text">date from</arg>
                             </label_generator>
@@ -86,16 +86,16 @@
                     <source_relation>DATE_FROM</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
-                        <entity>
+                        <entity variable="p1">
                             <type>crm:E12_Production</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="p1"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P4_has_time-span</relationship>
-                        <entity>
+                        <entity variable="ts2">
                             <type>crm:E52_Time-Span</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="ts2"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P81a_end_of_the_begin</relationship>
                     </target_relation>
@@ -118,16 +118,16 @@
                     <source_relation>DATE_TO</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
-                        <entity>
+                        <entity variable="p1">
                             <type>crm:E12_Production</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="p1"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P4_has_time-span</relationship>
-                        <entity>
+                        <entity variable="ts2">
                             <type>crm:E52_Time-Span</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="ts2"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P81b_begin_of_the_end</relationship>
                     </target_relation>
@@ -150,16 +150,16 @@
                     <source_relation>DATE_TO</source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
-                        <entity>
+                        <entity variable="p1">
                             <type>crm:E12_Production</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="p1"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P4_has_time-span</relationship>
-                        <entity>
+                        <entity variable="ts2">
                             <type>crm:E52_Time-Span</type>
                             <!--todo: there was no generator-->
-                            <instance_generator name="UUID" variable="ts2"/>
+                            <instance_generator name="UUID"/>
                         </entity>
                         <relationship>crm:P82b_end_of_the_end</relationship>
                     </target_relation>

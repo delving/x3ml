@@ -7,10 +7,10 @@
       <crm:E12_Production rdf:about="uuid:B">
         <crm:P4_has_time-span>
           <crm:E52_Time-Span rdf:about="uuid:D">
-            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0115-01-01T00:00:00</crm:P82b_end_of_the_end>
-            <crm:P81b_begin_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0115-12-31T00:00:00</crm:P81b_begin_of_the_end>
-            <crm:P81a_end_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0116-01-01T00:00:00</crm:P81a_end_of_the_begin>
-            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0116-12-31T00:00:00</crm:P82a_begin_of_the_begin>
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0115-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P81b_begin_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0115-01-01T00:00:00</crm:P81b_begin_of_the_end>
+            <crm:P81a_end_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0116-12-31T23:59:59</crm:P81a_end_of_the_begin>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">-0116-01-01T00:00:00</crm:P82a_begin_of_the_begin>
             <rdfs:label>date from</rdfs:label>
           </crm:E52_Time-Span>
         </crm:P4_has_time-span>

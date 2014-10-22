@@ -48,9 +48,9 @@
                     <source_relation>FIND_SPOT_ID == FS_ID</source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
-                        <entity>
+                        <entity variable="tc1">
                             <type>crm:E10_Transfer_of_Custody</type>
-                            <instance_generator name="UUID" variable="tc1"/>
+                            <instance_generator name="UUID"/>
                             <label_generator name="Constant">
                                 <arg name="text">find event</arg>
                             </label_generator>

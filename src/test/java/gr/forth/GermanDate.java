@@ -29,10 +29,8 @@ public class GermanDate implements CustomGenerator {
     private Bounds bounds;
 
     enum Bounds {
-
         Upper, Lower
     }
-
 
     @Override
     public void setArg(String name, String value) throws CustomGeneratorException {
@@ -54,6 +52,11 @@ public class GermanDate implements CustomGenerator {
             throw new CustomGeneratorException("Missing bounds argument");
         }
         return getFormatedDate(bounds.toString(), text);
+    }
+
+    @Override
+    public String getValueType() throws CustomGeneratorException {
+        return text.startsWith("http") ? "URI" : "Literal";
     }
 
     private static String getFormatedDate(String bounds, String time_str) {

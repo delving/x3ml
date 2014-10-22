@@ -59,13 +59,13 @@ public abstract class GeneratorContext {
         return context.input().valueAt(node, expression);
     }
 
-    public GeneratedValue getInstance(final GeneratorElement generator, String unique) {
+    public GeneratedValue getInstance(final GeneratorElement generator, String variable, String unique) {
         if (generator == null) {
             throw exception("Value generator missing");
         }
         GeneratedValue generatedValue;
-        if (generator.variable != null) {
-            generatedValue = get(generator.variable);
+        if (variable != null) {
+            generatedValue = get(variable);
             if (generatedValue == null) {
                 generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
                     @Override
@@ -73,7 +73,7 @@ public abstract class GeneratorContext {
                         return context.input().evaluateArgument(node, index, generator, name, sourceType);
                     }
                 });
-                put(generator.variable, generatedValue);
+                put(variable, generatedValue);
 //                System.out.println(generator.variable + " ===VAR==> " + generatedValue);
             }
 //            else {

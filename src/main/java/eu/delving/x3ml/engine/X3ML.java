@@ -424,6 +424,9 @@ public interface X3ML {
     @XStreamAlias("entity")
     public static class EntityElement extends Visible {
 
+        @XStreamAsAttribute
+        public String variable;
+
         @XStreamImplicit
         public List<TypeElement> typeElements;
 
@@ -440,7 +443,7 @@ public interface X3ML {
         public List<Additional> additionals;
 
         public GeneratedValue getInstance(GeneratorContext context, String unique) {
-            return context.getInstance(instanceGenerator, unique);
+            return context.getInstance(instanceGenerator, variable, unique);
         }
     }
 
@@ -497,10 +500,6 @@ public interface X3ML {
 
     @XStreamAlias("label_generator")
     public static class GeneratorElement extends Visible {
-
-        @XStreamAsAttribute
-        public String variable;
-
         @XStreamAsAttribute
         public String name;
 

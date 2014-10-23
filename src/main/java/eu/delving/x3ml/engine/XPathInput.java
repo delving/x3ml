@@ -138,17 +138,35 @@ public class XPathInput {
         }
     }
 
-    public List<Node> rootNodeList(String domainExpression, String domainValue, String rangeExpression, String rangeKeyPath) {
+    public List<Node> rootNodeList(
+            String domainExpression,
+            String pathExpression,
+            String domainValue,
+            String rangeExpression,
+            String rangeKeyPath
+    ) {
         if (rangeExpression == null || rangeExpression.length() == 0) {
             throw exception("Range expression missing");
         }
-        Map<String, List<Node>> rangeMap = getRangeMap(rootNode, domainExpression, rangeExpression, rangeKeyPath);
+        Map<String, List<Node>> rangeMap = getRangeMap(
+                rootNode,
+                domainExpression,
+                pathExpression,
+                rangeExpression,
+                rangeKeyPath
+        );
 //        System.out.println("!!!LOOKUP IN EXISTING MAP "+domainValue);
         return rangeMap.get(domainValue);
     }
 
-    private Map<String, List<Node>> getRangeMap(Node context, String domainExpression, String rangeExpression, String rangeKeyPath) {
-        String mapName = domainExpression + "/" + rangeExpression;
+    private Map<String, List<Node>> getRangeMap(
+            Node context,
+            String domainExpression,
+            String pathExpression,
+            String rangeExpression,
+            String rangeKeyPath
+    ) {
+        String mapName = domainExpression + "|" + pathExpression + "|" + rangeExpression;
         Map<String, List<Node>> map = rangeMapCache.get(mapName);
         if (map == null) {
             map = new HashMap<String, List<Node>>();
@@ -162,10 +180,11 @@ public class XPathInput {
                 }
                 value.add(node);
             }
-//            System.out.println("Built Map! " + mapName);
+//            Logger log = Logger.getLogger("getRangeMap");
+//            log.info("Built Map! " + mapName);
 //            for (Map.Entry<String, List<Node>> entry : map.entrySet()) {
 //                for (Node node : entry.getValue()) {
-//                    System.out.println(entry.getKey() + ":=" + $(node).content());
+//                    log.info("\n" + entry.getKey() + ":=" + $(node).content());
 //                }
 //            }
         }

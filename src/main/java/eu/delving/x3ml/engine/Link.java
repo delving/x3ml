@@ -37,9 +37,4 @@ public class Link {
         return resolved;
     }
 
-    public void link() {
-        path.link();
-        range.link();
-    }
-
 }

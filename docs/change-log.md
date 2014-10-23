@@ -40,6 +40,16 @@
 
 * fixed bug with variables - labels and additionals were ignored if not in the first var usage
 
+## 2 Aug 2014: V 1.2.2
+
+* variables moved to <instance-generator>
+
+## 23 Oct 2014: V 1.3
+
+* variables moved back to <entity> but passed into instance generator
+* incorporated changes regarding getValueType in CustomGenerator
+* integrated URIorUUID custom generator
+* fixed bug involving creating new path instances when doing a join
 
 ---
 

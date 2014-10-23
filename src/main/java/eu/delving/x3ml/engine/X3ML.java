@@ -118,7 +118,7 @@ public interface X3ML {
                 String domainForeignKey = pathSource.substring(0, equals).trim();
                 String rangePrimaryKey = pathSource.substring(equals + 2).trim();
                 for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey)) {
-                    link.link();
+                    link.range.link();
                 }
             }
             else {

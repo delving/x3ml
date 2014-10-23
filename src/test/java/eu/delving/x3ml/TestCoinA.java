@@ -47,7 +47,11 @@ public class TestCoinA {
     @Test
     public void test02Join() {
         X3MLEngine engine = engine("/coin_a/02-join.x3ml");
-        X3MLEngine.Output output = engine.execute(document("/coin_a/00-coin-input.xml"), VALUE_POLICY);
+        X3MLEngine.Output output = engine.execute(
+                document("/coin_a/02-coin-input.xml"),
+                X3MLGeneratorPolicy.load(null, X3MLGeneratorPolicy.createUUIDSource(2))
+        );
+//        output.writeXML(System.out);
         String[] mappingResult = output.toStringArray();
         String[] expectedResult = xmlToNTriples("/coin_a/02-join-rdf.xml");
         List<String> diff = compareNTriples(expectedResult, mappingResult);

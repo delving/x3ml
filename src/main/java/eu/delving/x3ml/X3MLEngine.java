@@ -58,7 +58,7 @@ import static eu.delving.x3ml.engine.X3ML.RootElement;
  */
 
 public class X3MLEngine {
-    private static final String VERSION = "1.3";
+    private static final String VERSION = "1.0";
     private RootElement rootElement;
     private NamespaceContext namespaceContext = new XPathContext();
     private List<String> prefixes = new ArrayList<String>();

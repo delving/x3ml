@@ -62,14 +62,14 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>Delving Nexus</name>
-            <url>http://nexus.delving.org/nexus/content/repositories/releases</url>
+            <id>artifactory.delving.org</id>
+            <name>artifactory.delving.org-releases</name>
+            <url>http://artifactory.delving.org/artifactory/delving</url>
         </repository>
         <snapshotRepository>
-            <id>snapshots</id>
-            <name>Delving Nexus</name>
-            <url>http://nexus.delving.org/nexus/content/repositories/snapshots</url>
+            <id>artifactory.delving.org</id>
+            <name>artifactory.delving.org-snapshots</name>
+            <url>http://artifactory.delving.org/artifactory/delving</url>
         </snapshotRepository>
     </distributionManagement>
     <dependencies>

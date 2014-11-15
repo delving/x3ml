@@ -96,6 +96,7 @@ public interface X3ML {
 
         public void apply(Root context) {
             for (Domain domain : context.createDomainContexts(this.domain)) {
+                domain.resolve();
                 if (links == null) continue;
                 for (LinkElement linkElement : links) {
                     linkElement.apply(domain);

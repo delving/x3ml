@@ -100,6 +100,9 @@ public class Root {
             if (domainContext.resolve()) {
                 domains.add(domainContext);
             }
+            else {
+                System.out.println("Unresolved: "+domainContext);
+            }
         }
         return domains;
     }

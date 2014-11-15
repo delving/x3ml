@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot>
+    <gml:FeatureCollection xmlns:gml="http://www.opengis.net/gml/" xmlns:fme="http://www.w3.org/fme/">
+	<gml:featureMember>
+		<fme:maggo_lam_rect gml:id="id170514cf-1990-4587-94bc-c35ba58f46ee">
+			<fme:Name>WPT02</fme:Name>
+		</fme:maggo_lam_rect>
+	</gml:featureMember>
+	<gml:featureMember>
+		<fme:maggo_lam_rect gml:id="id2b0d44ea-79b6-4cb9-9b9b-570d775b34fd">
+			<fme:Name>WPT03</fme:Name>
+		</fme:maggo_lam_rect>
+	</gml:featureMember>
+	<gml:featureMember>
+		<fme:maggo_lam_rect gml:id="id955020e6-cc0b-4e94-b5b8-701fda109de4">
+			<fme:Name>WPT04</fme:Name>
+		</fme:maggo_lam_rect>
+	</gml:featureMember>
+	
+</gml:FeatureCollection>
+</dataroot>

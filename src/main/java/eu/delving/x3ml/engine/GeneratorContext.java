@@ -23,7 +23,6 @@ import static eu.delving.x3ml.engine.X3ML.Condition;
 import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
-import static org.joox.JOOX.$;
 
 /**
  * This abstract class is above Domain, Path, and Range and carries most of their
@@ -81,7 +80,7 @@ public abstract class GeneratorContext {
 //            }
         }
         else {
-            String nodeName = $(node).xpath() + unique;
+            String nodeName = extractXPath(node) + unique;
             generatedValue = context.getGeneratedValue(nodeName);
             if (generatedValue == null) {
                 generatedValue = context.policy().generate(generator.name, new Generator.ArgValues() {
@@ -108,6 +107,25 @@ public abstract class GeneratorContext {
     }
 
     public String toString() {
-        return $(node).xpath();
+        return extractXPath(node);
+    }
+
+    public static String extractXPath(Node node) {
+        if (node == null || node.getNodeType() == Node.DOCUMENT_NODE) {
+            return "/";
+        }
+        else {
+            String soFar = extractXPath(node.getParentNode());
+            int sibNumber = 0;
+            Node sib = node;
+            while (sib.getPreviousSibling() != null) {
+                sib = sib.getPreviousSibling();
+                if (sib.getNodeType() == Node.ELEMENT_NODE) sibNumber++;
+            }
+            return String.format(
+                    "%s%s[%d]/",
+                    soFar, node.getNodeName(), sibNumber
+            );
+        }
     }
 }

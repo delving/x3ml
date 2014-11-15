@@ -1,0 +1,20 @@
+<rdf:RDF
+        xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        >
+  <crm:E53_Place rdf:about="uuid:A">
+    <crm:P1_is_identified_by>
+      <crm:E44_Place_Appellation rdf:about="http://www.w3.org/fme/xxxx/WPT02"/>
+    </crm:P1_is_identified_by>
+  </crm:E53_Place>
+  <crm:E53_Place rdf:about="uuid:B">
+    <crm:P1_is_identified_by>
+      <crm:E44_Place_Appellation rdf:about="http://www.w3.org/fme/xxxx/WPT03"/>
+    </crm:P1_is_identified_by>
+  </crm:E53_Place>
+  <crm:E53_Place rdf:about="uuid:C">
+    <crm:P1_is_identified_by>
+      <crm:E44_Place_Appellation rdf:about="http://www.w3.org/fme/xxxx/WPT04"/>
+    </crm:P1_is_identified_by>
+  </crm:E53_Place>
+</rdf:RDF>

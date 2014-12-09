@@ -1,42 +1,1049 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<x3ml version="1.0" source_type="xpath">
-    <namespaces>
-        <namespace prefix="bm" uri="http://bm.co.uk/#"/>
-        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
-    </namespaces>
-    <mappings>
-        <mapping>
-            <domain>
-                <source_node>//input</source_node>
-                <target_node>
-                    <entity>
-                        <type>crm:E19_Physical_Object</type>
-                        <instance_generator name="PhysicalObject">
-                            <arg name="nameOfMuseum" type="constant">British Museum</arg>
-                            <arg name="entry">bm_object_id/text()</arg>
-                        </instance_generator>
-                    </entity>
-                </target_node>
-            </domain>
-            <link>
-                <path>
-                    <source_relation>bm_object_part/underscore/bm_alias_loc/underscore</source_relation>
-                    <target_relation>
-                        <relationship>crm:P54_has_current_permanent_location</relationship>
-                    </target_relation>
-                </path>
-                <range>
-                    <source_node>bm_object_part/underscore/bm_alias_loc/underscore</source_node>
-                    <target_node>
-                        <entity>
-                            <type>crm:E48_Place_Name</type>
-                            <instance_generator name="PlaceName">
-                                <arg name="entry">bm_loc/text()</arg>
-                            </instance_generator>
-                        </entity>
-                    </target_node>
-                </range>
-            </link>
-        </mapping>
-    </mappings>
+<x3ml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" source_type="xpath" version="1.0" xsi:noNamespaceSchemaLocation="x3ml_v1.0.xsd">
+	<info>
+		<title>BMSchema FULL transformation</title>
+		<general_description/>
+		<source_info>
+			<source_schema type="" version=""/>
+			<source_collection/>
+		</source_info>
+		<target_info>
+			<target_schema schema_file="cidoc_crm_v5.1-draft-2014March.rdfs" type="rdfs" version="5.1">CIDOC-CRM</target_schema>
+			<target_collection/>
+		</target_info>
+		<target_info>
+			<target_schema version="" schema_file="CRMtime___14-11-2014091944___1671.rdf" type="rdfs">crmtime</target_schema>
+			<target_collection/>
+		</target_info>
+		<target_info>
+			<target_schema version="" schema_file="CRMext4SKOSandlabel___14-11-2014092037___9269.rdfs" type="rdfs">skos and label</target_schema>
+			<target_collection/>
+		</target_info>
+		<mapping_info>
+			<mapping_created_by_org/>
+			<mapping_created_by_person/>
+			<in_collaboration_with/>
+		</mapping_info>
+		<example_data_info>
+			<example_data_from/>
+			<example_data_contact_person/>
+			<example_data_source_record/>
+			<example_data_target_record/>
+		</example_data_info>
+	</info>
+	<namespaces>
+		<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+		<namespace prefix="xsd" uri="http://www.w3.org/2001/XMLSchema#"/>
+		<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+		<namespace prefix="crm" uri="http://www.cidoc-crm.org/cidoc-crm/"/>
+		<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+		<namespace prefix="bm" uri="http://collection.britishmuseum.org/"/>
+		<namespace prefix="bmO" uri="http://collection.britishmuseum.org/id/"/>
+		<namespace prefix="bmT" uri="http://collection.britishmuseum.org/id/thesauri/"/>
+		<namespace prefix="bmR" uri="http://collection.britishmuseum.org/resource/"/>
+	</namespaces>
+	<mappings>
+		<mapping>
+			<domain>
+				<source_node>//bm_object</source_node>
+				<target_node>
+					<entity variable="mmo1">
+						<type>crm:E22_Man-Made_Object</type>
+						<instance_generator name="LocalObjectURI">
+							<arg name="hierarchy" type="constant">object</arg>
+							<arg name="object" type="constant"/>
+							<arg name="term">bm_prn/text()</arg>
+						</instance_generator>
+						<additional>
+							<relationship>crm:P52_has_current_owner</relationship>
+							<entity>
+								<type>crm:E74_Group</type>
+								<instance_info>
+									<constant>The-British-Museum</constant>
+								</instance_info>
+								<instance_generator name="LocalResourceURI">
+									<arg name="hierarchy" type="constant">thesIdentifier</arg>
+									<arg name="term" type="constant">The-British-Museum</arg>
+								</instance_generator>
+								<label_generator name="SimpleLabel">
+									<arg name="label" type="constant">The-British-Museum</arg>
+								</label_generator>
+								
+							</entity>
+						</additional>
+						<additional>
+							<relationship>crm:P50_has_current_keeper</relationship>
+							<entity>
+								<type>crm:E74_Group</type>
+								
+								<instance_info>
+									<constant>The-British-Museum</constant>
+								</instance_info>
+								<instance_generator name="LocalResourceURI">
+									<arg name="hierarchy" type="constant">thesIdentifier</arg>
+									<arg name="term" type="constant">The-British-Museum</arg>
+								</instance_generator>
+								<label_generator name="SimpleLabel">
+									<arg name="label" type="constant">The-British-Museum</arg>
+								</label_generator>
+							</entity>
+						</additional>
+					</entity>
+				</target_node>
+			</domain>
+			<link>
+				<path>
+					<source_relation>bm_prn</source_relation>
+					<target_relation>
+						<relationship>crm:P48_has_preferred_identifier</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_prn</source_node>
+					<target_node>
+						<entity variable="bm_prn">
+							<type>crm:E42_Identifier</type>
+								<instance_info>
+								<constant>prn</constant>
+							</instance_info>
+							<instance_generator name="LocalObjectURI">
+								<arg name="hierarchy" type="constant">object</arg>
+								<arg name="object">text()</arg>
+								<arg name="term" type="constant">prn</arg>
+							</instance_generator>
+							<label_generator name="SimpleLabel">
+								<arg name="label">text()</arg>
+							</label_generator>
+						
+							<additional>
+								<relationship>crm:P2_has_type</relationship>
+								<entity>
+									<type>crm:E55_Type</type>
+									<instance_info>
+										<constant>prn</constant>
+									</instance_info>
+									<instance_generator name="LocalThesauriURI">
+										<arg name="hierarchy" type="constant">identifier</arg>
+										<arg name="term" type="constant">prn</arg>
+									</instance_generator>
+									
+								</entity>
+							</additional>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>bm_codex_object_id/_</source_relation>
+					<target_relation>
+						<relationship>crm:P1_is_identified_by</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_codex_object_id/_</source_node>
+					<target_node>
+						<entity variable="codex">
+							<type>crm:E42_Identifier</type>
+							<instance_generator name="LocalObjectURI">
+								<arg name="hierarchy" type="constant">object</arg>
+								<arg name="object">../../bm_prn/text()</arg>
+								<arg name="term" type="constant">codexid</arg>
+							</instance_generator>
+							<label_generator name="SimpleLabel">
+								<arg name="label">text()</arg>
+							</label_generator>
+							
+							<additional>
+								<relationship>crm:P2_has_type</relationship>
+								<entity>
+									<type>crm:E55_Type</type>
+									<instance_info>
+										<constant>codexid</constant>
+									</instance_info>
+									<instance_generator name="LocalThesauriURI">
+										<arg name="hierarchy" type="constant">identifier</arg>
+										<arg name="term" type="constant">codexid</arg>
+									</instance_generator>
+									
+								</entity>
+							</additional>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>bm_calc_reg_no_expr/_</source_relation>
+					<target_relation>
+						<relationship>crm:P1_is_identified_by</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_calc_reg_no_expr/_</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E42_Identifier</type>
+							<instance_generator name="LocalObjectURI">
+								<arg name="hierarchy" type="constant">object</arg>
+								<arg name="object">../../bm_prn/text()</arg>
+								<arg name="term" type="constant">regno</arg>
+							</instance_generator>
+							<label_generator name="SimpleLabel">
+								<arg name="label">text()</arg>
+							</label_generator>
+							
+							<additional>
+								<relationship>crm:P2_has_type</relationship>
+								<entity>
+									<type>crm:E55_Type</type>
+									<instance_info>
+										<constant>regno</constant>
+									</instance_info>
+									<instance_generator name="LocalThesauriURI">
+										<arg name="hierarchy" type="constant">identifier</arg>
+										<arg name="term" type="constant">regno</arg>
+									</instance_generator>
+									
+								</entity>
+							</additional>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>bm_calc_big_no_expr/_</source_relation>
+					<target_relation>
+						<relationship>crm:P1_is_identified_by</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_calc_big_no_expr/_</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E42_Identifier</type>
+								<instance_generator name="LocalObjectURI">
+								<arg name="hierarchy" type="constant">object</arg>
+								<arg name="object">../../bm_prn/text()</arg>
+								<arg name="term" type="constant">bigno</arg>
+							</instance_generator>
+							<label_generator name="SimpleLabel">
+								<arg name="label">text()</arg>
+							</label_generator>
+						
+							<additional>
+								<relationship>crm:P2_has_type</relationship>
+								<entity>
+									<type>crm:E55_Type</type>
+									<instance_info>
+										<constant>bigno</constant>
+									</instance_info>
+									<instance_generator name="LocalThesauriURI">
+										<arg name="hierarchy" type="constant">identifier</arg>
+										<arg name="term" type="constant">bigno</arg>
+									</instance_generator>
+									
+								</entity>
+							</additional>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>bm_owning_department</source_relation>
+					<target_relation>
+						<relationship>crm:P50_has_current_keeper</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_owning_department</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E74_Group</type>
+							<instance_generator name="LocalThesauriURI">
+								<arg name="hierarchy" type="constant">department</arg>
+								<arg name="term">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<!--It doesn't create the E74 Group instance<link>
+				<path>
+					<source_relation>bm_owning_department</source_relation>
+					<target_relation>
+						<relationship>crm:P50_has_current_keeper</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_owning_department</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E74_Group</type>
+							<instance_generator name="LocalResourceURI">
+								<arg name="hierarchy" type="constant">thesIdentifier</arg>
+								<arg name="term" type="constant">The-British-Museum</arg>
+							</instance_generator>
+							<label_generator name="SimpleLabel">
+									<arg name="label" type="constant">The-British-Museum</arg>
+							</label_generator>
+							<instance_info>
+								<constant>The-British-Museum</constant>
+							</instance_info>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>{bm_prn}/copyright</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P104_is_subject_to</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>{bm_prn}/copyright</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E30_Right</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>-->
+			<link>
+				<path>
+					<source_relation>bm_alias_acq_year/_</source_relation>
+					<target_relation>
+						<relationship>crm:P24i_changed_ownership_through</relationship>
+						<entity variable="a1">
+							<type>crm:E8_Acquisition</type>
+							<instance_generator name="LocalObjectURI">
+								<arg name="hierarchy" type="constant">object</arg>
+								<arg name="object">../../bm_prn/text()</arg>
+								<arg name="term" type="constant">acquisition</arg>
+							</instance_generator>
+						</entity>
+						<relationship>crm:P4_has_time-span</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_alias_acq_year/_</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E52_Time-Span</type>
+							<instance_generator name="LocalObjectURI">
+								<arg name="hierarchy" type="constant">object</arg>
+								<arg name="object">../../bm_prn/text()</arg>
+								<arg name="term" type="constant">acquisition/date</arg>
+							</instance_generator>
+							<label_generator name="SimpleLabel">
+								<arg name="label">bm_acq_year_text/text()</arg>
+							</label_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<!--<link>
+				<path>
+					<source_relation>
+						<relation>bm_alias_object_name</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_object_name_th_i</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E55_Type</type>
+							<type>http://www.w3.org/2004/02/skos/core#Concept</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>bm_alias_object_name</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_alias_object_name</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E55_Type</type>
+							<type>http://www.w3.org/2004/02/skos/core#Concept</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>mus_alias_comments</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P70i_is_documented_in</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_alias_comments/_</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E31_Document</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>mus_physical_description</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P3_has_note</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_physical_description</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+							<instance_generator name="Literal">
+								<arg name="text">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>bm_alias_ware</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_ware_th_i</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E55_Type</type>
+							<type>http://www.w3.org/2004/02/skos/core#Concept</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>bm_exhib_hist/_</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P3_has_note</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_exhib_hist/_</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>bm_object_part</relation>
+					</source_relation>
+					<target_relation>
+						<if>
+							<or>
+								<if>
+									<equals value=">1">bm_object_part/_/mus_obj_parts</equals>
+								</if>
+							</or>
+						</if>
+						<relationship>crm:P56_bears_feature</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_object_part</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E25_Man-Made_Feature</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+		</mapping>
+		<mapping>
+			<domain>
+				<source_node>bm_object_part</source_node>
+				<target_node>
+					<if>
+						<or>
+							<if>
+								<equals value=">1">bm_object_part/_/mus_obj_parts</equals>
+							</if>
+						</or>
+					</if>
+					<entity>
+						<type>crm:E25_Man-Made_Feature</type>
+						<instance_generator name="UUID"/>
+					</entity>
+				</target_node>
+			</domain>
+			<link>
+				<path>
+					<source_relation>
+						<relation>mus_obj_parts</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_obj_parts</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E55_Type</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_physical_description</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P3_has_note</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/mus_physical_description</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+							<instance_generator name="Literal">
+								<arg name="text">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_alias_dimension</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P43_has_dimension</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/mus_alias_dimension</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E54_Dimension</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/bm_alias_xml_authority</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P108i_was_produced_by</relationship>
+						<entity variable="Pglobal">
+							<type>crm:E12_Production</type>
+						</entity>
+						<relationship>crm:P9_consists_of</relationship>
+						<entity variable="P1">
+							<type>crm:E12_Production</type>
+						</entity>
+						<relationship>crm:P17_was_motivated_by</relationship>
+						<entity>
+							<type>crm:E74_Group</type>
+						</entity>
+						<relationship>crm:P141i_was_assigned_by</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/bm_alias_xml_authority</source_node>
+					<target_node>
+						<entity variable="aa1">
+							<type>crm:E13_Attribute_Assignment</type>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/bm_alias_xml_authority</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P108i_was_produced_by</relationship>
+						<entity variable="Pglobal">
+							<type>crm:E12_Production</type>
+						</entity>
+						<relationship>crm:P9_consists_of</relationship>
+						<entity variable="P1">
+							<type>crm:E12_Production</type>
+						</entity>
+						<relationship>crm:P140i_was_attributed_by</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/bm_alias_xml_authority</source_node>
+					<target_node>
+						<entity variable="aa1">
+							<type>crm:E13_Attribute_Assignment</type>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+		</mapping>
+		<mapping>
+			<domain>
+				<source_node>bm_object_part</source_node>
+				<target_node>
+					<if>
+						<or>
+							<if>
+								<equals value="1">bm_object_part/_/mus_obj_parts</equals>
+							</if>
+						</or>
+					</if>
+					<entity variable="mmo1">
+						<type>crm:E25_Man-Made_Feature</type>
+						<instance_generator name="UUID"/>
+					</entity>
+				</target_node>
+			</domain>
+			<link>
+				<path>
+					<source_relation>
+						<relation>mus_obj_parts</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_obj_parts</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E55_Type</type>
+							<type>http://www.w3.org/2004/02/skos/core#Concept</type>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>mus_physical_description</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P3_has_note</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_physical_description</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+							<instance_generator name="Literal">
+								<arg name="text">text</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>mus_alias_dimension/_|bm_alias_denomination/_</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P43_has_dimension</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>mus_alias_dimension/_|bm_alias_denomination/_</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E54_Dimension</type>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/bm_alias_xml_authority</relation>
+					</source_relation>
+					<target_relation>
+						<relationship/>
+					</target_relation>
+				</path>
+				<range>
+					<source_node/>
+					<target_node>
+						<entity>
+							<type/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+		</mapping>
+		<mapping>
+			<domain>
+				<source_node>mus_alias_dimension</source_node>
+				<target_node>
+					<entity>
+						<type>crm:E54_Dimension</type>
+					</entity>
+				</target_node>
+				<comments>
+					<comment type="">
+						<rationale/>
+						<alternatives/>
+						<typical_mistakes/>
+						<local_habits>sssss</local_habits>
+						<link_to_cook_book/>
+						<example>
+							<example_source/>
+							<example_target/>
+						</example>
+						<comments_last_update date="" person=""/>
+					</comment>
+				</comments>
+			</domain>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_dimension</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/mus_dimension</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2004/02/skos/core#Concept</type>
+							<type>crm:E55_Type</type>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_dimension_measurement_unit</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P91_has_unit</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/mus_dimension_measurement_unit</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E58_Measurement_Unit</type>
+							<instance_info/>
+							<instance_generator name="LocalTermURI">
+								<arg name="unit">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_dimension_value</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P90_has_value</relationship>
+					</target_relation>
+					<comments>
+						<comment type="">
+							<rationale>
+mus_dimension_value != "" divide by 1000 (syntax normalisation
+							</rationale>
+							<alternatives/>
+							<typical_mistakes/>
+							<local_habits/>
+							<link_to_cook_book/>
+							<example>
+								<example_source/>
+								<example_target/>
+							</example>
+							<comments_last_update date="" person=""/>
+						</comment>
+					</comments>
+				</path>
+				<range>
+					<source_node>_/mus_dimension_value</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/bm_dimension_value_end</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P90_has_value</relationship>
+					</target_relation>
+					<comments>
+						<comment type="">
+							<rationale>bm_dimension_value_end != ""</rationale>
+							<alternatives/>
+							<typical_mistakes/>
+							<local_habits/>
+							<link_to_cook_book/>
+							<example>
+								<example_source/>
+								<example_target/>
+							</example>
+							<comments_last_update date="" person=""/>
+						</comment>
+					</comments>
+				</path>
+				<range>
+					<source_node>_/bm_dimension_value_end</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+						</entity>
+					</target_node>
+					<comments>
+						<comment type="">
+							<rationale>bm_dimension_value_end != ""</rationale>
+							<alternatives/>
+							<typical_mistakes/>
+							<local_habits/>
+							<link_to_cook_book/>
+							<example>
+								<example_source/>
+								<example_target/>
+							</example>
+							<comments_last_update date="" person=""/>
+						</comment>
+					</comments>
+					<comments>
+						<comment type="">
+							<rationale>bm_dimension_value_end != ""</rationale>
+							<alternatives/>
+							<typical_mistakes/>
+							<local_habits/>
+							<link_to_cook_book/>
+							<example>
+								<example_source/>
+								<example_target/>
+							</example>
+							<comments_last_update date="" person=""/>
+						</comment>
+					</comments>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_dimension_notes</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P3_has_note</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/mus_dimension_notes</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+		</mapping>
+		<mapping>
+			<domain>
+				<source_node>bm_alias_xml_authority</source_node>
+				<target_node>
+					<entity>
+						<type>crm:E13_Attribute_Assignment</type>
+					</entity>
+				</target_node>
+			</domain>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/bm_authority</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P141_assigned</relationship>
+						<entity variable="g1">
+							<type>crm:E74_Group</type>
+							<instance_generator name="UUID"/>
+						</entity>
+						<relationship>crm:P3_has_note</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/bm_authority</source_node>
+					<target_node>
+						<entity>
+							<type>http://www.w3.org/2000/01/rdf-schema#Literal</type>
+							<instance_info>
+								<description/>
+							</instance_info>
+							<instance_generator name="Literal">
+								<arg name="text">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/mus_authority-bm_auth_biog_number</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P141_assigned</relationship>
+						<entity variable="g1">
+							<type>crm:E74_Group</type>
+							<instance_generator name="UUID"/>
+						</entity>
+						<relationship>crm:P1_is_identified_by</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/mus_authority-bm_auth_biog_number</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E42_Identifier</type>
+							<instance_info>
+								<description/>
+							</instance_info>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>
+						<relation>_/bm_authority_ass</relation>
+					</source_relation>
+					<target_relation>
+						<relationship>crm:P2_has_type</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>_/bm_authority_ass</source_node>
+					<target_node>
+						<entity>
+							<type>crm:E55_Type</type>
+							<instance_info>
+								<description/>
+							</instance_info>
+							<instance_generator name="UUID"/>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			-->
+		</mapping>
+		<mapping>
+			<domain>
+				<source_node>//bm_alias_acq_year/_</source_node>
+				<target_node>
+					<entity>
+						<type>crm:E52_Time-Span</type>
+						<instance_generator name="LocalObjectURI">
+							<arg name="hierarchy" type="constant">object</arg>
+							<arg name="object">../../bm_prn/text()</arg>
+							<arg name="term" type="constant">acquisition/date</arg>
+						</instance_generator>
+						<label_generator name="SimpleLabel">
+							<arg name="label">bm_acq_year_text/text()</arg>
+						</label_generator>
+					</entity>
+				</target_node>
+			</domain>
+			<link>
+				<path>
+					<source_relation>bm_acq_year_earliest</source_relation>
+					<target_relation>
+						<relationship>crm:P82a_begin_of_the_begin</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_acq_year_earliest</source_node>
+					<target_node>
+						<entity>
+							<type>xsd:dateTime</type>
+							<instance_generator name="GermanDateTime">
+								<arg name="bound">Lower</arg>
+								<arg name="text">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+			<link>
+				<path>
+					<source_relation>bm_acq_year_latest</source_relation>
+					<target_relation>
+						<relationship>crm:P82b_end_of_the_end</relationship>
+					</target_relation>
+				</path>
+				<range>
+					<source_node>bm_acq_year_latest</source_node>
+					<target_node>
+						<entity>
+							<type>xsd:dateTime</type>
+							<instance_generator name="BMdates">
+								<arg name="bound">Upper</arg>
+								<arg name="text">text()</arg>
+							</instance_generator>
+						</entity>
+					</target_node>
+				</range>
+			</link>
+		</mapping>
+	</mappings>
 </x3ml>

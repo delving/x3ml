@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x3ml version="1.0" source_type="xpath">
+    <namespaces>
+        <namespace prefix="bm" uri="http://bm.co.uk/#"/>
+        <namespace prefix="crm" uri="http://purl.org/NET/cidoc-crm/core#"/>
+    </namespaces>
+    <mappings>
+        <mapping>
+            <domain>
+                <source_node>//input</source_node>
+                <target_node>
+                    <entity>
+                        <type>crm:E19_Physical_Object</type>
+                        <instance_generator name="PhysicalObject">
+                            <arg name="nameOfMuseum" type="constant">British Museum</arg>
+                            <arg name="entry">bm_object_id/text()</arg>
+                        </instance_generator>
+                    </entity>
+                </target_node>
+            </domain>
+            <link>
+                <path>
+                    <source_relation>bm_object_part/underscore/bm_alias_loc/underscore</source_relation>
+                    <target_relation>
+                        <relationship>crm:P54_has_current_permanent_location</relationship>
+                    </target_relation>
+                </path>
+                <range>
+                    <source_node>bm_object_part/underscore/bm_alias_loc/underscore</source_node>
+                    <target_node>
+                        <entity>
+                            <type>crm:E48_Place_Name</type>
+                            <instance_generator name="PlaceName">
+                                <arg name="entry">bm_loc/text()</arg>
+                            </instance_generator>
+                        </entity>
+                    </target_node>
+                </range>
+            </link>
+        </mapping>
+    </mappings>
+</x3ml>

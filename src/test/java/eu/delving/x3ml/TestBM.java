@@ -62,14 +62,19 @@ public class TestBM {
         			achieved++;
         	else if (statement.getPredicate().toString().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"))
         		additionalClassifications++;
-        	//else
-        		//unknown++;
+        	else {
+        		System.out.println("Unknown: " + statement.toString());
+        		unknown++;
+        	}
         }
 
     	System.out.printf("Achieved: %.2f%% ", ((++achieved/(float)target) * 100.0));
     	System.out.println("Additional classifications: " + additionalClassifications);
     	
-        //assertTrue(expected.isIsomorphicWith(mapped));
+    	if(unknown > 0)
+    		System.out.println("Unknown: " + unknown);
+
+    	//assertTrue(expected.isIsomorphicWith(mapped));
         //assertTrue(expected.containsAll(mapped));
         assertTrue(unknown == 0);
     }

@@ -39,7 +39,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -185,12 +184,13 @@ public class AllTests {
                 errors.add(MISSING + filterTriple(expectedOne));
             }
         }
-        Collections.sort(errors, new Comparator<String>() {
-            @Override
-            public int compare(String a, String b) {
-                return getPredicate(a).compareTo(getPredicate(b));
-            }
-        });
+        Collections.sort(errors);
+//        Collections.sort(errors, new Comparator<String>() {
+//            @Override
+//            public int compare(String a, String b) {
+//                return getPredicate(a).compareTo(getPredicate(b));
+//            }
+//        });
         return errors;
     }
 

@@ -17,6 +17,7 @@ package eu.delving.x3ml;
 
 import eu.delving.x3ml.engine.Generator;
 import eu.delving.x3ml.engine.Root;
+
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.ls.LSInput;
@@ -25,12 +26,15 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.hp.hpl.jena.rdf.model.Model;
+
 import javax.xml.XMLConstants;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -118,6 +122,8 @@ public class X3MLEngine {
 
         void writeXML(PrintStream printStream);
 
+        Model getModel();
+        
         String[] toStringArray();
 
     }

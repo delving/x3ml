@@ -43,6 +43,10 @@ public class ModelOutput implements Output {
         this.namespaceContext = namespaceContext;
     }
 
+    public Model getModel() {
+    	return model;
+    }
+    
     public Resource createTypedResource(String uriString, TypeElement typeElement) {
         if (typeElement == null) {
             throw exception("Missing qualified name");

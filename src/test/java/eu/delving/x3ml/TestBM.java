@@ -17,7 +17,22 @@ package eu.delving.x3ml;
 
 import org.junit.Test;
 
+import java.util.List;
+import java.io.ByteArrayInputStream;
+
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+
 import static eu.delving.x3ml.AllTests.*;
+import static org.junit.Assert.assertTrue;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 /**
  * @author Gerald de Jong <gerald@delving.eu>
@@ -26,9 +41,36 @@ import static eu.delving.x3ml.AllTests.*;
 public class TestBM {
 
     @Test
-    public void testFirstSteps() {
+    public void testBM20() throws IOException {
         X3MLEngine engine = engine("/bm/BM20.x3ml");
-        X3MLEngine.Output output = engine.execute(document("/bm/BM20.xml"), policy("/bm/BM20-gen-policy.xml"));
-        output.writeXML(System.out);
+        X3MLEngine.Output output = engine.execute(document("/bm/BM20.xml"), 
+						  policy("/bm/BM20-gen-policy.xml"));
+	
+        Model expected = ModelFactory.createMemModelMaker().createModel("gumby");
+        expected.read(TestBM.class.getResourceAsStream("/bm/BM20-expected.n3"), null, "N-TRIPLE");
+        Model mapped = output.getModel();
+        
+        long target = expected.size();
+        long achieved = 0;
+        long additionalClassifications = 0;
+        long unknown = 0;
+        
+        StmtIterator statements = mapped.listStatements();
+        while(statements.hasNext()) {
+        	Statement statement = statements.nextStatement();
+        	if (expected.contains(statement))
+        			achieved++;
+        	else if (statement.getPredicate().toString().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"))
+        		additionalClassifications++;
+        	//else
+        		//unknown++;
+        }
+
+    	System.out.printf("Achieved: %.2f%% ", ((++achieved/(float)target) * 100.0));
+    	System.out.println("Additional classifications: " + additionalClassifications);
+    	
+        //assertTrue(expected.isIsomorphicWith(mapped));
+        //assertTrue(expected.containsAll(mapped));
+        assertTrue(unknown == 0);
     }
 }

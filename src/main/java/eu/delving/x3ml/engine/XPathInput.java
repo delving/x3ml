@@ -108,8 +108,6 @@ public class XPathInput {
         return value.trim();
     }
 
-    
-    //egw to ebala ayto
       public int countNodes(Node node, String expression) {
         List<Node> nodes = nodeList(node, expression);
         return nodes.size();

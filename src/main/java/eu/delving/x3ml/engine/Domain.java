@@ -70,7 +70,6 @@ public class Domain extends GeneratorContext {
             System.out.println("Node Inside"+node_inside);
 
 
-        
         String pathExpression = pathElement.source_relation.relation.expression;
 
         RangeElement rangeElement = linkElement.range;
@@ -83,14 +82,9 @@ public class Domain extends GeneratorContext {
         int index1 = 1;
         int index2 = 1;
         
-             
-        
-        
+
         
         int size = context.input().countNodes(node.getParentNode(), node_inside+"//"+intermediateFirst + "/text()");
-        
-        System.out.println(size);
-
 
         for(int count=1;count<=size;count++)
         {

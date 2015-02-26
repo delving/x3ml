@@ -10,7 +10,7 @@
     <artifactId>x3ml</artifactId>
     <packaging>jar</packaging>
     <name>X3ML</name>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.3-SNAPSHOT</version>
     <inceptionYear>2013</inceptionYear>
     <organization>
         <name>Delving B.V.</name>
@@ -62,14 +62,14 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>artifactory.delving.org</id>
-            <name>artifactory.delving.org-releases</name>
-            <url>http://artifactory.delving.org/artifactory/delving</url>
+            <id>releases</id>
+            <name>Delving Nexus</name>
+            <url>http://nexus.delving.org/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>artifactory.delving.org</id>
-            <name>artifactory.delving.org-snapshots</name>
-            <url>http://artifactory.delving.org/artifactory/delving</url>
+            <id>snapshots</id>
+            <name>Delving Nexus</name>
+            <url>http://nexus.delving.org/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
     <dependencies>
@@ -128,6 +128,11 @@
             <groupId>net.sf.saxon</groupId>
             <artifactId>Saxon-HE</artifactId>
             <version>9.5.1-5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>joox</artifactId>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 </project>

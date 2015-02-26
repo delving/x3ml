@@ -18,7 +18,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>MINT_ID</source_relation>
+                    <source_relation><relation>MINT_ID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
@@ -38,7 +38,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>MINT_NAME</source_relation>
+                    <source_relation><relation>MINT_NAME</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -79,7 +79,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>MINT_NAME_EN</source_relation>
+                    <source_relation><relation>MINT_NAME_EN</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>

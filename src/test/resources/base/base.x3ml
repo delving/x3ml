@@ -48,7 +48,9 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>inner1</source_relation>
+                    <source_relation>
+					<relation>inner1</relation>
+					</source_relation>
                     <target_relation>
                         <relationship>pre:Relation1</relationship>
                         <entity>

@@ -108,22 +108,75 @@ public interface X3ML {
     @XStreamAlias("link")
     public static class LinkElement extends Visible {
 
-        public PathElement path;
+       public PathElement path;
 
         public RangeElement range;
 
         public void apply(Domain domain) {
-            String pathSource = this.path.source_relation.expression;
+            String pathSource = this.path.source_relation.relation.expression;
+            String pathSource2 = "";
+            String node_inside = "";
+           
+            System.out.println(pathSource);
+            if(this.path.source_relation.relation2!=null)
+            {
+            pathSource2 = this.path.source_relation.relation2.expression;
+            System.out.println("pathSource2: "+pathSource2);
+            }
+            
+            if(this.path.source_relation.node!=null)
+            {
+            node_inside = this.path.source_relation.node.expression;
+            System.out.println("node: "+node_inside);
+            }
+
+            if(this.path.source_relation.node!=null)
+            {
+            
+            
             int equals = pathSource.indexOf("==");
+
             if (equals >= 0) {
+                
+                
+                String domainForeignKey = pathSource.trim();
+                String rangePrimaryKey = pathSource2.trim();
+                
+                String intermediateFirst = domainForeignKey.substring(domainForeignKey.indexOf("==")+2).trim();
+                String intermediateSecond = rangePrimaryKey.substring(0,rangePrimaryKey.indexOf("==")).trim();
+                
+                domainForeignKey = domainForeignKey.substring(0,domainForeignKey.indexOf("==")).trim();
+                rangePrimaryKey = rangePrimaryKey.substring(rangePrimaryKey.indexOf("==")+2).trim();
+                
+                
+                for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey,
+                        intermediateFirst,intermediateSecond,node_inside)) {
+                    link.range.link();
+                }
+                
+            }
+            }
+            
+            
+            else if(pathSource.contains("=="))
+            {
+              
+            int equals = pathSource.indexOf("==");
+                if (equals >= 0) {
                 String domainForeignKey = pathSource.substring(0, equals).trim();
                 String rangePrimaryKey = pathSource.substring(equals + 2).trim();
                 for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey)) {
                     link.range.link();
                 }
+            }  
+                
+            
             }
+            
             else {
+                System.out.println(this.path);
                 for (Path path : domain.createPathContexts(this.path)) {
+                    System.out.println(this.path);
                     for (Range range : path.createRangeContexts(this.range)) {
                         range.link();
                     }
@@ -233,14 +286,21 @@ public interface X3ML {
         public EntityElement entityElement;
     }
 
-    @XStreamAlias("path")
+     @XStreamAlias("path")
     public static class PathElement extends Visible {
 
-        public Source source_relation;
+        public SourceRelation source_relation;
 
         public TargetRelation target_relation;
 
         public Comments comments;
+    }
+    
+      @XStreamAlias("source_relation")
+     public  class SourceRelation extends Visible {
+        public Source relation2;
+        public Source relation;
+        public Source node;
     }
 
     @XStreamAlias("range")

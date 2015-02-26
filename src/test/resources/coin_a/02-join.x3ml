@@ -18,7 +18,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>ID</source_relation>
+                    <source_relation><relation>ID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -39,7 +39,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>FIND_SPOT_ID == FS_ID</source_relation>
+                    <source_relation><relation>FIND_SPOT_ID == FS_ID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity>

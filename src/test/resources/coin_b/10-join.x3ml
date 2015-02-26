@@ -24,7 +24,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>ID</source_relation>
+                    <source_relation><relation>ID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -45,7 +45,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>FIND_SPOT_ID == FS_ID</source_relation>
+                    <source_relation><relation>FIND_SPOT_ID == FS_ID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P30i_custody_transferred_through</relationship>
                         <entity variable="tc1">
@@ -90,7 +90,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>FS_NAME</source_relation>
+                    <source_relation><relation>FS_NAME</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -114,7 +114,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>FS_NAME_EN</source_relation>
+                    <source_relation><relation>FS_NAME_EN</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>

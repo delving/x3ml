@@ -1,0 +1,763 @@
+<rdf:RDF
+    xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+    xmlns:bmO="http://collection.britishmuseum.org/id/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:bm="http://collection.britishmuseum.org/"
+    xmlns:bmT="http://collection.britishmuseum.org/id/thesauri/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:bmR="http://collection.britishmuseum.org/resource/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//RRI3806">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/RRI3806/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/RRI3806/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1937-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1937-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1937</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/A"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/RRI3806/regno">
+        <crm:P2_has_type>
+          <crm:E55_Type rdf:about="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        </crm:P2_has_type>
+        <rdfs:label>1880.4039</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/RRI3806/codexid">
+        <crm:P2_has_type>
+          <crm:E55_Type rdf:about="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        </crm:P2_has_type>
+        <rdfs:label>179969</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/RRI3806/prn">
+        <crm:P2_has_type>
+          <crm:E55_Type rdf:about="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        </crm:P2_has_type>
+        <rdfs:label>RRI3806</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum">
+        <rdfs:label>The-British-Museum</rdfs:label>
+      </crm:E74_Group>
+    </crm:P50_has_current_keeper>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//WCT55920">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/WCT55920/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/WCT55920/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1892-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1892-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1892</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/W"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCT55920/bigno">
+        <crm:P2_has_type>
+          <crm:E55_Type rdf:about="http://collection.britishmuseum.org/id/thesauri/identifier/bigno"/>
+        </crm:P2_has_type>
+        <rdfs:label>17105,a</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCT55920/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1892,0709.221.a</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCT55920/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>325003</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCT55920/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>WCT55920</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//EAS67623">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/EAS67623/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/EAS67623/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1997-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1997-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1997</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/A"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/EAS67623/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>As1998,01.128</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/EAS67623/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>1507215</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/EAS67623/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>EAS67623</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//COC231583">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/COC231583/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/COC231583/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1921-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1921-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1921</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/C"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/COC231583/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1921,0513.1</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/COC231583/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>3152931</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/COC231583/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>COC231583</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//WCO84417">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/WCO84417/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/WCO84417/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1862-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1862-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1862</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/W"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO84417/bigno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/bigno"/>
+        <rdfs:label>E48453</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO84417/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1862,1028.1</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO84417/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>271330</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO84417/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>WCO84417</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//CGR266697">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/CGR266697/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/CGR266697/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1956-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1956-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1956</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/C"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CGR266697/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1856,0701.5177.A</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CGR266697/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>3284336</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CGR266697/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>CGR266697</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//GAA1132">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/GAA1132/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/GAA1132/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1945-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1945-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1945</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/G"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/GAA1132/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1945,0927.2</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/GAA1132/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>466189</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/GAA1132/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>GAA1132</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//CBA266435">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/CBA266435/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/CBA266435/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1919-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1919-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1919</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/C"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CBA266435/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1919,0506.1</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CBA266435/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>3282402</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CBA266435/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>CBA266435</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//YCA69289">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/YCA69289/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/YCA69289/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1891-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1891-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1891</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/Y"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/YCA69289/bigno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/bigno"/>
+        <rdfs:label>EA37496</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/YCA69289/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1891,0525.1</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/YCA69289/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>111444</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/YCA69289/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>YCA69289</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//COC8943">
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/C"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/COC8943/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>OR.5097</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/COC8943/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>922342</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/COC8943/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>COC8943</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//MCC6933">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/MCC6933/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/MCC6933/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >2000-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >2000-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>2000</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/H"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/MCC6933/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>2000,0514.1</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/MCC6933/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>51644</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/MCC6933/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>MCC6933</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//PPA263540">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/PPA263540/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/PPA263540/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1923-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1923-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1923</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper>
+      <crm:E74_Group rdf:about="http://collection.britishmuseum.org/id/thesauri/department/P"/>
+    </crm:P50_has_current_keeper>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA263540/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1923,0306.1.48</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA263540/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>3263586</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA263540/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>PPA263540</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//CME8154">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/CME8154/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/CME8154/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1877-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1877-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1877</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/C"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CME8154/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>BNK,ItM.2</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CME8154/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>946309</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/CME8154/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>CME8154</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//WCO86314">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/WCO86314/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/WCO86314/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1997-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1997-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1997</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/W"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO86314/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1997,0324.813-814</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO86314/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>467709</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/WCO86314/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>WCO86314</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//PDB7385">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/PDB7385/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/PDB7385/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1871-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1871-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1871</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/P"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PDB7385/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1871,1111.1</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PDB7385/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>746837</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PDB7385/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>PDB7385</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//PPA44216">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/PPA44216/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/PPA44216/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1866-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1866-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1866</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/P"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA44216/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1866,0407.954</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA44216/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>1337054</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA44216/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>PPA44216</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//RFM31473">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/RFM31473/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/RFM31473/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1999-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1999-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1999</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/W"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/RFM31473/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1999,1202,0.13.1-2</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/RFM31473/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>178427</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/RFM31473/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>RFM31473</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//JCF8939">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/JCF8939/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/JCF8939/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1982-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1982-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1982</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/A"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/JCF8939/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1982,0701,0.17</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/JCF8939/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>8333</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/JCF8939/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>JCF8939</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//PPA138043">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/PPA138043/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/PPA138043/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1896-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1896-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1896</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/P"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA138043/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1896,0511.324</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA138043/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>1625897</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/PPA138043/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>PPA138043</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+  <crm:E22_Man-Made_Object rdf:about="http://collection.britishmuseum.org/id/object//GAA79795">
+    <crm:P24i_changed_ownership_through>
+      <crm:E8_Acquisition rdf:about="http://collection.britishmuseum.org/id/object/GAA79795/acquisition">
+        <crm:P4_has_time-span>
+          <crm:E52_Time-Span rdf:about="http://collection.britishmuseum.org/id/object/GAA79795/acquisition%2Fdate">
+            <crm:P82b_end_of_the_end rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1888-12-31T23:59:59</crm:P82b_end_of_the_end>
+            <crm:P82a_begin_of_the_begin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >1888-01-01T00:00:00</crm:P82a_begin_of_the_begin>
+            <rdfs:label>1888</rdfs:label>
+          </crm:E52_Time-Span>
+        </crm:P4_has_time-span>
+      </crm:E8_Acquisition>
+    </crm:P24i_changed_ownership_through>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/id/thesauri/department/G"/>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/GAA79795/regno">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/regno"/>
+        <rdfs:label>1888,0601.643.a</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P1_is_identified_by>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/GAA79795/codexid">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/codexid"/>
+        <rdfs:label>1400233</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P1_is_identified_by>
+    <crm:P48_has_preferred_identifier>
+      <crm:E42_Identifier rdf:about="http://collection.britishmuseum.org/id/object/GAA79795/prn">
+        <crm:P2_has_type rdf:resource="http://collection.britishmuseum.org/id/thesauri/identifier/prn"/>
+        <rdfs:label>GAA79795</rdfs:label>
+      </crm:E42_Identifier>
+    </crm:P48_has_preferred_identifier>
+    <crm:P50_has_current_keeper rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+    <crm:P52_has_current_owner rdf:resource="http://collection.britishmuseum.org/resource/thesIdentifier/The-British-Museum"/>
+  </crm:E22_Man-Made_Object>
+</rdf:RDF>
+

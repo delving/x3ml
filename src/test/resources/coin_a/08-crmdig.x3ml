@@ -20,7 +20,7 @@
 			</domain>
 			<link>
 				<path>
-					<source_relation>ID</source_relation>
+					<source_relation><relation>ID</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P1_is_identified_by</relationship>
 					</target_relation>
@@ -42,7 +42,7 @@
 			
 		    <link>
                 <path>
-                    <source_relation>PH_NAME</source_relation>
+                    <source_relation><relation>PH_NAME</relation></source_relation>
                     <target_relation>
                         <relationship>crmdig:L1i_was_digitized_by</relationship>
 						<entity>

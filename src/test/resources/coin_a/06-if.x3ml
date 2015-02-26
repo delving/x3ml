@@ -19,7 +19,7 @@
 
             <link>
                 <path>
-                    <source_relation>ID</source_relation>
+                    <source_relation><relation>ID</relation></source_relation>
                     <target_relation>
                         <if>
                             <equals value="242">../FIND_SPOT_ID/text()</equals>

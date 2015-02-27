@@ -176,9 +176,7 @@ public class XPathInput {
             String pathExpression,
             String rangeExpression,
             String rangeKeyPath
-    ) {
-=
-      
+    ) {     
         String mapName = domainExpression + "|" + pathExpression + "|" + rangeExpression;
         
         Map<String, List<Node>> map = rangeMapCache.get(mapName);

@@ -58,6 +58,9 @@ public class TestBM {
         StmtIterator statements = mapped.listStatements();
         while(statements.hasNext()) {
         	Statement statement = statements.nextStatement();
+
+		System.out.println(statement);
+
         	if (expected.contains(statement))
         			achieved++;
         	else if (statement.getPredicate().toString().equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"))

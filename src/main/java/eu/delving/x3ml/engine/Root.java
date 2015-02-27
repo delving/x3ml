@@ -29,13 +29,13 @@ import java.util.Map;
 import static eu.delving.x3ml.engine.X3ML.GeneratedValue;
 
 /**
- * The root of the mapping is where the domain contexts are created.  They then fabricate
- * path contexts which in turn make range contexts.
+ * The root of the mapping is where the domain contexts are created. They then
+ * fabricate path contexts which in turn make range contexts.
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-
 public class Root {
+
     private final Element rootNode;
     private final ModelOutput modelOutput;
     private final XPathInput xpathInput;
@@ -99,19 +99,23 @@ public class Root {
             Domain domainContext = new Domain(context, domain, domainNode, index++);
             if (domainContext.resolve()) {
                 domains.add(domainContext);
-            }
-            else {
-                System.out.println("Unresolved: "+domainContext);
+            } else {
+                System.out.println("Unresolved: " + domainContext);
             }
         }
         return domains;
     }
 
     public interface Context {
+
         XPathInput input();
+
         ModelOutput output();
+
         Generator policy();
+
         GeneratedValue getGeneratedValue(String xpath);
+
         void putGeneratedValue(String xpath, GeneratedValue generatedValue);
     }
 }

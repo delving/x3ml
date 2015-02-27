@@ -43,9 +43,9 @@ import static eu.delving.x3ml.engine.X3ML.SourceType;
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-
 public class XPathInput {
-   private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
+
+    private final XPathFactory pathFactory = net.sf.saxon.xpath.XPathFactoryImpl.newInstance();
     private final NamespaceContext namespaceContext;
     private final String languageFromMapping;
     private final Node rootNode;
@@ -71,15 +71,19 @@ public class XPathInput {
                     type = sourceType(arg.type, defaultType);
                 }
             }
-            
+
         }
         X3ML.ArgValue value = null;
         switch (type) {
-            
+
             case xpath:
-                if (foundArg == null) return null;
+                if (foundArg == null) {
+                    return null;
+                }
                 String lang = getLanguageFromSource(node);
-                if (lang == null) lang = languageFromMapping;
+                if (lang == null) {
+                    lang = languageFromMapping;
+                }
                 if (!foundArg.value.isEmpty()) {
                     value = argVal(valueAt(node, foundArg.value), lang);
                     if (value.string.isEmpty()) {
@@ -88,7 +92,9 @@ public class XPathInput {
                 }
                 break;
             case constant:
-                if (foundArg == null) return null;
+                if (foundArg == null) {
+                    return null;
+                }
                 value = argVal(foundArg.value, languageFromMapping);
                 break;
             case position:
@@ -102,23 +108,25 @@ public class XPathInput {
 
     public String valueAt(Node node, String expression) {
         List<Node> nodes = nodeList(node, expression);
-        if (nodes.isEmpty()) return "";
+        if (nodes.isEmpty()) {
+            return "";
+        }
         String value = nodes.get(0).getNodeValue();
-        if (value == null) return "";
+        if (value == null) {
+            return "";
+        }
         return value.trim();
     }
 
-      public int countNodes(Node node, String expression) {
+    public int countNodes(Node node, String expression) {
         List<Node> nodes = nodeList(node, expression);
         return nodes.size();
     }
-    
-    
+
     public List<Node> nodeList(Node node, X3ML.Source source) {
         if (source != null) {
             return nodeList(node, source.expression);
-        }
-        else {
+        } else {
             List<Node> list = new ArrayList<Node>(1);
             list.add(node);
             return list;
@@ -127,15 +135,14 @@ public class XPathInput {
 
     public List<Node> nodeList(Node context, String expression) {
 
-        
         if (expression == null || expression.length() == 0) {
             List<Node> list = new ArrayList<Node>(1);
             list.add(context);
             return list;
         }
         try {
-            XPathExpression xe = xpath().compile(expression); 
-            
+            XPathExpression xe = xpath().compile(expression);
+
             NodeList nodeList = (NodeList) xe.evaluate(context, XPathConstants.NODESET);
             int nodesReturned = nodeList.getLength();
             List<Node> list = new ArrayList<Node>(nodesReturned);
@@ -143,8 +150,7 @@ public class XPathInput {
                 list.add(nodeList.item(index));
             }
             return list;
-        }
-        catch (XPathExpressionException e) {
+        } catch (XPathExpressionException e) {
             throw new RuntimeException("XPath Problem: " + expression, e);
         }
     }
@@ -176,9 +182,9 @@ public class XPathInput {
             String pathExpression,
             String rangeExpression,
             String rangeKeyPath
-    ) {     
+    ) {
         String mapName = domainExpression + "|" + pathExpression + "|" + rangeExpression;
-        
+
         Map<String, List<Node>> map = rangeMapCache.get(mapName);
         if (map == null) {
             map = new HashMap<String, List<Node>>();
@@ -186,13 +192,13 @@ public class XPathInput {
             for (Node node : nodeList(context, rangeExpression)) {
                 String key = valueAt(node, rangeKeyPath);
                 List<Node> value = map.get(key);
-               
+
                 if (value == null) {
                     value = new ArrayList<Node>();
                     map.put(key, value);
                 }
                 value.add(node);
-                
+
             }
 //            Logger log = Logger.getLogger("getRangeMap");
 //            log.info("Built Map! " + mapName);
@@ -223,8 +229,7 @@ public class XPathInput {
     private SourceType sourceType(String value, SourceType defaultType) {
         if (value == null) {
             return defaultType;
-        }
-        else {
+        } else {
             return SourceType.valueOf(value);
         }
     }
@@ -234,6 +239,5 @@ public class XPathInput {
         path.setNamespaceContext(namespaceContext);
         return path;
     }
-
 
 }

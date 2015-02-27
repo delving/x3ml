@@ -21,12 +21,12 @@ import org.w3c.dom.Node;
 import static eu.delving.x3ml.engine.X3ML.RangeElement;
 
 /**
- * The range entity handled here.  Resolution delegated.
+ * The range entity handled here. Resolution delegated.
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-
 public class Range extends GeneratorContext {
+
     public final Path path;
     public final RangeElement range;
     public EntityResolver rangeResolver;
@@ -38,7 +38,9 @@ public class Range extends GeneratorContext {
     }
 
     public boolean resolve() {
-        if (conditionFails(range.target_node.condition, this)) return false;
+        if (conditionFails(range.target_node.condition, this)) {
+            return false;
+        }
         rangeResolver = new EntityResolver(context.output(), range.target_node.entityElement, this);
         return rangeResolver.resolve();
     }
@@ -52,8 +54,7 @@ public class Range extends GeneratorContext {
                     lastResource.addProperty(path.lastProperty, resolvedResource);
                 }
             }
-        }
-        else if (rangeResolver.hasLiteral()) {
+        } else if (rangeResolver.hasLiteral()) {
             for (Resource lastResource : path.lastResources) {
                 lastResource.addLiteral(path.lastProperty, rangeResolver.literal);
             }

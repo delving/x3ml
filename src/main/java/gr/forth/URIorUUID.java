@@ -46,12 +46,12 @@ public class URIorUUID implements CustomGenerator {
         return text;
     }
 
-    @Override
+     @Override
     public String getValueType() throws CustomGeneratorException {
         if (text == null) {
             throw new CustomGeneratorException("Missing text argument");
         }
-        return isValidURL(text) ? "URI" : "UUID";
+        return isValidURL(text) || isValidURN(text) ? "URI" : "UUID";
     }
 
     private boolean isValidURL(String urlString) {
@@ -60,8 +60,7 @@ public class URIorUUID implements CustomGenerator {
 
         try {
             url = new URL(urlString);
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             return false;
         }
 
@@ -72,6 +71,16 @@ public class URIorUUID implements CustomGenerator {
         }
 
         return true;
+    }
+
+    private boolean isValidURN(String urnString) {
+
+        if (urnString.startsWith("urn:")||urnString.startsWith("URN:")) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 //     private boolean isValidURI(String uri) {

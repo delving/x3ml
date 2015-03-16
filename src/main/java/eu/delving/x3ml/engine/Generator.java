@@ -24,10 +24,10 @@ import static eu.delving.x3ml.engine.X3ML.SourceType;
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
+
 public interface Generator {
 
     interface UUIDSource {
-
         String generateUUID();
     }
 
@@ -40,7 +40,6 @@ public interface Generator {
     String getLanguageFromMapping();
 
     public interface ArgValues {
-
         ArgValue getArgValue(String name, SourceType sourceType);
     }
 

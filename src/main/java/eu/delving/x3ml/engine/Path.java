@@ -29,14 +29,14 @@ import static eu.delving.x3ml.engine.X3ML.RangeElement;
 import static eu.delving.x3ml.engine.X3ML.Relationship;
 
 /**
- * The path relationship handled here. Intermediate nodes possible. Expecting
- * always one more path than entity, and they are interlaced. Marshalling
- * handled specially.
+ * The path relationship handled here.  Intermediate nodes possible.
+ * Expecting always one more path than entity, and they are interlaced.
+ * Marshalling handled specially.
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-public class Path extends GeneratorContext {
 
+public class Path extends GeneratorContext {
     public final Domain domain;
     public final PathElement path;
     public Relationship relationship;
@@ -53,9 +53,7 @@ public class Path extends GeneratorContext {
 
     public boolean resolve() {
         X3ML.TargetRelation relation = path.target_relation;
-        if (conditionFails(relation.condition, this)) {
-            return false;
-        }
+        if (conditionFails(relation.condition, this)) return false;
         if (relation.properties == null || relation.properties.isEmpty()) {
             throw exception("Target relation must have at least one property");
         }
@@ -63,7 +61,8 @@ public class Path extends GeneratorContext {
             if (relation.entities.size() + 1 != relation.properties.size()) {
                 throw exception("Target relation must have one more property than entity");
             }
-        } else if (relation.properties.size() != 1) {
+        }
+        else if (relation.properties.size() != 1) {
             throw exception("Target relation must just one property if it has no entities");
         }
         relationship = relation.properties.get(0);
@@ -130,7 +129,6 @@ public class Path extends GeneratorContext {
     }
 
     private class IntermediateNode {
-
         public final X3ML.EntityElement entityElement;
         public final Relationship relationship;
         public final GeneratorContext generatorContext;
@@ -145,9 +143,7 @@ public class Path extends GeneratorContext {
 
         public boolean resolve() {
             entityResolver = new EntityResolver(context.output(), entityElement, generatorContext);
-            if (!entityResolver.resolve()) {
-                return false;
-            }
+            if (!entityResolver.resolve()) return false;
             property = context.output().createProperty(relationship);
             return true;
         }

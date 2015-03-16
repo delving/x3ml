@@ -30,15 +30,14 @@ import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
 import static eu.delving.x3ml.engine.X3ML.TypeElement;
 
 /**
- * The entity resolver creates the related model elements by calling generator
- * functions.
+ * The entity resolver creates the related model elements by calling generator functions.
  * <p/>
  * Handles label nodes and additional nodes with their properties
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-public class EntityResolver {
 
+public class EntityResolver {
     public final ModelOutput modelOutput;
     public final X3ML.EntityElement entityElement;
     public final GeneratorContext generatorContext;
@@ -58,9 +57,7 @@ public class EntityResolver {
         if (entityElement == null) {
             throw exception("Missing entity");
         }
-        if (failed) {
-            return false;
-        }
+        if (failed) return false;
         if (resources == null) {
             StringBuilder unique = new StringBuilder();
             for (TypeElement typeElement : entityElement.typeElements) {
@@ -141,7 +138,6 @@ public class EntityResolver {
     }
 
     private static class AdditionalNode {
-
         public final ModelOutput modelOutput;
         public final Additional additional;
         public final GeneratorContext generatorContext;
@@ -166,9 +162,11 @@ public class EntityResolver {
                 for (Resource resource : additionalEntityResolver.resources) {
                     fromResource.addProperty(property, resource);
                 }
-            } else if (additionalEntityResolver.hasLiteral()) {
+            }
+            else if (additionalEntityResolver.hasLiteral()) {
                 fromResource.addLiteral(property, additionalEntityResolver.literal);
-            } else {
+            }
+            else {
                 throw exception("Cannot link without property or literal");
             }
         }
@@ -188,7 +186,6 @@ public class EntityResolver {
     }
 
     private class LabelNode {
-
         public final GeneratorElement generator;
         public Property property;
         public Literal literal;
@@ -200,9 +197,7 @@ public class EntityResolver {
         public boolean resolve() {
             property = modelOutput.createProperty(new TypeElement("rdfs:label", "http://www.w3.org/2000/01/rdf-schema#"));
             GeneratedValue generatedValue = generatorContext.getInstance(generator, null, "-" + generator.name); //todo: are you sure?
-            if (generatedValue == null) {
-                return false;
-            }
+            if (generatedValue == null) return false;
             switch (generatedValue.type) {
                 case URI:
                     throw exception("Label node must produce a literal");

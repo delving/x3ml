@@ -33,8 +33,8 @@ import static eu.delving.x3ml.engine.X3ML.TypeElement;
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-
 public class ModelOutput implements Output {
+
     private final Model model;
     private final NamespaceContext namespaceContext;
 
@@ -44,9 +44,9 @@ public class ModelOutput implements Output {
     }
 
     public Model getModel() {
-    	return model;
+        return model;
     }
-    
+
     public Resource createTypedResource(String uriString, TypeElement typeElement) {
         if (typeElement == null) {
             throw exception("Missing qualified name");
@@ -96,14 +96,11 @@ public class ModelOutput implements Output {
     public void write(PrintStream out, String format) {
         if ("application/n-triples".equalsIgnoreCase(format)) {
             writeNTRIPLE(out);
-        }
-        else if ("text/turtle".equalsIgnoreCase(format)) {
+        } else if ("text/turtle".equalsIgnoreCase(format)) {
             writeTURTLE(out);
-        }
-        else if ("application/rdf+xml".equalsIgnoreCase(format)) {
+        } else if ("application/rdf+xml".equalsIgnoreCase(format)) {
             writeXML(out);
-        }
-        else {
+        } else {
             writeXML(out);
         }
     }

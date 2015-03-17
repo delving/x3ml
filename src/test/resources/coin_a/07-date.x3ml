@@ -19,7 +19,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>COUNTRY_ID == COUNTRY_ID</source_relation>
+                    <source_relation><relation>COUNTRY_ID == COUNTRY_ID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">
@@ -49,7 +49,7 @@
             
 			<link>
                 <path>
-                    <source_relation>DATE_FROM</source_relation>
+                    <source_relation><relation>DATE_FROM</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">
@@ -83,7 +83,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>DATE_FROM</source_relation>
+                    <source_relation><relation>DATE_FROM</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">
@@ -115,7 +115,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>DATE_TO</source_relation>
+                    <source_relation><relation>DATE_TO</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">
@@ -147,7 +147,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>DATE_TO</source_relation>
+                    <source_relation><relation>DATE_TO</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P108i_was_produced_by</relationship>
                         <entity variable="p1">

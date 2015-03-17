@@ -21,7 +21,10 @@
 			</domain>
 			<link>
 				<path>
-					<source_relation>fme:maggo_lam_rect/fme:Name</source_relation>
+
+					<source_relation>
+						<relation>fme:maggo_lam_rect/fme:Name</relation>
+					</source_relation>
 					<target_relation>
 						<relationship>crm:P1_is_identified_by</relationship>
 					</target_relation>

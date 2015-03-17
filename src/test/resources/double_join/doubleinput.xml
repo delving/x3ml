@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot>
+	<actr>
+		<srl>MT</srl>
+		<actr1>Maria Theodoridou</actr1>
+	</actr>
+	<actr>
+		<srl>MD</srl>
+		<actr1>Martin Doerr</actr1>
+	</actr>
+	<actr_role>
+		<srl>Cre</srl>
+		<actr_role1>creator</actr_role1>
+	</actr_role>
+	<actr_role>
+		<srl>Own</srl>
+		<actr_role1>owner</actr_role1>
+	</actr_role>
+	<actr_vs_proj>
+		<srl>1</srl>
+		<cptproj_srl>CB</cptproj_srl>
+		<actr_srl>MT</actr_srl>
+		<actr_role_srl>Cre</actr_role_srl>
+	</actr_vs_proj>
+	<actr_vs_proj>
+		<srl>2</srl>
+		<cptproj_srl>CB</cptproj_srl>
+		<actr_srl>MD</actr_srl>
+		<actr_role_srl>Own</actr_role_srl>
+	</actr_vs_proj>
+	<actr_vs_proj>
+		<srl>3</srl>
+		<cptproj_srl>AR</cptproj_srl>
+		<actr_srl>MT</actr_srl>
+		<actr_role_srl>Own</actr_role_srl>
+	</actr_vs_proj>
+	<cptproj>
+		<srl>CB</srl>
+		<cptproj1>CultureBrokers</cptproj1>
+	</cptproj>
+	<cptproj>
+		<srl>AR</srl>
+		<cptproj1>ARIADNE</cptproj1>
+	</cptproj>
+
+</dataroot>

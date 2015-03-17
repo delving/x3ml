@@ -16,13 +16,13 @@
 package eu.delving.x3ml.engine;
 
 /**
- * Combining path and range for when the source_relation is a key comparison rather than xpath.
+ * Combining path and range for when the source_relation is a key comparison
+ * rather than xpath.
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-
-
 public class Link {
+
     public final Path path;
     public final Range range;
 
@@ -33,7 +33,9 @@ public class Link {
 
     public boolean resolve() {
         boolean resolved = path.resolve();
-        if (resolved) range.resolve();
+        if (resolved) {
+            range.resolve();
+        }
         return resolved;
     }
 

@@ -1,0 +1,22 @@
+<rdf:RDF
+    xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <crm:E39_Actor rdf:about="uuid:AB">
+    <crm:P14i_performed>
+      <crm:E7_Activity rdf:about="uuid:AC">
+        <rdfs:label>CultureBrokers</rdfs:label>
+      </crm:E7_Activity>
+    </crm:P14i_performed>
+    <rdfs:label>Martin Doerr</rdfs:label>
+  </crm:E39_Actor>
+  <crm:E39_Actor rdf:about="uuid:AA">
+    <crm:P14i_performed>
+      <crm:E7_Activity rdf:about="uuid:AD">
+        <rdfs:label>ARIADNE</rdfs:label>
+      </crm:E7_Activity>
+    </crm:P14i_performed>
+    <crm:P14i_performed rdf:resource="uuid:AC"/>
+    <rdfs:label>Maria Theodoridou</rdfs:label>
+  </crm:E39_Actor>
+</rdf:RDF>

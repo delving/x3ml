@@ -8,29 +8,36 @@
     <mappings>
         <mapping>
             <domain>
-                <source_node>//COIN</source_node>
+                <source_node>//actr</source_node>
                 <target_node>
                     <entity>
-                        <type>crm:E22_Man-Made_Object</type>
+                        <type>crm:E39_Actor</type>
                         <instance_generator name="UUID"/>
+						<label_generator name="Literal">
+                                <arg name="text">actr1/text()</arg>
+                        </label_generator>
                     </entity>
                 </target_node>
             </domain>
             <link>
                 <path>
-                    <source_relation><relation>ID</relation></source_relation>
+                    <source_relation>
+						<relation>srl == actr_srl</relation>
+						<node>//actr_vs_proj</node>
+						<relation2>cptproj_srl == srl</relation2>
+					</source_relation>
                     <target_relation>
-                        <relationship>crm:P1_is_identified_by</relationship>
+                        <relationship>crm:P14i_performed</relationship>
                     </target_relation>
                 </path>
                 <range>
-                    <source_node>ID</source_node>
+                    <source_node>//cptproj</source_node>
                     <target_node>
                         <entity>
-                            <type>crm:E41_Appellation</type>
+                            <type>crm:E7_Activity</type>
                             <instance_generator name="UUID"/>
                             <label_generator name="Literal">
-                                <arg name="text">text()</arg>
+                                <arg name="text">cptproj1/text()</arg>
                                 <arg name="language"/>
                             </label_generator>
                         </entity>

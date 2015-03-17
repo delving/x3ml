@@ -28,7 +28,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>dimension.value</source_relation>
+                    <source_relation><relation>dimension.value</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P90_has_value</relationship>
                     </target_relation>

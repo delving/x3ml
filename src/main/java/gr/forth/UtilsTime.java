@@ -24,6 +24,8 @@ public class UtilsTime {
     private static Matcher matcher;
     private static final String swedishMonths[] = {"Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"};
     private static final String englishMonths[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    private static final String englishMonthsAbbr[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
     private static final Date ONE_BCE = new Date(-62167392000000L);
     private static final Date ONE_CE = new Date(-62135769600000L);
 
@@ -31,6 +33,7 @@ public class UtilsTime {
         "(0?[1-9]|[12][0-9]|3[01])([-/.])(0?[1-9]|1[012])\\2(-?\\d{1,4})([\\s]([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?)?", /*dd/mm/(-)yy | dd-mm-(-)yy | dd.mm.(-)yy* (optional time hh:mm:?sec)*/
         "(0?[1-9]|[12][0-9]|3[01])([-/.\\s])(Januari|Februari|Mars|April|Maj|Juni|Juli|Augusti|September|Oktober|November|December)\\2(-?\\d{1,4})([\\s]([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?)?", /*dd (month in swedish) yy (optional time hh:mm:?sec)*/
         "(0?[1-9]|[12][0-9]|3[01])([-/.\\s])(January|February|March|April|May|June|July|August|September|October|November|December)\\2(-?\\d{1,4})([\\s]([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?)?", /*dd (month in english) yy (optional time hh:mm:?sec)*/
+        "(0?[1-9]|[12][0-9]|3[01])([-/.\\s])(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\2(-?\\d{1,4})([\\s]([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?)?", /*dd (month three letters in english) yy (optional time hh:mm:?sec)*/
         "(Januari|Februari|Mars|April|Maj|Juni|Juli|Augusti|September|Oktober|November|December)([-/.\\s])(-?\\d{1,4})", /*(month in swedish) yy*/
         "(January|February|March|April|May|June|July|August|September|October|November|December)([-/.\\s])(-?\\d{1,4})", /*(month in english) yy*/
         "(-?\\d{1,4})([-/.])(0?[1-9]|1[012])\\2(0?[1-9]|[12][0-9]|3[01])([\\s]([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?)?$", /*(-)yy-mm-dd |(-)yy.mm.dd | (-)yy/mm/dd  (optional time hh:mm:?sec)*/
@@ -92,12 +95,12 @@ public class UtilsTime {
 
                     }
 
-                    if (i <= 2) {
+                    if (i <= 3) {
                         year = Integer.parseInt(g3);
                         month = g2;
                         day = g1;
 
-                    } else if (i >= 3 && i <= 4) {
+                    } else if (i >= 4 && i <= 5) {
                         year = Integer.parseInt(g2);
                         month = g1;
                     } else {
@@ -139,7 +142,11 @@ public class UtilsTime {
             int index = Arrays.asList(swedishMonths).indexOf(month);
             if (index == -1) {
                 index = Arrays.asList(englishMonths).indexOf(month);
+                if (index == -1) {
+                    index = Arrays.asList(englishMonthsAbbr).indexOf(month);
+                }
             }
+
             if (index != -1) {
                 month = "0" + String.valueOf(index + 1);
             }

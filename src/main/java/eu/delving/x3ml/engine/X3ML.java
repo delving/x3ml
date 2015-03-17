@@ -39,7 +39,8 @@ import java.util.List;
 import static eu.delving.x3ml.X3MLEngine.exception;
 
 /**
- * This interface defines the XML interpretation of the engine using the XStream library.
+ * This interface defines the XML interpretation of the engine using the XStream
+ * library.
  * <p/>
  * There is also a helper class for encapsulating related functions.
  * <p/>
@@ -47,10 +48,10 @@ import static eu.delving.x3ml.X3MLEngine.exception;
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-
 public interface X3ML {
 
     public enum SourceType {
+
         xpath,
         constant,
         position
@@ -97,7 +98,9 @@ public interface X3ML {
         public void apply(Root context) {
             for (Domain domain : context.createDomainContexts(this.domain)) {
                 domain.resolve();
-                if (links == null) continue;
+                if (links == null) {
+                    continue;
+                }
                 for (LinkElement linkElement : links) {
                     linkElement.apply(domain);
                 }
@@ -113,17 +116,57 @@ public interface X3ML {
         public RangeElement range;
 
         public void apply(Domain domain) {
-            String pathSource = this.path.source_relation.expression;
-            int equals = pathSource.indexOf("==");
-            if (equals >= 0) {
-                String domainForeignKey = pathSource.substring(0, equals).trim();
-                String rangePrimaryKey = pathSource.substring(equals + 2).trim();
-                for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey)) {
-                    link.range.link();
-                }
+            String pathSource = this.path.source_relation.relation.expression;
+            String pathSource2 = "";
+            String node_inside = "";
+
+            System.out.println(pathSource);
+            if (this.path.source_relation.relation2 != null) {
+                pathSource2 = this.path.source_relation.relation2.expression;
+                System.out.println("pathSource2: " + pathSource2);
             }
-            else {
+
+            if (this.path.source_relation.node != null) {
+                node_inside = this.path.source_relation.node.expression;
+                System.out.println("node: " + node_inside);
+            }
+
+            if (this.path.source_relation.node != null) {
+
+                int equals = pathSource.indexOf("==");
+
+                if (equals >= 0) {
+
+                    String domainForeignKey = pathSource.trim();
+                    String rangePrimaryKey = pathSource2.trim();
+
+                    String intermediateFirst = domainForeignKey.substring(domainForeignKey.indexOf("==") + 2).trim();
+                    String intermediateSecond = rangePrimaryKey.substring(0, rangePrimaryKey.indexOf("==")).trim();
+
+                    domainForeignKey = domainForeignKey.substring(0, domainForeignKey.indexOf("==")).trim();
+                    rangePrimaryKey = rangePrimaryKey.substring(rangePrimaryKey.indexOf("==") + 2).trim();
+
+                    for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey,
+                            intermediateFirst, intermediateSecond, node_inside)) {
+                        link.range.link();
+                    }
+
+                }
+            } else if (pathSource.contains("==")) {
+
+                int equals = pathSource.indexOf("==");
+                if (equals >= 0) {
+                    String domainForeignKey = pathSource.substring(0, equals).trim();
+                    String rangePrimaryKey = pathSource.substring(equals + 2).trim();
+                    for (Link link : domain.createLinkContexts(this, domainForeignKey, rangePrimaryKey)) {
+                        link.range.link();
+                    }
+                }
+
+            } else {
+                System.out.println(this.path);
                 for (Path path : domain.createPathContexts(this.path)) {
+                    System.out.println(this.path);
                     for (Range range : path.createRangeContexts(this.range)) {
                         range.link();
                     }
@@ -134,6 +177,7 @@ public interface X3ML {
 
     @XStreamAlias("namespace")
     public static class MappingNamespace extends Visible {
+
         @XStreamAsAttribute
         public String prefix;
         @XStreamAsAttribute
@@ -142,6 +186,7 @@ public interface X3ML {
 
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"expression"})
     public static class Source extends Visible {
+
         public String expression;
     }
 
@@ -207,14 +252,11 @@ public interface X3ML {
                 reader.moveDown();
                 if ("if".equals(reader.getNodeName())) {
                     relation.condition = (Condition) context.convertAnother(relation, Condition.class);
-                }
-                else if ("relationship".equals(reader.getNodeName())) {
+                } else if ("relationship".equals(reader.getNodeName())) {
                     relation.properties.add((Relationship) context.convertAnother(relation, Relationship.class));
-                }
-                else if ("entity".equals(reader.getNodeName())) {
+                } else if ("entity".equals(reader.getNodeName())) {
                     relation.entities.add((EntityElement) context.convertAnother(relation, EntityElement.class));
-                }
-                else {
+                } else {
                     throw new ConversionException("Unrecognized: " + reader.getNodeName());
                 }
                 reader.moveUp();
@@ -236,11 +278,19 @@ public interface X3ML {
     @XStreamAlias("path")
     public static class PathElement extends Visible {
 
-        public Source source_relation;
+        public SourceRelation source_relation;
 
         public TargetRelation target_relation;
 
         public Comments comments;
+    }
+
+    @XStreamAlias("source_relation")
+    public class SourceRelation extends Visible {
+
+        public Source relation2;
+        public Source relation;
+        public Source node;
     }
 
     @XStreamAlias("range")
@@ -265,6 +315,7 @@ public interface X3ML {
 
     @XStreamAlias("if")
     public static class Condition extends Visible {
+
         public Narrower narrower;
         public Exists exists;
         public Equals equals;
@@ -273,6 +324,7 @@ public interface X3ML {
         public NotCondition not;
 
         private static class Outcome {
+
             final GeneratorContext context;
             boolean failure;
 
@@ -301,6 +353,7 @@ public interface X3ML {
     }
 
     interface YesOrNo {
+
         boolean yes(GeneratorContext context);
     }
 
@@ -356,7 +409,9 @@ public interface X3ML {
         public boolean yes(GeneratorContext context) {
             boolean result = true;
             for (Condition condition : list) {
-                if (condition.failure(context)) result = false;
+                if (condition.failure(context)) {
+                    result = false;
+                }
             }
             return result;
         }
@@ -372,7 +427,9 @@ public interface X3ML {
         public boolean yes(GeneratorContext context) {
             boolean result = false;
             for (Condition condition : list) {
-                if (!condition.failure(context)) result = true;
+                if (!condition.failure(context)) {
+                    result = true;
+                }
             }
             return result;
         }
@@ -493,6 +550,7 @@ public interface X3ML {
     @XStreamAlias("comment")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"content"})
     public static class Comment extends Visible {
+
         @XStreamAsAttribute
         public String type;
 
@@ -501,6 +559,7 @@ public interface X3ML {
 
     @XStreamAlias("label_generator")
     public static class GeneratorElement extends Visible {
+
         @XStreamAsAttribute
         public String name;
 
@@ -511,6 +570,7 @@ public interface X3ML {
     @XStreamAlias("arg")
     @XStreamConverter(value = ToAttributedValueConverter.class, strings = {"value"})
     public static class GeneratorArg extends Visible {
+
         @XStreamAsAttribute
         public String name;
 
@@ -522,12 +582,14 @@ public interface X3ML {
 
     @XStreamAlias("generator_policy")
     public static class GeneratorPolicy extends Visible {
+
         @XStreamImplicit
         public List<GeneratorSpec> generators;
     }
 
     @XStreamAlias("generator")
     public static class GeneratorSpec extends Visible {
+
         @XStreamAsAttribute
         public String name;
 
@@ -545,6 +607,7 @@ public interface X3ML {
 
     @XStreamAlias("custom")
     public static class CustomGenerator extends Visible {
+
         @XStreamAsAttribute
         public String generatorClass;
 
@@ -558,6 +621,7 @@ public interface X3ML {
 
     @XStreamAlias("set-arg")
     public static class CustomArg extends Visible {
+
         @XStreamAsAttribute
         public String name;
 
@@ -566,6 +630,7 @@ public interface X3ML {
     }
 
     public static class ArgValue {
+
         public final String string;
         public final String language;
 
@@ -577,20 +642,21 @@ public interface X3ML {
         public String toString() {
             if (string != null) {
                 return "ArgValue(" + string + ")";
-            }
-            else {
+            } else {
                 return "ArgValue?";
             }
         }
     }
 
     public enum GeneratedType {
+
         URI,
         LITERAL,
         TYPED_LITERAL
     }
 
     public static class GeneratedValue {
+
         public final GeneratedType type;
         public final String text;
         public final String language;
@@ -611,12 +677,14 @@ public interface X3ML {
     }
 
     static class Visible {
+
         public String toString() {
             return Helper.toString(this);
         }
     }
 
     static class Helper {
+
         static String toString(Object thing) {
             return "\n" + x3mlStream().toXML(thing);
         }

@@ -92,10 +92,7 @@
 			</domain>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_prn</relation>
-					</source_relation>
+					<source_relation><relation>bm_prn</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P48_has_preferred_identifier</relationship>
 					</target_relation>
@@ -137,10 +134,7 @@
 			</link>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_codex_object_id/_</relation>
-					</source_relation>
+					<source_relation><relation>bm_codex_object_id/_</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P1_is_identified_by</relationship>
 					</target_relation>
@@ -179,10 +173,7 @@
 			</link>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_calc_reg_no_expr/_</relation>
-					</source_relation>
+					<source_relation><relation>bm_calc_reg_no_expr/_</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P1_is_identified_by</relationship>
 					</target_relation>
@@ -221,10 +212,7 @@
 			</link>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_calc_big_no_expr/_</relation>
-					</source_relation>
+					<source_relation><relation>bm_calc_big_no_expr/_</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P1_is_identified_by</relationship>
 					</target_relation>
@@ -263,10 +251,7 @@
 			</link>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_owning_department</relation>
-					</source_relation>
+					<source_relation><relation>bm_owning_department</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P50_has_current_keeper</relationship>
 					</target_relation>
@@ -286,10 +271,7 @@
 			</link>
 			<!--It doesn't create the E74 Group instance<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_owning_department</relation>
-					</source_relation>
+					<source_relation><relation>bm_owning_department</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P50_has_current_keeper</relationship>
 					</target_relation>
@@ -334,10 +316,7 @@
 			</link>-->
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_alias_acq_year/_</relation>
-					</source_relation>
+					<source_relation><relation>bm_alias_acq_year/_</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P24i_changed_ownership_through</relationship>
 						<entity variable="a1">
@@ -1027,10 +1006,7 @@ mus_dimension_value != "" divide by 1000 (syntax normalisation
 			</domain>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_acq_year_earliest</relation>
-					</source_relation>
+					<source_relation><relation>bm_acq_year_earliest</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P82a_begin_of_the_begin</relationship>
 					</target_relation>
@@ -1050,10 +1026,7 @@ mus_dimension_value != "" divide by 1000 (syntax normalisation
 			</link>
 			<link>
 				<path>
-
-					<source_relation>
-						<relation>bm_acq_year_latest</relation>
-					</source_relation>
+					<source_relation><relation>bm_acq_year_latest</relation></source_relation>
 					<target_relation>
 						<relationship>crm:P82b_end_of_the_end</relationship>
 					</target_relation>

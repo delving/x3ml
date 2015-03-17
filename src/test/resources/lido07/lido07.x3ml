@@ -25,7 +25,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:lidoRecID</source_relation>
+                    <source_relation><relation>lido:lidoRecID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P70_is_documented_in</relationship>
                     </target_relation>
@@ -44,7 +44,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:category</source_relation>
+                    <source_relation><relation>lido:category</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -63,7 +63,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:objectWorkType/lido:term</source_relation>
+                    <source_relation><relation>lido:objectWorkType/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -82,7 +82,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:objectWorkType/lido:conceptID</source_relation>
+                    <source_relation><relation>lido:objectWorkType/lido:conceptID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
@@ -99,7 +99,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:classification/lido:term</source_relation>
+                    <source_relation><relation>lido:classification/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -118,7 +118,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:classification/lido:conceptID</source_relation>
+                    <source_relation><relation>lido:classification/lido:conceptID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
@@ -135,7 +135,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:titleSet/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:titleSet/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -152,7 +152,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:titleSet/lido:sourceAppellation</source_relation>
+                    <source_relation><relation>lido:titleSet/lido:sourceAppellation</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -169,7 +169,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:inscriptions</source_relation>
+                    <source_relation><relation>lido:inscriptions</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P65_shows_visual_item</relationship>
                     </target_relation>
@@ -186,7 +186,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:repositoryName/lido:legalBodyID</source_relation>
+                    <source_relation><relation>lido:repositoryName/lido:legalBodyID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P50_has_current_keeper</relationship>
                         <entity>
@@ -213,7 +213,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:repositoryName/lido:legalBodyName/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:repositoryName/lido:legalBodyName/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P50_has_current_keeper</relationship>
                         <entity>
@@ -240,7 +240,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:repositoryLocation/lido:placeID</source_relation>
+                    <source_relation><relation>lido:repositoryLocation/lido:placeID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P55_has_current_location</relationship>
                         <entity>
@@ -268,7 +268,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:repositoryLocation/lido:namePlaceSet/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P55_has_current_location</relationship>
                         <entity>
@@ -296,7 +296,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</source_relation>
+                    <source_relation><relation>lido:repositoryLocation/lido:namePlaceSet/lido:sourceAppellation</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -313,7 +313,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayState</source_relation>
+                    <source_relation><relation>lido:displayState</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -330,7 +330,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayEdition</source_relation>
+                    <source_relation><relation>lido:displayEdition</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -347,7 +347,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:sourceStateEdition</source_relation>
+                    <source_relation><relation>lido:sourceStateEdition</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -364,7 +364,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:objectDescriptionSet/lido:descriptiveNoteValue</source_relation>
+                    <source_relation><relation>lido:objectDescriptionSet/lido:descriptiveNoteValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -381,7 +381,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:objectDescriptionSet/lido:sourceDescriptiveNote</source_relation>
+                    <source_relation><relation>lido:objectDescriptionSet/lido:sourceDescriptiveNote</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -398,7 +398,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayObjectMeasurements</source_relation>
+                    <source_relation><relation>lido:displayObjectMeasurements</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -415,7 +415,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:measurementsSet</source_relation>
+                    <source_relation><relation>lido:measurementsSet</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P43_has_dimension</relationship>
                     </target_relation>
@@ -434,7 +434,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:extentMeasurements</source_relation>
+                    <source_relation><relation>lido:extentMeasurements</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -451,7 +451,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:qualifierMeasurements</source_relation>
+                    <source_relation><relation>lido:qualifierMeasurements</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -468,7 +468,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayEvent</source_relation>
+                    <source_relation><relation>lido:displayEvent</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -485,7 +485,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventID</source_relation>
+                    <source_relation><relation>lido:eventID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P12i_was_present_at</relationship>
                         <entity>
@@ -510,7 +510,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventType/lido:term</source_relation>
+                    <source_relation><relation>lido:eventType/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P12i_was_present_at</relationship>
                         <entity>
@@ -537,7 +537,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventType/lido:term</source_relation>
+                    <source_relation><relation>lido:eventType/lido:term</relation></source_relation>
                     <target_relation>
                         <if>
                             <equals value="produced_by">../../lido:roleInEvent/lido:term/text()</equals>
@@ -560,7 +560,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventType/lido:term</source_relation>
+                    <source_relation><relation>lido:eventType/lido:term</relation></source_relation>
                     <target_relation>
                         <if>
                             <equals value="created_by">../../lido:roleInEvent/lido:term/text()</equals>
@@ -583,7 +583,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventType/lido:term</source_relation>
+                    <source_relation><relation>lido:eventType/lido:term</relation></source_relation>
                     <target_relation>
                         <if>
                             <equals value="used_for">../../lido:roleInEvent/lido:term/text()</equals>
@@ -606,7 +606,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventType/lido:term</source_relation>
+                    <source_relation><relation>lido:eventType/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P12i_was_present_at</relationship>
                     </target_relation>
@@ -629,7 +629,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displaySubject</source_relation>
+                    <source_relation><relation>lido:displaySubject</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -646,7 +646,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:extentSubject</source_relation>
+                    <source_relation><relation>lido:extentSubject</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -663,7 +663,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectConcept/lido:conceptID</source_relation>
+                    <source_relation><relation>lido:subjectConcept/lido:conceptID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
@@ -680,7 +680,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectConcept/lido:term</source_relation>
+                    <source_relation><relation>lido:subjectConcept/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -697,7 +697,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectActor/lido:displayActor</source_relation>
+                    <source_relation><relation>lido:subjectActor/lido:displayActor</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -724,7 +724,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectDate/lido:displayDate</source_relation>
+                    <source_relation><relation>lido:subjectDate/lido:displayDate</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -746,7 +746,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectEvent/lido:displayEvent</source_relation>
+                    <source_relation><relation>lido:subjectEvent/lido:displayEvent</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -771,7 +771,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectPlace/lido:displayPlace</source_relation>
+                    <source_relation><relation>lido:subjectPlace/lido:displayPlace</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -799,7 +799,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectObject/lido:displayObject</source_relation>
+                    <source_relation><relation>lido:subjectObject/lido:displayObject</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -816,7 +816,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectObject/lido:object/lido:objectWebResource</source_relation>
+                    <source_relation><relation>lido:subjectObject/lido:object/lido:objectWebResource</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67i_is_referred_to_by</relationship>
                         <entity>
@@ -838,7 +838,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:subjectObject/lido:object/lido:objectID</source_relation>
+                    <source_relation><relation>lido:subjectObject/lido:object/lido:objectID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -862,7 +862,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:relatedWorkRelType</source_relation>
+                    <source_relation><relation>lido:relatedWorkRelType</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P46i_forms_part_of</relationship>
                         <entity>
@@ -884,7 +884,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:rightsType</source_relation>
+                    <source_relation><relation>lido:rightsType</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P104_is_subject_to</relationship>
                         <entity>
@@ -908,7 +908,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:recordID</source_relation>
+                    <source_relation><relation>lido:recordID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P70_is_documented_in</relationship>
                         <entity>
@@ -946,7 +946,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:repositoryName/lido:legalBodyWeblink</source_relation>
+                    <source_relation><relation>lido:repositoryName/lido:legalBodyWeblink</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P129i_is_subject_of</relationship>
                     </target_relation>
@@ -989,7 +989,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:repositoryLocation/lido:partOfPlace/lido:placeID</source_relation>
+                    <source_relation><relation>lido:repositoryLocation/lido:partOfPlace/lido:placeID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P88_consists_of</relationship>
                         <entity>
@@ -1017,7 +1017,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:repositoryLocation/lido:placeClassification/lido:term</source_relation>
+                    <source_relation><relation>lido:repositoryLocation/lido:placeClassification/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -1049,7 +1049,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:formatMeasurements</source_relation>
+                    <source_relation><relation>lido:formatMeasurements</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -1077,7 +1077,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:shapeMeasurements</source_relation>
+                    <source_relation><relation>lido:shapeMeasurements</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -1105,7 +1105,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:scaleMeasurements</source_relation>
+                    <source_relation><relation>lido:scaleMeasurements</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -1143,7 +1143,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:roleInEvent/lido:term</source_relation>
+                    <source_relation><relation>lido:roleInEvent/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1160,7 +1160,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:roleInEvent/lido:term</source_relation>
+                    <source_relation><relation>lido:roleInEvent/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
@@ -1177,7 +1177,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventName/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:eventName/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P1_is_identified_by</relationship>
                     </target_relation>
@@ -1194,7 +1194,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventName/lido:sourceAppellation</source_relation>
+                    <source_relation><relation>lido:eventName/lido:sourceAppellation</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1211,7 +1211,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayActorInRole</source_relation>
+                    <source_relation><relation>lido:displayActorInRole</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1228,7 +1228,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:actorID</source_relation>
+                    <source_relation><relation>lido:actorID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P11_had_participant</relationship>
                         <entity>
@@ -1255,7 +1255,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:nameActorSet/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:nameActorSet/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P11_had_participant</relationship>
                         <entity>
@@ -1285,7 +1285,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:nameActorSet/lido:sourceAppellation</source_relation>
+                    <source_relation><relation>lido:nameActorSet/lido:sourceAppellation</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1302,7 +1302,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:roleActor/lido:term</source_relation>
+                    <source_relation><relation>lido:roleActor/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1319,7 +1319,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:attributionQualifierActor</source_relation>
+                    <source_relation><relation>lido:attributionQualifierActor</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1336,7 +1336,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:extentActor</source_relation>
+                    <source_relation><relation>lido:extentActor</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1353,7 +1353,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:culture/lido:term</source_relation>
+                    <source_relation><relation>lido:culture/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P10_falls_within</relationship>
                     </target_relation>
@@ -1372,7 +1372,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayDate</source_relation>
+                    <source_relation><relation>lido:displayDate</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1389,7 +1389,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventDate/lido:date/lido:earliestDate</source_relation>
+                    <source_relation><relation>lido:eventDate/lido:date/lido:earliestDate</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P4_has_time_span</relationship>
                         <entity>
@@ -1411,7 +1411,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventDate/lido:date/lido:latestDate</source_relation>
+                    <source_relation><relation>lido:eventDate/lido:date/lido:latestDate</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P4_has_time_span</relationship>
                         <entity>
@@ -1433,7 +1433,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventPlace/lido:displayPlace</source_relation>
+                    <source_relation><relation>lido:eventPlace/lido:displayPlace</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1450,7 +1450,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventPlace/lido:place/lido:placeID</source_relation>
+                    <source_relation><relation>lido:eventPlace/lido:place/lido:placeID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P7_took_place_at</relationship>
                         <entity>
@@ -1478,7 +1478,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:eventPlace/lido:place/lido:namePlaceSet/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P7_took_place_at</relationship>
                         <entity>
@@ -1506,7 +1506,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventMethod/lido:term</source_relation>
+                    <source_relation><relation>lido:eventMethod/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P32_used_general_technique</relationship>
                     </target_relation>
@@ -1525,7 +1525,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:displayMaterialsTech</source_relation>
+                    <source_relation><relation>lido:displayMaterialsTech</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1542,7 +1542,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:termMaterialsTech/lido:term</source_relation>
+                    <source_relation><relation>lido:termMaterialsTech/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P32_used_general_technique</relationship>
                     </target_relation>
@@ -1561,7 +1561,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:extentMaterialsTech</source_relation>
+                    <source_relation><relation>lido:extentMaterialsTech</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1578,7 +1578,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventDescriptionSet/lido:descriptiveNoteValue</source_relation>
+                    <source_relation><relation>lido:eventDescriptionSet/lido:descriptiveNoteValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1595,7 +1595,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventDescriptionSet/lido:sourceDescriptiveNote</source_relation>
+                    <source_relation><relation>lido:eventDescriptionSet/lido:sourceDescriptiveNote</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1630,7 +1630,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:nationalityActor/lido:term</source_relation>
+                    <source_relation><relation>lido:nationalityActor/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P107_is_current_or_former_member_of</relationship>
                     </target_relation>
@@ -1652,7 +1652,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:nationalityActor/lido:conceptID</source_relation>
+                    <source_relation><relation>lido:nationalityActor/lido:conceptID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P48_has_preferred_identifier</relationship>
                     </target_relation>
@@ -1669,7 +1669,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:vitalDatesActor</source_relation>
+                    <source_relation><relation>lido:vitalDatesActor</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P11_participated_in</relationship>
                     </target_relation>
@@ -1686,7 +1686,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:genderActor</source_relation>
+                    <source_relation><relation>lido:genderActor</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -1718,7 +1718,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:eventDate/lido:date/lido:periodName/lido:term</source_relation>
+                    <source_relation><relation>lido:eventDate/lido:date/lido:periodName/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P4_has_time_span</relationship>
                     </target_relation>
@@ -1754,7 +1754,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</source_relation>
+                    <source_relation><relation>lido:eventPlace/lido:place/lido:partOfPlace/lido:placeID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P88_consists_of</relationship>
                         <entity>
@@ -1782,7 +1782,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:eventPlace/lido:place/lido:placeClassification/lido:term</source_relation>
+                    <source_relation><relation>lido:eventPlace/lido:place/lido:placeClassification/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -1814,7 +1814,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:sourceMaterialsTech</source_relation>
+                    <source_relation><relation>lido:sourceMaterialsTech</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P71i_is_listed_in</relationship>
                     </target_relation>
@@ -1842,7 +1842,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:subjectObject/lido:object/lido:objectNote</source_relation>
+                    <source_relation><relation>lido:subjectObject/lido:object/lido:objectNote</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1872,7 +1872,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:rightsDate/lido:earliestDate</source_relation>
+                    <source_relation><relation>lido:rightsDate/lido:earliestDate</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1889,7 +1889,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:rightsDate/lido:latestDate</source_relation>
+                    <source_relation><relation>lido:rightsDate/lido:latestDate</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1906,7 +1906,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:rightsDate/lido:periodName/lido:term</source_relation>
+                    <source_relation><relation>lido:rightsDate/lido:periodName/lido:term</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -1923,7 +1923,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:rightsHolder/lido:legalBodyID</source_relation>
+                    <source_relation><relation>lido:rightsHolder/lido:legalBodyID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P75i_is_possessed_by</relationship>
                         <entity>
@@ -1950,7 +1950,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:rightsHolder/lido:legalBodyName/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P75i_is_possessed_by</relationship>
                         <entity>
@@ -1977,7 +1977,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:creditLine</source_relation>
+                    <source_relation><relation>lido:creditLine</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -2010,7 +2010,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:rightsHolder/lido:legalBodyWeblink</source_relation>
+                    <source_relation><relation>lido:rightsHolder/lido:legalBodyWeblink</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P129i_is_subject_of</relationship>
                     </target_relation>
@@ -2049,7 +2049,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:recordType</source_relation>
+                    <source_relation><relation>lido:recordType</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -2066,7 +2066,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:recordSource/lido:legalBodyID</source_relation>
+                    <source_relation><relation>lido:recordSource/lido:legalBodyID</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -2093,7 +2093,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>lido:recordSource/lido:legalBodyName/lido:appellationValue</source_relation>
+                    <source_relation><relation>lido:recordSource/lido:legalBodyName/lido:appellationValue</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P67_refers_to</relationship>
                         <entity>
@@ -2136,7 +2136,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>lido:recordSource/lido:legalBodyWeblink</source_relation>
+                    <source_relation><relation>lido:recordSource/lido:legalBodyWeblink</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P129i_is_subject_of</relationship>
                     </target_relation>

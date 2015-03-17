@@ -63,7 +63,8 @@ import static org.junit.Assert.assertTrue;
         TestLido07.class,
         TestBM.class,
         TestRijks.class,
-        TestGML.class
+        TestGML.class,
+        TestDoubleJoin.class
 })
 public class AllTests {
     public static final String MISSING = "!expect :     ";

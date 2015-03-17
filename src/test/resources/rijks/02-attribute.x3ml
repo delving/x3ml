@@ -50,7 +50,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>title</source_relation>
+                    <source_relation><relation>title</relation></source_relation>
                     <target_relation>
                         <relationship>rdfs:label</relationship>
                     </target_relation>
@@ -69,7 +69,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>title.gb</source_relation>
+                    <source_relation><relation>title.gb</relation></source_relation>
                     <target_relation>
                         <relationship>rdfs:label</relationship>
                     </target_relation>
@@ -102,7 +102,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/description</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/description</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -119,7 +119,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>description</source_relation>
+                    <source_relation><relation>description</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -152,7 +152,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>@linkref</source_relation>
+                    <source_relation><relation>@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P10_falls_within</relationship>
                     </target_relation>
@@ -185,7 +185,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/dating</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/dating</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P4_has_time-span</relationship>
                     </target_relation>
@@ -219,7 +219,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>date.early</source_relation>
+                    <source_relation><relation>date.early</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P82a_begin_of_the_begin</relationship>
                     </target_relation>
@@ -238,7 +238,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>date.late</source_relation>
+                    <source_relation><relation>date.late</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P82b_end_of_the_end</relationship>
                     </target_relation>
@@ -270,7 +270,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/maker</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/maker</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P9_consists_of</relationship>
                     </target_relation>
@@ -318,7 +318,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>maker/@linkref</source_relation>
+                    <source_relation><relation>maker/@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P14_carried_out_by</relationship>
                     </target_relation>
@@ -351,7 +351,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>@linkref</source_relation>
+                    <source_relation><relation>@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P138_represents</relationship>
                     </target_relation>
@@ -384,7 +384,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>@linkref</source_relation>
+                    <source_relation><relation>@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P138_represents</relationship>
                     </target_relation>
@@ -417,7 +417,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>dimension.value</source_relation>
+                    <source_relation><relation>dimension.value</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P90_has_value</relationship>
                     </target_relation>
@@ -436,7 +436,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>dimension.type/@linkref</source_relation>
+                    <source_relation><relation>dimension.type/@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -469,7 +469,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/dimension</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/dimension</relation></source_relation>
                     <target_relation>
                         <relationship>bmo:PX_property</relationship>
                     </target_relation>
@@ -486,7 +486,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>../priref[1]</source_relation>
+                    <source_relation><relation>../priref[1]</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P140_assigned_attribute_to</relationship>
                     </target_relation>
@@ -505,7 +505,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/dimension</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/dimension</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P141_assigned</relationship>
                     </target_relation>
@@ -525,7 +525,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>dimension.precision/text[@language='0']</source_relation>
+                    <source_relation><relation>dimension.precision/text[@language='0']</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -558,7 +558,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>.</source_relation>
+                    <source_relation><relation>.</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P3_has_note</relationship>
                     </target_relation>
@@ -591,7 +591,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>treatment/@linkref</source_relation>
+                    <source_relation><relation>treatment/@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P126_employed</relationship>
                     </target_relation>
@@ -610,7 +610,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/treatment</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/treatment</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P4_has_time-span</relationship>
                     </target_relation>
@@ -630,7 +630,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>treatment.name/@linkref</source_relation>
+                    <source_relation><relation>treatment.name/@linkref</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P14_was_carried_out_by</relationship>
                     </target_relation>
@@ -663,7 +663,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>treatment.date.early</source_relation>
+                    <source_relation><relation>treatment.date.early</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P82a_begin_of_the_begin</relationship>
                     </target_relation>
@@ -682,7 +682,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>treatment.date.early</source_relation>
+                    <source_relation><relation>treatment.date.early</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P82b_end_of_the_end</relationship>
                     </target_relation>
@@ -701,7 +701,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>treatment.date.early</source_relation>
+                    <source_relation><relation>treatment.date.early</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P82_at_some_time_within</relationship>
                     </target_relation>
@@ -734,7 +734,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record/inscription</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record/inscription</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P2_has_type</relationship>
                     </target_relation>
@@ -753,7 +753,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>inscription.content</source_relation>
+                    <source_relation><relation>inscription.content</relation></source_relation>
                     <target_relation>
                         <relationship>rdfs:label</relationship>
                     </target_relation>
@@ -772,7 +772,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>inscription.position</source_relation>
+                    <source_relation><relation>inscription.position</relation></source_relation>
                     <target_relation>
                         <relationship>bmo:PX_inscription_position</relationship>
                     </target_relation>
@@ -791,7 +791,7 @@
             </link>
             <link>
                 <path>
-                    <source_relation>inscription.language/text[@language='0']</source_relation>
+                    <source_relation><relation>inscription.language/text[@language='0']</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P72_has_language</relationship>
                     </target_relation>
@@ -823,7 +823,7 @@
             </domain>
             <link>
                 <path>
-                    <source_relation>/adlibXML/recordList/record</source_relation>
+                    <source_relation><relation>/adlibXML/recordList/record</relation></source_relation>
                     <target_relation>
                         <relationship>crm:P50_has_current_keeper</relationship>
                     </target_relation>

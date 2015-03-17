@@ -25,13 +25,13 @@ import static eu.delving.x3ml.engine.X3ML.GeneratorElement;
 import static eu.delving.x3ml.engine.X3ML.SourceType;
 
 /**
- * This abstract class is above Domain, Path, and Range and carries most of
- * their contextual information.
+ * This abstract class is above Domain, Path, and Range and carries most of their
+ * contextual information.
  *
  * @author Gerald de Jong <gerald@delving.eu>
  */
-public abstract class GeneratorContext {
 
+public abstract class GeneratorContext {
     public final Root.Context context;
     public final GeneratorContext parent;
     public final Node node;
@@ -45,16 +45,12 @@ public abstract class GeneratorContext {
     }
 
     public GeneratedValue get(String variable) {
-        if (parent == null) {
-            throw exception("Parent context missing");
-        }
+        if (parent == null) throw exception("Parent context missing");
         return parent.get(variable);
     }
 
     public void put(String variable, GeneratedValue generatedValue) {
-        if (parent == null) {
-            throw exception("Parent context missing");
-        }
+        if (parent == null) throw exception("Parent context missing");
         parent.put(variable, generatedValue);
     }
 
@@ -82,7 +78,8 @@ public abstract class GeneratorContext {
 //            else {
 //                System.out.println(generator.variable + " <==VAR=== " + generatedValue);
 //            }
-        } else {
+        }
+        else {
             String nodeName = extractXPath(node) + unique;
             generatedValue = context.getGeneratedValue(nodeName);
             if (generatedValue == null) {
@@ -116,15 +113,14 @@ public abstract class GeneratorContext {
     public static String extractXPath(Node node) {
         if (node == null || node.getNodeType() == Node.DOCUMENT_NODE) {
             return "/";
-        } else {
+        }
+        else {
             String soFar = extractXPath(node.getParentNode());
             int sibNumber = 0;
             Node sib = node;
             while (sib.getPreviousSibling() != null) {
                 sib = sib.getPreviousSibling();
-                if (sib.getNodeType() == Node.ELEMENT_NODE) {
-                    sibNumber++;
-                }
+                if (sib.getNodeType() == Node.ELEMENT_NODE) sibNumber++;
             }
             return String.format(
                     "%s%s[%d]/",

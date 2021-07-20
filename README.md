@@ -1,4 +1,7 @@
 # X3ML Engine
+
+**No longer maintained**, for an actively maintained fork see https://github.com/isl/x3ml
+
 ---
 ## Introduction
 
